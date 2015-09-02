@@ -1,0 +1,12 @@
+Package: description
+Title: Parse DESCRIPTION files
+Version: 1.0.0
+Author: Gabor Csardi
+Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
+Description: Parse DESCRIPTION files
+License: MIT + file LICENSE
+LazyData: true
+URL: https://github.com/metacran/description
+BugReports: https://github.com/metacran/description/issues
+Suggests: 
+    testthat
