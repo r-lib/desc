@@ -5,9 +5,7 @@
 \alias{description}
 \alias{description-package}
 \title{Read, write, update DESCRIPTION files}
-\format{\preformatted{Class 'R6ClassGenerator' <environment: 0x7fbfcd85d7b8> 
- - attr(*, "name")= chr "description_generator"
-}}
+\format{An R6 class.}
 \usage{
 description
 }
@@ -15,6 +13,16 @@ description
 Read, write, update DESCRIPTION files
 
 Parse DESCRIPTION files
+}
+\section{Constructor}{
+
+\preformatted{x <- description$new()
+x <- description$new(file = "package/DESCRIPTION")
+x <- description$new("new")}
+}
+
+\section{Methods}{
+
 }
 \keyword{datasets}
 

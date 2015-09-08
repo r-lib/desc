@@ -1,11 +1,37 @@
 
 #' Read, write, update DESCRIPTION files
 #'
+#' @section Constructor:
+#' TODO
+#' \preformatted{x <- description$new()
+#' x <- description$new(file = "package/DESCRIPTION")
+#' x <- description$new("new")}
 #'
+#' @section Methods:
+#' TODO
 #'
 #' @export
 #' @importFrom R6 R6Class
 #' @docType class
+#' @format An R6 class.
+#' 
+#' @examples
+#' ## Create a template
+#' desc <- description$new("new")
+#' desc
+#'
+#' ## Read a file
+#' desc2 <- description$new(file = system.file("DESCRIPTION",
+#'                            package = "description"))
+#' desc2
+#'
+#' ## Remove some field
+#' desc2$del("LazyData")
+#'
+#' ## Add another one
+#' desc2$set(VignetteBuilder = "knitr")
+#' desc2$get("VignetteBuilder")
+#' desc2
 
 description <- R6Class("description",
   public = list(
