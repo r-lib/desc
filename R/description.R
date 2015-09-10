@@ -123,14 +123,8 @@ desc_create_file <- function(self, private, file) {
 desc_create_text <- function(self, private, text) {
   con <- textConnection(text, local = TRUE)
   on.exit(close(con), add = TRUE)
-  dcf <- read_dcf(con, all = TRUE)
-  desc_create_matrix(self, private, dcf)
-}
-
-desc_create_matrix <- function(self, private, dcf) {
-  if (nrow(dcf) != 1) stop("Invalid description file")
+  dcf <- read_dcf(con)
   private$data <- dcf
-  invisible(self)
 }
 
 
@@ -144,9 +138,9 @@ desc_write <- function(self, private, file) {
 ## TODO: continuation lines
 
 desc_str <- function(self, private, by_lines) {
-  cols <- field_order(colnames(private$data))
+  cols <- field_order(names(private$data))
   col_str <- vapply(cols, FUN.VALUE = "", FUN = function(col) {
-    format_field(col, private$data[, col])
+    format_field(col, private$data[col])
   })
 
   if (by_lines) col_str else paste(col_str, collapse = "\n")
@@ -197,7 +191,8 @@ desc_print <- function(self, private) {
 
 
 desc_get <- function(self, private, keys) {
-  res <- unlist(private$data[1, ])[keys]
+  res <- private$data[keys]
+  res[is.na(res)] <- NA_character_
   names(res) <- keys
   res
 }
@@ -214,12 +209,12 @@ desc_set <- function(self, private, ...) {
   if (is.null(names(args)) && length(args) == 2) {
     key <- as_string(args[[1]])
     value <- as_string(args[[2]])
-    private$data[1, key] <- value
+    private$data[key] <- value
 
   } else if (!is.null(names(args)) && all(names(args) != "")) {
     keys <- names(args)
     values <- unlist(unname(args))
-    private$data[1, keys] <- values
+    private$data[keys] <- values
 
   } else {
     stop("$set needs two unnamed args, or all named args, see docs")
@@ -230,7 +225,7 @@ desc_set <- function(self, private, ...) {
 
 
 desc_del <- function(self, private, keys) {
-  private$data <- private$data[, setdiff(colnames(private$data), keys)]
+  private$data <- private$data[setdiff(colnames(private$data), keys)]
   invisible(self)
 }
 

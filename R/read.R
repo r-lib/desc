@@ -1,7 +1,7 @@
 
 ## TODO: handle empty files
 
-read_dcf <- function(file, ...) {
+read_dcf <- function(file) {
   lines <- readLines(file)
 
   con <- textConnection(lines, local = TRUE)
@@ -9,5 +9,8 @@ read_dcf <- function(file, ...) {
   close(con)
 
   con <- textConnection(lines, local = TRUE)
-  read.dcf(con, keep.white = fields)
+  res <- read.dcf(con, keep.white = fields)
+  close(con)
+
+  unlist(as.list(res[1, ]))
 }
