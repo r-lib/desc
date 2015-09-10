@@ -1,4 +1,6 @@
 
+collate_fields <- c("Collate", "Collate.unix", "Collate.windows")
+
 parse_collate <- function(str) {
   scan(
     text = gsub("\n", " ", str),
