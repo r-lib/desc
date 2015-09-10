@@ -130,7 +130,15 @@ desc_create_text <- function(self, private, text) {
 
 desc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
-  write.dcf(private$data, file = file)
+
+  data <- matrix(
+    nrow = 1,
+    private$data,
+    dimnames = list(NULL, names(private$data))
+  )
+
+  write.dcf(data, file = file)
+
   invisible(self)
 }
 
