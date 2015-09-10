@@ -14,7 +14,7 @@
 #' @importFrom R6 R6Class
 #' @docType class
 #' @format An R6 class.
-#' 
+#'
 #' @examples
 #' ## Create a template
 #' desc <- description$new("new")
@@ -37,7 +37,7 @@ description <- R6Class("description",
   public = list(
 
     ## Either from a file, or from a character vector
-    initialize = function(cmd, file = NULL, text = NULL)
+    initialize = function(cmd = NULL, file = NULL, text = NULL)
       desc_create(self, private, cmd, file, text),
 
     write = function(file = NULL)
@@ -72,12 +72,17 @@ description <- R6Class("description",
 
 desc_create <- function(self, private, cmd, file, text) {
 
-  if (!missing(cmd)) {
+  if (!is.null(cmd) && substring(cmd, 1, 1) != "!") {
+    file <- cmd
+    cmd <- NULL
+  }
+
+  if (!is.null(cmd)) {
     if (!is.null(file)) warning("file argument ignored")
     if (!is.null(text)) warning("text argument ignored")
     desc_create_cmd(self, private, cmd)
 
-  } else if (is.null(file) && is.null(text)) {
+  } else if (is.null(cmd) && is.null(file) && is.null(text)) {
     desc_create_file(self, private, "DESCRIPTION")
 
   } else if (!is.null(file)) {
@@ -92,7 +97,7 @@ desc_create <- function(self, private, cmd, file, text) {
 }
 
 desc_create_cmd <- function(self, private, cmd = c("new")) {
-  if (cmd == "new") {
+  if (cmd == "!new") {
     desc_create_text(self, private, text =
 "Package: {{ Package }}
 Title: {{ Title }}
