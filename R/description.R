@@ -154,7 +154,7 @@ field_order <- function(fields) {
     "Imports", "Depends", "Suggests", "Enhances", "LinkingTo"
   )
 
-  last <- "Collate"
+  last <- c("Collate", "Collate.unix", "Collate.windows")
 
   c(
     intersect(first, fields),
@@ -164,7 +164,7 @@ field_order <- function(fields) {
 }
 
 format_field <- function(key, value) {
-  if (key %in% c("Collate", "Imports", "Suggests", "Depends", "Enhances",
+  if (key %in% c("Imports", "Suggests", "Depends", "Enhances",
                  "LinkingTo")) {
     paste0(
       key, ":\n",
@@ -173,6 +173,13 @@ format_field <- function(key, value) {
         str_trim(strsplit(value, ",", fixed = TRUE)[[1]]),
         collapse = ",\n"
       )
+    )
+
+  } else if (key %in% c("Collate", "Collate.windows", "Collate.unix")) {
+    paste0(
+      key, ":\n",
+      deparse_collate(parse_collate(value)),
+      "\n"
     )
 
   } else {
