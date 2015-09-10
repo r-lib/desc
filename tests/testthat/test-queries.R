@@ -38,4 +38,5 @@ test_that("del works", {
   desc <- description$new(test_file("D1"))
   desc$del("Package")
   expect_equal(desc$get("Package"), c(Package = NA_character_))
+  expect_false(is.na(desc$get("Title")))
 })

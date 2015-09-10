@@ -59,7 +59,22 @@ description <- R6Class("description",
       desc_validate(self, private),
 
     print = function()
-      desc_print(self, private)
+      desc_print(self, private),
+
+    set_dep = function(package, type = dep_types, version = "*")
+      desc_set_dep(self, private, package, match.arg(type), version),
+
+    set_deps = function(package, deps)
+      desc_set_deps(self, private, deps),
+
+    get_deps = function()
+      desc_get_deps(self, private),
+
+    del_dep = function(package, type = c("all", dep_types))
+      desc_del_dep(self, private, package, match.arg(type)),
+
+    del_deps = function()
+      desc_del_deps(self, private)
 
   ),
 
@@ -159,7 +174,7 @@ field_order <- function(fields) {
     "Type", "Package", "Title", "Version",
     "Authors@R", "Author", "Maintainer",
     "Description", "License", "URL", "BugReports",
-    "Imports", "Depends", "Suggests", "Enhances", "LinkingTo"
+    dep_types
   )
 
   last <- collate_fields
@@ -172,8 +187,7 @@ field_order <- function(fields) {
 }
 
 format_field <- function(key, value) {
-  if (key %in% c("Imports", "Suggests", "Depends", "Enhances",
-                 "LinkingTo")) {
+  if (key %in% dep_types) {
     paste0(
       key, ":\n",
       paste0(
