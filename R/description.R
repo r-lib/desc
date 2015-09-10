@@ -240,7 +240,7 @@ desc_set <- function(self, private, ...) {
 
 
 desc_del <- function(self, private, keys) {
-  private$data <- private$data[setdiff(colnames(private$data), keys)]
+  private$data <- private$data[setdiff(names(private$data), keys)]
   invisible(self)
 }
 
