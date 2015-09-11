@@ -4,8 +4,7 @@
 #' @section Constructor:
 #' TODO
 #' \preformatted{x <- description$new()
-#' x <- description$new(file = "package/DESCRIPTION")
-#' x <- description$new("new")}
+#' x <- description$new("!new")}
 #'
 #' @section Methods:
 #' TODO
@@ -17,7 +16,7 @@
 #'
 #' @examples
 #' ## Create a template
-#' desc <- description$new("new")
+#' desc <- description$new("!new")
 #' desc
 #'
 #' ## Read a file
