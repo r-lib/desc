@@ -2,7 +2,7 @@
 context("Dependencies")
 
 test_that("get_deps", {
-  desc <- description$new(test_file("D1"))
+  desc <- description$new("D1")
 
   res <- data.frame(
     stringsAsFactors = FALSE,
@@ -16,7 +16,7 @@ test_that("get_deps", {
 
 
 test_that("set_dep", {
-  desc <- description$new(test_file("D1"))
+  desc <- description$new("D1")
 
   desc$set_dep("igraph")
 
@@ -53,7 +53,7 @@ test_that("set_dep", {
 })
 
 test_that("del_dep", {
-  desc <- description$new(test_file("D1"))
+  desc <- description$new("D1")
 
   desc$set_dep("igraph")
   desc$set_dep("igraph", type = "Depends", version = ">= 1.0.0")
@@ -68,7 +68,7 @@ test_that("del_dep", {
 
   expect_equal(desc$get_deps(), res)
 
-  desc <- description$new(test_file("D1"))
+  desc <- description$new("D1")
 
   desc$set_dep("igraph")
   desc$set_dep("igraph", type = "Depends", version = ">= 1.0.0")

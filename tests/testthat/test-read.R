@@ -2,7 +2,7 @@
 context("DCF reader")
 
 test_that("DCF reader works", {
-  desc <- description$new(test_file("D1"))
+  desc <- description$new("D1")
 
   expect_equal(desc$get("Package"), c(Package = "description"))
   expect_equal(desc$get("Version"), c(Version = "1.0.0"))
@@ -11,7 +11,7 @@ test_that("DCF reader works", {
 })
 
 test_that("DCF reader keeps whitespace", {
-  desc <- description$new(test_file("D1"))
+  desc <- description$new("D1")
 
   expect_equal(desc$get("Suggests"), c(Suggests = "\n    testthat"))
   expect_equal(desc$get("Description"), c(
