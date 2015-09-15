@@ -17,7 +17,7 @@ Parse DESCRIPTION files
 
 
 ```r
-devtools::install_github("/description")
+devtools::install_github("metacran/description")
 ```
 
 ## Usage
@@ -29,4 +29,4 @@ library(description)
 
 ## License
 
-MIT + file LICENSE © [Gabor Csardi](https://github.com/).
+MIT + file LICENSE © [Gábor Csárdi](https://github.com/).
