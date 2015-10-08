@@ -145,7 +145,11 @@ desc_create_text <- function(self, private, text) {
 desc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
 
-  write.dcf(desc_as_matrix(private$data), file = file)
+  write.dcf(
+    desc_as_matrix(private$data),
+    file = file,
+    keep.white = names(private$data)
+  )
 
   invisible(self)
 }
