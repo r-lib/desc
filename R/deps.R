@@ -32,7 +32,8 @@ desc_set_deps <- function(self, private, deps) {
 
 desc_get_deps <- function(self, private) {
   types <- intersect(names(private$data), dep_types)
-  res <- lapply(types, function(type) parse_deps(type, private$data[type]))
+  res <- lapply(types, function(type)
+    parse_deps(type, private$data[[type]]$value))
   do.call(rbind, res)
 }
 

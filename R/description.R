@@ -145,20 +145,23 @@ desc_create_text <- function(self, private, text) {
 desc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
 
-  data <- matrix(
-    nrow = 1,
-    private$data,
-    dimnames = list(NULL, names(private$data))
-  )
-
-  write.dcf(data, file = file)
+  write.dcf(desc_as_matrix(private$data), file = file)
 
   invisible(self)
 }
 
+desc_as_matrix <- function(data) {
+  matrix(
+    vapply(data, "[[", "", "value"),
+    nrow = 1,
+    dimnames = list(NULL, names(data))
+  )
+}
+
 desc_get <- function(self, private, keys) {
-  res <- private$data[keys]
-  res[is.na(res)] <- NA_character_
+  res <- lapply(private$data[keys], "[[", "value")
+  res[vapply(res, is.null, logical(1))] <- NA_character_
+  res <- unlist(res)
   names(res) <- keys
   res
 }
@@ -175,11 +178,11 @@ desc_set <- function(self, private, ...) {
   if (is.null(names(args)) && length(args) == 2) {
     key <- as_string(args[[1]])
     value <- as_string(args[[2]])
-    private$data[key] <- value
+    private$data[key] <- create_fields(key, value)
 
   } else if (!is.null(names(args)) && all(names(args) != "")) {
     keys <- names(args)
-    values <- unlist(unname(args))
+    values <- create_fields(keys, unlist(args))
     private$data[keys] <- values
 
   } else {

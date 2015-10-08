@@ -3,9 +3,11 @@
 
 desc_str <- function(self, private, by_lines) {
   cols <- field_order(names(private$data))
-  col_str <- vapply(cols, FUN.VALUE = "", FUN = function(col) {
-    format_field(col, private$data[col])
-  })
+  col_str <- vapply(
+    cols, FUN.VALUE = "",
+    FUN = function(col) {
+      format(private$data[[col]])
+    })
 
   if (by_lines) col_str else paste(col_str, collapse = "\n")
 }
@@ -27,32 +29,40 @@ field_order <- function(fields) {
   )
 }
 
-format_field <- function(key, value) {
-  if (key %in% dep_types) {
-    paste0(
-      key, ":\n",
-      paste0(
-        "    ",
-        str_trim(strsplit(value, ",", fixed = TRUE)[[1]]),
-        collapse = ",\n"
-      )
-    )
+#' @export
+#' @method format DescriptionField
 
-  } else if (key %in% collate_fields) {
-    paste0(
-      key, ":\n",
-      deparse_collate(parse_collate(value)),
-      "\n"
-    )
-
-  } else {
-    paste(
-      strwrap(paste0(key, ": ", value), exdent = 4),
-      collapse = "\n"
-    )
-  }
+format.DescriptionField <- function(x) {
+  paste(
+    strwrap(paste0(x$key, ": ", x$value), exdent = 4),
+    collapse = "\n"
+  )
 }
 
+#' @export
+#' @method format DescriptionDependencyList
+
+format.DescriptionDependencyList <- function(x) {
+  paste0(
+    x$key, ":\n",
+    paste0(
+      "    ",
+      str_trim(strsplit(x$value, ",", fixed = TRUE)[[1]]),
+      collapse = ",\n"
+    )
+  )
+}
+
+#' @export
+#' @method format DescriptionCollate
+
+format.DescriptionCollate <- function(x) {
+  paste0(
+    x$key, ":\n",
+    deparse_collate(parse_collate(x$value)),
+    "\n"
+  )
+}
 
 desc_print <- function(self, private) {
   cat(desc_str(self, private, by_lines = FALSE), sep = "", "\n")
