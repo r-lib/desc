@@ -39,8 +39,8 @@ description <- R6Class("description",
     initialize = function(cmd = NULL, file = NULL, text = NULL)
       desc_create(self, private, cmd, file, text),
 
-    write = function(file = NULL)
-      desc_write(self, private, file),
+    write = function(file = NULL, normalize = FALSE)
+      desc_write(self, private, file, normalize),
 
     str = function(by_lines = FALSE)
       desc_str(self, private, by_lines),
@@ -142,14 +142,19 @@ desc_create_text <- function(self, private, text) {
 }
 
 
-desc_write <- function(self, private, file) {
+desc_write <- function(self, private, file, normalize) {
   if (is.null(file)) file <- private$path
 
-  write.dcf(
-    desc_as_matrix(private$data),
-    file = file,
-    keep.white = names(private$data)
-  )
+  if (normalize) {
+    cat(self$str(by_lines = FALSE), "\n", sep = "", file = file)
+
+  } else {
+    write.dcf(
+      desc_as_matrix(private$data),
+      file = file,
+      keep.white = names(private$data)
+    )
+  }
 
   invisible(self)
 }
