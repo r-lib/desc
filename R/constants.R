@@ -1,4 +1,11 @@
 
+#' DESCRIPTION fields that denote package dependencies
+#'
+#' Currently it has the following ones: Imports, Depends,
+#' Suggests, Enhances and LinkingTo. See the \emph{Writing R Extensions}
+#' manual for when to use which.
+#'
+#' @family field types
 #' @export
 
 dep_types <- c("Imports", "Depends", "Suggests", "Enhances", "LinkingTo")
@@ -68,6 +75,9 @@ standard_fields <- c(
   "biocViews"
 )
 
+#' A list of DESCRIPTION fields that are valid according to the CRAN checks
+#'
+#' @family field types
 #' @export
 
 cran_valid_fields <- c(
@@ -76,6 +86,9 @@ cran_valid_fields <- c(
   paste0(standard_fields, "Note")
 )
 
+#' The DESCRIPTION fields that are supposed to be in plain ASCII encoding
+#'
+#' @family field types
 #' @export
 
 cran_ascii_fields <- c(

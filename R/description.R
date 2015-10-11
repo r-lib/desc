@@ -24,7 +24,7 @@
 #'                            package = "description"))
 #' desc2
 #'
-#' ## Remove some field
+#' ## Remove a field
 #' desc2$del("LazyData")
 #'
 #' ## Add another one
