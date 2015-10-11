@@ -66,6 +66,9 @@ description <- R6Class("description",
     print = function()
       desc_print(self, private),
 
+    ## -----------------------------------------------------------------
+    ## Package dependencies
+
     set_dep = function(package, type = dep_types, version = "*")
       desc_set_dep(self, private, package, match.arg(type), version),
 
@@ -79,7 +82,27 @@ description <- R6Class("description",
       desc_del_dep(self, private, package, match.arg(type)),
 
     del_deps = function()
-      desc_del_deps(self, private)
+      desc_del_deps(self, private),
+
+    ## -----------------------------------------------------------------
+    ## Collate fields
+
+    set_collate = function(files, which = c("main", "windows", "unix"))
+      desc_set_collate(self, private, files, match.arg(which)),
+
+    get_collate = function(which = c("main", "windows", "unix"))
+      desc_get_collate(self, private, match.arg(which)),
+
+    del_collate = function(which = c("all", "main", "windows", "unix"))
+      desc_del_collate(self, private, match.arg(which)),
+
+    add_to_collate = function(files,
+      which = c("default", "all", "main", "windows", "unix"))
+      desc_add_to_collate(self, private, files, match.arg(which)),
+
+    del_from_collate = function(files,
+      which = c("all", "main", "windows", "unix"))
+      desc_del_from_collate(self, private, files, match.arg(which))
 
   ),
 

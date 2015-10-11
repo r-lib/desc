@@ -1,4 +1,10 @@
 
+collate_fields <- c(
+  main = "Collate",
+  windows = "Collate.windows",
+  unix = "Collate.unix"
+)
+
 field_classes <- list(
 
   Package = "Package",
@@ -15,7 +21,7 @@ field_classes <- list(
   URL = "BugReports",
   URLList = "URL",
   Priority = "Priority",
-  Collate = c("Collate", "Collate.windows", "Collate.unix"),
+  Collate = unname(collate_fields),
   Logical = c("LazyData", "KeepSource", "ByteCompile", "ZipData", "Biarch",
     "BuildVignettes", "NeedsCompilation", "License_is_FOSS",
     "License_restricts_use", "BuildKeepEmpty", "BuildManual",

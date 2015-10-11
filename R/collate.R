@@ -1,5 +1,87 @@
 
-collate_fields <- c("Collate", "Collate.unix", "Collate.windows")
+which_collate <- function(x) {
+  collate_fields[x]
+}
+
+
+desc_set_collate <- function(self, private, files, which) {
+
+  if (length(files) == 0) warning("No files in 'Collate' field")
+
+  self$set(which_collate(which), deparse_collate(files))
+}
+
+
+desc_get_collate <- function(self, private, which) {
+  coll <- unname(self$get(which_collate(which)))
+  if (identical(coll, NA_character_)) character() else parse_collate(coll)
+}
+
+
+desc_del_collate <- function(self, private, which) {
+
+  if (which == "all") {
+    self$del(collate_fields)
+
+  } else {
+    self$del(collate_fields[which])
+  }
+
+  invisible(self)
+}
+
+
+desc_add_to_collate <- function(self, private, files, which) {
+
+  if (which == "default") {
+    ex_coll <- intersect(collate_fields, self$fields())
+    if (length(ex_coll) == 0) {
+      real_add_to_collate(self, which_collate("main"), files)
+    } else {
+      for (ex in ex_coll) real_add_to_collate(self, ex, files)
+    }
+
+  } else if (which == "all") {
+    for (coll in collate_fields) real_add_to_collate(self, coll, files)
+
+  } else {
+    real_add_to_collate(self, which_collate(which), files)
+  }
+}
+
+## TODO: better order, and support dependencies
+
+real_add_to_collate <- function(self, field, files) {
+  ex <- if (!self$has_fields(field)) {
+    character()
+  } else {
+    parse_collate(self$get(field))
+  }
+
+  files <- unique(c(ex, files))
+  self$set(field, deparse_collate(files))
+}
+
+
+desc_del_from_collate <- function(self, private, files, which) {
+
+  if (which == "all") {
+    for (coll in collate_fields) real_del_from_collate(self, coll, files)
+
+  } else {
+    real_del_from_collate(self, which_collate(which), files)
+  }
+}
+
+real_del_from_collate <- function(self, field, files) {
+  if (self$has_fields(field)) {
+    coll <- setdiff(parse_collate(self$get(field)), files)
+    self$set(field, deparse_collate(coll))
+  } else {
+    invisible(self)
+  }
+}
+
 
 parse_collate <- function(str) {
   scan(
