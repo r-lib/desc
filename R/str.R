@@ -32,7 +32,7 @@ field_order <- function(fields) {
 #' @export
 #' @method format DescriptionField
 
-format.DescriptionField <- function(x) {
+format.DescriptionField <- function(x, ...) {
   paste(
     strwrap(paste0(x$key, ": ", x$value), exdent = 4),
     collapse = "\n"
@@ -42,7 +42,7 @@ format.DescriptionField <- function(x) {
 #' @export
 #' @method format DescriptionDependencyList
 
-format.DescriptionDependencyList <- function(x) {
+format.DescriptionDependencyList <- function(x, ...) {
   paste0(
     x$key, ":\n",
     paste0(
@@ -56,7 +56,7 @@ format.DescriptionDependencyList <- function(x) {
 #' @export
 #' @method format DescriptionCollate
 
-format.DescriptionCollate <- function(x) {
+format.DescriptionCollate <- function(x, ...) {
   paste0(
     x$key, ":\n",
     deparse_collate(parse_collate(x$value)),
