@@ -42,6 +42,12 @@ description <- R6Class("description",
     write = function(file = NULL, normalize = FALSE)
       desc_write(self, private, file, normalize),
 
+    fields = function()
+      desc_fields(self, private),
+
+    has_fields = function(fields)
+      desc_has_fields(self, private, fields),
+
     str = function(by_lines = FALSE)
       desc_str(self, private, by_lines),
 
@@ -157,6 +163,15 @@ desc_write <- function(self, private, file, normalize) {
   }
 
   invisible(self)
+}
+
+desc_fields <- function(self, private) {
+  names(private$data)
+}
+
+desc_has_fields <- function(self, private, fields) {
+  fields <- as.character(fields)
+  fields %in% self$fields()
 }
 
 desc_as_matrix <- function(data) {
