@@ -75,7 +75,7 @@ description <- R6Class("description",
     set_dep = function(package, type = dep_types, version = "*")
       desc_set_dep(self, private, package, match.arg(type), version),
 
-    set_deps = function(package, deps)
+    set_deps = function(deps)
       desc_set_deps(self, private, deps),
 
     get_deps = function()
