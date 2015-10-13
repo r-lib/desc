@@ -1,7 +1,7 @@
 
 ## TODO: continuation lines
 
-desc_str <- function(self, private, by_lines) {
+desc_str <- function(self, private, by_field) {
   cols <- field_order(names(private$data))
   col_str <- vapply(
     cols, FUN.VALUE = "",
@@ -9,7 +9,7 @@ desc_str <- function(self, private, by_lines) {
       format(private$data[[col]])
     })
 
-  if (by_lines) col_str else paste(col_str, collapse = "\n")
+  if (by_field) col_str else paste(col_str, collapse = "\n")
 }
 
 field_order <- function(fields) {
@@ -65,6 +65,14 @@ format.DescriptionCollate <- function(x, ...) {
 }
 
 desc_print <- function(self, private) {
-  cat(desc_str(self, private, by_lines = FALSE), sep = "", "\n")
+  cat(desc_str(self, private, by_field = FALSE), sep = "", "\n")
+  invisible(self)
+}
+
+desc_normalize <- function(self, private) {
+  norm_fields <- desc_str(self, private, by_field = TRUE)
+  for (f in names(norm_fields)) {
+    private$data[[f]]$value <- norm_fields[[f]]
+  }
   invisible(self)
 }

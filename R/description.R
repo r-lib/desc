@@ -45,11 +45,8 @@ description <- R6Class("description",
     fields = function()
       desc_fields(self, private),
 
-    has_fields = function(fields)
-      desc_has_fields(self, private, fields),
-
-    str = function(by_lines = FALSE)
-      desc_str(self, private, by_lines),
+    has_fields = function(keys)
+      desc_has_fields(self, private, keys),
 
     get = function(keys)
       desc_get(self, private, keys),
@@ -65,6 +62,12 @@ description <- R6Class("description",
 
     print = function()
       desc_print(self, private),
+
+    str = function(by_field = FALSE)
+      desc_str(self, private, by_field),
+
+    normalize = function()
+      desc_normalize(self, private),
 
     ## -----------------------------------------------------------------
     ## Package dependencies
@@ -175,7 +178,7 @@ desc_write <- function(self, private, file, normalize) {
   if (is.null(file)) file <- private$path
 
   if (normalize) {
-    cat(self$str(by_lines = FALSE), "\n", sep = "", file = file)
+    cat(self$str(by_field = FALSE), "\n", sep = "", file = file)
 
   } else {
     write.dcf(
@@ -192,9 +195,9 @@ desc_fields <- function(self, private) {
   names(private$data)
 }
 
-desc_has_fields <- function(self, private, fields) {
-  fields <- as.character(fields)
-  fields %in% self$fields()
+desc_has_fields <- function(self, private, keys) {
+  keys <- as.character(keys)
+  keys %in% self$fields()
 }
 
 desc_as_matrix <- function(data) {
