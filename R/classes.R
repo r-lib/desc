@@ -28,7 +28,7 @@ field_classes <- list(
     "BuildResaveData", "LazyLoad"),
   PackageList = c("VignetteBuilder", "RdMacros"),
   Encoding = "Encoding",
-  OSTyle = "OS_type",
+  OSType = "OS_type",
   Type = "Type",
   Classification = c("Classification/ACM", "Classification/ACM-2012",
     "Classification/JEL", "Classification/MSC", "Classification/MSC-2010"),
