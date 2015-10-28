@@ -77,7 +77,7 @@
 #'   description$print()
 #' }
 #' \describe{
-#'   \item{by_field:}{Whether to return the normalized format 
+#'   \item{by_field:}{Whether to return the normalized format
 #'     by field, or collapsed into a character scalar.}
 #' }
 #'
@@ -378,18 +378,20 @@ desc_set <- function(self, private, ...) {
   args <- list(...)
 
   if (is.null(names(args)) && length(args) == 2) {
-    key <- as_string(args[[1]])
-    value <- as_string(args[[2]])
-    private$data[key] <- create_fields(key, value)
+    keys <- as_string(args[[1]])
+    values <- as_string(args[[2]])
 
   } else if (!is.null(names(args)) && all(names(args) != "")) {
     keys <- names(args)
-    values <- create_fields(keys, unlist(args))
-    private$data[keys] <- values
+    values <- unlist(args)
 
   } else {
     stop("$set needs two unnamed args, or all named args, see docs")
   }
+
+  fields <- create_fields(keys, values)
+  lapply(fields, check_field, warn = TRUE)
+  private$data[keys] <- fields
 
   invisible(self)
 }
