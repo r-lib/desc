@@ -4,8 +4,6 @@
 \name{cran_ascii_fields}
 \alias{cran_ascii_fields}
 \title{The DESCRIPTION fields that are supposed to be in plain ASCII encoding}
-\format{\preformatted{ chr [1:16] "Package" "Version" "Priority" "Depends" "Imports" ...
-}}
 \usage{
 cran_ascii_fields
 }

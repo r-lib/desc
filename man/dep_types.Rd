@@ -4,8 +4,6 @@
 \name{dep_types}
 \alias{dep_types}
 \title{DESCRIPTION fields that denote package dependencies}
-\format{\preformatted{ chr [1:5] "Imports" "Depends" "Suggests" "Enhances" "LinkingTo"
-}}
 \usage{
 dep_types
 }

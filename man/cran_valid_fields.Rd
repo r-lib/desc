@@ -4,8 +4,6 @@
 \name{cran_valid_fields}
 \alias{cran_valid_fields}
 \title{A list of DESCRIPTION fields that are valid according to the CRAN checks}
-\format{\preformatted{ chr [1:125] "Additional_repositories" "Author" "Authors@R" ...
-}}
 \usage{
 cran_valid_fields
 }
