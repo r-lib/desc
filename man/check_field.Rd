@@ -4,10 +4,12 @@
 \alias{check_field}
 \title{Syntactical check of a DESCRIPTION field}
 \usage{
-check_field(x, ...)
+check_field(x, warn = FALSE, ...)
 }
 \arguments{
 \item{x}{The field.}
+
+\item{warn}{Whether to generate a warning if the syntax check fails.}
 
 \item{...}{Additional arguments, they might be used in the future.}
 }

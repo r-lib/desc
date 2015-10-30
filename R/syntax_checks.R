@@ -26,6 +26,7 @@ chks <- function(..., x, warn) {
 #' Syntactical check of a DESCRIPTION field
 #'
 #' @param x The field.
+#' @param warn Whether to generate a warning if the syntax check fails.
 #' @param ... Additional arguments, they might be used in the future.
 #' @return \code{TRUE} if the field is syntactically correct,
 #'   otherwise a character vector, containing one or multiple
