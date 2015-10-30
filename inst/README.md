@@ -29,4 +29,4 @@ library(description)
 
 ## License
 
-MIT + file LICENSE © [Gábor Csárdi](https://github.com/).
+MIT © [Gábor Csárdi](https://github.com/gaborcsardi).
