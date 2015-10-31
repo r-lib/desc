@@ -280,9 +280,9 @@ check_field.DescriptionPackageList <- function(x, warn = FALSE, ...) {
 
   is_package_list <- function(x) {
     xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
-    p <- vapply(xx, function(pc)
-      check_field.DescriptionPackage(list(key = "Package", value = pc)), TRUE)
-    all(p)
+    p <- lapply(xx, function(pc)
+      check_field.DescriptionPackage(list(key = "Package", value = pc)))
+    all_true(p)
   }
 
   chks(
