@@ -45,7 +45,10 @@ check_field.DescriptionField <- function(x, warn = FALSE, ...) TRUE
 ##' @export
 ##' @method check_field DescriptionPackage
 
-check_field.DescriptionPackage <- function(x, warn = FALSE, ...) {
+check_field.DescriptionPackage <- function(x, warn = FALSE, R = FALSE, ...) {
+
+  ## In Depends, we can depend on certain 'R' versions
+  if (R && x$value == "R") return(TRUE)
 
   chks(
     x = x, warn = warn,
@@ -60,6 +63,8 @@ check_field.DescriptionPackage <- function(x, warn = FALSE, ...) {
   )
 }
 
+valid_version_regexp <- "[0-9]+[-\\.][0-9]+([-\\.][0-9]+)*"
+
 ##' @export
 ##' @method check_field DescriptionVersion
 
@@ -70,7 +75,7 @@ check_field.DescriptionVersion <- function(x, warn = FALSE, ...) {
     chk(paste("must be a sequence of at least two (usually three)",
               " non-negative integers separated by a single dot or dash",
               " character"),
-        grepl("^[0-9]+[-\\.][0-9]+([-\\.][0-9]+)*$", x$value))
+        grepl(paste0("^", valid_version_regexp, "$"), x$value))
   )
 }
 
@@ -151,12 +156,47 @@ check_field.DescriptionAuthorsAtR <- function(x, warn = FALSE, ...) {
   TRUE
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionDependencyList
 
 check_field.DescriptionDependencyList <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  deps <- parse_deps(x$key, x$value)
+
+  is_package_list <- function(x) {
+    p <- lapply(x, function(pc)
+      check_field.DescriptionPackage(
+        list(key = "Package", value = pc),
+        R = x$key == "Depends"
+      )
+    )
+    all_true(p)
+  }
+
+  is_version_req <- function(x) {
+
+    x <- str_trim(x)
+    if (x == "*") return(TRUE)
+
+    re <- paste0(
+      "^(<=|>=|<|>|==|!=)\\s*",
+      valid_version_regexp,
+      "$"
+    )
+    grepl(re, x)
+  }
+
+  is_version_req_list <- function(x) {
+    all_true(vapply(x, is_version_req, TRUE))
+  }
+
+  chks(
+    x = x, warn = warn,
+    chk("must contain valid package names",
+        is_package_list(deps$package)),
+    chk("must contain valid version requirements",
+        is_version_req_list(deps$version))
+  )
 }
 
 ##' @export

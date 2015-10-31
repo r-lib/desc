@@ -45,3 +45,8 @@ is_url_list <- function(x) {
   xx <- strsplit(x, ",", fixed = TRUE)[[1]]
   all(vapply(xx, is_url, TRUE))
 }
+
+
+all_true <- function(x) {
+  vapply(x, identical, TRUE, TRUE)
+}
