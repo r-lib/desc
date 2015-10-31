@@ -24,9 +24,9 @@ test_that("set works", {
   expect_equal(desc$get("Version"), c(Version = "100.0"))
   expect_equal(desc$get("Author"), c(Author = "Bugs Bunny"))
 
-  desc$set("Description", "foo\n  foobar\n  foobar2")
+  desc$set("Description", "Foo\n  foobar\n  foobar2.")
   expect_equal(desc$get("Description"),
-               c(Description = "foo\n  foobar\n  foobar2"))
+               c(Description = "Foo\n  foobar\n  foobar2."))
 })
 
 test_that("get with non-exixting fields", {

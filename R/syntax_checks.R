@@ -42,19 +42,13 @@ check_field <- function(x, warn = FALSE, ...)
 
 check_field.DescriptionField <- function(x, warn = FALSE, ...) TRUE
 
-## * Only contains ASCII letters, numbers, dots.
-## * At least two characters long.
-## * Starts with a letter.
-## * Does not end with a dot.
-##
 ##' @export
 ##' @method check_field DescriptionPackage
 
 check_field.DescriptionPackage <- function(x, warn = FALSE, ...) {
 
   chks(
-    x = x,
-    warn = warn,
+    x = x, warn = warn,
     chk("must only contain ASCII letters, numbers, dots",
         grepl("^[a-zA-Z0-9\\.]*$", x$value)),
     chk("must be at least two characters long",
@@ -66,17 +60,13 @@ check_field.DescriptionPackage <- function(x, warn = FALSE, ...) {
   )
 }
 
-## sequence of at least two (and usually three) non-negative integers
-## separated by single ‘.’ or ‘-’ characters
-##
 ##' @export
 ##' @method check_field DescriptionVersion
 
 check_field.DescriptionVersion <- function(x, warn = FALSE, ...) {
 
   chks(
-    x = x,
-    warn = warn,
+    x = x, warn = warn,
     chk(paste("must be a sequence of at least two (usually three)",
               " non-negative integers separated by a single dot or dash",
               " character"),
@@ -84,36 +74,73 @@ check_field.DescriptionVersion <- function(x, warn = FALSE, ...) {
   )
 }
 
-## TODO
+## TODO: It also must be a license R CMD check recognizes
+##
 ##' @export
 ##' @method check_field DescriptionLicense
 
 check_field.DescriptionLicense <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must contain only ASCII characters",
+        is_ascii(x$value)),
+    chk("must not be empty",
+        str_trim(x$value) != "")
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionDescription
 
 check_field.DescriptionDescription <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must not be empty",
+        str_trim(x$value) != ""),
+    chk("must contain one or more complete sentences",
+        grepl("[.!?]['\")]?$", str_trim(x$value))),
+    chk("must not start with 'The package', 'This Package, 'A package'",
+        !grepl("^(The|This|A|In this|In the) package", x$value)),
+    chk("must start with a capital letter",
+        grepl("^['\"]?[[:upper:]]", x$value))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionTitle
 
 check_field.DescriptionTitle <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must nost be empty",
+         str_trim(x$value) != ""),
+    chk("must not end with a period",
+        !grepl("[.]$", str_trim(x$value)) ||
+        grepl("[[:space:]][.][.][.]|et[[:space:]]al[.]", str_trim(x$value)))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionMaintainer
 
 check_field.DescriptionMaintainer <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  re_maint <- paste0(
+    "^[[:space:]]*(.*<",
+    RFC_2822_email_regexp,
+    "%s>|ORPHANED)[[:space:]]*$"
+  )
+
+  chks(
+    x = x, warn = warn,
+    chk("must nost be empty",
+        str_trim(x$value) != ""),
+    chk("must contain an email address",
+        grepl(re_maint, x$value))
+  )
 }
 
 ## TODO
@@ -132,87 +159,135 @@ check_field.DescriptionDependencyList <- function(x, warn = FALSE, ...) {
   TRUE
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionRepoList
 
 check_field.DescriptionRepoList <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a comma separated list repository URLs",
+        is_url_list(x$value))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionURL
 
 check_field.DescriptionURL <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a http, https or ftp URL",
+        is_url(x$value))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionURLList
 
 check_field.DescriptionURLList <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a comma separated list of http, https or ftp URLs",
+        is_url_list(x$value))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionPriority
 
 check_field.DescriptionPriority <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must be one of 'base', 'recommended' or 'defunct-base'",
+        str_trim(x$value) %in% c("base", "recommended", "defunct-base"))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionCollate
 
 check_field.DescriptionCollate <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  coll <- tolower(parse_collate(x$value))
+
+  chks(
+    x = x, warn = warn,
+    chk("must contain a list of .R files",
+        all(grepl("[.]r$", coll)))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionLogical
 
 check_field.DescriptionLogical <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must be one of 'true', 'false', 'yes' or 'no' (case insensitive)",
+        str_trim(tolower(x$value)) %in% c("true", "false", "yes", "no"))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionPackageList
 
 check_field.DescriptionPackageList <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  is_package_list <- function(x) {
+    xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
+    p <- vapply(xx, function(pc)
+      check_field.DescriptionPackage(list(key = "Package", value = pc)), TRUE)
+    all(p)
+  }
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a comma separated list of package names",
+        is_package_list(x$value))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionEncoding
 
 check_field.DescriptionEncoding <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must be one of 'latin1', 'latin2' and 'UTF-8'",
+        x$value %in% c("latin1", "latin2", "UTF-8"))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionOSType
 
 check_field.DescriptionOSType <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must be one of 'unix' and 'windows'",
+        x$value %in% c("unix", "windows"))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionType
 
 check_field.DescriptionType <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  cheks(
+    x = x, warn = warn,
+    chk("must be either 'Package' or 'Translation'",
+        x$value %in% c("Package", "Translation"))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionClassification
 
@@ -220,31 +295,51 @@ check_field.DescriptionClassification <- function(x, warn = FALSE, ...) {
   TRUE
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionLanguage
 
 check_field.DescriptionLanguage <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  is_language_list <- function(x) {
+    x <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
+    all(grepl("^[a-z][a-z][a-z]?$", x))
+  }
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a list of IETF language codes defined by defined by RFC 5646",
+        is_language_list(x$value))
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionDate
 
 check_field.DescriptionDate <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk(
+      paste0(
+        "must be an ISO date: yyyy-mm-dd, but it is actually better\n",
+        "to leave this field out completely. It is not required."),
+      grep("^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$", x$value)
+    )
+  )
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionCompression
 
 check_field.DescriptionCompression <- function(x, warn = FALSE, ...) {
-  TRUE
+
+  chks(
+    x = x, warn = warn,
+    chk("must be one of 'bzip2', 'xz', 'gzip'",
+        x$value %in% c("bzip2", "xz", "gzip"))
+  )
 }
 
-# TODO
 ##' @export
 ##' @method check_field DescriptionRepository
 
@@ -252,7 +347,6 @@ check_field.DescriptionRepository <- function(x, warn = FALSE, ...) {
   TRUE
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionFreeForm
 
@@ -260,7 +354,6 @@ check_field.DescriptionFreeForm <- function(x, warn = FALSE, ...) {
   TRUE
 }
 
-## TODO
 ##' @export
 ##' @method check_field DescriptionAddedByRCMD
 

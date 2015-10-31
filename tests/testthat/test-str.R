@@ -19,9 +19,9 @@ test_that("str formats some fields specially", {
     "Imports:\n    pkg1,\n    pkg2,\n    pkg3,\n    pkg4"
   )
 
-  desc$set("Collate", "file1 'file2' 'file with spaces' file4")
+  desc$set("Collate", "file1.R 'file2.R' 'file with spaces.R' file4.R")
   expect_match(
     desc$str(),
-    "Collate:\n    'file1'\n    'file2'\n    'file with spaces'\n    'file4'"
+    "Collate:\n    'file1.R'\n    'file2.R'\n    'file with spaces.R'\n    'file4.R'"
   )
 })
