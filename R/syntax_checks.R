@@ -163,11 +163,11 @@ check_field.DescriptionDependencyList <- function(x, warn = FALSE, ...) {
 
   deps <- parse_deps(x$key, x$value)
 
-  is_package_list <- function(x) {
-    p <- lapply(x, function(pc)
+  is_package_list <- function(xx) {
+    p <- lapply(xx, function(pc)
       check_field.DescriptionPackage(
         list(key = "Package", value = pc),
-        R = x$key == "Depends"
+        R = x$key[1] == "Depends"
       )
     )
     all_true(p)

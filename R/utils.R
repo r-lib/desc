@@ -48,5 +48,5 @@ is_url_list <- function(x) {
 
 
 all_true <- function(x) {
-  vapply(x, identical, TRUE, TRUE)
+  all(vapply(x, identical, TRUE, TRUE))
 }
