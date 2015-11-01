@@ -71,7 +71,7 @@
 #' object itself), \code{$print} is used to print it to the
 #' screen. The \code{$normalize} function normalizes each field (i.e.
 #' it changes the object).
-#' 
+#'
 #' \preformatted{  description$str(by_field = FALSE)
 #'   description$normalize()
 #'   description$print()
