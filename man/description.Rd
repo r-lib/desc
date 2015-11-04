@@ -39,7 +39,6 @@ The complete API reference:
     Character vectors are collapsed into a character scalar, with
     newline as the separator.}
 }
-
 }
 
 \section{Setting and Querying fields}{
@@ -78,7 +77,6 @@ The complete API reference:
     and the value to set; or an arbitrary number of named arguments,
     names are used as keys, values as values to set.}
 }
-
 }
 
 \section{Normalizing}{
@@ -97,7 +95,6 @@ it changes the object).
   \item{by_field:}{Whether to return the normalized format
     by field, or collapsed into a character scalar.}
 }
-
 }
 
 \section{Writing it to file}{
@@ -118,7 +115,6 @@ The API:
      file. Otherwise this argument must be specified.}
   \item{normalize:}{Whether to reformat the fields in a standard way.}
 }
-
 }
 
 \section{Dependencies}{
@@ -160,7 +156,6 @@ The API:
   \item{deps:}{A data frame with columns \code{type}, \code{package} and
     \code{version}. \code{$get_deps} returns the same format.}
 }
-
 }
 
 \section{Collate fields}{
@@ -186,7 +181,6 @@ The API:
   \code{$add_to_collate} means all existing collate fields, or the
   main one if none exist.}
 }
-
 }
 \examples{
 ## Create a template

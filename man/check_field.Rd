@@ -17,7 +17,6 @@ check_field(x, warn = FALSE, ...)
 \code{TRUE} if the field is syntactically correct,
   otherwise a character vector, containing one or multiple
   error messages.
-
 }
 \description{
 Syntactical check of a DESCRIPTION field

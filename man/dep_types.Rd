@@ -4,6 +4,7 @@
 \name{dep_types}
 \alias{dep_types}
 \title{DESCRIPTION fields that denote package dependencies}
+\format{An object of class \code{character} of length 5.}
 \usage{
 dep_types
 }

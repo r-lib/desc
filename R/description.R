@@ -257,8 +257,43 @@ description <- R6Class("description",
 
     del_from_collate = function(files,
       which = c("all", "main", "windows", "unix"))
-      desc_del_from_collate(self, private, files, match.arg(which))
+      desc_del_from_collate(self, private, files, match.arg(which)),
 
+    ## -----------------------------------------------------------------
+    ## Authors@R
+
+    get_authors = function()
+      desc_get_authors(self, private),
+
+    set_authors = function(authors)
+      desc_set_authors(self, private, authors),
+
+    add_author = function(given = NULL, family = NULL, email = NULL,
+                          role = NULL, comment = NULL)
+      desc_add_author(self, private, given, family, email, role, comment),
+
+    add_role = function(role, given = NULL, family = NULL, email = NULL,
+                        comment = NULL)
+      desc_add_role(self, private, role, given, family, email, comment),
+
+    del_author = function(given = NULL, family = NULL, email = NULL,
+                          role = NULL, comment = NULL)
+      desc_del_author(self, private, given, family, email, role, comment),
+
+    del_role = function(role, given = NULL, family = NULL, email = NULL,
+                        comment = NULL)
+      desc_del_role(self, private, role, given, family, email, comment),
+
+    change_maintainer = function(given = NULL, family = NULL, email = NULL,
+                                 role = NULL, comment = NULL)
+      desc_change_maintainer(self, private, given, family, email, role,
+                             comment),
+
+    add_me = function(role = "ctb")
+      desc_add_me(self, private, role),
+
+    to_authors_at_r = function()
+      desc_to_authors_at_t(self, private)
   ),
 
   private = list(

@@ -50,3 +50,21 @@ is_url_list <- function(x) {
 all_true <- function(x) {
   all(vapply(x, identical, TRUE, TRUE))
 }
+
+
+flatten <- function(x) {
+  if (is.list(x)) {
+    x <- lapply(
+      x,
+      function(e) if (is.null(e)) "" else paste(e, collapse = ",")
+    )
+    x <- unlist(x)
+  }
+  x
+}
+
+ngrepl <- function(pattern, x, ...) {
+  if (is.null(pattern)) pattern <- ""
+  x <- flatten(x)
+  grepl(pattern, x, ...)
+}

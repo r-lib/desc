@@ -4,6 +4,7 @@
 \name{cran_ascii_fields}
 \alias{cran_ascii_fields}
 \title{The DESCRIPTION fields that are supposed to be in plain ASCII encoding}
+\format{An object of class \code{character} of length 16.}
 \usage{
 cran_ascii_fields
 }

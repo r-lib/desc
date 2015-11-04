@@ -4,6 +4,7 @@
 \name{cran_valid_fields}
 \alias{cran_valid_fields}
 \title{A list of DESCRIPTION fields that are valid according to the CRAN checks}
+\format{An object of class \code{character} of length 125.}
 \usage{
 cran_valid_fields
 }
