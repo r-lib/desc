@@ -125,22 +125,84 @@ desc_del_author <- function(self, private, given, family, email, role,
 
 desc_del_role <- function(self, private, role, given, family, email,
                           comment) {
-  ## TODO
+
+  orig <- desc_get_authors(self, private, ensure = FALSE)
+  wh <- search_for_author(
+    orig, given = given, family = family, email = email, comment = comment,
+    role = NULL
+  )
+
+  for (w in wh$index) {
+    orig <- set_author_field(
+      orig,
+      w,
+      "role",
+      setdiff(orig[[w]]$role, role)
+    )
+  }
+
+  self$set_authors(orig)
 }
 
 
 desc_change_maintainer <- function(self, private, given, family, email,
-                                   role, comment) {
+                                   comment) {
   ensure_authors_at_r(self)
-  ## TODO
+  self$del_role(role = "cre")
+  self$add_role(role = "cre", given = given, family = family,
+                email = email, comment = comment)
 }
 
 
-desc_add_me <- function(self, private, role) {
-  ## TODO
+desc_add_me <- function(self, private, role, comment) {
+  check_for_package("whoami", "$add_me needs the 'whoami' package")
+  fn <- strsplit(whoami::fullname(), "[ ]+")[[1]]
+  family <- tail(fn, 1)
+  given <- paste(fn[-length(fn)], collapse = " ")
+  email <- whoami::email_address()
+  self$add_author(given = given, family = family, email = email,
+                  comment = comment, role = role)
 }
 
+## Try to parse the 'Author' and 'Maintainer' fields in some
+## sensible way
 
 desc_to_authors_at_r <- function(self, private) {
-  ## TODO
+
+  if (self$has_fields("Authors@R")) {
+    stop("There is an 'Authors@R field' already")
+  }
+  
+  author <- str_trim(self$get("Author"))
+  maint <- str_trim(self$get("Maintainer"))
+
+  if (is.na(author) && is.na(maint)) {
+    stop("No 'Author' and 'Maintainer' fields, no author information")
+  }
+
+  authors <- structure(list(), class = "person")
+
+  ## Maintainer is simple, because it is standardized
+  
+  if (!is.na(maint)) {
+    m <- re_groups("^(.*)\\s([^\\s]+)\\s+<(.*)>$", maint, perl = TRUE)
+    maint_person <- person(
+      given = m[1],
+      family = m[2],
+      email = m[3],
+      role = c("cre", "ctb")
+    )
+    authors <- append(authors, maint_person)
+  }
+
+  ## Author is pretty much guessing
+  
+  if (!is.na(author)) {
+    
+  }
+  
+  if (!is.na(author)) self$del('Author')
+  if (!is.na(maint)) self$del('Maintainer')
+
+  self$set_authors(authors)
 }

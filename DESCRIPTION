@@ -10,7 +10,8 @@ LazyData: true
 URL: https://github.com/metacran/description
 BugReports: https://github.com/metacran/description/issues
 Suggests:
-    testthat
+    testthat,
+    whoami
 Imports:
     R6
 RoxygenNote: 5.0.0

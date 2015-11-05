@@ -285,15 +285,14 @@ description <- R6Class("description",
       desc_del_role(self, private, role, given, family, email, comment),
 
     change_maintainer = function(given = NULL, family = NULL, email = NULL,
-                                 role = NULL, comment = NULL)
-      desc_change_maintainer(self, private, given, family, email, role,
-                             comment),
+                                 comment = NULL)
+      desc_change_maintainer(self, private, given, family, email, comment),
 
-    add_me = function(role = "ctb")
-      desc_add_me(self, private, role),
+    add_me = function(role = "ctb", comment = NULL)
+      desc_add_me(self, private, role, comment),
 
     to_authors_at_r = function()
-      desc_to_authors_at_t(self, private)
+      desc_to_authors_at_r(self, private)
   ),
 
   private = list(
