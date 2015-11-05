@@ -122,7 +122,3 @@ test_that("add_me works", {
     "Bugs Bunny <bugs.bunny@acme.com> [ctb] (Yikes!)"
   )
 })
-
-test_that("we can convert to Authors@R", {
-
-})
