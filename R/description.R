@@ -161,6 +161,50 @@
 #'   main one if none exist.}
 #' }
 #'
+#' @section Authors:
+#' There is a specialized API for the \code{Authors@R} field,
+#' to add and remove authors, udpate their roles, change the maintainer,
+#' etc.
+#'
+#' The API:
+#' \preformatted{  description$get_authors()
+#'   description$set_authors(authors)
+#' }
+#' \describe{
+#'    \item{authors:}{A \code{person} object, a list of authors.}
+#' }
+#' \code{$get_authors} returns a \code{person} object, the parsed
+#' authors. See \code{\link[utils]{person}} for details.
+#'
+#' \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
+#'     role = NULL, comment = NULL)
+#'   description$add_me(role = "ctb", comment = NULL)
+#' }
+#' Add a new author. The arguments correspond to the arguments of the
+#' \code{\link[utils]{person}} function. \code{add_me} is a convenience
+#' function, it adds the current user as an author, and it needs the
+#' \code{whoami} package to be installed.
+#'
+#' \preformatted{  description$del_author(given = NULL, family = NULL, email = NULL,
+#'     role = NULL, comment = NULL)
+#' }
+#' Remove an author, or multiple authors. The author(s) to be removed
+#' can be specified via any field(s). All authors matching all
+#' specifications will be removed. E.g. if only \code{given = "Joe"}
+#' is supplied, then all authors whole given name matches \code{Joe} will
+#' be removed. The specifications can be (PCRE) regular expressions.
+#'
+#' \preformatted{  description$add_role(role, given = NULL, family = NULL, email = NULL,
+#'     comment = NULL)
+#'   description$del_role(role, given = NULL, family = NULL, email = NULL,
+#'      comment = NULL)
+#'   description$change_maintainer(given = NULL, family = NULL,
+#'     email = NULL, comment = NULL)
+#' }
+#' \code{role} is the role to add or delete. The other arguments
+#' are used to select a subset of the authors, on which the operation
+#' is performed, similarly to \code{$del_author}.
+#'
 #' @export
 #' @importFrom R6 R6Class
 #' @docType class
