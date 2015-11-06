@@ -111,7 +111,7 @@ test_that("we can change the maintainer", {
 test_that("add_me works", {
   desc <- description$new("D2")
   with_mock(
-    `check_for_package` = function(...) TRUE,
+    `description:::check_for_package` = function(...) TRUE,
     `whoami::fullname` = function() "Bugs Bunny",
     `whoami::email_address` = function() "bugs.bunny@acme.com",
     desc$add_me(comment = "Yikes!")
