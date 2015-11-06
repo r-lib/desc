@@ -321,7 +321,7 @@ check_field.DescriptionOSType <- function(x, warn = FALSE, ...) {
 
 check_field.DescriptionType <- function(x, warn = FALSE, ...) {
 
-  cheks(
+  chks(
     x = x, warn = warn,
     chk("must be either 'Package' or 'Translation'",
         x$value %in% c("Package", "Translation"))
