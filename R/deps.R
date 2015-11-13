@@ -18,15 +18,33 @@ desc_set_dep <- function(self, private, package, type, version) {
 
 
 desc_set_deps <- function(self, private, deps) {
+
   depdeps <- deparse_deps(deps)
   for (d in names(depdeps)) {
-    self$set(d, depdeps[[d]])
+    if (! same_deps(depdeps[[d]], private$data[[d]]$value)) {
+      self$set(d, depdeps[[d]])
+    }
   }
 
   deldeps <- setdiff(dep_types, names(depdeps))
   self$del(deldeps)
 
   invisible(self)
+}
+
+
+same_deps <- function(d1, d2) {
+  if (is.null(d1) + is.null(d2) == 1) return(FALSE)
+
+  d1 <- parse_deps("foo", d1)
+  d2 <- parse_deps("foo", d2)
+
+  d1 <- d1[ order(d1$type, d1$package, d1$version), ]
+  d2 <- d2[ order(d2$type, d2$package, d2$version), ]
+  nrow(d1) == nrow(d2) &&
+    all(d1$type == d2$type) &&
+    all(d1$package == d2$package) &&
+    all(d1$version == d2$version)
 }
 
 
