@@ -8,7 +8,14 @@ desc_set_collate <- function(self, private, files, which) {
 
   if (length(files) == 0) warning("No files in 'Collate' field")
 
-  self$set(which_collate(which), deparse_collate(files))
+  desc_really_set_collate(self, private, files, which_collate(which))
+}
+
+
+desc_really_set_collate <- function(self, private, files, field) {
+  if (!identical(self$get_collate(), files)) {
+    self$set(field, deparse_collate(files))
+  }
 }
 
 
@@ -59,7 +66,7 @@ real_add_to_collate <- function(self, field, files) {
   }
 
   files <- unique(c(ex, files))
-  self$set(field, deparse_collate(files))
+  desc_really_set_collate(self, private, files, field)
 }
 
 
@@ -76,7 +83,7 @@ desc_del_from_collate <- function(self, private, files, which) {
 real_del_from_collate <- function(self, field, files) {
   if (self$has_fields(field)) {
     coll <- setdiff(parse_collate(self$get(field)), files)
-    self$set(field, deparse_collate(coll))
+    desc_really_set_collate(self, private, coll, field)
   } else {
     invisible(self)
   }

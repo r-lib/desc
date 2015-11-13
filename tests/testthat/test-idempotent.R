@@ -17,3 +17,14 @@ test_that("dependencies are not reformatted if new value is the same", {
   after <- desc$get("Imports")
   expect_equal(before, after)
 })
+
+
+test_that("collate fields are not reformatted if new value is the same", {
+
+  desc <- description$new("D1")
+  desc$set("Collate", "'foo.R' 'bar.R' foobar.R")
+  before <- desc$get("Collate")
+  desc$set_collate(desc$get_collate())
+  after <- desc$get("Collate")
+  expect_equal(before, after)
+})
