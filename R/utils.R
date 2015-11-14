@@ -15,7 +15,10 @@ is_ascii <- function(x) {
 
 
 ## This is from tools/R/QC.R
-
+## We do not calculate code coverage for this, as
+## it is run at install time
+##
+## nocov start
 RFC_2822_email_regexp <- function() {
 
   ## Local part consists of ASCII letters and digits, the characters
@@ -35,6 +38,7 @@ RFC_2822_email_regexp <- function() {
   ## Be careful to arrange the hyphens to come last in the range spec.
   sprintf("(\\\".+\\\"|(%s+\\.)*%s+)@(%s+\\.)*%s+", l, l, d, d)
 }()
+## nocov end
 
 
 is_url <- function(x) {
