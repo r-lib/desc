@@ -97,7 +97,8 @@ desc_print <- function(self, private) {
 desc_normalize <- function(self, private) {
   norm_fields <- desc_str(self, private, by_field = TRUE)
   for (f in names(norm_fields)) {
-    private$data[[f]]$value <- norm_fields[[f]]
+    private$data[[f]]$value <-
+      sub(paste0(f, ":[ ]?"), "", norm_fields[[f]])
   }
   invisible(self)
 }
