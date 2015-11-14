@@ -32,6 +32,88 @@ devtools::install_github("metacran/description")
 library(description)
 ```
 
+### Introduction
+
+This package is for manipulating R package metadata
+programatically. It uses [R6](https://github.com/wch/R6) classes.
+
+### Loading or creating new `DESCRIPTION` files
+
+A new `description` object can be created by reading a `DESCRPTION`
+file form the disk. By default the `DESCRIPTION` file in the current
+directory is read:
+
+```{r}
+desc <- description$new()
+desc
+```
+
+A new object can also be created from scratch:
+
+```{r}
+desc2 <- description$new("!new")
+desc2
+```
+
+### Normalizing `DESCRIPTION` files
+
+Most `DESCRIPTION` fields may be formatted in multiple equivalent
+ways. `description` does not reformat fields, unless they are
+updated or reformatting is explicitly requested via a call to
+the `normalize()` method or using the `normalize` argument of the
+`write()` method.
+
+### Querying, changing and removing fields
+
+`get()` and `set()` queries or updates a field:
+
+```{r}
+desc$set("Package", "foo")
+desc$get("Package")
+```
+
+They work with multiple fields as well:
+
+```{r}
+desc$set(Package = "bar", Title = "Bar Package")
+desc$get(c("Package", "Title"))
+```
+
+### Dependencies
+
+Package dependencies can be set and updated via an easier API:
+
+```{r}
+desc$get_deps()
+desc$set_dep("mvtnorm")
+desc$set_dep("Rcpp", "LinkingTo")
+desc$get_deps()
+desc
+```
+
+### Collate fields
+
+Collate fields can be queried and set using simple character
+vectors of file names:
+
+```{r}
+desc$set_collate(list.files("../R"))
+desc$get_collate()
+```
+
+### Authors
+
+Authors information, when specified via the `Authors@R` field,
+also has a simplified API:
+
+```{r}
+desc <- description$new("DESCRIPTION2")
+desc$get_authors()
+desc$add_author("Bugs", "Bunny", email = "bb@acme.com")
+desc$add_me()
+desc$get_authors()
+```
+
 ## License
 
 MIT © [Gábor Csárdi](https://github.com/gaborcsardi).
