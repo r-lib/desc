@@ -401,11 +401,18 @@ desc_create_text <- function(self, private, text) {
 }
 
 
+#' @importFrom crayon strip_style
+
 desc_write <- function(self, private, file, normalize) {
   if (is.null(file)) file <- private$path
 
   if (normalize) {
-    cat(self$str(by_field = FALSE), "\n", sep = "", file = file)
+    cat(
+      strip_style(self$str(by_field = FALSE)),
+      "\n",
+      sep = "",
+      file = file
+    )
 
   } else {
     write.dcf(

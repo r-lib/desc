@@ -31,42 +31,52 @@ field_order <- function(fields) {
   )
 }
 
+#' @importFrom crayon red
+
+color_bad <- function(x) {
+  if (identical(check_field(x), TRUE)) x$value else red(x$value)
+}
+
 #' @export
+#' @importFrom crayon blue
 #' @method format DescriptionField
 
 format.DescriptionField <- function(x, ...) {
   paste(
-    strwrap(paste0(x$key, ": ", x$value), exdent = 4),
+    strwrap(paste0(blue(x$key), ": ", color_bad(x)), exdent = 4),
     collapse = "\n"
   )
 }
 
 #' @export
+#' @importFrom crayon blue
 #' @method format DescriptionDependencyList
 
 format.DescriptionDependencyList <- function(x, ...) {
   paste0(
-    x$key, ":\n",
+    blue(x$key), ":\n",
     paste0(
       "    ",
-      str_trim(strsplit(x$value, ",", fixed = TRUE)[[1]]),
+      str_trim(strsplit(color_bad(x), ",", fixed = TRUE)[[1]]),
       collapse = ",\n"
     )
   )
 }
 
 #' @export
+#' @importFrom crayon blue
 #' @method format DescriptionCollate
 
 format.DescriptionCollate <- function(x, ...) {
   paste0(
-    x$key, ":\n",
-    deparse_collate(parse_collate(x$value)),
+    blue(x$key), ":\n",
+    deparse_collate(parse_collate(color_bad(x))),
     "\n"
   )
 }
 
 #' @export
+#' @importFrom crayon blue red
 #' @method format DescriptionAuthorsAtR
 
 format.DescriptionAuthorsAtR <- function(x, mode = c("file", "screen"),
@@ -74,9 +84,11 @@ format.DescriptionAuthorsAtR <- function(x, mode = c("file", "screen"),
   xx <- parse_authors_at_r(x$value)
 
   if (mode == "screen") {
+    good <- check_field(x)
+    xxx <- if (good) xx else red(xx)
     paste0(
-      x$key, " (parsed):\n",
-      paste0("    * ", format(xx), collapse = "\n")
+      blue(x$key), " (parsed):\n",
+      paste0("    * ", format(xxx), collapse = "\n")
     )
 
   } else {
@@ -94,8 +106,11 @@ desc_print <- function(self, private) {
   invisible(self)
 }
 
+
+#' @importFrom crayon strip_style
+
 desc_normalize <- function(self, private) {
-  norm_fields <- desc_str(self, private, by_field = TRUE)
+  norm_fields <- strip_style(desc_str(self, private, by_field = TRUE))
   for (f in names(norm_fields)) {
     private$data[[f]]$value <-
       sub(paste0(f, ":[ ]?"), "", norm_fields[[f]])
