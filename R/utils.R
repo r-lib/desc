@@ -8,7 +8,8 @@ is_ascii <- function(x) {
   vapply(
     as.character(x),
     function(txt) all(charToRaw(txt) <= as.raw(127)),
-    NA
+    TRUE,
+    USE.NAMES = FALSE
   )
 }
 
