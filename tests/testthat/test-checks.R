@@ -27,6 +27,14 @@ test_that("we catch syntax errors", {
 })
 
 
+test_that("generic field check is always true", {
+  field <- list(key = "XY", value = "foobar")
+  class(field) <- "DescriptionField"
+  expect_silent(check_field(field, wanr = TRUE))
+  expect_true(check_field(field))
+})
+
+
 test_chk <- function(field, value, warn_msg, warn = TRUE, class = field) {
   rec <- list(key = field, value = value)
   class(rec) <- c(paste0("Description", class), "DescriptionField")
