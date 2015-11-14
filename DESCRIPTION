@@ -14,4 +14,4 @@ Suggests:
     whoami
 Imports:
     R6
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1

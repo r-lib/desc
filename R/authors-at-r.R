@@ -63,6 +63,8 @@ desc_set_authors <- function(self, private, authors) {
 }
 
 
+#' @importFrom utils person
+
 desc_add_author <- function(self, private, given, family, email, role,
                             comment) {
   orig <- desc_get_authors(self, private, ensure = FALSE)
@@ -147,6 +149,8 @@ desc_change_maintainer <- function(self, private, given, family, email,
                 email = email, comment = comment)
 }
 
+
+#' @importFrom utils tail
 
 desc_add_me <- function(self, private, role, comment) {
   check_for_package("whoami", "$add_me needs the 'whoami' package")

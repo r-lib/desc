@@ -43,22 +43,25 @@ desc_add_to_collate <- function(self, private, files, which) {
   if (which == "default") {
     ex_coll <- intersect(collate_fields, self$fields())
     if (length(ex_coll) == 0) {
-      real_add_to_collate(self, which_collate("main"), files)
+      real_add_to_collate(self, private, which_collate("main"), files)
     } else {
-      for (ex in ex_coll) real_add_to_collate(self, ex, files)
+      for (ex in ex_coll) real_add_to_collate(self, private, ex, files)
     }
 
   } else if (which == "all") {
-    for (coll in collate_fields) real_add_to_collate(self, coll, files)
+    for (coll in collate_fields) {
+      real_add_to_collate(self, private, coll, files)
+    }
 
   } else {
-    real_add_to_collate(self, which_collate(which), files)
+    real_add_to_collate(self, private, which_collate(which), files)
   }
+  
 }
 
 ## TODO: better order, and support dependencies
 
-real_add_to_collate <- function(self, field, files) {
+real_add_to_collate <- function(self, private, field, files) {
   ex <- if (!self$has_fields(field)) {
     character()
   } else {
