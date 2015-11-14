@@ -76,14 +76,16 @@ real_add_to_collate <- function(self, private, field, files) {
 desc_del_from_collate <- function(self, private, files, which) {
 
   if (which == "all") {
-    for (coll in collate_fields) real_del_from_collate(self, coll, files)
+    for (coll in collate_fields) {
+      real_del_from_collate(self, private, coll, files)
+    }
 
   } else {
-    real_del_from_collate(self, which_collate(which), files)
+    real_del_from_collate(self, private, which_collate(which), files)
   }
 }
 
-real_del_from_collate <- function(self, field, files) {
+real_del_from_collate <- function(self, private, field, files) {
   if (self$has_fields(field)) {
     coll <- setdiff(parse_collate(self$get(field)), files)
     desc_really_set_collate(self, private, coll, field)
