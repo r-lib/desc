@@ -19,7 +19,7 @@ is_ascii <- function(x) {
 ## it is run at install time
 ##
 ## nocov start
-RFC_2822_email_regexp <- function() {
+RFC_2822_email_regexp <- (function() {
 
   ## Local part consists of ASCII letters and digits, the characters
   ##   ! # $ % * / ? | ^ { } ` ~ & ' + = _ -
@@ -37,7 +37,7 @@ RFC_2822_email_regexp <- function() {
   d <- sprintf("[%s%s]", ASCII_letters_and_digits, "-")
   ## Be careful to arrange the hyphens to come last in the range spec.
   sprintf("(\\\".+\\\"|(%s+\\.)*%s+)@(%s+\\.)*%s+", l, l, d, d)
-}()
+})()
 ## nocov end
 
 

@@ -120,7 +120,7 @@ check_field.DescriptionTitle <- function(x, warn = FALSE, ...) {
 
   chks(
     x = x, warn = warn,
-    chk("must nost be empty",
+    chk("must not be empty",
          str_trim(x$value) != ""),
     chk("must not end with a period",
         !grepl("[.]$", str_trim(x$value)) ||
@@ -136,12 +136,12 @@ check_field.DescriptionMaintainer <- function(x, warn = FALSE, ...) {
   re_maint <- paste0(
     "^[[:space:]]*(.*<",
     RFC_2822_email_regexp,
-    "%s>|ORPHANED)[[:space:]]*$"
+    ">|ORPHANED)[[:space:]]*$"
   )
 
   chks(
     x = x, warn = warn,
-    chk("must nost be empty",
+    chk("must not be empty",
         str_trim(x$value) != ""),
     chk("must contain an email address",
         grepl(re_maint, x$value))
@@ -363,7 +363,7 @@ check_field.DescriptionDate <- function(x, warn = FALSE, ...) {
       paste0(
         "must be an ISO date: yyyy-mm-dd, but it is actually better\n",
         "to leave this field out completely. It is not required."),
-      grep("^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$", x$value)
+      grepl("^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$", x$value)
     )
   )
 }
