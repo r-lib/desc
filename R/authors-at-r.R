@@ -6,13 +6,7 @@ parse_authors_at_r <- function(x) {
   if (is.null(x)) return(NULL)
 
   out <- tryCatch(
-    {
-      out <- eval(parse(text = x))
-      if (!inherits(out, "person")) {
-        out <- do.call("c", lapply(x, as.person))
-      }
-      out
-    },
+    eval(parse(text = x)),
     error = identity
   )
   if (inherits(out, "error")) NULL else out

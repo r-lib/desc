@@ -122,3 +122,21 @@ test_that("add_me works", {
     "Bugs Bunny <bugs.bunny@acme.com> [ctb] (Yikes!)"
   )
 })
+
+test_that("error if not Authors@R field", {
+
+  desc <- description$new("D1")
+  expect_error(
+    desc$get_authors(),
+    "No 'Authors@R' field"
+  )
+})
+
+test_that("message if not author to delete does not exist", {
+
+  desc <- description$new("D2")
+  expect_message(
+    desc$del_author(given = "Gabor"),
+    "Could not find author to remove"
+  )
+})
