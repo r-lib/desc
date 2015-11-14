@@ -108,7 +108,7 @@
 #' data frame with columns: \code{type}, \code{package} and \code{version}.
 #' \code{type} is the name of the dependency field, \code{package} is the
 #' name of the R package, and \code{version} is the required version. If
-#' no specific versions are required, then this is a \code{"*"}.
+#' no specific versions are required, then this is a \code{"\*"}.
 #'
 #' The \code{$set_deps} method is the opposite of \code{$get_deps} and
 #' it sets all dependencies. The input is a data frame, with the same
@@ -120,7 +120,7 @@
 #' default it adds the package to the \code{Imports} field.
 #'
 #' The API:
-#' \preformatted{  description$set_dep(package, type = dep_types, version = "*")
+#' \preformatted{  description$set_dep(package, type = dep_types, version = "\*")
 #'   description$set_deps(deps)
 #'   description$get_deps()
 #'   description$del_dep(package, type = c("all", dep_types))
@@ -132,7 +132,7 @@
 #'   \item{type:}{Dependency type, see \code{\link{dep_types}}. For
 #'     \code{$del_dep} it may also be \code{"all"}, and then the package
 #'     will be deleted from all dependency types.}
-#'   \item{version:}{Required version. Defaults to \code{"*"}, which means
+#'   \item{version:}{Required version. Defaults to \code{"\*"}, which means
 #'     no explicit version requirements.}
 #'   \item{deps:}{A data frame with columns \code{type}, \code{package} and
 #'     \code{version}. \code{$get_deps} returns the same format.}

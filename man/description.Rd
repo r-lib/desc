@@ -127,7 +127,7 @@ The \code{$get_deps} method returns all declared dependencies, in a
 data frame with columns: \code{type}, \code{package} and \code{version}.
 \code{type} is the name of the dependency field, \code{package} is the
 name of the R package, and \code{version} is the required version. If
-no specific versions are required, then this is a \code{"\emph{"}.
+no specific versions are required, then this is a \code{"*"}.
 
 The \code{$set_deps} method is the opposite of \code{$get_deps} and
 it sets all dependencies. The input is a data frame, with the same
@@ -139,7 +139,7 @@ The \code{$set_dep} method adds or updates a single dependency. By
 default it adds the package to the \code{Imports} field.
 
 The API:
-\preformatted{  description$set_dep(package, type = dep_types, version = "}")
+\preformatted{  description$set_dep(package, type = dep_types, version = "*")
   description$set_deps(deps)
   description$get_deps()
   description$del_dep(package, type = c("all", dep_types))
