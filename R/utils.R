@@ -76,12 +76,3 @@ check_for_package <- function(pkg, msg = paste0("Package '", pkg,
   if (!has) stop(msg, call. = FALSE)
   has
 }
-
-re_groups <- function(pattern, x, ...) {
-  m <- regexpr("^(.*)\\s([^\\s]+)\\s+<(.*)>$", x, perl = TRUE)
-  substring(
-    x,
-    attr(m, "capture.start"),
-    attr(m, "capture.start") + attr(m, "capture.length") - 1
-  )
-}
