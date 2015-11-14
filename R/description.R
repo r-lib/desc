@@ -250,7 +250,7 @@ description <- R6Class("description",
     set = function(...)
       desc_set(self, private, ...),
 
-    del = function(keys = ? is_keys)
+    del = function(keys)
       desc_del(self, private, keys),
 
     validate = function()
