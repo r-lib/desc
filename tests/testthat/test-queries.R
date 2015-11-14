@@ -40,3 +40,12 @@ test_that("del works", {
   expect_equal(desc$get("Package"), c(Package = NA_character_))
   expect_false(is.na(desc$get("Title")))
 })
+
+test_that("set errors on invalid input", {
+
+  desc <- description$new("D1")
+  expect_error(
+    desc$set("foobar"),
+    "needs two unnamed args"
+  )
+})
