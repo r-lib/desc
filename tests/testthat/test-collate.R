@@ -100,3 +100,26 @@ test_that("del_from_collate works", {
                c("bar.R", "foobar.R", "foo-unix.R"))
 
 })
+
+test_that("add to all collate fields", {
+
+  desc <- description$new("D1")
+  desc$set_collate(c("f1.R", "f2.R"), which = "main")
+  desc$set_collate(c("f3.R", "f4.R"), which = "win")
+  desc$add_to_collate("f5.R", which = "all")
+
+  expect_equal(
+    desc$get_collate(which = "main"),
+    c("f1.R", "f2.R", "f5.R")
+  )
+  expect_equal(
+    desc$get_collate(which = "win"),
+    c("f3.R", "f4.R", "f5.R")
+  )
+})
+
+test_that("deleting from non-existing collate does nothing", {
+
+  desc <- description$new("D1")
+  expect_silent(desc$del_from_collate('foo.R'))
+})
