@@ -1,0 +1,16 @@
+Package: description
+Title: Manipulate DESCRIPTION Files
+Version: 1.0.0
+Author: Gabor Csardi
+Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
+Description: Tools to read, write, create, and manipulate DESCRIPTION
+    files. It is intented for packages that create or manipulate other
+    packages.
+License: MIT + file LICENSE
+URL: https://github.com/metacran/description
+BugReports: https://github.com/metacran/description/issues
+Imports:
+    R6
+Suggests:
+    testthat
+VignetteBuilder: knitr

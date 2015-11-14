@@ -46,3 +46,15 @@ test_that("can read object from character vector", {
   expect_true(!is.na(desc$get("BugReports")))
 
 })
+
+test_that("DESCRPTION is read by default", {
+
+  wd <- getwd()
+  on.exit(setwd(wd), add = TRUE)
+  setwd("files")
+
+  d1 <- description$new()
+  d2 <- description$new("DESCRIPTION")
+
+  expect_equal(d1, d2)
+})
