@@ -25,3 +25,43 @@ test_that("str formats some fields specially", {
     "Collate:\n    'file1.R'\n    'file2.R'\n    'file with spaces.R'\n    'file4.R'"
   )
 })
+
+test_that("str formats authors properly", {
+
+  desc <- description$new("D2")
+
+  expect_equal(
+    desc$str(by_field = TRUE)[["Authors@R"]],
+    paste0(
+      "    c(person(given = \"Hadley\",\n             ",
+      "family = \"Wickham\",\n             ",
+      "role = c(\"aut\", \"cre\", \"cph\"),\n             ",
+      "email = \"h.wickham@gmail.com\"),\n      ",
+      "person(given = \"Peter\",\n             ",
+      "family = \"Danenberg\",\n             ",
+      "role = c(\"aut\", \"cph\"),\n             ",
+      "email = \"pcd@roxygen.org\"),\n      ",
+      "person(given = \"Manuel\",\n             ",
+      "family = \"Eugster\",\n             ",
+      "role = c(\"aut\", \"cph\")),\n      ",
+      "person(given = \"RStudio\",\n             ",
+      "role = \"cph\"))\n"
+    )
+  )
+})
+
+test_that("authors are printed to the screen properly", {
+
+  desc <- description$new("D2")
+
+  expect_output(
+    print(desc),
+    "Authors@R (parsed):
+    * Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph]
+    * Peter Danenberg <pcd@roxygen.org> [aut, cph]
+    * Manuel Eugster [aut, cph]
+    * RStudio [cph]",
+    fixed = TRUE
+  )
+
+})
