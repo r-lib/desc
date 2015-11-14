@@ -38,7 +38,7 @@ RFC_2822_email_regexp <- function() {
 
 
 is_url <- function(x) {
-  grep("^(https?|ftp)://\\s*$", str_trim(x))
+  grepl("^(https?|ftp)://\\S+$", str_trim(x))
 }
 
 
