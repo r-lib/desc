@@ -140,3 +140,48 @@ test_that("message if not author to delete does not exist", {
     "Could not find author to remove"
   )
 })
+
+test_that("get_author is OK", {
+
+  D2 <- description$new("D2")
+
+  expect_equal(
+    D2$get_author(role = "cre"),
+    person(
+      given = "Hadley",
+      family = "Wickham",
+      email = "h.wickham@gmail.com",
+      role = c("aut", "cre", "cph"),
+      comment = NULL
+    )
+  )
+
+  expect_equal(
+    D2$get_author(role = "aut"),
+    D2$get_authors()[1:3]
+  )
+
+  D1 <- description$new("D1")
+  expect_null(D1$get_author(role = "cre"))
+})
+
+test_that("get_maintainer is OK, too", {
+
+  D1 <- description$new("D1")
+  expect_equal(
+    D1$get_maintainer(),
+    "Gabor Csardi <csardi.gabor@gmail.com>"
+  )
+
+  D2 <- description$new("D2")
+  expect_equal(
+    D2$get_maintainer(),
+    "Hadley Wickham <h.wickham@gmail.com>"
+  )
+
+  D1$del("Maintainer")
+  expect_equal(
+    D1$get_maintainer(),
+    NA_character_
+  )
+})

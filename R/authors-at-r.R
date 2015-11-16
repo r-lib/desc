@@ -58,6 +58,16 @@ desc_get_authors <- function(self, private, ensure = TRUE) {
 }
 
 
+desc_get_author <- function(self, private, role) {
+  if (self$has_fields("Authors@R")) {
+    aut <- self$get_authors()
+    selected <- vapply(aut$role, function(r) all(role %in% r), TRUE)
+    aut[selected]
+  } else {
+    NULL
+  }
+}
+
 desc_set_authors <- function(self, private, authors) {
   self$set("Authors@R", deparse_authors_at_r(authors))
 }
@@ -160,4 +170,18 @@ desc_add_me <- function(self, private, role, comment) {
   email <- whoami::email_address()
   self$add_author(given = given, family = family, email = email,
                   comment = comment, role = role)
+}
+
+
+desc_get_maintainer <- function(self, private) {
+  if (self$has_fields("Maintainer")) {
+    unname(self$get("Maintainer"))
+  } else if (self$has_fields("Authors@R")) {
+    format(
+      self$get_author(role = "cre"),
+      include = c("given", "family", "email")
+    )
+  } else {
+    NA_character_
+  }
 }

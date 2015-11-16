@@ -192,12 +192,22 @@ etc.
 The API:
 \preformatted{  description$get_authors()
   description$set_authors(authors)
+  description$get_author(role)
+  description$get_maintainer()
 }
 \describe{
    \item{authors:}{A \code{person} object, a list of authors.}
+   \item{role:}{The role to query. See \code{person} for details.}
 }
 \code{$get_authors} returns a \code{person} object, the parsed
 authors. See \code{\link[utils]{person}} for details.
+
+\code{$get_author} returns a \code{person} object, all authors with
+the specified role.
+
+\code{$get_maintainer} returns the maintainer of the package. It works
+with \code{Authors@R} fields and with traditional \code{Maintainer}
+fields as well.
 
 \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL)

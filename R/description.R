@@ -169,12 +169,22 @@
 #' The API:
 #' \preformatted{  description$get_authors()
 #'   description$set_authors(authors)
+#'   description$get_author(role)
+#'   description$get_maintainer()
 #' }
 #' \describe{
 #'    \item{authors:}{A \code{person} object, a list of authors.}
+#'    \item{role:}{The role to query. See \code{person} for details.}
 #' }
 #' \code{$get_authors} returns a \code{person} object, the parsed
 #' authors. See \code{\link[utils]{person}} for details.
+#'
+#' \code{$get_author} returns a \code{person} object, all authors with
+#' the specified role.
+#'
+#' \code{$get_maintainer} returns the maintainer of the package. It works
+#' with \code{Authors@R} fields and with traditional \code{Maintainer}
+#' fields as well.
 #'
 #' \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
 #'     role = NULL, comment = NULL)
@@ -309,6 +319,9 @@ description <- R6Class("description",
     get_authors = function()
       desc_get_authors(self, private),
 
+    get_author = function(role = "cre")
+      desc_get_author(self, private, role),
+
     set_authors = function(authors)
       desc_set_authors(self, private, authors),
 
@@ -333,7 +346,10 @@ description <- R6Class("description",
       desc_change_maintainer(self, private, given, family, email, comment),
 
     add_me = function(role = "ctb", comment = NULL)
-      desc_add_me(self, private, role, comment)
+      desc_add_me(self, private, role, comment),
+
+    get_maintainer = function()
+      desc_get_maintainer(self, private)
   ),
 
   private = list(
