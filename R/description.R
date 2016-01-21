@@ -278,7 +278,7 @@ description <- R6Class("description",
     ## -----------------------------------------------------------------
     ## Package dependencies
 
-    set_dep = function(package, type = dep_types, version = "*")
+    set_dep = function(package, type = description::dep_types, version = "*")
       desc_set_dep(self, private, package, match.arg(type), version),
 
     set_deps = function(deps)
