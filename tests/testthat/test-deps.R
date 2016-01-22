@@ -52,6 +52,21 @@ test_that("set_dep", {
 
 })
 
+test_that("set_dep for the first dependency", {
+
+  desc <- description$new("!new")
+
+  desc$set_dep("igraph")
+
+  res <- data.frame(
+    stringsAsFactors = FALSE,
+    type = c("Imports"),
+    package = c("igraph"),
+    version = c("*")
+  )
+  expect_equal(desc$get_deps(), res)
+})
+
 test_that("del_dep", {
   desc <- description$new("D1")
 

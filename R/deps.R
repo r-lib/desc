@@ -9,7 +9,10 @@ desc_set_dep <- function(self, private, package, type, version) {
   } else {
     deps <- rbind(
       deps,
-      c(type = type, package = package, version = version)
+      data.frame(
+        stringsAsFactors = FALSE,
+        type = type, package = package, version = version
+      )
     )
   }
 
