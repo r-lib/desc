@@ -14,7 +14,8 @@
 #' \preformatted{  x3 <- description$new("!new")}
 #'
 #' The complete API reference:
-#' \preformatted{description$new(cmd = NULL, file = NULL, text = NULL)}
+#' \preformatted{description$new(cmd = NULL, file = NULL, text = NULL,
+#'     package = NULL)}
 #' \describe{
 #'   \item{cmd:}{A command to create a description from scratch.
 #'     Currently only \code{"!new"} is implemented. If it does not start
@@ -27,6 +28,8 @@
 #'   \item{text:}{A character scalar containing the full DESCRIPTION.
 #'     Character vectors are collapsed into a character scalar, with
 #'     newline as the separator.}
+#'   \item{package}{If not NULL, then the name of an installed package
+#'     and the DESCRIPTION file of this package will be loaded.}
 #' }
 #'
 #' @section Setting and Querying fields:
@@ -242,8 +245,8 @@ description <- R6Class("description",
   public = list(
 
     ## Either from a file, or from a character vector
-    initialize = function(cmd = NULL, file = NULL, text = NULL)
-      desc_create(self, private, cmd, file, text),
+    initialize = function(cmd = NULL, file = NULL, text = NULL, package = NULL)
+      desc_create(self, private, cmd, file, text, package),
 
     write = function(file = NULL, normalize = FALSE)
       desc_write(self, private, file, normalize),
@@ -359,7 +362,7 @@ description <- R6Class("description",
 )
 
 
-desc_create <- function(self, private, cmd, file, text) {
+desc_create <- function(self, private, cmd, file, text, package) {
 
   if (!is.null(cmd) && substring(cmd, 1, 1) != "!") {
     file <- cmd
@@ -369,17 +372,24 @@ desc_create <- function(self, private, cmd, file, text) {
   if (!is.null(cmd)) {
     if (!is.null(file)) warning("file argument ignored")
     if (!is.null(text)) warning("text argument ignored")
+    if (!is.null(package)) warning("package argument ignored")
     desc_create_cmd(self, private, cmd)
 
-  } else if (is.null(cmd) && is.null(file) && is.null(text)) {
+  } else if (is.null(cmd) && is.null(file) && is.null(text) &&
+             is.null(package)) {
     desc_create_file(self, private, "DESCRIPTION")
 
   } else if (!is.null(file)) {
     if (!is.null(text)) warning("text argument ignored")
+    if (!is.null(package)) warning("package argument ignored")
     desc_create_file(self, private, file)
 
-  } else {
+  } else if (!is.null(text)) {
+    if (!is.null(package)) warning("package argument ignored")
     desc_create_text(self, private, text)
+
+  } else {
+    desc_create_package(self, private, package)
   }
 
   invisible(self)
@@ -416,6 +426,10 @@ desc_create_text <- function(self, private, text) {
   private$data <- dcf
 }
 
+desc_create_package <- function(self, private, package) {
+  path <- system.file(package = package, "DESCRIPTION")
+  desc_create_file(self, private, path)
+}
 
 #' @importFrom crayon strip_style
 
