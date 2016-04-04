@@ -14,7 +14,7 @@ Suggests, Enhances and LinkingTo. See the \emph{Writing R Extensions}
 manual for when to use which.
 }
 \seealso{
-Other field.types: \code{\link{cran_ascii_fields}},
+Other field types: \code{\link{cran_ascii_fields}},
   \code{\link{cran_valid_fields}}
 }
 \keyword{datasets}

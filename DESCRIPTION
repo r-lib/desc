@@ -13,8 +13,22 @@ Depends:
     R (>= 3.2.0)
 Suggests:
     testthat,
-    whoami,
+    whoami
 Imports:
     R6,
     crayon
 RoxygenNote: 5.0.1
+Collate:
+    'assertions.R'
+    'authors-at-r.R'
+    'classes.R'
+    'collate.R'
+    'constants.R'
+    'deps.R'
+    'description.R'
+    'non-oo-api.R'
+    'read.R'
+    'str.R'
+    'syntax_checks.R'
+    'utils.R'
+    'validate.R'

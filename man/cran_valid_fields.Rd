@@ -12,7 +12,7 @@ cran_valid_fields
 A list of DESCRIPTION fields that are valid according to the CRAN checks
 }
 \seealso{
-Other field.types: \code{\link{cran_ascii_fields}},
+Other field types: \code{\link{cran_ascii_fields}},
   \code{\link{dep_types}}
 }
 \keyword{datasets}
