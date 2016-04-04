@@ -1,5 +1,5 @@
 
-desc_set_dep <- function(self, private, package, type, version) {
+idesc_set_dep <- function(self, private, package, type, version) {
   deps <- self$get_deps()
   has <- which(deps$package == package & deps$type == type)
 
@@ -16,11 +16,11 @@ desc_set_dep <- function(self, private, package, type, version) {
     )
   }
 
-  desc_set_deps(self, private, deps)
+  idesc_set_deps(self, private, deps)
 }
 
 
-desc_set_deps <- function(self, private, deps) {
+idesc_set_deps <- function(self, private, deps) {
 
   depdeps <- deparse_deps(deps)
   for (d in names(depdeps)) {
@@ -51,7 +51,7 @@ same_deps <- function(d1, d2) {
 }
 
 
-desc_get_deps <- function(self, private) {
+idesc_get_deps <- function(self, private) {
   types <- intersect(names(private$data), dep_types)
   res <- lapply(types, function(type)
     parse_deps(type, private$data[[type]]$value))
@@ -91,7 +91,7 @@ deparse_deps <- function(deps) {
 }
 
 
-desc_del_dep <- function(self, private, package, type) {
+idesc_del_dep <- function(self, private, package, type) {
   deps <- self$get_deps()
 
   if (type == "all") {
@@ -102,7 +102,7 @@ desc_del_dep <- function(self, private, package, type) {
 
   if (length(has)) {
     deps <- deps[-has, ]
-    desc_set_deps(self, private, deps)
+    idesc_set_deps(self, private, deps)
 
   } else {
     invisible(self)
@@ -110,6 +110,6 @@ desc_del_dep <- function(self, private, package, type) {
 }
 
 
-desc_del_deps <- function(self, private) {
+idesc_del_deps <- function(self, private) {
   self$del(dep_types)
 }

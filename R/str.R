@@ -1,7 +1,7 @@
 
 ## TODO: continuation lines
 
-desc_str <- function(self, private, by_field,
+idesc_str <- function(self, private, by_field,
                      mode = c("file", "screen")) {
   mode <- match.arg(mode)
   cols <- field_order(names(private$data))
@@ -97,9 +97,9 @@ format.DescriptionAuthorsAtR <- function(x, mode = c("file", "screen"),
 }
 
 
-desc_print <- function(self, private) {
+idesc_print <- function(self, private) {
   cat(
-    desc_str(self, private, by_field = FALSE, mode = "screen"),
+    idesc_str(self, private, by_field = FALSE, mode = "screen"),
     sep = "",
     "\n"
   )
@@ -109,8 +109,8 @@ desc_print <- function(self, private) {
 
 #' @importFrom crayon strip_style
 
-desc_normalize <- function(self, private) {
-  norm_fields <- strip_style(desc_str(self, private, by_field = TRUE))
+idesc_normalize <- function(self, private) {
+  norm_fields <- strip_style(idesc_str(self, private, by_field = TRUE))
   for (f in names(norm_fields)) {
     private$data[[f]]$value <-
       sub(paste0(f, ":[ ]?"), "", norm_fields[[f]])

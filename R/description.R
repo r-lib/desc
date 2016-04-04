@@ -246,113 +246,113 @@ description <- R6Class("description",
 
     ## Either from a file, or from a character vector
     initialize = function(cmd = NULL, file = NULL, text = NULL, package = NULL)
-      desc_create(self, private, cmd, file, text, package),
+      idesc_create(self, private, cmd, file, text, package),
 
     write = function(file = NULL, normalize = FALSE)
-      desc_write(self, private, file, normalize),
+      idesc_write(self, private, file, normalize),
 
     fields = function()
-      desc_fields(self, private),
+      idesc_fields(self, private),
 
     has_fields = function(keys)
-      desc_has_fields(self, private, keys),
+      idesc_has_fields(self, private, keys),
 
     get = function(keys)
-      desc_get(self, private, keys),
+      idesc_get(self, private, keys),
 
     set = function(...)
-      desc_set(self, private, ...),
+      idesc_set(self, private, ...),
 
     del = function(keys)
-      desc_del(self, private, keys),
+      idesc_del(self, private, keys),
 
     validate = function()
-      desc_validate(self, private),
+      idesc_validate(self, private),
 
     print = function()
-      desc_print(self, private),
+      idesc_print(self, private),
 
     str = function(by_field = FALSE)
-      desc_str(self, private, by_field),
+      idesc_str(self, private, by_field),
 
     normalize = function()
-      desc_normalize(self, private),
+      idesc_normalize(self, private),
 
     ## -----------------------------------------------------------------
     ## Package dependencies
 
     set_dep = function(package, type = description::dep_types, version = "*")
-      desc_set_dep(self, private, package, match.arg(type), version),
+      idesc_set_dep(self, private, package, match.arg(type), version),
 
     set_deps = function(deps)
-      desc_set_deps(self, private, deps),
+      idesc_set_deps(self, private, deps),
 
     get_deps = function()
-      desc_get_deps(self, private),
+      idesc_get_deps(self, private),
 
     del_dep = function(package, type = c("all", dep_types))
-      desc_del_dep(self, private, package, match.arg(type)),
+      idesc_del_dep(self, private, package, match.arg(type)),
 
     del_deps = function()
-      desc_del_deps(self, private),
+      idesc_del_deps(self, private),
 
     ## -----------------------------------------------------------------
     ## Collate fields
 
     set_collate = function(files, which = c("main", "windows", "unix"))
-      desc_set_collate(self, private, files, match.arg(which)),
+      idesc_set_collate(self, private, files, match.arg(which)),
 
     get_collate = function(which = c("main", "windows", "unix"))
-      desc_get_collate(self, private, match.arg(which)),
+      idesc_get_collate(self, private, match.arg(which)),
 
     del_collate = function(which = c("all", "main", "windows", "unix"))
-      desc_del_collate(self, private, match.arg(which)),
+      idesc_del_collate(self, private, match.arg(which)),
 
     add_to_collate = function(files,
       which = c("default", "all", "main", "windows", "unix"))
-      desc_add_to_collate(self, private, files, match.arg(which)),
+      idesc_add_to_collate(self, private, files, match.arg(which)),
 
     del_from_collate = function(files,
       which = c("all", "main", "windows", "unix"))
-      desc_del_from_collate(self, private, files, match.arg(which)),
+      idesc_del_from_collate(self, private, files, match.arg(which)),
 
     ## -----------------------------------------------------------------
     ## Authors@R
 
     get_authors = function()
-      desc_get_authors(self, private),
+      idesc_get_authors(self, private),
 
     get_author = function(role = "cre")
-      desc_get_author(self, private, role),
+      idesc_get_author(self, private, role),
 
     set_authors = function(authors)
-      desc_set_authors(self, private, authors),
+      idesc_set_authors(self, private, authors),
 
     add_author = function(given = NULL, family = NULL, email = NULL,
                           role = NULL, comment = NULL)
-      desc_add_author(self, private, given, family, email, role, comment),
+      idesc_add_author(self, private, given, family, email, role, comment),
 
     add_role = function(role, given = NULL, family = NULL, email = NULL,
                         comment = NULL)
-      desc_add_role(self, private, role, given, family, email, comment),
+      idesc_add_role(self, private, role, given, family, email, comment),
 
     del_author = function(given = NULL, family = NULL, email = NULL,
                           role = NULL, comment = NULL)
-      desc_del_author(self, private, given, family, email, role, comment),
+      idesc_del_author(self, private, given, family, email, role, comment),
 
     del_role = function(role, given = NULL, family = NULL, email = NULL,
                         comment = NULL)
-      desc_del_role(self, private, role, given, family, email, comment),
+      idesc_del_role(self, private, role, given, family, email, comment),
 
     change_maintainer = function(given = NULL, family = NULL, email = NULL,
                                  comment = NULL)
-      desc_change_maintainer(self, private, given, family, email, comment),
+      idesc_change_maintainer(self, private, given, family, email, comment),
 
     add_me = function(role = "ctb", comment = NULL)
-      desc_add_me(self, private, role, comment),
+      idesc_add_me(self, private, role, comment),
 
     get_maintainer = function()
-      desc_get_maintainer(self, private)
+      idesc_get_maintainer(self, private)
   ),
 
   private = list(
@@ -362,7 +362,7 @@ description <- R6Class("description",
 )
 
 
-desc_create <- function(self, private, cmd, file, text, package) {
+idesc_create <- function(self, private, cmd, file, text, package) {
 
   if (!is.null(cmd) && substring(cmd, 1, 1) != "!") {
     file <- cmd
@@ -373,31 +373,31 @@ desc_create <- function(self, private, cmd, file, text, package) {
     if (!is.null(file)) warning("file argument ignored")
     if (!is.null(text)) warning("text argument ignored")
     if (!is.null(package)) warning("package argument ignored")
-    desc_create_cmd(self, private, cmd)
+    idesc_create_cmd(self, private, cmd)
 
   } else if (is.null(cmd) && is.null(file) && is.null(text) &&
              is.null(package)) {
-    desc_create_file(self, private, "DESCRIPTION")
+    idesc_create_file(self, private, "DESCRIPTION")
 
   } else if (!is.null(file)) {
     if (!is.null(text)) warning("text argument ignored")
     if (!is.null(package)) warning("package argument ignored")
-    desc_create_file(self, private, file)
+    idesc_create_file(self, private, file)
 
   } else if (!is.null(text)) {
     if (!is.null(package)) warning("package argument ignored")
-    desc_create_text(self, private, text)
+    idesc_create_text(self, private, text)
 
   } else {
-    desc_create_package(self, private, package)
+    idesc_create_package(self, private, package)
   }
 
   invisible(self)
 }
 
-desc_create_cmd <- function(self, private, cmd = c("new")) {
+idesc_create_cmd <- function(self, private, cmd = c("new")) {
   if (cmd == "!new") {
-    desc_create_text(self, private, text =
+    idesc_create_text(self, private, text =
 "Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
@@ -414,26 +414,26 @@ BugReports: {{ BugReports }}
   invisible(self)
 }
 
-desc_create_file <- function(self, private, file) {
+idesc_create_file <- function(self, private, file) {
   private$path <- file
-  desc_create_text(self, private, readLines(file))
+  idesc_create_text(self, private, readLines(file))
 }
 
-desc_create_text <- function(self, private, text) {
+idesc_create_text <- function(self, private, text) {
   con <- textConnection(text, local = TRUE)
   on.exit(close(con), add = TRUE)
   dcf <- read_dcf(con)
   private$data <- dcf
 }
 
-desc_create_package <- function(self, private, package) {
+idesc_create_package <- function(self, private, package) {
   path <- system.file(package = package, "DESCRIPTION")
-  desc_create_file(self, private, path)
+  idesc_create_file(self, private, path)
 }
 
 #' @importFrom crayon strip_style
 
-desc_write <- function(self, private, file, normalize) {
+idesc_write <- function(self, private, file, normalize) {
   if (is.null(file)) file <- private$path
 
   if (normalize) {
@@ -446,7 +446,7 @@ desc_write <- function(self, private, file, normalize) {
 
   } else {
     write.dcf(
-      desc_as_matrix(private$data),
+      idesc_as_matrix(private$data),
       file = file,
       keep.white = names(private$data)
     )
@@ -455,16 +455,16 @@ desc_write <- function(self, private, file, normalize) {
   invisible(self)
 }
 
-desc_fields <- function(self, private) {
+idesc_fields <- function(self, private) {
   names(private$data)
 }
 
-desc_has_fields <- function(self, private, keys) {
+idesc_has_fields <- function(self, private, keys) {
   keys <- as.character(keys)
   keys %in% self$fields()
 }
 
-desc_as_matrix <- function(data) {
+idesc_as_matrix <- function(data) {
   matrix(
     vapply(data, "[[", "", "value"),
     nrow = 1,
@@ -472,7 +472,7 @@ desc_as_matrix <- function(data) {
   )
 }
 
-desc_get <- function(self, private, keys) {
+idesc_get <- function(self, private, keys) {
   res <- lapply(private$data[keys], "[[", "value")
   res[vapply(res, is.null, logical(1))] <- NA_character_
   res <- unlist(res)
@@ -486,7 +486,7 @@ desc_get <- function(self, private, keys) {
 ## - an arbitrary number of named arguments, the names are the keys,
 ##   the values are the values
 
-desc_set <- function(self, private, ...) {
+idesc_set <- function(self, private, ...) {
   args <- list(...)
 
   if (is.null(names(args)) && length(args) == 2) {
@@ -509,7 +509,7 @@ desc_set <- function(self, private, ...) {
 }
 
 
-desc_del <- function(self, private, keys) {
+idesc_del <- function(self, private, keys) {
   private$data <- private$data[setdiff(names(private$data), keys)]
   invisible(self)
 }

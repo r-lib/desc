@@ -52,13 +52,13 @@ search_for_author <- function(authors, given = NULL, family = NULL,
 }
 
 
-desc_get_authors <- function(self, private, ensure = TRUE) {
+idesc_get_authors <- function(self, private, ensure = TRUE) {
   if (ensure) ensure_authors_at_r(self)
   parse_authors_at_r(self$get("Authors@R"))
 }
 
 
-desc_get_author <- function(self, private, role) {
+idesc_get_author <- function(self, private, role) {
   if (self$has_fields("Authors@R")) {
     aut <- self$get_authors()
     selected <- vapply(aut$role, function(r) all(role %in% r), TRUE)
@@ -68,25 +68,25 @@ desc_get_author <- function(self, private, role) {
   }
 }
 
-desc_set_authors <- function(self, private, authors) {
+idesc_set_authors <- function(self, private, authors) {
   self$set("Authors@R", deparse_authors_at_r(authors))
 }
 
 
 #' @importFrom utils person
 
-desc_add_author <- function(self, private, given, family, email, role,
+idesc_add_author <- function(self, private, given, family, email, role,
                             comment) {
-  orig <- desc_get_authors(self, private, ensure = FALSE)
+  orig <- idesc_get_authors(self, private, ensure = FALSE)
   newp <- person(given = given, family = family, email = email,
                  role = role, comment = comment)
   self$set_authors(c(orig, newp))
 }
 
 
-desc_add_role <- function(self, private, role, given, family, email,
+idesc_add_role <- function(self, private, role, given, family, email,
                           comment) {
-  orig <- desc_get_authors(self, private, ensure = FALSE)
+  orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
     orig, given = given, family = family, email = email, comment = comment,
     role = NULL
@@ -105,10 +105,10 @@ desc_add_role <- function(self, private, role, given, family, email,
 }
 
 
-desc_del_author <- function(self, private, given, family, email, role,
+idesc_del_author <- function(self, private, given, family, email, role,
                             comment) {
 
-  orig <- desc_get_authors(self, private, ensure = FALSE)
+  orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
     orig, given = given, family = family, email = email, comment = comment
   )
@@ -129,10 +129,10 @@ desc_del_author <- function(self, private, given, family, email, role,
 }
 
 
-desc_del_role <- function(self, private, role, given, family, email,
+idesc_del_role <- function(self, private, role, given, family, email,
                           comment) {
 
-  orig <- desc_get_authors(self, private, ensure = FALSE)
+  orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
     orig, given = given, family = family, email = email, comment = comment,
     role = NULL
@@ -151,7 +151,7 @@ desc_del_role <- function(self, private, role, given, family, email,
 }
 
 
-desc_change_maintainer <- function(self, private, given, family, email,
+idesc_change_maintainer <- function(self, private, given, family, email,
                                    comment) {
   ensure_authors_at_r(self)
   self$del_role(role = "cre")
@@ -162,7 +162,7 @@ desc_change_maintainer <- function(self, private, given, family, email,
 
 #' @importFrom utils tail
 
-desc_add_me <- function(self, private, role, comment) {
+idesc_add_me <- function(self, private, role, comment) {
   check_for_package("whoami", "$add_me needs the 'whoami' package")
   fn <- strsplit(whoami::fullname(), "[ ]+")[[1]]
   family <- tail(fn, 1)
@@ -173,7 +173,7 @@ desc_add_me <- function(self, private, role, comment) {
 }
 
 
-desc_get_maintainer <- function(self, private) {
+idesc_get_maintainer <- function(self, private) {
   if (self$has_fields("Maintainer")) {
     unname(self$get("Maintainer"))
   } else if (self$has_fields("Authors@R")) {
