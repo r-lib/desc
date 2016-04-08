@@ -4,7 +4,7 @@
 \alias{desc_normalize}
 \title{Normalize a DESCRIPTION file}
 \usage{
-desc_normalize(file = "DESCRIPTION", normalize = TRUE)
+desc_normalize(file = "DESCRIPTION", normalize = FALSE)
 }
 \arguments{
 \item{file}{DESCRIPTION file to use.}
@@ -13,9 +13,10 @@ desc_normalize(file = "DESCRIPTION", normalize = TRUE)
 the result. See \code{\link{desc_normalize}}.}
 }
 \description{
-Format the fields in DESCRIPTION in a standard way.
+Reformats and reorders fields in DESCRIPTION in a standard way.
 }
 \seealso{
-Other repair functions: \code{\link{desc_reorder_fields}}
+Other repair functions: \code{\link{desc_reformat_fields}},
+  \code{\link{desc_reorder_fields}}
 }
 
