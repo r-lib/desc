@@ -16,7 +16,7 @@ idesc_str <- function(self, private, by_field,
 
 field_order <- function(fields) {
   first <- c(
-    "Type", "Package", "Title", "Version",
+    "Type", "Package", "Title", "Version", "Date",
     "Authors@R", "Author", "Maintainer",
     "Description", "License", "URL", "BugReports",
     dep_types
