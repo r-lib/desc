@@ -16,10 +16,10 @@ idesc_str <- function(self, private, by_field,
 
 field_order <- function(fields) {
   first <- c(
-    "Type", "Package", "Title", "Version",
+    "Type", "Package", "Title", "Version", "Date",
     "Authors@R", "Author", "Maintainer",
     "Description", "License", "URL", "BugReports",
-    dep_types
+    "Depends", setdiff(dep_types, "Depends")
   )
 
   last <- collate_fields
@@ -107,13 +107,24 @@ idesc_print <- function(self, private) {
 }
 
 
+idesc_normalize <- function(self, private) {
+  self$reformat_fields()
+  self$reorder_fields()
+  invisible(self)
+}
+
 #' @importFrom crayon strip_style
 
-idesc_normalize <- function(self, private) {
+idesc_reformat_fields <- function(self, private) {
   norm_fields <- strip_style(idesc_str(self, private, by_field = TRUE))
   for (f in names(norm_fields)) {
     private$data[[f]]$value <-
       sub(paste0(f, ":[ ]?"), "", norm_fields[[f]])
   }
+  invisible(self)
+}
+
+idesc_reorder_fields <- function(self, private) {
+  private$data <- private$data[field_order(names(private$data))]
   invisible(self)
 }

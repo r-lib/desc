@@ -29,7 +29,10 @@ generate_api <- function(member, self = TRUE, invisible = FALSE) {
 
   ## Call to write, or just return the result
   write_call <- if (self) {
-    quote(desc$write(file = file, normalize = normalize))
+    quote({
+      if (normalize)
+        desc$normalize()
+      desc$write(file = file, normalize = normalize)})
   }
 
   ## Put together
@@ -124,16 +127,33 @@ desc_print <- generate_api("print", self = FALSE, invisible = TRUE)
 
 #' Normalize a DESCRIPTION file
 #'
-#' Format DESCRIPTION in a standard way.
+#' Reformats and reorders fields in DESCRIPTION in a standard way.
 #'
 #' @inheritParams desc_set
+#' @family repair functions
 #' @export
 
-desc_normalize <- local({
-  tmp <- generate_api("normalize")
-  formals(tmp)[[2]] <- TRUE
-  tmp
-})
+desc_normalize <- generate_api("normalize", self = FALSE)
+
+#' Reformat fields in a DESCRIPTION file
+#'
+#' Reformat the fields in DESCRIPTION in a standard way.
+#'
+#' @inheritParams desc_set
+#' @family repair functions
+#' @export
+
+desc_reformat_fields <- generate_api("reformat_fields", self = FALSE)
+
+#' Reorder fields in a DESCRIPTION file
+#'
+#' Reorder the fields in DESCRIPTION in a standard way.
+#'
+#' @inheritParams desc_set
+#' @family repair functions
+#' @export
+
+desc_reorder_fields <- generate_api("reorder_fields", self = FALSE)
 
 #' Validate a DESCRIPTION file
 #'
