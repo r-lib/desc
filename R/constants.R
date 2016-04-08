@@ -82,7 +82,7 @@ standard_fields <- c(
 
 cran_valid_fields <- c(
   standard_fields,
-  "^(X-CRAN|Repository/R-Forge)",
+  "^(?:X-CRAN|Repository/R-Forge)",
   paste0(standard_fields, "Note")
 )
 
