@@ -124,9 +124,10 @@ desc_print <- generate_api("print", self = FALSE, invisible = TRUE)
 
 #' Normalize a DESCRIPTION file
 #'
-#' Format DESCRIPTION in a standard way.
+#' Format the fields in DESCRIPTION in a standard way.
 #'
 #' @inheritParams desc_set
+#' @family repair functions
 #' @export
 
 desc_normalize <- local({
@@ -134,6 +135,16 @@ desc_normalize <- local({
   formals(tmp)[[2]] <- TRUE
   tmp
 })
+
+#' Reorder fields in a DESCRIPTION file
+#'
+#' Reorder the fields in DESCRIPTION in a standard way.
+#'
+#' @inheritParams desc_set
+#' @family repair functions
+#' @export
+
+desc_reorder_fields <- generate_api("reorder_fields")
 
 #' Validate a DESCRIPTION file
 #'
