@@ -278,6 +278,9 @@ description <- R6Class("description",
     normalize = function()
       idesc_normalize(self, private),
 
+    reorder_fields = function()
+      idesc_reorder_fields(self, private),
+
     ## -----------------------------------------------------------------
     ## Package dependencies
 
