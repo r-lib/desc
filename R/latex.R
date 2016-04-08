@@ -24,7 +24,7 @@ to_latex <- function(x, ...) UseMethod("to_latex", x)
 #' @method to_latex character
 
 to_latex.character <- function(x, ...) {
-  x <- desc[f]
+  x <- gsub("'([^ ']*)'", "`\\1'", x, useBytes = TRUE)
   x <- gsub("\"([^\"]*)\"", "``\\1''", x, useBytes = TRUE)
   x <- gsub("\\", "\\textbackslash{}", x, fixed = TRUE,
                useBytes = TRUE)
@@ -36,7 +36,7 @@ to_latex.character <- function(x, ...) {
 #' @method to_latex DescriptionField
 
 to_latex.DescriptionField <- function(x, ...) {
-  paste0("\\item[", x$key, "] ", x$value)
+  paste0("\\item[", x$key, "] ", to_latex(x$value))
 }
 
 #' @export
