@@ -119,6 +119,6 @@ idesc_normalize <- function(self, private) {
 }
 
 idesc_reorder_fields <- function(self, private) {
-  private$data[] <- private$data[field_order(names(private$data))]
+  private$data <- private$data[field_order(names(private$data))]
   invisible(self)
 }
