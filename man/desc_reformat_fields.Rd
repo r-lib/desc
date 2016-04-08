@@ -4,13 +4,10 @@
 \alias{desc_reformat_fields}
 \title{Reformat fields in a DESCRIPTION file}
 \usage{
-desc_reformat_fields(file = "DESCRIPTION", normalize = FALSE)
+desc_reformat_fields(file = "DESCRIPTION")
 }
 \arguments{
 \item{file}{DESCRIPTION file to use.}
-
-\item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
 }
 \description{
 Reformat the fields in DESCRIPTION in a standard way.

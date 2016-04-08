@@ -4,13 +4,10 @@
 \alias{desc_reorder_fields}
 \title{Reorder fields in a DESCRIPTION file}
 \usage{
-desc_reorder_fields(file = "DESCRIPTION", normalize = FALSE)
+desc_reorder_fields(file = "DESCRIPTION")
 }
 \arguments{
 \item{file}{DESCRIPTION file to use.}
-
-\item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
 }
 \description{
 Reorder the fields in DESCRIPTION in a standard way.

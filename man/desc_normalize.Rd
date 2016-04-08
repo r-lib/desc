@@ -4,13 +4,10 @@
 \alias{desc_normalize}
 \title{Normalize a DESCRIPTION file}
 \usage{
-desc_normalize(file = "DESCRIPTION", normalize = FALSE)
+desc_normalize(file = "DESCRIPTION")
 }
 \arguments{
 \item{file}{DESCRIPTION file to use.}
-
-\item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
 }
 \description{
 Reformats and reorders fields in DESCRIPTION in a standard way.
