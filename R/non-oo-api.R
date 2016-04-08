@@ -31,7 +31,7 @@ generate_api <- function(member, self = TRUE, invisible = FALSE) {
   write_call <- if (self) {
     quote({
       if (normalize)
-        desc <- desc$normalize()
+        desc$normalize()
       desc$write(file = file, normalize = normalize)})
   }
 
