@@ -19,7 +19,7 @@ field_order <- function(fields) {
     "Type", "Package", "Title", "Version", "Date",
     "Authors@R", "Author", "Maintainer",
     "Description", "License", "URL", "BugReports",
-    dep_types
+    "Depends", setdiff(dep_types, "Depends")
   )
 
   last <- collate_fields
