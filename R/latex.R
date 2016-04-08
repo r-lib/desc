@@ -52,7 +52,7 @@ to_latex.DescriptionCollate <- function(x, ...) {
 to_latex.DescriptionAuthorsAtR <- function(x, ...) {
   xx <- parse_authors_at_r(x$value)
   c(
-    "\\item[Authors@R (parsed)]",
+    "\\item[Authors@R] \\\\",
     "  \\begin{description}",
     paste0("    ", vapply(xx, to_latex, character(1L)), collapse = "\n"),
     "  \\end{description}"
