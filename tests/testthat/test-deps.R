@@ -56,6 +56,8 @@ test_that("set_dep for the first dependency", {
 
   desc <- description$new("!new")
 
+  expect_equal(eval(formals(desc$set_dep)[["type"]])[[1L]], "Imports")
+
   desc$set_dep("igraph")
 
   res <- data.frame(
