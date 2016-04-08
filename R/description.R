@@ -278,8 +278,8 @@ description <- R6Class("description",
     normalize = function()
       idesc_normalize(self, private),
 
-    reformat_values = function()
-      idesc_reformat_values(self, private),
+    reformat_fields = function()
+      idesc_reformat_fields(self, private),
 
     reorder_fields = function()
       idesc_reorder_fields(self, private),
