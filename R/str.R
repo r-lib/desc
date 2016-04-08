@@ -107,9 +107,15 @@ idesc_print <- function(self, private) {
 }
 
 
+idesc_normalize <- function(self, private) {
+  self$reformat_values()
+  self$reorder_fields()
+  invisible(self)
+}
+
 #' @importFrom crayon strip_style
 
-idesc_normalize <- function(self, private) {
+idesc_reformat_values <- function(self, private)
   norm_fields <- strip_style(idesc_str(self, private, by_field = TRUE))
   for (f in names(norm_fields)) {
     private$data[[f]]$value <-
