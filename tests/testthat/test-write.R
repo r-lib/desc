@@ -18,7 +18,7 @@ test_that("normalization while writing to file", {
   desc$set("Imports", "foo, bar, foobar")
 
   tmp <- tempfile()
-  desc$write(tmp, normalize = TRUE)
+  desc$write(tmp)
 
   desc$normalize()
 

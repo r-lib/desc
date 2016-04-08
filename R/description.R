@@ -248,8 +248,8 @@ description <- R6Class("description",
     initialize = function(cmd = NULL, file = NULL, text = NULL, package = NULL)
       idesc_create(self, private, cmd, file, text, package),
 
-    write = function(file = NULL, normalize = FALSE)
-      idesc_write(self, private, file, normalize),
+    write = function(file = NULL)
+      idesc_write(self, private, file),
 
     fields = function()
       idesc_fields(self, private),
@@ -436,24 +436,14 @@ idesc_create_package <- function(self, private, package) {
 
 #' @importFrom crayon strip_style
 
-idesc_write <- function(self, private, file, normalize) {
+idesc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
 
-  if (normalize) {
-    cat(
-      strip_style(self$str(by_field = FALSE)),
-      "\n",
-      sep = "",
-      file = file
-    )
-
-  } else {
-    write.dcf(
-      idesc_as_matrix(private$data),
-      file = file,
-      keep.white = names(private$data)
-    )
-  }
+  write.dcf(
+    idesc_as_matrix(private$data),
+    file = file,
+    keep.white = names(private$data)
+  )
 
   invisible(self)
 }
