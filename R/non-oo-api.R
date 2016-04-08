@@ -29,7 +29,10 @@ generate_api <- function(member, self = TRUE, invisible = FALSE) {
 
   ## Call to write, or just return the result
   write_call <- if (self) {
-    quote(desc$write(file = file, normalize = normalize))
+    quote({
+      if (normalize)
+        desc <- desc$normalize()
+      desc$write(file = file, normalize = normalize)})
   }
 
   ## Put together
