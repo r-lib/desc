@@ -275,6 +275,9 @@ description <- R6Class("description",
     str = function(by_field = FALSE, mode = c("file", "screen"))
       idesc_str(self, private, by_field, mode),
 
+    to_latex = function()
+      idesc_to_latex(self, private),
+
     normalize = function()
       idesc_normalize(self, private),
 
