@@ -26,9 +26,9 @@ to_latex <- function(x, ...) UseMethod("to_latex", x)
 to_latex.character <- function(x, ...) {
   x <- gsub("'([^ ']*)'", "`\\1'", x, useBytes = TRUE)
   x <- gsub("\"([^\"]*)\"", "``\\1''", x, useBytes = TRUE)
-  x <- gsub("\\", "\\textbackslash{}", x, fixed = TRUE,
+  x <- gsub("\\", "\\textbackslash ", x, fixed = TRUE,
                useBytes = TRUE)
-  x <- gsub("([{}$#_])", "\\\\\\1", x, useBytes = TRUE)
+  x <- gsub("([{}$#_^%])", "\\\\\\1", x, useBytes = TRUE)
   x
 }
 
