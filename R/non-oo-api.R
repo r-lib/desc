@@ -125,6 +125,15 @@ desc_del <- generate_api("del")
 
 desc_print <- generate_api("print", self = FALSE, invisible = TRUE)
 
+#' Converts a DESCRIPTION file to LaTeX
+#'
+#' Returns the contents of the DESCRIPTION in LaTeX format.
+#'
+#' @inheritParams desc_set
+#' @export
+
+desc_to_latex <- generate_api("to_latex", self = FALSE)
+
 #' Normalize a DESCRIPTION file
 #'
 #' Reformats and reorders fields in DESCRIPTION in a standard way.
