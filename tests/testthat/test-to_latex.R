@@ -6,7 +6,7 @@ test_that("Test expected LaTeX output", {
   desc$set_authors(person("Kirill", "Müller", email = "aaa@bbb.xx", role = "cre"))
   desc$set(Package = "Test.Package",
            Title = "Must be in Title Case",
-           Description = "Words not in the dictionary must be 'quoted'. \"Double quotes\" can also be used, as well as \\_{}[]^%. Must end with a full stop.",
+           Description = "Words not in the dictionary must be 'quoted'. \"Double quotes\" can also be used, as well as \\_{}[]^$#%. Must end with a full stop.",
            License = "CC-BY-SA",
            URL = "http://somewhere.io",
            BugReports = "http://somewhere.io/trac")
