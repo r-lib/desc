@@ -47,6 +47,21 @@ to_latex.DescriptionCollate <- function(x, ...) {
 }
 
 #' @export
+#' @method to_latex DescriptionURLList
+
+to_latex.DescriptionURLList <- function(x, ...) {
+  paste0("\\item[", x$key, "] ", format_url(parse_url_list(x$value)))
+}
+
+#' @export
+#' @method to_latex DescriptionURL
+
+to_latex.DescriptionURL <- function(x, ...) {
+  paste0("\\item[", x$key, "] ", format_url(x$value))
+}
+
+
+#' @export
 #' @method to_latex DescriptionAuthorsAtR
 
 to_latex.DescriptionAuthorsAtR <- function(x, ...) {
@@ -71,4 +86,8 @@ to_latex.person <- function(x, ...) {
       paste0("<\\href{mailto:", x$email, "}{", x$email, "}>"),
     format(x, include = c("comment"))
   )
+}
+
+format_url <- function(x) {
+  paste0("\\url{", x, "}", collapse = ", ")
 }
