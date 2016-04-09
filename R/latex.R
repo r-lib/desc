@@ -65,6 +65,10 @@ to_latex.person <- function(x, ...) {
     "\\item",
     format(x, include = c("role")),
     " ",
-    format(x, include = c("given", "family", "email", "comment"))
+    format(x, include = c("given", "family")),
+    " ",
+    if (!is.null(x$email))
+      paste0("<\\href{mailto:", x$email, "}{", x$email, "}>"),
+    format(x, include = c("comment"))
   )
 }
