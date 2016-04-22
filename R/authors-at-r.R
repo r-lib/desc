@@ -61,7 +61,10 @@ idesc_get_authors <- function(self, private, ensure = TRUE) {
 idesc_get_author <- function(self, private, role) {
   if (self$has_fields("Authors@R")) {
     aut <- self$get_authors()
-    selected <- vapply(aut$role, function(r) all(role %in% r), TRUE)
+    roles <- aut$role
+    ## Broken person() API, vector for 1 author, list otherwise...
+    if (!is.list(roles)) roles <- list(roles)
+    selected <- vapply(roles, function(r) all(role %in% r), TRUE)
     aut[selected]
   } else {
     NULL
