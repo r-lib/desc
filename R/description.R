@@ -404,17 +404,19 @@ idesc_create <- function(self, private, cmd, file, text, package) {
 idesc_create_cmd <- function(self, private, cmd = c("new")) {
   if (cmd == "!new") {
     idesc_create_text(self, private, text =
-"Package: {{ Package }}
+'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
-Author: {{ Author }}
+Authors@R:
+    c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
+      role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}
 Description: {{ Description }}
 License: {{ License }}
 LazyData: true
 URL: {{ URL }}
 BugReports: {{ BugReports }}
-")
+')
   }
 
   invisible(self)
