@@ -33,7 +33,8 @@ test_that("str formats authors properly", {
   expect_equal(
     desc$str(by_field = TRUE)[["Authors@R"]],
     paste0(
-      "    c(person(given = \"Hadley\",\n             ",
+      "\033[34mAuthors@R\033[39m:\n    ",
+      "c(person(given = \"Hadley\",\n             ",
       "family = \"Wickham\",\n             ",
       "role = c(\"aut\", \"cre\", \"cph\"),\n             ",
       "email = \"h.wickham@gmail.com\"),\n      ",
@@ -45,7 +46,7 @@ test_that("str formats authors properly", {
       "family = \"Eugster\",\n             ",
       "role = c(\"aut\", \"cph\")),\n      ",
       "person(given = \"RStudio\",\n             ",
-      "role = \"cph\"))\n"
+      "role = \"cph\"))"
     )
   )
 })
