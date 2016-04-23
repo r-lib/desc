@@ -7,7 +7,7 @@ test_that("can create new object", {
   expect_true(!is.na(desc$get("Package")))
   expect_true(!is.na(desc$get("Title")))
   expect_true(!is.na(desc$get("Version")))
-  expect_true(!is.na(desc$get("Author")))
+  expect_true(!is.na(desc$get("Authors@R")))
   expect_true(!is.na(desc$get("Maintainer")))
   expect_true(!is.na(desc$get("Description")))
   expect_true(!is.na(desc$get("License")))
