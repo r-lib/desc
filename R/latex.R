@@ -3,27 +3,26 @@ idesc_to_latex <- function(self, private) {
   col_str <- unlist(lapply(
     cols,
     FUN = function(col) {
-      to_latex(private$data[[col]])
+      toLatex(private$data[[col]])
     }))
 
-  paste(
-    "\\begin{description}",
-    "  \\raggedright{}",
-    paste0("  ", col_str, collapse = "\n"),
-    "\\end{description}",
-    "",
-    sep = "\n"
+  structure(
+    c(
+      "\\begin{description}",
+      "  \\raggedright{}",
+      paste0("  ", col_str, collapse = "\n"),
+      "\\end{description}"
+    ),
+    class = "Latex"
   )
 }
 
 
-to_latex <- function(x, ...) UseMethod("to_latex", x)
-
+#' @importFrom utils toLatex
+NULL
 
 #' @export
-#' @method to_latex character
-
-to_latex.character <- function(x, ...) {
+toLatex.character <- function(x, ...) {
   x <- gsub("'([^ ']*)'", "`\\1'", x, useBytes = TRUE)
   x <- gsub("\"([^\"]*)\"", "``\\1''", x, useBytes = TRUE)
   x <- gsub("\\", "\\textbackslash ", x, fixed = TRUE,
@@ -33,49 +32,39 @@ to_latex.character <- function(x, ...) {
 }
 
 #' @export
-#' @method to_latex DescriptionField
-
-to_latex.DescriptionField <- function(x, ...) {
-  paste0("\\item[", x$key, "] ", to_latex(x$value))
+toLatex.DescriptionField <- function(x, ...) {
+  paste0("\\item[", x$key, "] ", toLatex(x$value))
 }
 
 #' @export
-#' @method to_latex DescriptionCollate
-
-to_latex.DescriptionCollate <- function(x, ...) {
+toLatex.DescriptionCollate <- function(x, ...) {
   invisible(NULL)
 }
 
 #' @export
-#' @method to_latex DescriptionURLList
-
-to_latex.DescriptionURLList <- function(x, ...) {
+toLatex.DescriptionURLList <- function(x, ...) {
   paste0("\\item[", x$key, "] ", format_url(parse_url_list(x$value)))
 }
 
 #' @export
-#' @method to_latex DescriptionURL
-
-to_latex.DescriptionURL <- function(x, ...) {
+toLatex.DescriptionURL <- function(x, ...) {
   paste0("\\item[", x$key, "] ", format_url(x$value))
 }
 
 
 #' @export
-#' @method to_latex DescriptionAuthorsAtR
-
-to_latex.DescriptionAuthorsAtR <- function(x, ...) {
+toLatex.DescriptionAuthorsAtR <- function(x, ...) {
   xx <- parse_authors_at_r(x$value)
   c(
     "\\item[Authors@R] ~\\\\",
     "  \\begin{description}",
-    paste0("    ", vapply(xx, to_latex, character(1L)), collapse = "\n"),
+    paste0("    ", vapply(xx, toLatex, character(1L)), collapse = "\n"),
     "  \\end{description}"
   )
 }
 
 #' @export
-to_latex.person <- function(x, ...) {
+toLatex.person <- function(x, ...) {
   paste0(
     "\\item",
     format(x, include = c("role")),

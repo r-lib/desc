@@ -15,6 +15,7 @@ Suggests:
     testthat,
     whoami
 Imports:
+    utils,
     R6,
     crayon
 RoxygenNote: 5.0.1
