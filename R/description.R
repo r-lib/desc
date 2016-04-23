@@ -433,6 +433,7 @@ idesc_create_text <- function(self, private, text) {
   on.exit(close(con), add = TRUE)
   dcf <- read_dcf(con)
   private$data <- dcf
+  check_encoding(self, private, NULL)
 }
 
 idesc_create_package <- function(self, private, package) {
@@ -502,6 +503,7 @@ idesc_set <- function(self, private, ...) {
 
   fields <- create_fields(keys, values)
   lapply(fields, check_field, warn = TRUE)
+  check_encoding(self, private, lapply(fields, "[[", "value"))
   private$data[keys] <- fields
 
   invisible(self)

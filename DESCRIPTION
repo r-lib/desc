@@ -26,6 +26,7 @@ Collate:
     'constants.R'
     'deps.R'
     'description.R'
+    'encoding.R'
     'non-oo-api.R'
     'read.R'
     'str.R'
