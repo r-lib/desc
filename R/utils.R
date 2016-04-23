@@ -47,8 +47,14 @@ is_url <- function(x) {
 
 
 is_url_list <- function(x) {
-  xx <- strsplit(x, ",", fixed = TRUE)[[1]]
+  xx <- parse_url_list(x)
   all(vapply(xx, is_url, TRUE))
+}
+
+
+parse_url_list <- function(x) {
+  xx <- strsplit(x, ",", fixed = TRUE)[[1]]
+  str_trim(xx)
 }
 
 
