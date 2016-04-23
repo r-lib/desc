@@ -31,9 +31,9 @@ test_that("str formats authors properly", {
   desc <- description$new("D2")
 
   expect_equal(
-    desc$str(by_field = TRUE)[["Authors@R"]],
+    crayon::strip_style(desc$str(by_field = TRUE)[["Authors@R"]]),
     paste0(
-      "\033[34mAuthors@R\033[39m:\n    ",
+      "Authors@R:\n    ",
       "c(person(given = \"Hadley\",\n             ",
       "family = \"Wickham\",\n             ",
       "role = c(\"aut\", \"cre\", \"cph\"),\n             ",
