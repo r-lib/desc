@@ -19,7 +19,7 @@ field_order <- function(fields) {
     "Type", "Package", "Title", "Version", "Date",
     "Authors@R", "Author", "Maintainer",
     "Description", "License", "URL", "BugReports",
-    "Depends", setdiff(dep_types, "Depends")
+    "Depends", setdiff(dep_types, "Depends"), "VignetteBuilder"
   )
 
   last <- collate_fields
@@ -92,7 +92,10 @@ format.DescriptionAuthorsAtR <- function(x, mode = c("file", "screen"),
     )
 
   } else {
-    deparse_authors_at_r(xx)
+    paste0(
+      blue(x$key), ":\n",
+      sub("\n$", "", deparse_authors_at_r(xx))
+    )
   }
 }
 

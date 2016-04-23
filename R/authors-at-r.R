@@ -30,7 +30,7 @@ set_author_field <- function(authors, which, field, value) {
 ensure_authors_at_r <- function(obj) {
   if (! obj$has_fields("Authors@R")) {
     stop("No 'Authors@R' field!\n",
-         "You can create one with $add_author or $to_authors_at_r")
+         "You can create one with $add_author")
   }
 }
 
@@ -61,7 +61,10 @@ idesc_get_authors <- function(self, private, ensure = TRUE) {
 idesc_get_author <- function(self, private, role) {
   if (self$has_fields("Authors@R")) {
     aut <- self$get_authors()
-    selected <- vapply(aut$role, function(r) all(role %in% r), TRUE)
+    roles <- aut$role
+    ## Broken person() API, vector for 1 author, list otherwise...
+    if (!is.list(roles)) roles <- list(roles)
+    selected <- vapply(roles, function(r) all(role %in% r), TRUE)
     aut[selected]
   } else {
     NULL

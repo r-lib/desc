@@ -407,17 +407,20 @@ idesc_create <- function(self, private, cmd, file, text, package) {
 idesc_create_cmd <- function(self, private, cmd = c("new")) {
   if (cmd == "!new") {
     idesc_create_text(self, private, text =
-"Package: {{ Package }}
+'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
-Author: {{ Author }}
+Authors@R:
+    c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
+      role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}
 Description: {{ Description }}
 License: {{ License }}
 LazyData: true
 URL: {{ URL }}
 BugReports: {{ BugReports }}
-")
+Encoding: UTF-8
+')
   }
 
   invisible(self)
@@ -433,6 +436,7 @@ idesc_create_text <- function(self, private, text) {
   on.exit(close(con), add = TRUE)
   dcf <- read_dcf(con)
   private$data <- dcf
+  check_encoding(self, private, NULL)
 }
 
 idesc_create_package <- function(self, private, package) {
@@ -502,6 +506,7 @@ idesc_set <- function(self, private, ...) {
 
   fields <- create_fields(keys, values)
   lapply(fields, check_field, warn = TRUE)
+  check_encoding(self, private, lapply(fields, "[[", "value"))
   private$data[keys] <- fields
 
   invisible(self)
