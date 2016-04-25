@@ -17,6 +17,7 @@ Suggests:
     testthat,
     whoami
 Imports:
+    utils,
     R6,
     crayon
 RoxygenNote: 5.0.1
@@ -29,6 +30,7 @@ Collate:
     'deps.R'
     'description.R'
     'encoding.R'
+    'latex.R'
     'non-oo-api.R'
     'read.R'
     'str.R'
