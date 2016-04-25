@@ -427,6 +427,7 @@ Encoding: UTF-8
 }
 
 idesc_create_file <- function(self, private, file) {
+  if (is_dir(file)) file <- file.path(file, "DESCRIPTION")
   private$path <- file
   idesc_create_text(self, private, readLines(file))
 }

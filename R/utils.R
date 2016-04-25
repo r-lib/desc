@@ -87,3 +87,7 @@ check_for_package <- function(pkg, msg = paste0("Package '", pkg,
   if (!has) stop(msg, call. = FALSE)
   has
 }
+
+is_dir <- function(path) {
+  file.info(path)$isdir
+}
