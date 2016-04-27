@@ -33,7 +33,7 @@ generate_api <- function(member, self = TRUE, invisible = FALSE) {
     quote({
       if (normalize)
         desc$normalize()
-      desc$write(file = file, normalize = normalize)})
+      desc$write(file = file)})
   }
 
   ## Put together
