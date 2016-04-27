@@ -77,12 +77,14 @@ desc2
 #> Package: {{ Package }}
 #> Title: {{ Title }}
 #> Version: 1.0.0
-#> Author: {{ Author }}
+#> Authors@R (parsed):
+#>     * Jo Doe <jodoe@dom.ain> [aut, cre]
 #> Maintainer: {{ Maintainer }}
 #> Description: {{ Description }}
 #> License: {{ License }}
 #> URL: {{ URL }}
 #> BugReports: {{ BugReports }}
+#> Encoding: UTF-8
 #> LazyData: true
 ```
 
@@ -195,8 +197,9 @@ desc$get_collate()
 ```
 #>  [1] "assertions.R"    "authors-at-r.R"  "classes.R"      
 #>  [4] "collate.R"       "constants.R"     "deps.R"         
-#>  [7] "description.R"   "read.R"          "str.R"          
-#> [10] "syntax_checks.R" "utils.R"         "validate.R"
+#>  [7] "description.R"   "encoding.R"      "latex.R"        
+#> [10] "non-oo-api.R"    "read.R"          "str.R"          
+#> [13] "syntax_checks.R" "utils.R"         "validate.R"
 ```
 
 ### Authors
