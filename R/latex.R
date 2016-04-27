@@ -22,39 +22,39 @@ idesc_to_latex <- function(self, private) {
 NULL
 
 #' @export
-toLatex.character <- function(x, ...) {
-  x <- gsub("'([^ ']*)'", "`\\1'", x, useBytes = TRUE)
-  x <- gsub("\"([^\"]*)\"", "``\\1''", x, useBytes = TRUE)
-  x <- gsub("\\", "\\textbackslash ", x, fixed = TRUE,
+toLatex.character <- function(object, ...) {
+  object <- gsub("'([^ ']*)'", "`\\1'", object, useBytes = TRUE)
+  object <- gsub("\"([^\"]*)\"", "``\\1''", object, useBytes = TRUE)
+  object <- gsub("\\", "\\textbackslash ", object, fixed = TRUE,
                useBytes = TRUE)
-  x <- gsub("([{}$#_^%])", "\\\\\\1", x, useBytes = TRUE)
-  x
+  object <- gsub("([{}$#_^%])", "\\\\\\1", object, useBytes = TRUE)
+  object
 }
 
 #' @export
-toLatex.DescriptionField <- function(x, ...) {
-  paste0("\\item[", x$key, "] ", toLatex(x$value))
+toLatex.DescriptionField <- function(object, ...) {
+  paste0("\\item[", object$key, "] ", toLatex(object$value))
 }
 
 #' @export
-toLatex.DescriptionCollate <- function(x, ...) {
+toLatex.DescriptionCollate <- function(object, ...) {
   invisible(NULL)
 }
 
 #' @export
-toLatex.DescriptionURLList <- function(x, ...) {
-  paste0("\\item[", x$key, "] ", format_url(parse_url_list(x$value)))
+toLatex.DescriptionURLList <- function(object, ...) {
+  paste0("\\item[", object$key, "] ", format_url(parse_url_list(object$value)))
 }
 
 #' @export
-toLatex.DescriptionURL <- function(x, ...) {
-  paste0("\\item[", x$key, "] ", format_url(x$value))
+toLatex.DescriptionURL <- function(object, ...) {
+  paste0("\\item[", object$key, "] ", format_url(object$value))
 }
 
 
 #' @export
-toLatex.DescriptionAuthorsAtR <- function(x, ...) {
-  xx <- parse_authors_at_r(x$value)
+toLatex.DescriptionAuthorsAtR <- function(object, ...) {
+  xx <- parse_authors_at_r(object$value)
   c(
     "\\item[Authors@R] ~\\\\",
     "  \\begin{description}",
@@ -64,19 +64,19 @@ toLatex.DescriptionAuthorsAtR <- function(x, ...) {
 }
 
 #' @export
-toLatex.person <- function(x, ...) {
+toLatex.person <- function(object, ...) {
   paste0(
     "\\item",
-    format(x, include = c("role")),
+    format(object, include = c("role")),
     " ",
-    format(x, include = c("given", "family")),
+    format(object, include = c("given", "family")),
     " ",
-    if (!is.null(x$email))
-      paste0("<\\href{mailto:", x$email, "}{", x$email, "}>"),
-    format(x, include = c("comment"))
+    if (!is.null(object$email))
+      paste0("<\\href{mailto:", object$email, "}{", object$email, "}>"),
+    format(object, include = c("comment"))
   )
 }
 
-format_url <- function(x) {
-  paste0("\\url{", x, "}", collapse = ", ")
+format_url <- function(object) {
+  paste0("\\url{", object, "}", collapse = ", ")
 }
