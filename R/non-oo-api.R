@@ -1,5 +1,6 @@
 
 #' @include description.R
+#' @importFrom utils packageName
 
 generate_api <- function(member, self = TRUE, invisible = FALSE) {
 
