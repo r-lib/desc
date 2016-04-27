@@ -61,6 +61,6 @@ test_that("DESCRPTION is read by default", {
 
 test_that("From installed package", {
 
-  desc <- description$new(package = "MASS")
-  expect_match(desc$get("Author"), "Ripley")
+  desc <- description$new(package = "utils")
+  expect_match(desc$get("Author"), "Core Team")
 })
