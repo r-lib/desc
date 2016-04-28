@@ -169,10 +169,7 @@ test_that("desc_reformat_fields", {
   desc_reformat_fields(file = d)
   expect_equal(
     desc_get(file = d, "Description"),
-    c(Description = paste0(
-        "A 'Doxygen'-like in-source documentation system for\n",
-        "    Rd, collation, and 'NAMESPACE' files."
-    ))
+    description$new("D2")$reformat_fields()$get("Description")
   )
 })
 
