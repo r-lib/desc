@@ -2,7 +2,8 @@
 #' @include description.R
 #' @importFrom utils packageName
 
-generate_api <- function(member, self = TRUE, invisible = FALSE) {
+generate_api <- function(member, self = TRUE, norm = TRUE,
+                         invisible = FALSE) {
 
   res <- function() { }
 
@@ -10,7 +11,7 @@ generate_api <- function(member, self = TRUE, invisible = FALSE) {
 
   ## Arguments
   xargs <- list(file = "DESCRIPTION")
-  if (self) xargs <- c(xargs, list(normalize = FALSE))
+  if (self && norm) xargs <- c(xargs, list(normalize = FALSE))
   formals(res) <- c(formals(func), xargs)
 
   ## Call to member function
@@ -29,11 +30,13 @@ generate_api <- function(member, self = TRUE, invisible = FALSE) {
   )
 
   ## Call to write, or just return the result
-  write_call <- if (self) {
+  write_call <- if (self && norm) {
     quote({
-      if (normalize)
-        desc$normalize()
-      desc$write(file = file)})
+      if (normalize) desc$normalize()
+      desc$write(file = file)
+    })
+  } else if (self) {
+    quote(desc$write(file = file))
   }
 
   ## Put together
@@ -143,7 +146,7 @@ desc_to_latex <- generate_api("to_latex", self = FALSE)
 #' @family repair functions
 #' @export
 
-desc_normalize <- generate_api("normalize", self = TRUE)
+desc_normalize <- generate_api("normalize", self = TRUE, norm = FALSE)
 
 #' Reformat fields in a DESCRIPTION file
 #'
@@ -153,7 +156,7 @@ desc_normalize <- generate_api("normalize", self = TRUE)
 #' @family repair functions
 #' @export
 
-desc_reformat_fields <- generate_api("reformat_fields", self = TRUE)
+desc_reformat_fields <- generate_api("reformat_fields", self = TRUE, norm = FALSE)
 
 #' Reorder fields in a DESCRIPTION file
 #'
@@ -163,7 +166,7 @@ desc_reformat_fields <- generate_api("reformat_fields", self = TRUE)
 #' @family repair functions
 #' @export
 
-desc_reorder_fields <- generate_api("reorder_fields", self = TRUE)
+desc_reorder_fields <- generate_api("reorder_fields", self = TRUE, norm = FALSE)
 
 #' Validate a DESCRIPTION file
 #'
