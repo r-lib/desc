@@ -11,7 +11,23 @@
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/description)](http://www.r-pkg.org/pkg/description)
 [![Coverage Status](https://img.shields.io/codecov/c/github/metacran/description/master.svg)](https://codecov.io/github/metacran/description?branch=master)
 
-Parse DESCRIPTION files
+Parse, manipulate and reformat DESCRIPTION files. The package
+provides two APIs, one is object oriented, the other one is
+procedural and manipulates the files *in place*.
+
+---
+
+  - [Installation](#installation)
+  - [The object oriented API](#the-oo-api)
+    - [Introduction](#introduction)
+    - [Loading or creating new `DESCRIPTION` files](#loading-or-creating-new-description-files)
+	- [Normalizing `DESCRIPTION` files](#normalizing-description-files)
+	- [Querying, changing and removing fields](#querying-changing-and-removing-fields)
+	- [Dependencies](#dependencies)
+	- [Collate fields](#collate-fields)
+	- [Authors](#authors)
+  - [The procedural API](#the-procedural-api)
+  - [License](#license)
 
 ## Installation
 
@@ -20,7 +36,7 @@ Parse DESCRIPTION files
 devtools::install_github("metacran/description")
 ```
 
-## Usage
+## The object oriented API
 
 
 ```r
@@ -29,8 +45,7 @@ library(description)
 
 ### Introduction
 
-This package is for manipulating R package metadata
-programatically. It uses [R6](https://github.com/wch/R6) classes.
+The object oriented API uses [R6](https://github.com/wch/R6) classes.
 
 ### Loading or creating new `DESCRIPTION` files
 
@@ -50,9 +65,9 @@ desc
 #> Version: 1.0.0
 #> Author: Gabor Csardi
 #> Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
-#> Description: Tools to read, write, create, and manipulate
-#>     DESCRIPTION files.  It is intented for packages that create or
-#>     manipulate other packages.
+#> Description: Tools to read, write, create, and manipulate DESCRIPTION
+#>     files.  It is intented for packages that create or manipulate other
+#>     packages.
 #> License: MIT + file LICENSE
 #> URL: https://github.com/metacran/description
 #> BugReports: https://github.com/metacran/description/issues
@@ -165,9 +180,9 @@ desc
 #> Version: 1.0.0
 #> Author: Gabor Csardi
 #> Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
-#> Description: Tools to read, write, create, and manipulate
-#>     DESCRIPTION files.  It is intented for packages that create or
-#>     manipulate other packages.
+#> Description: Tools to read, write, create, and manipulate DESCRIPTION
+#>     files.  It is intented for packages that create or manipulate other
+#>     packages.
 #> License: MIT + file LICENSE
 #> URL: https://github.com/metacran/description
 #> BugReports: https://github.com/metacran/description/issues
@@ -233,6 +248,71 @@ desc$get_authors()
 #> [4] "RStudio [cph]"                                       
 #> [5] "Bugs Bunny <bb@acme.com>"                            
 #> [6] "Gabor Csardi <csardi.gabor@gmail.com> [ctb]"
+```
+
+## The procedural API
+
+The procedural API is simpler to use for one-off `DESCRIPTION`
+manipulation, since it does not require dealing with
+`description` objects. Each object oriented method has a
+procedural counterpart that works on a file, and potentially
+writes its result back to the same file.
+
+For example, adding a new dependency to `DESCRIPTION` in the
+current working directory can be done with
+
+
+```r
+desc_set_dep("newpackage", "Suggests")
+```
+
+```
+#> Package: description
+#> Title: Manipulate DESCRIPTION Files
+#> Version: 1.0.0
+#> Author: Gabor Csardi
+#> Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
+#> Description: Tools to read, write, create, and manipulate DESCRIPTION
+#>     files.  It is intented for packages that create or manipulate other
+#>     packages.
+#> License: MIT + file LICENSE
+#> URL: https://github.com/metacran/description
+#> BugReports: https://github.com/metacran/description/issues
+#> Imports:
+#>     R6
+#> Suggests:
+#>     testthat,
+#>     whoami,
+#>     newpackage
+#> LazyData: true
+#> RoxygenNote: 5.0.0
+```
+
+This added `newpackage` to the `Suggests` field:
+
+
+```r
+desc_get("Suggests")
+```
+
+```
+#>                                       Suggests 
+#> "\n    testthat,\n    whoami,\n    newpackage"
+```
+
+So the full list of dependencies are now
+
+
+```r
+desc_get_deps()
+```
+
+```
+#>       type    package version
+#> 1 Suggests   testthat       *
+#> 2 Suggests     whoami       *
+#> 3 Suggests newpackage       *
+#> 4  Imports         R6       *
 ```
 
 ## License
