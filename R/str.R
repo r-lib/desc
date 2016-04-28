@@ -41,9 +41,9 @@ color_bad <- function(x) {
 #' @importFrom crayon blue
 #' @method format DescriptionField
 
-format.DescriptionField <- function(x, ...) {
+format.DescriptionField <- function(x, ..., width = 75) {
   paste(
-    strwrap(paste0(blue(x$key), ": ", color_bad(x)), exdent = 4),
+    strwrap(paste0(blue(x$key), ": ", color_bad(x)), exdent = 4, width = width),
     collapse = "\n"
   )
 }
