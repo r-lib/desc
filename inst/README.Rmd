@@ -39,7 +39,7 @@ procedural and manipulates the files *in place*.
 ## Installation
 
 ```{r eval = FALSE}
-devtools::install_github("metacran/description")
+source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("metacran/description")
 ```
 
 ## The object oriented API
