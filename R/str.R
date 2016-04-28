@@ -70,8 +70,7 @@ format.DescriptionDependencyList <- function(x, ...) {
 format.DescriptionCollate <- function(x, ...) {
   paste0(
     blue(x$key), ":\n",
-    deparse_collate(parse_collate(color_bad(x))),
-    "\n"
+    deparse_collate(parse_collate(color_bad(x)))
   )
 }
 
