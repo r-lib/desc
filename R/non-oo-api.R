@@ -1,4 +1,8 @@
 
+# No coverage calculating here, since this code
+# runs during install time only.
+# nocov start
+
 #' @include description.R
 #' @importFrom utils packageName
 
@@ -423,3 +427,5 @@ desc_add_me <- generate_api("add_me")
 desc_get_maintainer <- generate_api("get_maintainer", self = FALSE)
 
 ## -------------------------------------------------------------------
+
+# nocov end
