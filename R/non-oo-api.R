@@ -143,7 +143,7 @@ desc_to_latex <- generate_api("to_latex", self = FALSE)
 #' @family repair functions
 #' @export
 
-desc_normalize <- generate_api("normalize", self = FALSE)
+desc_normalize <- generate_api("normalize", self = TRUE)
 
 #' Reformat fields in a DESCRIPTION file
 #'
@@ -153,7 +153,7 @@ desc_normalize <- generate_api("normalize", self = FALSE)
 #' @family repair functions
 #' @export
 
-desc_reformat_fields <- generate_api("reformat_fields", self = FALSE)
+desc_reformat_fields <- generate_api("reformat_fields", self = TRUE)
 
 #' Reorder fields in a DESCRIPTION file
 #'
@@ -163,7 +163,7 @@ desc_reformat_fields <- generate_api("reformat_fields", self = FALSE)
 #' @family repair functions
 #' @export
 
-desc_reorder_fields <- generate_api("reorder_fields", self = FALSE)
+desc_reorder_fields <- generate_api("reorder_fields", self = TRUE)
 
 #' Validate a DESCRIPTION file
 #'
