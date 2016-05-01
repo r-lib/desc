@@ -6,7 +6,7 @@ Authors@R: c(
     person("Kirill", "Müller", role = c("aut")))
 Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
 Description: Tools to read, write, create, and manipulate DESCRIPTION files.
-    It is intented for packages that create or manipulate other packages.
+    It is intended for packages that create or manipulate other packages.
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/metacran/description
