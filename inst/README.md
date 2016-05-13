@@ -1,15 +1,15 @@
 
 
 
-# description
+# desc
 
 > Parse DESCRIPTION files
 
-[![Linux Build Status](https://travis-ci.org/metacran/description.svg?branch=master)](https://travis-ci.org/metacran/description)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/metacran/description?svg=true)](https://ci.appveyor.com/project/gaborcsardi/description)
-[![](http://www.r-pkg.org/badges/version/description)](http://www.r-pkg.org/pkg/description)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/description)](http://www.r-pkg.org/pkg/description)
-[![Coverage Status](https://img.shields.io/codecov/c/github/metacran/description/master.svg)](https://codecov.io/github/metacran/description?branch=master)
+[![Linux Build Status](https://travis-ci.org/metacran/desc.svg?branch=master)](https://travis-ci.org/metacran/desc)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/metacran/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
+[![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/desc)](http://www.r-pkg.org/pkg/desc)
+[![Coverage Status](https://img.shields.io/codecov/c/github/metacran/desc/master.svg)](https://codecov.io/github/metacran/desc?branch=master)
 
 Parse, manipulate and reformat DESCRIPTION files. The package
 provides two APIs, one is object oriented, the other one is
@@ -33,14 +33,14 @@ procedural and manipulates the files *in place*.
 
 
 ```r
-source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("metacran/description")
+source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("metacran/desc")
 ```
 
 ## The object oriented API
 
 
 ```r
-library(description)
+library(desc)
 ```
 
 ### Introduction
@@ -75,7 +75,8 @@ desc
 #>     R6
 #> Suggests:
 #>     testthat,
-#>     whoami
+#>     whoami,
+#>     newpackage
 #> LazyData: true
 #> RoxygenNote: 5.0.0
 ```
@@ -106,7 +107,7 @@ desc2
 ### Normalizing `DESCRIPTION` files
 
 Most `DESCRIPTION` fields may be formatted in multiple equivalent
-ways. `description` does not reformat fields, unless they are
+ways. `desc` does not reformat fields, unless they are
 updated or reformatting is explicitly requested via a call to
 the `normalize()` method or using the `normalize` argument of the
 `write()` method.
@@ -149,10 +150,11 @@ desc$get_deps()
 ```
 
 ```
-#>       type  package version
-#> 1 Suggests testthat       *
-#> 2 Suggests   whoami       *
-#> 3  Imports       R6       *
+#>       type    package version
+#> 1 Suggests   testthat       *
+#> 2 Suggests     whoami       *
+#> 3 Suggests newpackage       *
+#> 4  Imports         R6       *
 ```
 
 ```r
@@ -162,12 +164,13 @@ desc$get_deps()
 ```
 
 ```
-#>        type  package version
-#> 1  Suggests testthat       *
-#> 2  Suggests   whoami       *
-#> 3   Imports       R6       *
-#> 4   Imports  mvtnorm       *
-#> 5 LinkingTo     Rcpp       *
+#>        type    package version
+#> 1  Suggests   testthat       *
+#> 2  Suggests     whoami       *
+#> 3  Suggests newpackage       *
+#> 4   Imports         R6       *
+#> 5   Imports    mvtnorm       *
+#> 6 LinkingTo       Rcpp       *
 ```
 
 ```r
@@ -191,7 +194,8 @@ desc
 #>     mvtnorm
 #> Suggests:
 #>     testthat,
-#>     whoami
+#>     whoami,
+#>     newpackage
 #> LinkingTo:
 #>     Rcpp
 #> LazyData: true
