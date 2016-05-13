@@ -2,9 +2,9 @@ Package: desc
 Title: Manipulate DESCRIPTION Files
 Version: 1.0.0
 Authors@R: c(
-    person("Gabor", "Csardi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
+    person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
     person("Kirill", "Müller", role = c("aut")))
-Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
+Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Tools to read, write, create, and manipulate DESCRIPTION files.
     It is intended for packages that create or manipulate other packages.
 License: MIT + file LICENSE
@@ -21,7 +21,7 @@ Imports:
     R6,
     crayon
 Encoding: UTF-8
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000
 Collate:
     'assertions.R'
     'authors-at-r.R'

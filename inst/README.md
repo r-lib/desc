@@ -63,8 +63,8 @@ desc
 #> Package: description
 #> Title: Manipulate DESCRIPTION Files
 #> Version: 1.0.0
-#> Author: Gabor Csardi
-#> Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
+#> Author: Gábor Csárdi
+#> Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 #> Description: Tools to read, write, create, and manipulate DESCRIPTION
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
@@ -77,6 +77,7 @@ desc
 #>     testthat,
 #>     whoami,
 #>     newpackage
+#> Encoding: UTF-8
 #> LazyData: true
 #> RoxygenNote: 5.0.0
 ```
@@ -181,8 +182,8 @@ desc
 #> Package: bar
 #> Title: Bar Package
 #> Version: 1.0.0
-#> Author: Gabor Csardi
-#> Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
+#> Author: Gábor Csárdi
+#> Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 #> Description: Tools to read, write, create, and manipulate DESCRIPTION
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
@@ -198,6 +199,7 @@ desc
 #>     newpackage
 #> LinkingTo:
 #>     Rcpp
+#> Encoding: UTF-8
 #> LazyData: true
 #> RoxygenNote: 5.0.0
 ```
@@ -251,7 +253,7 @@ desc$get_authors()
 #> [3] "Manuel Eugster [aut, cph]"                           
 #> [4] "RStudio [cph]"                                       
 #> [5] "Bugs Bunny <bb@acme.com>"                            
-#> [6] "Gabor Csardi <csardi.gabor@gmail.com> [ctb]"
+#> [6] "Gábor Csárdi <csardi.gabor@gmail.com> [ctb]"
 ```
 
 ## The procedural API
@@ -274,8 +276,8 @@ desc_set_dep("newpackage", "Suggests")
 #> Package: description
 #> Title: Manipulate DESCRIPTION Files
 #> Version: 1.0.0
-#> Author: Gabor Csardi
-#> Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
+#> Author: Gábor Csárdi
+#> Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 #> Description: Tools to read, write, create, and manipulate DESCRIPTION
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
@@ -288,6 +290,7 @@ desc_set_dep("newpackage", "Suggests")
 #>     testthat,
 #>     whoami,
 #>     newpackage
+#> Encoding: UTF-8
 #> LazyData: true
 #> RoxygenNote: 5.0.0
 ```

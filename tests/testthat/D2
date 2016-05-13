@@ -60,3 +60,4 @@ Collate:
     'util-locale.R'
     'utils.R'
 RoxygenNote: 4.1.1.9000
+Encoding: UTF-8

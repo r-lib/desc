@@ -29,12 +29,12 @@ test_that("we can set the authors", {
 test_that("we can add an author", {
   desc <- description$new("D2")
 
-  desc$add_author("Gabor", "Csardi", email = "csardi.gabor@gmail.com",
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gabor Csardi <csardi.gabor@gmail.com> [ctb] (Really?)"
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?)"
   )
 })
 
@@ -52,13 +52,13 @@ test_that("we can search for authors", {
 test_that("we can add a role to an author", {
   desc <- description$new("D2")
 
-  desc$add_author("Gabor", "Csardi", email = "csardi.gabor@gmail.com",
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
-  desc$add_role(given = "Gabor", role = "cph")
+  desc$add_role(given = "Gábor", role = "cph")
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gabor Csardi <csardi.gabor@gmail.com> [ctb, cph] (Really?)"
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb, cph] (Really?)"
   )
 })
 
@@ -79,14 +79,14 @@ test_that("we can delete an author", {
 test_that("we can delete a role", {
   desc <- description$new("D2")
 
-  desc$add_author("Gabor", "Csardi", email = "csardi.gabor@gmail.com",
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
-  desc$add_role(given = "Gabor", role = "cph")
-  desc$del_role(family = "Csardi", role = "ctb")
+  desc$add_role(given = "Gábor", role = "cph")
+  desc$del_role(family = "Csárdi", role = "ctb")
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gabor Csardi <csardi.gabor@gmail.com> [cph] (Really?)"
+    "Gábor Csárdi <csardi.gabor@gmail.com> [cph] (Really?)"
   )
 })
 
@@ -136,7 +136,7 @@ test_that("message if not author to delete does not exist", {
 
   desc <- description$new("D2")
   expect_message(
-    desc$del_author(given = "Gabor"),
+    desc$del_author(given = "Gábor"),
     "Could not find author to remove"
   )
 })
@@ -170,7 +170,7 @@ test_that("get_maintainer is OK, too", {
   D1 <- description$new("D1")
   expect_equal(
     D1$get_maintainer(),
-    "Gabor Csardi <csardi.gabor@gmail.com>"
+    "Gábor Csárdi <csardi.gabor@gmail.com>"
   )
 
   D2 <- description$new("D2")

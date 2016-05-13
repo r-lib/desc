@@ -181,7 +181,7 @@ test_that("desc_reorder_fields", {
     desc_fields(file = d),
     c("Package", "Title", "Version", "Authors@R", "Description", 
       "License", "URL", "Depends", "Imports", "Suggests", "LinkingTo", 
-      "VignetteBuilder", "RoxygenNote", "Collate")
+      "VignetteBuilder", "Encoding", "RoxygenNote", "Collate")
   )
 })
 

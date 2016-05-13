@@ -6,7 +6,7 @@ test_that("DCF reader works", {
 
   expect_equal(desc$get("Package"), c(Package = "desc"))
   expect_equal(desc$get("Version"), c(Version = "1.0.0"))
-  expect_equal(desc$get("Author"), c(Author = "Gabor Csardi"))
+  expect_equal(desc$get("Author"), c(Author = "Gábor Csárdi"))
   expect_equal(desc$get("Imports"), c(Imports = "\n    R6"))
 })
 
