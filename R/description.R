@@ -230,7 +230,7 @@
 #'
 #' ## Read a file
 #' desc2 <- description$new(file = system.file("DESCRIPTION",
-#'                            package = "description"))
+#'                            package = "desc"))
 #' desc2
 #'
 #' ## Remove a field
