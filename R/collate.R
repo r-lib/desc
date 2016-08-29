@@ -107,9 +107,12 @@ parse_collate <- function(str) {
 
 deparse_collate <- function(list) {
   paste0(
-    "    '",
-    list,
-    "'",
-    collapse = "\n"
+    "\n",
+    paste0(
+      "    '",
+      list,
+      "'",
+      collapse = "\n"
+    )
   )
 }
