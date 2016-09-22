@@ -366,7 +366,8 @@ description <- R6Class("description",
 
   private = list(
     data = NULL,
-    path = "DESCRIPTION"
+    path = "DESCRIPTION",
+    notws = character()                   # entries without trailing ws
   )
 )
 
@@ -410,7 +411,7 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
 'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
-Authors@R:
+Authors@R: 
     c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
       role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}
@@ -436,7 +437,8 @@ idesc_create_text <- function(self, private, text) {
   con <- textConnection(text, local = TRUE)
   on.exit(close(con), add = TRUE)
   dcf <- read_dcf(con)
-  private$data <- dcf
+  private$notws <- dcf$notws
+  private$data <- dcf$dcf
   check_encoding(self, private, NULL)
 }
 
@@ -450,11 +452,21 @@ idesc_create_package <- function(self, private, package) {
 idesc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
 
-  write.dcf(
-    idesc_as_matrix(private$data),
-    file = file,
-    keep.white = names(private$data)
-  )
+  mat <- idesc_as_matrix(private$data)
+
+  ## Need to write to a temp file first, to preserve absense of trailing ws
+  tmp <- tempfile()
+  on.exit(unlink(tmp), add = TRUE)
+  write.dcf(mat, file = tmp, keep.white = names(private$data))
+
+  removed <- ! names(private$notws) %in% colnames(mat)
+  if (any(removed)) private$notws <- private$notws[! removed]
+
+  changed <- mat[, names(private$notws)] != private$notws
+  if (any(changed)) private$notws <- private$notws[! changed]
+
+  postprocess_trailing_ws(tmp, names(private$notws))
+  writeLines(readLines(tmp), file)
 
   invisible(self)
 }

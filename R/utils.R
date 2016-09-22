@@ -91,3 +91,12 @@ check_for_package <- function(pkg, msg = paste0("Package '", pkg,
 is_dir <- function(path) {
   file.info(path)$isdir
 }
+
+postprocess_trailing_ws <- function(file, notws) {
+  lines <- readLines(file)
+
+  for (n in notws) {
+    lines <- sub(paste0("^", n, ": "), paste0(n, ":"), lines)
+  }
+  writeLines(lines, file)
+}
