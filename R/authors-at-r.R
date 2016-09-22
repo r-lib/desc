@@ -15,7 +15,7 @@ parse_authors_at_r <- function(x) {
 
 deparse_authors_at_r <- function(x) {
   fmt <- format(x, style = "R")
-  paste0(paste0("    ", fmt, collapse = "\n"), "\n")
+  paste0("\n", paste0("    ", fmt, collapse = "\n"))
 }
 
 

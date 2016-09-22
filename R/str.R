@@ -92,7 +92,7 @@ format.DescriptionAuthorsAtR <- function(x, mode = c("file", "screen"),
 
   } else {
     paste0(
-      blue(x$key), ":\n",
+      blue(x$key), ":",
       sub("\n$", "", deparse_authors_at_r(xx))
     )
   }
