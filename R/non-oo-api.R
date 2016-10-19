@@ -428,4 +428,58 @@ desc_get_maintainer <- generate_api("get_maintainer", self = FALSE)
 
 ## -------------------------------------------------------------------
 
+#' Query the URL field in DESCRIPTION
+#'
+#' @inheritParams desc_set
+#' @return A character vectors or URLs. A length zero vector is returned
+#'   if there is no URL field in the package.
+#'
+#' @export
+
+desc_get_urls <- generate_api("get_urls", self = FALSE)
+
+#' Set the URL field in DESCRIPTION
+#'
+#' The specified urls replace the current ones. The URL field is created
+#' if it does not exist currently.
+#'
+#' @param urls A character vector of urls to set.
+#' @inheritParams desc_set
+#'
+#' @export
+
+desc_set_urls <- generate_api("set_urls")
+
+#' Add URLs to the URL field in DESCRIPTION
+#'
+#' @param urls Character vector of URLs to add. Duplicated URLs are
+#'   eliminated.
+#' @inheritParams desc_set
+#'
+#' @export
+
+desc_add_urls <- generate_api("add_urls")
+
+#' Delete URLs from the URL field in DESCRIPTION
+#'
+#' All URLs matching the specified pattern are deleted.
+#'
+#' @param pattern Perl-compatible regular expression, all URLs
+#'   matching this expression will be deleted.
+#' @inheritParams desc_set
+#'
+#' @export
+
+desc_del_urls <- generate_api("del_urls")
+
+#' Remove all URLs from the URL field of DESCRIPTION
+#'
+#' @inheritParams desc_set
+#'
+#' @export
+
+desc_clear_urls <- generate_api("clear_urls")
+
+## -------------------------------------------------------------------
+
 # nocov end

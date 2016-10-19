@@ -361,7 +361,25 @@ description <- R6Class("description",
       idesc_add_me(self, private, role, comment),
 
     get_maintainer = function()
-      idesc_get_maintainer(self, private)
+      idesc_get_maintainer(self, private),
+
+    ## -----------------------------------------------------------------
+    ## URL
+
+    get_urls = function()
+      idesc_get_urls(self, private),
+
+    set_urls = function(urls)
+      idesc_set_urls(self, private, urls),
+
+    add_urls = function(urls)
+      idesc_add_urls(self, private, urls),
+
+    del_urls = function(pattern)
+      idesc_del_urls(self, private, pattern),
+
+    clear_urls = function()
+      idesc_clear_urls(self, private)
   ),
 
   private = list(
@@ -411,7 +429,7 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
 'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
-Authors@R: 
+Authors@R:
     c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
       role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}

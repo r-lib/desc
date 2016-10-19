@@ -36,5 +36,6 @@ Collate:
     'read.R'
     'str.R'
     'syntax_checks.R'
+    'urls.R'
     'utils.R'
     'validate.R'
