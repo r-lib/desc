@@ -68,8 +68,13 @@ The \code{$del} method removes the specified fields:
 \preformatted{  x$set(foo = "bar")
   x$del("foo")}
 
+\code{$get_or_fail} is similar to \code{$get}, but throws an error
+if a field does not exist, except of silently returning
+\code{NA_character}.
+
 The complete API reference:
 \preformatted{  description$get(keys)
+  description$get_or_fail(keys)
   description$set(...)
   description$fields()
   description$has_fields(keys)

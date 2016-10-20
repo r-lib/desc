@@ -87,13 +87,24 @@ desc_has_fields <- generate_api("has_fields", self = FALSE)
 #'
 #' @param keys Character vector of fields to get.
 #' @inheritParams desc_set
-#' @return List, values of the specified keys. Non-existing keys
-#'   return \code{NA}.
+#' @return Character vector, values of the specified keys.
+#'   Non-existing keys return \code{NA}.
 #'
 #' @family simple queries
 #' @export
 
 desc_get <- generate_api("get", self = FALSE)
+
+#' Get fields from a DESCRIPTION file, fail if not found
+#'
+#' @inheritParams desc_get
+#' @return Character vector, values of the specified keys.
+#'   Non-existing keys return \code{NA}.
+#'
+#' @family simple queries
+#' @export
+
+desc_get_or_fail <- generate_api("get_or_fail", self = FALSE)
 
 #' Set one or more fields in a DESCRIPTION file
 #'

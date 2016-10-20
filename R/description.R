@@ -55,8 +55,13 @@
 #' \preformatted{  x$set(foo = "bar")
 #'   x$del("foo")}
 #'
+#' \code{$get_or_fail} is similar to \code{$get}, but throws an error
+#' if a field does not exist, except of silently returning
+#' \code{NA_character}.
+#'
 #' The complete API reference:
 #' \preformatted{  description$get(keys)
+#'   description$get_or_fail(keys)
 #'   description$set(...)
 #'   description$fields()
 #'   description$has_fields(keys)
@@ -289,6 +294,9 @@ description <- R6Class("description",
     get = function(keys)
       idesc_get(self, private, keys),
 
+    get_or_fail = function(keys)
+      idesc_get_or_fail(self, private, keys),
+
     set = function(...)
       idesc_set(self, private, ...),
 
@@ -458,7 +466,7 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
 'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
-Authors@R: 
+Authors@R:
     c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
       role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}
@@ -543,6 +551,20 @@ idesc_get <- function(self, private, keys) {
   res
 }
 
+idesc_get_or_fail <- function(self, private, keys) {
+  res <- self$get(keys)
+  if (any(is.na(res))) {
+    w <- is.na(res)
+    msg <- paste0(
+      "Could not find DESCRIPTION ",
+      if (sum(w) == 1) "field: " else "fields: ",
+      paste(sQuote(keys[w]), collapse = ", "),
+      "."
+    )
+    stop(msg, call. = FALSE)
+  }
+  res
+}
 
 ## ... are either
 ## - two unnamed arguments, key and value, or

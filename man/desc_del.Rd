@@ -19,7 +19,7 @@ Remove fields from a DESCRIPTION file
 }
 \seealso{
 Other simple queries: \code{\link{desc_fields}},
-  \code{\link{desc_get}}, \code{\link{desc_has_fields}},
-  \code{\link{desc_set}}
+  \code{\link{desc_get_or_fail}}, \code{\link{desc_get}},
+  \code{\link{desc_has_fields}}, \code{\link{desc_set}}
 }
 
