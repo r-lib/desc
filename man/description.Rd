@@ -241,6 +241,37 @@ be removed. The specifications can be (PCRE) regular expressions.
 are used to select a subset of the authors, on which the operation
 is performed, similarly to \code{$del_author}.
 }
+
+\section{URLs}{
+
+
+We provide helper functions for manipulating URLs in the \code{URL}
+field:
+
+\preformatted{  description$get_urls()
+  description$set_urls(urls)
+  description$add_urls(urls)
+  description$del_urls(pattern)
+  description$clear_urls()
+}
+\describe{
+  \item{urls:}{Character vector of URLs to set or add.}
+  \item{pattern:}{Perl compatible regular expression to specify the
+    URLs to be removed.}
+}
+\code{$get_urls()} returns all urls in a character vector. If no URL
+fields are present, a zero length vector is returned.
+
+\code{$set_urls()} set the URL field to the URLs specified in the
+character vector argument.
+
+\code{$add_urls()} appends the specified URLs to the URL field. It
+creates the field if it does not exists. Duplicate URLs are removed.
+
+\code{$del_urls()} deletes the URLs that match the specified pattern.
+
+\code{$clear_urls()} deleted all URLs.
+}
 \examples{
 ## Create a template
 desc <- description$new("!new")
