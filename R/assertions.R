@@ -4,3 +4,4 @@ as_string <- function(x) {
   if (length(x) != 1) stop("Value must be a scalar")
   x
 }
+

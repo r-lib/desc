@@ -17,6 +17,7 @@ Suggests:
     testthat,
     whoami
 Imports:
+    assertthat,
     utils,
     R6,
     crayon

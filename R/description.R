@@ -1,4 +1,35 @@
 
+#' Read a DESCRIPTION file
+#'
+#' This is a convenience wrapper for \code{description$new()}.
+#' Very often you want to read an existing \code{DESCRIPTION}
+#' file, and to do this you can just supply the path to the file or its
+#' directory to \code{desc()}.
+#'
+#' @param cmd A command to create a description from scratch.
+#'   Currently only \code{"!new"} is implemented. If it does not start
+#'   with an exclamation mark, it will be interpreted as the \sQuote{file}
+#'   argument.
+#' @param file Name of the \code{DESCRIPTION} file to load. If all of
+#'   \sQuote{cmd}, \sQuote{file} and \sQuote{text} are \code{NULL} (the
+#'   default), then the \code{DESCRIPTION} file in the current working
+#'   directory is used.
+#' @param text A character scalar containing the full DESCRIPTION.
+#'   Character vectors are collapsed into a character scalar, with
+#'   newline as the separator.
+#' @param package If not NULL, then the name of an installed package
+#'     and the DESCRIPTION file of this package will be loaded.
+#'
+#' @export
+#' @examples
+#' desc(package = "desc")
+#' DESCRIPTION <- system.file("DESCRIPTION", package = "desc")
+#' desc(DESCRIPTION)
+
+desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
+  description$new(cmd, file, text, package)
+}
+
 #' Read, write, update, validate DESCRIPTION files
 #'
 #' @section Constructors:
