@@ -463,7 +463,7 @@ desc_set_urls <- generate_api("set_urls")
 
 #' Add URLs to the URL field in DESCRIPTION
 #'
-#' @param urls Character vector of URLs to add. Duplicated URLs are
+#' @param urls Character vector of URLs to add. Duplicate URLs are
 #'   eliminated.
 #' @inheritParams desc_set
 #'

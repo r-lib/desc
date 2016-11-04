@@ -267,7 +267,7 @@ field:
 \code{$get_urls()} returns all urls in a character vector. If no URL
 fields are present, a zero length vector is returned.
 
-\code{$set_urls()} set the URL field to the URLs specified in the
+\code{$set_urls()} sets the URL field to the URLs specified in the
 character vector argument.
 
 \code{$add_urls()} appends the specified URLs to the URL field. It

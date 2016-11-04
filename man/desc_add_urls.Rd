@@ -7,7 +7,7 @@
 desc_add_urls(urls, file = "DESCRIPTION", normalize = FALSE)
 }
 \arguments{
-\item{urls}{Character vector of URLs to add. Duplicated URLs are
+\item{urls}{Character vector of URLs to add. Duplicate URLs are
 eliminated.}
 
 \item{file}{DESCRIPTION file to use.}
