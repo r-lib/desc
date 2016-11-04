@@ -636,8 +636,7 @@ idesc_fields <- function(self, private) {
 }
 
 idesc_has_fields <- function(self, private, keys) {
-  assert_that(has_no_na(keys))
-  keys <- as.character(keys)
+  assert_that(is.character(keys), has_no_na(keys))
   keys %in% self$fields()
 }
 
@@ -704,6 +703,7 @@ idesc_set <- function(self, private, ...) {
 
 
 idesc_del <- function(self, private, keys) {
+  assert_that(is.character(keys), has_no_na(keys))
   private$data <- private$data[setdiff(names(private$data), keys)]
   invisible(self)
 }

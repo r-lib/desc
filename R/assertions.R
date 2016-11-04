@@ -46,3 +46,57 @@ has_no_na <- function(x) {
 on_failure(has_no_na) <- function(call, env) {
   paste0(deparse(call$x), " must not contain NAs")
 }
+
+is_flag <- function(x) {
+  is.logical(x) && length(x) == 1 && !is.na(x)
+}
+
+on_failure(is_flag) <- function(call, env) {
+  paste0(deparse(call$x), " is not a flag (length 1 logical)")
+}
+
+is_authors <- function(x) {
+  inherits(x, "person")
+}
+
+on_failure(is_authors) <- function(call, env) {
+  paste0(deparse(call$x), " must be a person object")
+}
+
+is_string_or_null <- function(x) {
+  is_string(x) || is.null(x)
+}
+
+on_failure(is_string_or_null) <- function(call, env) {
+  paste0(deparse(call$x), " must be a string or NULL")
+}
+
+is_collate_field <- function(x) {
+  is_string(x) && x %in% names(collate_fields)
+}
+
+on_failure(is_collate_field) <- function(call, env) {
+  fields <- paste(sQuote(names(collate_fields)), collapse = ", ")
+  paste0(deparse(call$x), " must be one of ", fields)
+}
+
+is_collate_field_or_all <- function(x) {
+  is_string(x) && (x %in% names(collate_fields) || x == "all")
+}
+
+on_failure(is_collate_field) <- function(call, env) {
+  fields <- paste(sQuote(c(names(collate_fields), "all")), collapse = ", ")
+  paste0(deparse(call$x), " must be one of ", fields)
+}
+
+is_collate_field_or_all_or_default <- function(x) {
+  is_string(x) && (x %in% names(collate_fields) || x == "all" || x == "default")
+}
+
+on_failure(is_collate_field) <- function(call, env) {
+  fields <- paste(
+    sQuote(c(names(collate_fields), "all", "default")),
+    collapse = ", "
+  )
+  paste0(deparse(call$x), " must be one of ", fields)
+}

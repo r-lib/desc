@@ -5,7 +5,7 @@ which_collate <- function(x) {
 
 
 idesc_set_collate <- function(self, private, files, which) {
-
+  assert_that(is.character(files), is_collate_field(which))
   if (length(files) == 0) warning("No files in 'Collate' field")
 
   idesc_really_set_collate(self, private, files, which_collate(which))
@@ -20,12 +20,14 @@ idesc_really_set_collate <- function(self, private, files, field) {
 
 
 idesc_get_collate <- function(self, private, which) {
+  assert_that(is_collate_field(which))
   coll <- unname(self$get(which_collate(which)))
   if (identical(coll, NA_character_)) character() else parse_collate(coll)
 }
 
 
 idesc_del_collate <- function(self, private, which) {
+  assert_that(is_collate_field_or_all(which))
 
   if (which == "all") {
     self$del(collate_fields)
@@ -39,6 +41,7 @@ idesc_del_collate <- function(self, private, which) {
 
 
 idesc_add_to_collate <- function(self, private, files, which) {
+  assert_that(is.character(files), is_collate_field_or_all_or_default(which))
 
   if (which == "default") {
     ex_coll <- intersect(collate_fields, self$fields())
@@ -74,6 +77,7 @@ real_add_to_collate <- function(self, private, field, files) {
 
 
 idesc_del_from_collate <- function(self, private, files, which) {
+  assert_that(is.character(files), is_collate_field_or_all(which))
 
   if (which == "all") {
     for (coll in collate_fields) {

@@ -53,12 +53,14 @@ search_for_author <- function(authors, given = NULL, family = NULL,
 
 
 idesc_get_authors <- function(self, private, ensure = TRUE) {
+  assert_that(is_flag(ensure))
   if (ensure) ensure_authors_at_r(self)
   parse_authors_at_r(self$get("Authors@R"))
 }
 
 
 idesc_get_author <- function(self, private, role) {
+  assert_that(is_string(role))
   if (self$has_fields("Authors@R")) {
     aut <- self$get_authors()
     roles <- aut$role
@@ -72,14 +74,26 @@ idesc_get_author <- function(self, private, role) {
 }
 
 idesc_set_authors <- function(self, private, authors) {
+  assert_that(is_authors(authors))
   self$set("Authors@R", deparse_authors_at_r(authors))
 }
 
+check_author_args <- function(given = NULL, family = NULL, email = NULL,
+                              role = NULL, comment = NULL) {
+  assert_that(
+    is_string_or_null(given),
+    is_string_or_null(family),
+    is_string_or_null(email),
+    is_string_or_null(role),
+    is_string_or_null(comment)
+  )
+}
 
 #' @importFrom utils person
 
 idesc_add_author <- function(self, private, given, family, email, role,
-                            comment) {
+                             comment) {
+  check_author_args(given, family, email, role, comment)
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   newp <- person(given = given, family = family, email = email,
                  role = role, comment = comment)
@@ -88,7 +102,11 @@ idesc_add_author <- function(self, private, given, family, email, role,
 
 
 idesc_add_role <- function(self, private, role, given, family, email,
-                          comment) {
+                           comment) {
+
+  assert_that(is.character(role))
+  check_author_args(given, family, email, comment = comment)
+
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
     orig, given = given, family = family, email = email, comment = comment,
@@ -110,6 +128,8 @@ idesc_add_role <- function(self, private, role, given, family, email,
 
 idesc_del_author <- function(self, private, given, family, email, role,
                             comment) {
+
+  check_author_args(given, family, email, role, comment)
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
@@ -135,6 +155,9 @@ idesc_del_author <- function(self, private, given, family, email, role,
 idesc_del_role <- function(self, private, role, given, family, email,
                           comment) {
 
+  assert_that(is.character(role))
+  check_author_args(given, family, email, role = NULL, comment)
+
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
     orig, given = given, family = family, email = email, comment = comment,
@@ -156,6 +179,7 @@ idesc_del_role <- function(self, private, role, given, family, email,
 
 idesc_change_maintainer <- function(self, private, given, family, email,
                                    comment) {
+  check_author_args(given, family, email, role = NULL, comment)
   ensure_authors_at_r(self)
   self$del_role(role = "cre")
   self$add_role(role = "cre", given = given, family = family,
@@ -166,6 +190,8 @@ idesc_change_maintainer <- function(self, private, given, family, email,
 #' @importFrom utils tail
 
 idesc_add_me <- function(self, private, role, comment) {
+  assert_that(is_string_or_null(role))
+  assert_that(is_string_or_null(comment))
   check_for_package("whoami", "$add_me needs the 'whoami' package")
   fn <- strsplit(whoami::fullname(), "[ ]+")[[1]]
   family <- tail(fn, 1)
