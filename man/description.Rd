@@ -275,7 +275,48 @@ creates the field if it does not exists. Duplicate URLs are removed.
 
 \code{$del_urls()} deletes the URLs that match the specified pattern.
 
-\code{$clear_urls()} deleted all URLs.
+\code{$clear_urls()} deletes all URLs.
+}
+
+\section{Remotes}{
+
+
+\code{devtools}, \code{remotes} and some other packages support the
+non-standard \code{Remotes} field in \code{DESCRIPTION}. This field
+can be used to specify locations of dependent packages: GitHub or
+BitBucket repositories, generic git repositories, etc. Please see the
+\sQuote{Package remotes} vignette in the \code{devtools} package.
+
+\code{desc} has helper functions for manipulating the \code{Remotes}
+field:
+
+\preformatted{  description$get_remotes()
+  description$get_remotes()
+  description$set_remotes(remotes)
+  description$add_remotes(remotes)
+  description$del_remotes(pattern)
+  description$clear_remotes()
+}
+\describe{
+  \item{remotes:}{Character vector of remote dependency locations to
+    set or add.}
+  \item{pattern:}{Perl compatible regular expression to specify the
+    remote dependency locations to remove.}
+}
+\code{$get_remotes()} returns all remotes in a character vector.
+If no URL fields are present, a zero length vector is returned.
+
+\code{$set_remotes()} sets the URL field to the Remotes specified in the
+character vector argument.
+
+\code{$add_remotes()} appends the specified remotes to the
+\code{Remotes} field. It creates the field if it does not exists.
+Duplicate remotes are removed.
+
+\code{$del_remotes()} deletes the remotes that match the specified
+pattern.
+
+\code{$clear_remotes()} deletes all remotes.
 }
 \examples{
 ## Create a template

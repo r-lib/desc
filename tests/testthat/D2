@@ -61,3 +61,6 @@ Collate:
     'utils.R'
 RoxygenNote: 4.1.1.9000
 Encoding: UTF-8
+Remotes: foo/digest, svn::https://github.com/hadley/stringr,
+    local::/pkgs/testthat
+

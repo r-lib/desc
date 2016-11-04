@@ -34,6 +34,7 @@ Collate:
     'latex.R'
     'non-oo-api.R'
     'read.R'
+    'remotes.R'
     'str.R'
     'syntax_checks.R'
     'urls.R'

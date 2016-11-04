@@ -493,4 +493,63 @@ desc_clear_urls <- generate_api("clear_urls")
 
 ## -------------------------------------------------------------------
 
+#' List the locations in the Remotes field in DESCRIPTION
+#'
+#' @inheritParams desc_set
+#' @return A character vectors or remote locations. A length zero vector
+#'   is returned if there is no Remotes field in the package.
+#'
+#' @export
+
+desc_get_remotes <- generate_api("get_remotes", self = FALSE)
+
+#' Set the Remotes field in DESCRIPTION
+#'
+#' The specified locations replace the current ones. The Remotes field is
+#' created if it does not exist currently.
+#'
+#' @param remotes A character vector of remote locations to set.
+#' @inheritParams desc_set
+#'
+#' @export
+
+desc_set_remotes <- generate_api("set_remotes")
+
+#' Add locations in the Remotes field in DESCRIPTION
+#'
+#' @param remotes Character vector of remote locations to add.
+#'   Duplicate locations are eliminated. Note that existing locations
+#'   are not updated, so if you want to \emph{change} a remote location
+#'   of a package, you need to delete the old location first and then add
+#'   the new one.
+#' @inheritParams desc_set
+#'
+#' @export
+
+desc_add_remotes <- generate_api("add_remotes")
+
+#' Delete locations from the Remotes field in DESCRIPTION
+#'
+#' All locations matching the specified pattern are deleted.
+#'
+#' @param pattern Perl-compatible regular expression, all locations
+#'   matching this expression will be deleted.
+#' @inheritParams desc_set
+#'
+#' @export
+
+desc_del_remotes <- generate_api("del_remotes")
+
+#' Remove all locations from the Remotes field of DESCRIPTION
+#'
+#' This simply means that the field is deleted.
+#'
+#' @inheritParams desc_set
+#'
+#' @export
+
+desc_clear_remotes <- generate_api("clear_remotes")
+
+## -------------------------------------------------------------------
+
 # nocov end

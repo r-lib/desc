@@ -252,6 +252,45 @@
 #'
 #' \code{$clear_urls()} deleted all URLs.
 #'
+#' @section Remotes:
+#'
+#' \code{devtools}, \code{remotes} and some other packages support the
+#' non-standard \code{Remotes} field in \code{DESCRIPTION}. This field
+#' can be used to specify locations of dependent packages: GitHub or
+#' BitBucket repositories, generic git repositories, etc. Please see the
+#' \sQuote{Package remotes} vignette in the \code{devtools} package.
+#'
+#' \code{desc} has helper functions for manipulating the \code{Remotes}
+#' field:
+#'
+#' \preformatted{  description$get_remotes()
+#'   description$get_remotes()
+#'   description$set_remotes(remotes)
+#'   description$add_remotes(remotes)
+#'   description$del_remotes(pattern)
+#'   description$clear_remotes()
+#' }
+#' \describe{
+#'   \item{remotes:}{Character vector of remote dependency locations to
+#'     set or add.}
+#'   \item{pattern:}{Perl compatible regular expression to specify the
+#'     remote dependency locations to remove.}
+#' }
+#' \code{$get_remotes()} returns all remotes in a character vector.
+#' If no URL fields are present, a zero length vector is returned.
+#'
+#' \code{$set_remotes()} sets the URL field to the Remotes specified in the
+#' character vector argument.
+#'
+#' \code{$add_remotes()} appends the specified remotes to the
+#' \code{Remotes} field. It creates the field if it does not exists.
+#' Duplicate remotes are removed.
+#'
+#' \code{$del_remotes()} deletes the remotes that match the specified
+#' pattern.
+#'
+#' \code{$clear_remotes()} deletes all remotes.
+#'
 #' @export
 #' @importFrom R6 R6Class
 #' @docType class
@@ -416,7 +455,25 @@ description <- R6Class("description",
       idesc_del_urls(self, private, pattern),
 
     clear_urls = function()
-      idesc_clear_urls(self, private)
+      idesc_clear_urls(self, private),
+
+    ## -----------------------------------------------------------------
+    ## Remotes
+
+    get_remotes = function()
+      idesc_get_remotes(self, private),
+
+    set_remotes = function(remotes)
+      idesc_set_remotes(self, private, remotes),
+
+    add_remotes = function(remotes)
+      idesc_add_remotes(self, private, remotes),
+
+    del_remotes = function(pattern)
+      idesc_del_remotes(self, private, pattern),
+
+    clear_remotes = function()
+      idesc_clear_remotes(self, private)
   ),
 
   private = list(
