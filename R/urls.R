@@ -30,7 +30,11 @@ idesc_add_urls <- function(self, private, urls) {
 idesc_del_urls <- function(self, private, pattern) {
   urls <- self$get_urls()
   filt <- grep(pattern, urls, invert = TRUE, value = TRUE, perl = TRUE)
-  self$set(URL = filt)
+  if (length(filt) > 0) {
+    self$set(URL = deparse_urls(filt))
+  } else {
+    self$del("URL")
+  }
   invisible(self)
 }
 
