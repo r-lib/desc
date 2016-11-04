@@ -549,6 +549,8 @@ idesc_create <- function(self, private, cmd, file, text, package) {
 }
 
 idesc_create_cmd <- function(self, private, cmd = c("new")) {
+  assert_that(is_constructor_cmd(cmd))
+
   if (cmd == "!new") {
     idesc_create_text(self, private, text =
 'Package: {{ Package }}
@@ -571,12 +573,23 @@ Encoding: UTF-8
 }
 
 idesc_create_file <- function(self, private, file) {
+  assert_that(is_path(file))
+
   if (is_dir(file)) file <- file.path(file, "DESCRIPTION")
+  assert_that(is_existing_file(file))
+  
   private$path <- file
-  idesc_create_text(self, private, readLines(file))
+  
+  tryCatch(
+    lines <- readLines(file),
+    error = function(e) stop("Cannot read ", file, ": ", e$message)
+  )
+
+  idesc_create_text(self, private, lines)
 }
 
 idesc_create_text <- function(self, private, text) {
+  assert_that(is.character(text))
   con <- textConnection(text, local = TRUE)
   on.exit(close(con), add = TRUE)
   dcf <- read_dcf(con)
@@ -586,7 +599,11 @@ idesc_create_text <- function(self, private, text) {
 }
 
 idesc_create_package <- function(self, private, package) {
+  assert_that(is_string(package))
   path <- system.file(package = package, "DESCRIPTION")
+  if (path == "") {
+    stop("Cannot find DESCRIPTION for installed package ", package)
+  }
   idesc_create_file(self, private, path)
 }
 
@@ -619,6 +636,7 @@ idesc_fields <- function(self, private) {
 }
 
 idesc_has_fields <- function(self, private, keys) {
+  assert_that(has_no_na(keys))
   keys <- as.character(keys)
   keys %in% self$fields()
 }
@@ -632,6 +650,7 @@ idesc_as_matrix <- function(data) {
 }
 
 idesc_get <- function(self, private, keys) {
+  assert_that(is.character(keys), has_no_na(keys))
   res <- lapply(private$data[keys], "[[", "value")
   res[vapply(res, is.null, logical(1))] <- NA_character_
   res <- unlist(res)
@@ -640,6 +659,7 @@ idesc_get <- function(self, private, keys) {
 }
 
 idesc_get_or_fail <- function(self, private, keys) {
+  assert_that(is.character(keys), has_no_na(keys))
   res <- self$get(keys)
   if (any(is.na(res))) {
     w <- is.na(res)
