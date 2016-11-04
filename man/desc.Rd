@@ -26,6 +26,9 @@ and the DESCRIPTION file of this package will be loaded.}
 }
 \description{
 This is a convenience wrapper for \code{description$new()}.
+Very often you want to read an existing \code{DESCRIPTION}
+file, and to do this you can just supply the path to the file or its
+directory to \code{desc()}.
 }
 \examples{
 desc(package = "desc")
