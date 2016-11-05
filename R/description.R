@@ -153,6 +153,10 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' it sets all dependencies. The input is a data frame, with the same
 #' structure as the return value of \code{$get_deps}.
 #'
+#' The \code{$has_dep} method checks if a package is included in the
+#' dependencies. It returns a logical scalar. If \code{type} is not
+#' \sQuote{any}, then it has to match as well.
+#'
 #' The \code{$del_deps} method removes all declared dependencies.
 #'
 #' The \code{$set_dep} method adds or updates a single dependency. By
@@ -162,6 +166,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \preformatted{  description$set_dep(package, type = dep_types, version = "\*")
 #'   description$set_deps(deps)
 #'   description$get_deps()
+#'   description$has_dep(package, type = c("any", dep_types))
 #'   description$del_dep(package, type = c("all", dep_types))
 #'   description$del_deps()
 #' }
@@ -411,6 +416,9 @@ description <- R6Class("description",
 
     del_deps = function()
       idesc_del_deps(self, private),
+
+    has_dep = function(package, type = c("any", dep_types))
+      idesc_has_dep(self, private, package, match.arg(type)),
 
     ## -----------------------------------------------------------------
     ## Collate fields

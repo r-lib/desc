@@ -141,6 +141,10 @@ The \code{$set_deps} method is the opposite of \code{$get_deps} and
 it sets all dependencies. The input is a data frame, with the same
 structure as the return value of \code{$get_deps}.
 
+The \code{$has_dep} method checks if a package is included in the
+dependencies. It returns a logical scalar. If \code{type} is not
+\sQuote{any}, then it has to match as well.
+
 The \code{$del_deps} method removes all declared dependencies.
 
 The \code{$set_dep} method adds or updates a single dependency. By
@@ -150,6 +154,7 @@ The API:
 \preformatted{  description$set_dep(package, type = dep_types, version = "\*")
   description$set_deps(deps)
   description$get_deps()
+  description$has_dep(package, type = c("any", dep_types))
   description$del_dep(package, type = c("all", dep_types))
   description$del_deps()
 }

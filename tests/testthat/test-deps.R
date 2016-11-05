@@ -119,3 +119,20 @@ test_that("deleting a non-dependency is OK", {
   after <- desc$get("Imports")
   expect_equal(before, after)
 })
+
+test_that("has_dep", {
+
+  desc <- description$new("D1")
+  expect_true(desc$has_dep("R6"))
+  expect_true(desc$has_dep("testthat"))
+
+  expect_true(desc$has_dep("R6", "Imports"))
+  expect_true(desc$has_dep("testthat", "Suggests"))
+
+  expect_false(desc$has_dep("foobar"))
+
+  expect_false(desc$has_dep("testthat", "Imports"))
+
+  expect_error(desc$has_dep(123))
+  expect_error(desc$has_dep("testthat", "xxx"))
+})

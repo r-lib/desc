@@ -252,6 +252,17 @@ desc_del_dep <- generate_api("del_dep")
 
 desc_del_deps <- generate_api("del_deps")
 
+#' Check for a dependency
+#'
+#' @inheritParams desc_set
+#' @param type A dependency type or \sQuote{any}.
+#' @return A logical scalar.
+#'
+#' @family dependencies
+#' @export
+
+desc_has_dep <- generate_api("has_dep", self = FALSE)
+
 ## -------------------------------------------------------------------
 
 #' Set the Collate field in DESCRIPTION

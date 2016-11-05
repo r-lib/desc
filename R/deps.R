@@ -115,3 +115,17 @@ idesc_del_dep <- function(self, private, package, type) {
 idesc_del_deps <- function(self, private) {
   self$del(dep_types)
 }
+
+
+idesc_has_dep <- function(self, private, package, type) {
+  assert_that(is_string(package))
+
+  deps <- self$get_deps()
+  if (type == "any") {
+    package %in% deps$package
+
+  } else {
+    package %in% deps$package &&
+      type %in% deps[match(package, deps$package), "type"]
+  }
+}
