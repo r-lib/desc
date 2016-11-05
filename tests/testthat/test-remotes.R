@@ -31,4 +31,8 @@ test_that("get, set, etc. remotes", {
 
   desc$add_remotes("hadley/stringr")
   expect_identical(desc$get_remotes(), "hadley/stringr")
+
+  desc$del_remotes("stringr")
+  expect_identical(desc$get_remotes(), character())
+  expect_identical(desc$get("Remotes"), c(Remotes = NA_character_))
 })

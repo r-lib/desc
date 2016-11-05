@@ -24,4 +24,8 @@ test_that("get, set, etc. urls", {
 
   desc$add_urls("http://another.one")
   expect_identical(desc$get_urls(), "http://another.one")
+
+  desc$del_urls("another.one")
+  expect_identical(desc$get_urls(), character())
+  expect_identical(desc$get("URL"), c(URL = NA_character_))
 })
