@@ -100,3 +100,18 @@ on_failure(is_collate_field) <- function(call, env) {
   )
   paste0(deparse(call$x), " must be one of ", fields)
 }
+
+is_deps_df <- function(x) {
+  is.data.frame(x) &&
+    identical(sort(names(x)), sort(c("type", "package", "version"))) &&
+    all(sapply(x, is.character) | sapply(x, is.factor))
+}
+
+on_failure(is_deps_df) <- function(call, env) {
+  cols <- paste(sQuote(c("type", "package", "version")), collapse = ", ")
+  paste0(
+    deparse(call$x),
+    " must be a data frame with character columns ",
+    cols
+  )
+}

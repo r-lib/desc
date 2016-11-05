@@ -17,17 +17,20 @@ idesc_get_remotes <- function(self, private) {
 }
 
 idesc_set_remotes <- function(self, private, remotes) {
+  assert_that(is.character(remotes))
   self$set(Remotes = deparse_remotes(remotes))
   invisible(self)
 }
 
 idesc_add_remotes <- function(self, private, remotes) {
+  assert_that(is.character(remotes))
   remotes <- unique(c(self$get_remotes(), remotes))
   self$set(Remotes = deparse_remotes(remotes))
   invisible(self)
 }
 
 idesc_del_remotes <- function(self, private, pattern) {
+  assert_that(is_string(pattern))
   remotes <- self$get_remotes()
   if (length(remotes) == 0) return(invisible(self))
 

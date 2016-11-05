@@ -17,17 +17,20 @@ idesc_get_urls <- function(self, private) {
 }
 
 idesc_set_urls <- function(self, private, urls) {
+  assert_that(is.character(urls))
   self$set(URL = deparse_urls(urls))
   invisible(self)
 }
 
 idesc_add_urls <- function(self, private, urls) {
+  assert_that(is.character(urls))
   urls <- unique(c(self$get_urls(), urls))
   self$set(URL = deparse_urls(urls))
   invisible(self)
 }
 
 idesc_del_urls <- function(self, private, pattern) {
+  assert_that(is_string(pattern))
   urls <- self$get_urls()
   filt <- grep(pattern, urls, invert = TRUE, value = TRUE, perl = TRUE)
   if (length(filt) > 0) {

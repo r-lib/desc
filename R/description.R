@@ -380,7 +380,7 @@ description <- R6Class("description",
       idesc_print(self, private),
 
     str = function(by_field = FALSE, mode = c("file", "screen"))
-      idesc_str(self, private, by_field, mode),
+      idesc_str(self, private, by_field, match.arg(mode)),
 
     to_latex = function()
       idesc_to_latex(self, private),

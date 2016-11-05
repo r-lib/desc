@@ -3,6 +3,8 @@
 
 idesc_str <- function(self, private, by_field,
                      mode = c("file", "screen")) {
+
+  assert_that(is_flag(by_field))
   mode <- match.arg(mode)
   cols <- field_order(names(private$data))
   col_str <- vapply(
