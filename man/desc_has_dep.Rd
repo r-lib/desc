@@ -7,6 +7,8 @@
 desc_has_dep(package, type = c("any", dep_types), file = "DESCRIPTION")
 }
 \arguments{
+\item{package}{The package name.}
+
 \item{type}{A dependency type or \sQuote{any}.}
 
 \item{file}{DESCRIPTION file to use.}

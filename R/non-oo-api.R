@@ -255,6 +255,7 @@ desc_del_deps <- generate_api("del_deps")
 #' Check for a dependency
 #'
 #' @inheritParams desc_set
+#' @param package The package name.
 #' @param type A dependency type or \sQuote{any}.
 #' @return A logical scalar.
 #'
