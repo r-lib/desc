@@ -41,3 +41,4 @@ Collate:
     'urls.R'
     'utils.R'
     'validate.R'
+    'version.R'

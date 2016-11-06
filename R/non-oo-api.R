@@ -563,4 +563,63 @@ desc_clear_remotes <- generate_api("clear_remotes")
 
 ## -------------------------------------------------------------------
 
+#' Query the package version in DESCRIPTION
+#'
+#' If the file has no \code{Version} field, or it is an invalid
+#' version string, then it throws an error.
+#'
+#' @inheritParams desc_set
+#' @return A \code{\link[base]{package_version}} object.
+#'
+#' @export
+#' @family version numbers
+
+desc_get_version <- generate_api("get_version", self = FALSE)
+
+#' Set the package version in DESCRIPTION
+#'
+#' Both \code{$set_version()} and \code{$bump_version()} use dots to
+#' separate the version number components.
+#'
+#' @param version A string or a \code{\link[base]{package_version}}
+#'     object.
+#' @inheritParams desc_set
+#'
+#' @export
+#' @family version numbers
+
+desc_set_version <- generate_api("set_version")
+
+#' Increase the version number in DESCRIPTION
+#'
+#' The \code{which} parameter specifies which component to increase.
+#' It can be a string referring to a component: \sQuote{major},
+#' \sQuote{minor}, \sQuote{patch} or \sQuote{dev}, or an integer
+#' scalar, for the latter components are counted from one, and the
+#' beginning. I.e. component one is equivalent to \sQuote{major}.
+#'
+#' If a component is bumped, then the ones after it are zeroed out.
+#' Trailing zero components are omitted from the new version number,
+#' but if the old version number had at least two or three components, then
+#' the one will also have two or three.
+#'
+#' The bumping of the \sQuote{dev} version (the fourth component) is
+#' special: if the original version number had less than four components,
+#' and the \sQuote{dev} version is bumped, then it is set to \code{9000}
+#' instead of \code{1}. This is a convention often used by R developers,
+#' it was originally invented by Winston Chang.
+#'
+#' Both \code{$set_version()} and \code{$bump_version()} use dots to
+#' separate the version number components.
+#'
+#' @param which Which component to increase. See details below.
+#' @inheritParams desc_set
+#'
+#' @export
+#' @family version numbers
+
+desc_bump_version <- generate_api("bump_version")
+
+## -------------------------------------------------------------------
+
 # nocov end

@@ -115,3 +115,33 @@ on_failure(is_deps_df) <- function(call, env) {
     cols
   )
 }
+
+is_package_version <- function(x) {
+  tryCatch(
+    {
+      length(package_version(x)) == 1
+    },
+    error = function(e) FALSE
+  )
+}
+
+on_failure(is_package_version) <- function(call, env) {
+  paste0(deparse(call$x), " is an invalid version number")
+}
+
+is_version_component <- function(x) {
+  (is_string(x) && x %in% c("major", "minor", "patch", "dev")) ||
+    (is_count(x) && x <= 5)
+}
+
+on_failure(is_version_component) <- function(call, env) {
+  paste0(deparse(call$x), " is not a version number component (see docs)")
+}
+
+is_count <- function(x) {
+  is.numeric(x) && length(x) == 1 && !is.na(x) && as.integer(x) == x
+}
+
+on_failure(is_count) <- function(call, env) {
+  paste0(deparse(call$x), " is not a count (length 1 integer)")
+}

@@ -138,6 +138,52 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'   \item{normalize:}{Whether to reformat the fields in a standard way.}
 #' }
 #'
+#' @section Version numbers:
+#'
+#' \preformatted{  description$get_version()
+#'   description$set_version(version)
+#'   description$bump_version(which = c("patch", "minor", "major", "dev"))
+#' }
+#'
+#' \describe{
+#'   \item{version:}{A string or a \code{\link[base]{package_version}}
+#'     object.}
+#'   \item{which:}{Which component of the version number to increase.
+#'     See details just below.}
+#' }
+#'
+#' These functions are simple helpers to make it easier to query, set and
+#' increase the version number of a package.
+#'
+#' \code{$get_version()} returns the version number as a
+#' \code{\link[base]{package_version}} object. It throws an error if the
+#' package does not have a \sQuote{Version} field.
+#'
+#' \code{$set_version()} takes a string or a
+#' \code{\link[base]{package_version}} object and sets the \sQuote{Version}
+#' field to it.
+#'
+#' \code{$bump_version()} increases the version number. The \code{which}
+#' parameter specifies which component to increase.
+#' It can be a string referring to a component: \sQuote{major},
+#' \sQuote{minor}, \sQuote{patch} or \sQuote{dev}, or an integer
+#' scalar, for the latter components are counted from one, and the
+#' beginning. I.e. component one is equivalent to \sQuote{major}.
+#'
+#' If a component is bumped, then the ones after it are zeroed out.
+#' Trailing zero components are omitted from the new version number,
+#' but if the old version number had at least two or three components, then
+#' the one will also have two or three.
+#'
+#' The bumping of the \sQuote{dev} version (the fourth component) is
+#' special: if the original version number had less than four components,
+#' and the \sQuote{dev} version is bumped, then it is set to \code{9000}
+#' instead of \code{1}. This is a convention often used by R developers,
+#' it was originally invented by Winston Chang.
+#'
+#' Both \code{$set_version()} and \code{$bump_version()} use dots to
+#' separate the version number components.
+#'
 #' @section Dependencies:
 #' These functions handle the fields that define how the R package
 #' uses another R packages. See \code{\link{dep_types}} for the
@@ -398,6 +444,18 @@ description <- R6Class("description",
 
     reorder_fields = function()
       idesc_reorder_fields(self, private),
+
+    ## -----------------------------------------------------------------
+    ## Version numbers
+
+    get_version = function()
+      idesc_get_version(self, private),
+
+    set_version = function(version)
+      idesc_set_version(self, private, version),
+
+    bump_version = function(which)
+      idesc_bump_version(self, private, which),
 
     ## -----------------------------------------------------------------
     ## Package dependencies
