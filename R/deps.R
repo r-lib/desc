@@ -66,7 +66,7 @@ parse_deps <- function(type, deps) {
   deps <- lapply(deps, sub, pattern = "\\)$", replacement = "")
   res <- data.frame(
     stringsAsFactors = FALSE,
-    type = type,
+    type = if (length(deps)) type else character(),
     package = vapply(deps, "[", "", 1),
     version = vapply(deps, "[", "", 2)
   )

@@ -136,3 +136,25 @@ test_that("has_dep", {
   expect_error(desc$has_dep(123))
   expect_error(desc$has_dep("testthat", "xxx"))
 })
+
+test_that("issue #34 is fine (empty dep fields)", {
+
+  empty_deps <- data.frame(
+    stringsAsFactors = FALSE,
+    type = character(),
+    package = character(),
+    version = character()
+  )
+
+  desc <- description$new("D4")
+  expect_silent(deps <- desc$get_deps())
+  expect_equal(deps, empty_deps)
+
+  desc$set(Imports = "")
+  expect_silent(deps <- desc$get_deps())
+  expect_equal(deps, empty_deps)
+
+  expect_silent(desc$set_deps(deps))
+  expect_silent(deps <- desc$get_deps())
+  expect_null(deps)
+})
