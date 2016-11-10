@@ -644,7 +644,7 @@ idesc_create_file <- function(self, private, file) {
   if (is_dir(file)) file <- file.path(file, "DESCRIPTION")
   assert_that(is_existing_file(file))
   
-  private$path <- file
+  private$path <- normalizePath(file)
   
   tryCatch(
     lines <- readLines(file),
