@@ -4,10 +4,12 @@
 \alias{desc_get_remotes}
 \title{List the locations in the Remotes field in DESCRIPTION}
 \usage{
-desc_get_remotes(file = "DESCRIPTION")
+desc_get_remotes(file = ".")
 }
 \arguments{
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 A character vectors or remote locations. A length zero vector

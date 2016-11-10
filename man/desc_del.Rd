@@ -4,12 +4,14 @@
 \alias{desc_del}
 \title{Remove fields from a DESCRIPTION file}
 \usage{
-desc_del(keys, file = "DESCRIPTION", normalize = FALSE)
+desc_del(keys, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{keys}{Character vector of keys to remove.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

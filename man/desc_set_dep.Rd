@@ -4,8 +4,8 @@
 \alias{desc_set_dep}
 \title{Add a package dependency to a DESCRIPTION file}
 \usage{
-desc_set_dep(package, type = desc::dep_types, version = "*",
-  file = "DESCRIPTION", normalize = FALSE)
+desc_set_dep(package, type = desc::dep_types, version = "*", file = ".",
+  normalize = FALSE)
 }
 \arguments{
 \item{package}{Package to depend on.}
@@ -14,7 +14,9 @@ desc_set_dep(package, type = desc::dep_types, version = "*",
 
 \item{version}{Version to depend on, for versioned dependencies.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

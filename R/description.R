@@ -52,10 +52,13 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'     Currently only \code{"!new"} is implemented. If it does not start
 #'     with an exclamation mark, it will be interpreted as a \sQuote{file}
 #'     argument.}
-#'   \item{file:}{Name of the \code{DESCRIPTION} file to load. If all of
-#'     \sQuote{cmd}, \sQuote{file} and \sQuote{text} are \code{NULL} (the
-#'     default), then the \code{DESCRIPTION} file in the current working
-#'     directory is used.}
+#'   \item{file:}{Name of the \code{DESCRIPTION} file to load. If it is
+#'     a directory, then we assume that it is inside an R package and
+#'     conduct a search for the package root directory, i.e. the first
+#'     directory up the tree that contains a \code{DESCRIPTION} file.
+#'     If \sQuote{cmd}, \sQuote{file}, \sQuote{text} and \sQuote{package}
+#'     are all \code{NULL} (the default), then the search is started from
+#'     the working directory.}
 #'   \item{text:}{A character scalar containing the full DESCRIPTION.
 #'     Character vectors are collapsed into a character scalar, with
 #'     newline as the separator.}
@@ -581,6 +584,8 @@ description <- R6Class("description",
 )
 
 
+#' @importFrom rprojroot find_root is_r_package
+
 idesc_create <- function(self, private, cmd, file, text, package) {
 
   if (!is.null(cmd) && substring(cmd, 1, 1) != "!") {
@@ -596,7 +601,7 @@ idesc_create <- function(self, private, cmd, file, text, package) {
 
   } else if (is.null(cmd) && is.null(file) && is.null(text) &&
              is.null(package)) {
-    idesc_create_file(self, private, "DESCRIPTION")
+    idesc_create_file(self, private, ".")
 
   } else if (!is.null(file)) {
     if (!is.null(text)) warning("text argument ignored")
@@ -641,7 +646,10 @@ Encoding: UTF-8
 idesc_create_file <- function(self, private, file) {
   assert_that(is_path(file))
 
-  if (is_dir(file)) file <- file.path(file, "DESCRIPTION")
+  if (is_dir(file)) {
+    pkg_root <- find_root(is_r_package)
+    file <- file.path(pkg_root, "DESCRIPTION")
+  }
   assert_that(is_existing_file(file))
   
   private$path <- normalizePath(file)

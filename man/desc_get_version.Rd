@@ -4,10 +4,12 @@
 \alias{desc_get_version}
 \title{Query the package version in DESCRIPTION}
 \usage{
-desc_get_version(file = "DESCRIPTION")
+desc_get_version(file = ".")
 }
 \arguments{
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 A \code{\link[base]{package_version}} object.

@@ -4,13 +4,15 @@
 \alias{desc_set_version}
 \title{Set the package version in DESCRIPTION}
 \usage{
-desc_set_version(version, file = "DESCRIPTION", normalize = FALSE)
+desc_set_version(version, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{version}{A string or a \code{\link[base]{package_version}}
 object.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

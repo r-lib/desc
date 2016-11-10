@@ -4,10 +4,12 @@
 \alias{desc_get_maintainer}
 \title{Query the package maintainer in DESCRIPTION}
 \usage{
-desc_get_maintainer(file = "DESCRIPTION")
+desc_get_maintainer(file = ".")
 }
 \arguments{
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 A character scalar.

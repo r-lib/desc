@@ -14,7 +14,7 @@ generate_api <- function(member, self = TRUE, norm = TRUE,
   func <- description$public_methods[[member]]
 
   ## Arguments
-  xargs <- list(file = "DESCRIPTION")
+  xargs <- list(file = ".")
   if (self && norm) xargs <- c(xargs, list(normalize = FALSE))
   formals(res) <- c(formals(func), xargs)
 
@@ -116,7 +116,9 @@ desc_get_or_fail <- generate_api("get_or_fail", self = FALSE)
 #' and values as values to set.
 #'
 #' @param ... Values to set, see details below.
-#' @param file DESCRIPTION file to use.
+#' @param file DESCRIPTION file to use. By default the DESCRIPTION
+#'    file of the current package (i.e. the package the working directory
+#'    is part of) is used.
 #' @param normalize Whether to normalize the write when writing back
 #'   the result. See \code{\link{desc_normalize}}.
 #'

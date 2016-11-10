@@ -4,7 +4,7 @@
 \alias{desc_add_remotes}
 \title{Add locations in the Remotes field in DESCRIPTION}
 \usage{
-desc_add_remotes(remotes, file = "DESCRIPTION", normalize = FALSE)
+desc_add_remotes(remotes, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{remotes}{Character vector of remote locations to add.
@@ -13,7 +13,9 @@ are not updated, so if you want to \emph{change} a remote location
 of a package, you need to delete the old location first and then add
 the new one.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

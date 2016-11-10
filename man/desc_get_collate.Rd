@@ -4,13 +4,15 @@
 \alias{desc_get_collate}
 \title{Query the Collate field in DESCRIPTION}
 \usage{
-desc_get_collate(which = c("main", "windows", "unix"), file = "DESCRIPTION")
+desc_get_collate(which = c("main", "windows", "unix"), file = ".")
 }
 \arguments{
 \item{which}{Which collate field to use. Collate fields can
 be operating system type specific.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 Character vector of file names.

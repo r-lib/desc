@@ -4,14 +4,16 @@
 \alias{desc_has_dep}
 \title{Check for a dependency}
 \usage{
-desc_has_dep(package, type = c("any", dep_types), file = "DESCRIPTION")
+desc_has_dep(package, type = c("any", dep_types), file = ".")
 }
 \arguments{
 \item{package}{The package name.}
 
 \item{type}{A dependency type or \sQuote{any}.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 A logical scalar.

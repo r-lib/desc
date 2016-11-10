@@ -4,12 +4,14 @@
 \alias{desc_set_remotes}
 \title{Set the Remotes field in DESCRIPTION}
 \usage{
-desc_set_remotes(remotes, file = "DESCRIPTION", normalize = FALSE)
+desc_set_remotes(remotes, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{remotes}{A character vector of remote locations to set.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

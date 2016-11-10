@@ -4,10 +4,12 @@
 \alias{desc_to_latex}
 \title{Converts a DESCRIPTION file to LaTeX}
 \usage{
-desc_to_latex(file = "DESCRIPTION")
+desc_to_latex(file = ".")
 }
 \arguments{
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \description{
 Returns the contents of the DESCRIPTION in LaTeX format.

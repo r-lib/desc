@@ -4,10 +4,12 @@
 \alias{desc_print}
 \title{Print the contents of a DESCRIPTION file to the screen}
 \usage{
-desc_print(file = "DESCRIPTION")
+desc_print(file = ".")
 }
 \arguments{
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \description{
 Print the contents of a DESCRIPTION file to the screen

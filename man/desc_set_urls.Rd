@@ -4,12 +4,14 @@
 \alias{desc_set_urls}
 \title{Set the URL field in DESCRIPTION}
 \usage{
-desc_set_urls(urls, file = "DESCRIPTION", normalize = FALSE)
+desc_set_urls(urls, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{urls}{A character vector of urls to set.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

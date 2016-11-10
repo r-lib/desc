@@ -4,12 +4,14 @@
 \alias{desc_get}
 \title{Get a field from a DESCRIPTION file}
 \usage{
-desc_get(keys, file = "DESCRIPTION")
+desc_get(keys, file = ".")
 }
 \arguments{
 \item{keys}{Character vector of fields to get.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 Character vector, values of the specified keys.

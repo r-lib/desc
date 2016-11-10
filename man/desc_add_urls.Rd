@@ -4,13 +4,15 @@
 \alias{desc_add_urls}
 \title{Add URLs to the URL field in DESCRIPTION}
 \usage{
-desc_add_urls(urls, file = "DESCRIPTION", normalize = FALSE)
+desc_add_urls(urls, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{urls}{Character vector of URLs to add. Duplicate URLs are
 eliminated.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

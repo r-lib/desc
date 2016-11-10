@@ -32,10 +32,13 @@ The complete API reference:
     Currently only \code{"!new"} is implemented. If it does not start
     with an exclamation mark, it will be interpreted as a \sQuote{file}
     argument.}
-  \item{file:}{Name of the \code{DESCRIPTION} file to load. If all of
-    \sQuote{cmd}, \sQuote{file} and \sQuote{text} are \code{NULL} (the
-    default), then the \code{DESCRIPTION} file in the current working
-    directory is used.}
+  \item{file:}{Name of the \code{DESCRIPTION} file to load. If it is
+    a directory, then we assume that it is inside an R package and
+    conduct a search for the package root directory, i.e. the first
+    directory up the tree that contains a \code{DESCRIPTION} file.
+    If \sQuote{cmd}, \sQuote{file}, \sQuote{text} and \sQuote{package}
+    are all \code{NULL} (the default), then the search is started from
+    the working directory.}
   \item{text:}{A character scalar containing the full DESCRIPTION.
     Character vectors are collapsed into a character scalar, with
     newline as the separator.}

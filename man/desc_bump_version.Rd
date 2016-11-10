@@ -4,12 +4,14 @@
 \alias{desc_bump_version}
 \title{Increase the version number in DESCRIPTION}
 \usage{
-desc_bump_version(which, file = "DESCRIPTION", normalize = FALSE)
+desc_bump_version(which, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{which}{Which component to increase. See details below.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

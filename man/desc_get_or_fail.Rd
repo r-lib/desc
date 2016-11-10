@@ -4,12 +4,14 @@
 \alias{desc_get_or_fail}
 \title{Get fields from a DESCRIPTION file, fail if not found}
 \usage{
-desc_get_or_fail(keys, file = "DESCRIPTION")
+desc_get_or_fail(keys, file = ".")
 }
 \arguments{
 \item{keys}{Character vector of fields to get.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 Character vector, values of the specified keys.

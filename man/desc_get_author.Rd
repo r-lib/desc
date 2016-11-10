@@ -4,12 +4,14 @@
 \alias{desc_get_author}
 \title{Query authors by role in Authors@R, in DESCRIPTION}
 \usage{
-desc_get_author(role = "cre", file = "DESCRIPTION")
+desc_get_author(role = "cre", file = ".")
 }
 \arguments{
 \item{role}{Role to query. Defaults to the package maintainer.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 A \code{\link[utils]{person}} object.

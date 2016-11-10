@@ -4,7 +4,7 @@
 \alias{desc_del_dep}
 \title{Remove a package dependency from DESCRIPTION}
 \usage{
-desc_del_dep(package, type = c("all", dep_types), file = "DESCRIPTION",
+desc_del_dep(package, type = c("all", dep_types), file = ".",
   normalize = FALSE)
 }
 \arguments{
@@ -14,7 +14,9 @@ desc_del_dep(package, type = c("all", dep_types), file = "DESCRIPTION",
 on via multiple dependency types, e.g. \code{LinkingTo} and
 \code{Imports}. Defaults to all types.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

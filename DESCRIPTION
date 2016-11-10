@@ -20,7 +20,8 @@ Imports:
     assertthat,
     utils,
     R6,
-    crayon
+    crayon,
+    rprojroot
 Encoding: UTF-8
 RoxygenNote: 5.0.1.9000
 Collate:

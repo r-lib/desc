@@ -4,10 +4,12 @@
 \alias{desc_fields}
 \title{List all fields in a DESCRIPTION file}
 \usage{
-desc_fields(file = "DESCRIPTION")
+desc_fields(file = ".")
 }
 \arguments{
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 }
 \value{
 Character vector of fields.

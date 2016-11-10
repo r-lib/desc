@@ -4,15 +4,16 @@
 \alias{desc_add_me}
 \title{Add the current user as an author to DESCRIPTION}
 \usage{
-desc_add_me(role = "ctb", comment = NULL, file = "DESCRIPTION",
-  normalize = FALSE)
+desc_add_me(role = "ctb", comment = NULL, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{role}{Role to set for the user, defaults to contributor.}
 
 \item{comment}{Comment, empty by default.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

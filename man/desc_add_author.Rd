@@ -5,7 +5,7 @@
 \title{Add an author to Authors@R in DESCRIPTION}
 \usage{
 desc_add_author(given = NULL, family = NULL, email = NULL, role = NULL,
-  comment = NULL, file = "DESCRIPTION", normalize = FALSE)
+  comment = NULL, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{given}{Given name.}
@@ -18,7 +18,9 @@ desc_add_author(given = NULL, family = NULL, email = NULL, role = NULL,
 
 \item{comment}{Comment.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

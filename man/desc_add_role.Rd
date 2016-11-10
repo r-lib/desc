@@ -5,7 +5,7 @@
 \title{Add a role to one or more authors in Authors@R, in DESCRIPTION}
 \usage{
 desc_add_role(role, given = NULL, family = NULL, email = NULL,
-  comment = NULL, file = "DESCRIPTION", normalize = FALSE)
+  comment = NULL, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{role}{Role to add.}
@@ -18,7 +18,9 @@ desc_add_role(role, given = NULL, family = NULL, email = NULL,
 
 \item{comment}{Comment field to filter on. Regular expression.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}

@@ -5,7 +5,7 @@
 \title{Remove files from the Collate field.}
 \usage{
 desc_del_from_collate(files, which = c("all", "main", "windows", "unix"),
-  file = "DESCRIPTION", normalize = FALSE)
+  file = ".", normalize = FALSE)
 }
 \arguments{
 \item{files}{Files to remove from the Collate field.}
@@ -13,7 +13,9 @@ desc_del_from_collate(files, which = c("all", "main", "windows", "unix"),
 \item{which}{Which collate field to use. Collate fields can
 be operating system type specific.}
 
-\item{file}{DESCRIPTION file to use.}
+\item{file}{DESCRIPTION file to use. By default the DESCRIPTION
+file of the current package (i.e. the package the working directory
+is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}
