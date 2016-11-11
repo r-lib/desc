@@ -647,7 +647,7 @@ idesc_create_file <- function(self, private, file) {
   assert_that(is_path(file))
 
   if (is_dir(file)) {
-    pkg_root <- find_root(is_r_package)
+    pkg_root <- find_root(is_r_package, file)
     file <- file.path(pkg_root, "DESCRIPTION")
   }
   assert_that(is_existing_file(file))
