@@ -33,7 +33,7 @@ procedural and manipulates the files *in place*.
 
 
 ```r
-source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("metacran/desc")
+source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("r-pkgs/desc")
 ```
 
 ## The object oriented API

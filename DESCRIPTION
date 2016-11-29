@@ -9,8 +9,8 @@ Description: Tools to read, write, create, and manipulate DESCRIPTION files.
     It is intended for packages that create or manipulate other packages.
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/metacran/desc
-BugReports: https://github.com/metacran/desc/issues
+URL: https://github.com/r-pkgs/desc
+BugReports: https://github.com/r-pkgs/desc/issues
 Depends:
     R (>= 3.2.0)
 Suggests:
