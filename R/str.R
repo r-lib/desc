@@ -1,16 +1,21 @@
 
 ## TODO: continuation lines
 
-idesc_str <- function(self, private, by_field,
-                     mode = c("file", "screen")) {
+idesc_str <- function(self, private, by_field, normalize = TRUE,
+                      mode = c("file", "screen")) {
 
   assert_that(is_flag(by_field))
   mode <- match.arg(mode)
-  cols <- field_order(names(private$data))
+  cols <- names(private$data)
+  if (normalize) cols <- field_order(cols)
   col_str <- vapply(
     cols, FUN.VALUE = "",
     FUN = function(col) {
-      format(private$data[[col]], mode = mode)
+      if (normalize) {
+        format(private$data[[col]], mode = mode)
+      } else {
+        paste0(private$data[[col]]$key, ": ", private$data[[col]]$value)
+      }
     })
 
   if (by_field) col_str else paste(col_str, collapse = "\n")
@@ -94,7 +99,7 @@ format.DescriptionAuthorsAtR <- function(x, mode = c("file", "screen"),
 
   } else {
     paste0(
-      blue(x$key), ":",
+      x$key, ":",
       sub("\n$", "", deparse_authors_at_r(xx))
     )
   }

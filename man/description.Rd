@@ -98,13 +98,19 @@ object itself), \code{$print} is used to print it to the
 screen. The \code{$normalize} function normalizes each field (i.e.
 it changes the object).
 
-\preformatted{  description$str(by_field = FALSE)
+\preformatted{  description$str(by_field = FALSE, normalize = TRUE,
+    mode = c("file", "screen"))
   description$normalize()
   description$print()
 }
 \describe{
   \item{by_field:}{Whether to return the normalized format
     by field, or collapsed into a character scalar.}
+  \item{normalize:}{Whether to reorder and reformat the fields.}
+  \item{mode:}{\sQuote{file} mode formats the fields as they are
+    written to a file with the \code{write} method. \sQuote{screen}
+    mode adds extra markup to some fields, e.g. formats the
+    \code{Authors@R} field in a readable way.}
 }
 }
 
