@@ -1,4 +1,9 @@
 
+# 1.0.1.9000
+
+* Fix but in `del_dep()` and `has_dep()`, they only worked if the package
+  was attached.
+
 # 1.0.1
 
 * Fix formatting of `Collate` fields, they always start at a new line now.

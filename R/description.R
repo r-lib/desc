@@ -479,13 +479,13 @@ description <- R6Class("description",
     get_deps = function()
       idesc_get_deps(self, private),
 
-    del_dep = function(package, type = c("all", dep_types))
+    del_dep = function(package, type = c("all", desc::dep_types))
       idesc_del_dep(self, private, package, match.arg(type)),
 
     del_deps = function()
       idesc_del_deps(self, private),
 
-    has_dep = function(package, type = c("any", dep_types))
+    has_dep = function(package, type = c("any", desc::dep_types))
       idesc_has_dep(self, private, package, match.arg(type)),
 
     ## -----------------------------------------------------------------
