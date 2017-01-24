@@ -63,7 +63,17 @@ check_field.DescriptionPackage <- function(x, warn = FALSE, R = FALSE, ...) {
   )
 }
 
+valid_packagename_regexp <- "[[:alpha:]][[:alnum:].]*[[:alnum:]]"
 valid_version_regexp <- "[0-9]+[-\\.][0-9]+([-\\.][0-9]+)*"
+valid_package_archive_name <- paste0(
+  "^",
+  valid_packagename_regexp,
+  "_",
+  valid_version_regexp,
+  "(.*)?",
+  "(\\.tar\\.gz|\\.tgz|\\.zip)",
+  "$"
+)
 
 ##' @export
 ##' @method check_field DescriptionVersion

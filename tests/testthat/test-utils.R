@@ -3,7 +3,7 @@ context("Utility functions")
 
 test_that("check_for_package works", {
 
-  expect_true(check_for_package("codetools"))
+  expect_true(check_for_package("utils"))
 
   expect_error(
     check_for_package("foobarfoobarfoobar"),

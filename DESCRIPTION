@@ -24,7 +24,7 @@ Imports:
     rprojroot
 Encoding: UTF-8
 RoxygenNote: 5.0.1.9000
-Collate:
+Collate: 
     'assertions.R'
     'authors-at-r.R'
     'classes.R'
@@ -35,6 +35,7 @@ Collate:
     'encoding.R'
     'latex.R'
     'non-oo-api.R'
+    'package-archives.R'
     'read.R'
     'remotes.R'
     'str.R'
