@@ -20,4 +20,3 @@ the result. See \code{\link{desc_normalize}}.}
 The specified locations replace the current ones. The Remotes field is
 created if it does not exist currently.
 }
-

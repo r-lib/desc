@@ -4,7 +4,7 @@
 \alias{desc_has_dep}
 \title{Check for a dependency}
 \usage{
-desc_has_dep(package, type = c("any", dep_types), file = ".")
+desc_has_dep(package, type = c("any", desc::dep_types), file = ".")
 }
 \arguments{
 \item{package}{The package name.}
@@ -26,4 +26,3 @@ Other dependencies: \code{\link{desc_del_deps}},
   \code{\link{desc_del_dep}}, \code{\link{desc_get_deps}},
   \code{\link{desc_set_deps}}, \code{\link{desc_set_dep}}
 }
-

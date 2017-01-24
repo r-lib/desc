@@ -17,4 +17,3 @@ the result. See \code{\link{desc_normalize}}.}
 \description{
 This simply means that the field is deleted.
 }
-

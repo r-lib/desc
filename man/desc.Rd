@@ -15,7 +15,10 @@ argument.}
 \item{file}{Name of the \code{DESCRIPTION} file to load. If all of
 \sQuote{cmd}, \sQuote{file} and \sQuote{text} are \code{NULL} (the
 default), then the \code{DESCRIPTION} file in the current working
-directory is used.}
+directory is used. The file can also be an R package (source, or
+binary), in which case the DESCRIPTION file is extracted from it, but
+note that in this case \code{$write()} cannot write the file back in
+the package archive.}
 
 \item{text}{A character scalar containing the full DESCRIPTION.
 Character vectors are collapsed into a character scalar, with
@@ -35,4 +38,3 @@ desc(package = "desc")
 DESCRIPTION <- system.file("DESCRIPTION", package = "desc")
 desc(DESCRIPTION)
 }
-

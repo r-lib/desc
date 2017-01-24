@@ -25,4 +25,3 @@ Warnings are given for non-ascii fields, if the \code{Encoding}
 field is not set.
 }
 \keyword{internal}
-

@@ -16,4 +16,3 @@ Other field types: \code{\link{cran_ascii_fields}},
   \code{\link{dep_types}}
 }
 \keyword{datasets}
-

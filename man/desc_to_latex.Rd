@@ -14,4 +14,3 @@ is part of) is used.}
 \description{
 Returns the contents of the DESCRIPTION in LaTeX format.
 }
-

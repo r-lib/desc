@@ -14,4 +14,3 @@ is part of) is used.}
 \description{
 Print the contents of a DESCRIPTION file to the screen
 }
-

@@ -20,4 +20,3 @@ the result. See \code{\link{desc_normalize}}.}
 \description{
 Add URLs to the URL field in DESCRIPTION
 }
-

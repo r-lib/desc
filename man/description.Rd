@@ -38,7 +38,10 @@ The complete API reference:
     directory up the tree that contains a \code{DESCRIPTION} file.
     If \sQuote{cmd}, \sQuote{file}, \sQuote{text} and \sQuote{package}
     are all \code{NULL} (the default), then the search is started from
-    the working directory.}
+    the working directory. The file can also be an R package (source, or
+    binary), in which case the DESCRIPTION file is extracted from it,
+    but note that in this case \code{$write()} cannot write the file
+    back in the package archive.}
   \item{text:}{A character scalar containing the full DESCRIPTION.
     Character vectors are collapsed into a character scalar, with
     newline as the separator.}
@@ -380,6 +383,7 @@ pattern.
 
 \code{$clear_remotes()} deletes all remotes.
 }
+
 \examples{
 ## Create a template
 desc <- description$new("!new")
@@ -399,4 +403,3 @@ desc2$get("VignetteBuilder")
 desc2
 }
 \keyword{datasets}
-

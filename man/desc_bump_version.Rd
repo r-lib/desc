@@ -42,4 +42,3 @@ separate the version number components.
 Other version numbers: \code{\link{desc_get_version}},
   \code{\link{desc_set_version}}
 }
-

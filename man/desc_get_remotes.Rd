@@ -18,4 +18,3 @@ A character vectors or remote locations. A length zero vector
 \description{
 List the locations in the Remotes field in DESCRIPTION
 }
-

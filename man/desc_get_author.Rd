@@ -29,4 +29,3 @@ Other Authors@R: \code{\link{desc_add_author}},
   \code{\link{desc_get_maintainer}},
   \code{\link{desc_set_authors}}
 }
-

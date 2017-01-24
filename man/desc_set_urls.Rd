@@ -20,4 +20,3 @@ the result. See \code{\link{desc_normalize}}.}
 The specified urls replace the current ones. The URL field is created
 if it does not exist currently.
 }
-

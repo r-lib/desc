@@ -17,4 +17,3 @@ the result. See \code{\link{desc_normalize}}.}
 \description{
 Remove all URLs from the URL field of DESCRIPTION
 }
-

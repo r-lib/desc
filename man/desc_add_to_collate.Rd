@@ -29,4 +29,3 @@ Other Collate field: \code{\link{desc_del_collate}},
   \code{\link{desc_get_collate}},
   \code{\link{desc_set_collate}}
 }
-

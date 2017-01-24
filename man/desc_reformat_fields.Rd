@@ -18,4 +18,3 @@ Reformat the fields in DESCRIPTION in a standard way.
 Other repair functions: \code{\link{desc_normalize}},
   \code{\link{desc_reorder_fields}}
 }
-

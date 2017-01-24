@@ -18,4 +18,3 @@ Other field types: \code{\link{cran_ascii_fields}},
   \code{\link{cran_valid_fields}}
 }
 \keyword{datasets}
-

@@ -22,4 +22,3 @@ version string, then it throws an error.
 Other version numbers: \code{\link{desc_bump_version}},
   \code{\link{desc_set_version}}
 }
-

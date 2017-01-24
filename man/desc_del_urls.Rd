@@ -20,4 +20,3 @@ the result. See \code{\link{desc_normalize}}.}
 \description{
 All URLs matching the specified pattern are deleted.
 }
-

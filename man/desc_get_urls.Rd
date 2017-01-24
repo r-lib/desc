@@ -18,4 +18,3 @@ A character vectors or URLs. A length zero vector is returned
 \description{
 Query the URL field in DESCRIPTION
 }
-

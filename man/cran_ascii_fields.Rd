@@ -16,4 +16,3 @@ Other field types: \code{\link{cran_valid_fields}},
   \code{\link{dep_types}}
 }
 \keyword{datasets}
-

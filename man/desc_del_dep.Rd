@@ -4,7 +4,7 @@
 \alias{desc_del_dep}
 \title{Remove a package dependency from DESCRIPTION}
 \usage{
-desc_del_dep(package, type = c("all", dep_types), file = ".",
+desc_del_dep(package, type = c("all", desc::dep_types), file = ".",
   normalize = FALSE)
 }
 \arguments{
@@ -29,4 +29,3 @@ Other dependencies: \code{\link{desc_del_deps}},
   \code{\link{desc_get_deps}}, \code{\link{desc_has_dep}},
   \code{\link{desc_set_deps}}, \code{\link{desc_set_dep}}
 }
-

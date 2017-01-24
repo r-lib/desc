@@ -23,4 +23,3 @@ the result. See \code{\link{desc_normalize}}.}
 \description{
 Add locations in the Remotes field in DESCRIPTION
 }
-

@@ -21,4 +21,3 @@ check_field(x, warn = FALSE, ...)
 \description{
 Syntactical check of a DESCRIPTION field
 }
-
