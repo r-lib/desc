@@ -3,7 +3,7 @@
 
 parse_authors_at_r <- function(x) {
 
-  if (is.null(x)) return(NULL)
+  if (is.null(x) || is.na(x)) return(NULL)
 
   out <- tryCatch(
     eval(parse(text = x)),
@@ -97,7 +97,8 @@ idesc_add_author <- function(self, private, given, family, email, role,
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   newp <- person(given = given, family = family, email = email,
                  role = role, comment = comment)
-  self$set_authors(c(orig, newp))
+  new_authors <- if (is.null(orig)) newp else c(orig, newp)
+  self$set_authors(new_authors)
 }
 
 

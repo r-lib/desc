@@ -1,6 +1,10 @@
 
 # 1.0.1.9000
 
+* Fix bug when adding authors and there is no `Authors@R` field
+
+* Get `DESCRIPTION` from package archives (#40)
+
 * Fix but in `del_dep()` and `has_dep()`, they only worked if the package
   was attached.
 

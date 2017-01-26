@@ -185,3 +185,27 @@ test_that("get_maintainer is OK, too", {
     NA_character_
   )
 })
+
+test_that("add_author if there is no Authors@R field", {
+  D1 <- description$new("D1")
+  D1$add_author("Gabor", "Csardi", "csardi.gabor@gmail.com", role = "ctb")
+  expect_identical(
+    format(D1$get_authors()[1]),
+    "Gabor Csardi <csardi.gabor@gmail.com> [ctb]"
+  )
+})
+
+test_that("add myself if there is no Authors@R field", {
+  D1 <- description$new("D1")
+  with_mock(
+    `desc:::check_for_package` = function(...) TRUE,
+    `whoami::fullname` = function() "Bugs Bunny",
+    `whoami::email_address` = function() "bugs.bunny@acme.com",
+    D1$add_me(comment = "Yikes!")
+  )
+
+  expect_identical(
+    format(D1$get_authors()[1]),
+    "Bugs Bunny <bugs.bunny@acme.com> [ctb] (Yikes!)"
+  )
+})
