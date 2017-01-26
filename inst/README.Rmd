@@ -12,11 +12,11 @@ knitr::opts_chunk$set(
 
 > Parse DESCRIPTION files
 
-[![Linux Build Status](https://travis-ci.org/metacran/desc.svg?branch=master)](https://travis-ci.org/metacran/desc)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/metacran/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
+[![Linux Build Status](https://travis-ci.org/r-pkgs/desc.svg?branch=master)](https://travis-ci.org/r-pkgs/desc)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-pkgs/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
 [![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/desc)](http://www.r-pkg.org/pkg/desc)
-[![Coverage Status](https://img.shields.io/codecov/c/github/metacran/desc/master.svg)](https://codecov.io/github/metacran/desc?branch=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/r-pkgs/desc/master.svg)](https://codecov.io/github/r-pkgs/desc?branch=master)
 
 Parse, manipulate and reformat DESCRIPTION files. The package
 provides two APIs, one is object oriented, the other one is
@@ -39,7 +39,7 @@ procedural and manipulates the files *in place*.
 ## Installation
 
 ```{r eval = FALSE}
-source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("r-pkgs/desc")
+source("https://install-github.me/r-pkgs/desc")
 ```
 
 ## The object oriented API
