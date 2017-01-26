@@ -233,9 +233,11 @@ test_that("desc_validate", {
 })
 
 test_that("can write back automatically found DESCRIPTION file", {
+  dir.create(tmp <- tempfile())
+  file.copy(file.path("files", "DESCRIPTION"), tmp)
   withr::with_dir(
-    "files",
+    tmp,
     desc_set_dep("somepackage", "Suggests")
   )
-  expect_true("somepackage" %in% desc_get_deps(file = "files")$package)
+  expect_true("somepackage" %in% desc_get_deps(file = tmp)$package)
 })
