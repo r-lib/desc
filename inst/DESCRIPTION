@@ -1,4 +1,4 @@
-Package: description
+Package: desc
 Title: Manipulate DESCRIPTION Files
 Version: 1.0.0
 Author: Gábor Csárdi
@@ -7,8 +7,8 @@ Description: Tools to read, write, create, and manipulate DESCRIPTION files.
     It is intented for packages that create or manipulate other packages.
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/metacran/description
-BugReports: https://github.com/metacran/description/issues
+URL: https://github.com/r-pkgs/desc
+BugReports: https://github.com/r-pkgs/desc/issues
 Suggests: 
     testthat,
     whoami,

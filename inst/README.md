@@ -60,7 +60,7 @@ desc
 ```
 
 ```
-#> Package: description
+#> Package: desc
 #> Title: Manipulate DESCRIPTION Files
 #> Version: 1.0.0
 #> Author: Gábor Csárdi
@@ -69,8 +69,8 @@ desc
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
 #> License: MIT + file LICENSE
-#> URL: https://github.com/metacran/description
-#> BugReports: https://github.com/metacran/description/issues
+#> URL: https://github.com/r-pkgs/desc
+#> BugReports: https://github.com/r-pkgs/desc/issues
 #> Imports:
 #>     R6
 #> Suggests:
@@ -188,8 +188,8 @@ desc
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
 #> License: MIT + file LICENSE
-#> URL: https://github.com/metacran/description
-#> BugReports: https://github.com/metacran/description/issues
+#> URL: https://github.com/r-pkgs/desc
+#> BugReports: https://github.com/r-pkgs/desc/issues
 #> Imports:
 #>     R6,
 #>     mvtnorm
@@ -275,7 +275,7 @@ desc_set_dep("newpackage", "Suggests")
 ```
 
 ```
-#> Package: description
+#> Package: desc
 #> Title: Manipulate DESCRIPTION Files
 #> Version: 1.0.0
 #> Author: Gábor Csárdi
@@ -284,8 +284,8 @@ desc_set_dep("newpackage", "Suggests")
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
 #> License: MIT + file LICENSE
-#> URL: https://github.com/metacran/description
-#> BugReports: https://github.com/metacran/description/issues
+#> URL: https://github.com/r-pkgs/desc
+#> BugReports: https://github.com/r-pkgs/desc/issues
 #> Imports:
 #>     R6
 #> Suggests:

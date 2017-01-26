@@ -7,8 +7,8 @@ Description: Tools to read, write, create, and manipulate DESCRIPTION
     files. It is intented for packages that create or manipulate other
     packages.
 License: MIT + file LICENSE
-URL: https://github.com/metacran/desc
-BugReports: https://github.com/metacran/desc/issues
+URL: https://github.com/r-pkgs/desc
+BugReports: https://github.com/r-pkgs/desc/issues
 Imports:
     R6
 Suggests:
