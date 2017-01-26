@@ -1,5 +1,5 @@
 
-# 1.0.1.9000
+# 1.1.0
 
 * Fix bug when adding authors and there is no `Authors@R` field
 
