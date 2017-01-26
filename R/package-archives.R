@@ -38,6 +38,8 @@ is_valid_package_file_name <- function(filename) {
   grepl(valid_package_archive_name, basename(filename))
 }
 
+#' @importFrom utils untar unzip
+
 get_description_from_package <- function(file) {
   uncompress <- if (is_zip_file(file)) unzip else untar
   package_name <- sub("_.*$", "", basename(file))
