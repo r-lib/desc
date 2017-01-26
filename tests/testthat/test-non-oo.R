@@ -1,12 +1,6 @@
 
 context("Non OO API")
 
-temp_desc <- function(file = "D2") {
-  tmp <- tempfile()
-  file.copy(file, tmp)
-  tmp
-}
-
 test_that("desc_add_author", {
   d <- temp_desc()
   on.exit(unlink(d))
