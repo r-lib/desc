@@ -99,11 +99,19 @@ Format DESCRIPTION in a standard way. \code{$str} formats each
 field in a standard way and returns them (it does not change the
 object itself), \code{$print} is used to print it to the
 screen. The \code{$normalize} function normalizes each field (i.e.
-it changes the object).
+it changes the object). Normalization means reformatting the fields,
+via \code{$reformat_fields()} and also reordering them via
+\code{$reorder_fields()}. The format of the various fields is
+opinionated and you might like it or not. Note that \code{desc} only
+reformats fields that it updates, and only on demand, so if your
+formatting preferences differ, you can still manually edit 
+\code{DESCRIPTION} and \code{desc} will respect your edits.
 
 \preformatted{  description$str(by_field = FALSE, normalize = TRUE,
     mode = c("file", "screen"))
   description$normalize()
+  description$reformat_fields()
+  description$reorder_fields()
   description$print()
 }
 \describe{
