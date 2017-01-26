@@ -596,9 +596,6 @@ description <- R6Class("description",
   )
 )
 
-
-#' @importFrom rprojroot find_root is_r_package
-
 idesc_create <- function(self, private, cmd, file, text, package) {
 
   if (!is.null(cmd) && substring(cmd, 1, 1) != "!") {
@@ -659,10 +656,7 @@ Encoding: UTF-8
 idesc_create_file <- function(self, private, file) {
   assert_that(is_path(file))
 
-  if (is_dir(file)) {
-    pkg_root <- find_root(is_r_package, file)
-    file <- file.path(pkg_root, "DESCRIPTION")
-  }
+  if (file.exists(file) && is_dir(file)) file <- find_description(file)
   assert_that(is_existing_file(file))
 
   if (is_package_archive(file)) {
@@ -703,6 +697,10 @@ idesc_create_package <- function(self, private, package) {
 
 idesc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
+  if (is.null(file)) {
+    stop("Cannot write back DESCRIPTION. Note that it is not possible
+          to update DESCRIPTION files within package archives")
+  }
 
   mat <- idesc_as_matrix(private$data)
 
@@ -718,6 +716,7 @@ idesc_write <- function(self, private, file) {
   if (any(changed)) private$notws <- private$notws[! changed]
 
   postprocess_trailing_ws(tmp, names(private$notws))
+  if (file.exists(file) && is_dir(file)) file <- find_description(file)
   writeLines(readLines(tmp), file)
 
   invisible(self)

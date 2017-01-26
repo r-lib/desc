@@ -237,3 +237,11 @@ test_that("desc_validate", {
     "not implemented"
   )
 })
+
+test_that("can write back automatically found DESCRIPTION file", {
+  withr::with_dir(
+    "files",
+    desc_set_dep("somepackage", "Suggests")
+  )
+  expect_true("somepackage" %in% desc_get_deps(file = "files")$package)
+})

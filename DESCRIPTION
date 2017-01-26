@@ -15,7 +15,8 @@ Depends:
     R (>= 3.2.0)
 Suggests:
     testthat,
-    whoami
+    whoami,
+    withr
 Imports:
     assertthat,
     utils,
