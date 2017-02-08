@@ -1,4 +1,8 @@
 
+# 1.1.0.9000
+
+* Relax the R >= 3.2.0 dependency, R 3.1.0 is enough now.
+
 # 1.1.0
 
 * Fix bug when adding authors and there is no `Authors@R` field

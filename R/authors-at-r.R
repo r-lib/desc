@@ -14,10 +14,29 @@ parse_authors_at_r <- function(x) {
 
 
 deparse_authors_at_r <- function(x) {
-  fmt <- format(x, style = "R")
-  paste0("\n", paste0("    ", fmt, collapse = "\n"))
+  fmt <- lapply(unclass(x), deparse_author_at_r)
+  if (length(fmt) == 1) {
+    paste0("\n", paste0("    ", fmt[[1]], collapse = "\n"))
+  } else {
+    for (i in seq_along(fmt)) {
+      fmt[[i]] <- paste0("  ", fmt[[i]])
+      fmt[[i]][[length(fmt[[i]])]] <- paste0(fmt[[i]][[length(fmt[[i]])]], ",")
+    }
+    fmt[[1]][[1]] <- sub("^  ", "c(", fmt[[1]][[1]])
+    n <- length(fmt)
+    fmt[[n]][[length(fmt[[n]])]] <- sub(",$", ")", fmt[[n]][[length(fmt[[n]])]])
+    paste0("\n", paste0("    ", unlist(fmt), collapse = "\n"))
+  }
 }
 
+deparse_author_at_r <- function(x1) {
+  x1 <- x1[! vapply(x1, is.null, TRUE)]
+  paste0(
+    c("person(", rep("       ", length(x1) - 1)),
+    names(x1), " = ", vapply(x1, deparse, ""),
+    c(rep(",", length(x1) - 1), ")")
+  )
+}
 
 set_author_field <- function(authors, which, field, value) {
   rval <- unclass(authors)
