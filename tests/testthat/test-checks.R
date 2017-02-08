@@ -30,7 +30,7 @@ test_that("we catch syntax errors", {
 test_that("generic field check is always true", {
   field <- list(key = "XY", value = "foobar")
   class(field) <- "DescriptionField"
-  expect_silent(check_field(field, wanr = TRUE))
+  expect_silent(check_field(field, warn = TRUE))
   expect_true(check_field(field))
 })
 
