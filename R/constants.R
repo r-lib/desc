@@ -1,14 +1,15 @@
 
 #' DESCRIPTION fields that denote package dependencies
 #'
-#' Currently it has the following ones: Imports, Depends,
-#' Suggests, Enhances and LinkingTo. See the \emph{Writing R Extensions}
-#' manual for when to use which.
+#' Currently it has the following ones: Imports, Depends, Suggests, Enhances,
+#' LinkingTo, and VignetteBuilder. See the \emph{Writing R Extensions} manual
+#' for when to use which.
 #'
 #' @family field types
 #' @export
 
-dep_types <- c("Imports", "Depends", "Suggests", "Enhances", "LinkingTo")
+dep_types <- c("Imports", "Depends", "Suggests", "Enhances", "LinkingTo",
+               "VignetteBuilder")
 
 standard_fields <- c(
   "Additional_repositories",
