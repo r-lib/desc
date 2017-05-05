@@ -23,3 +23,10 @@ test_that("DCF reader keeps whitespace", {
   ))
 
 })
+
+test_that("duplicate fields, #43", {
+  expect_error(
+    description$new("D5"),
+    "Duplicate DESCRIPTION fields.*Remotes"
+  )
+})
