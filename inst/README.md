@@ -5,11 +5,11 @@
 
 > Parse DESCRIPTION files
 
-[![Linux Build Status](https://travis-ci.org/r-pkgs/desc.svg?branch=master)](https://travis-ci.org/r-pkgs/desc)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-pkgs/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
+[![Linux Build Status](https://travis-ci.org/r-lib/desc.svg?branch=master)](https://travis-ci.org/r-lib/desc)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
 [![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/desc)](http://www.r-pkg.org/pkg/desc)
-[![Coverage Status](https://img.shields.io/codecov/c/github/r-pkgs/desc/master.svg)](https://codecov.io/github/r-pkgs/desc?branch=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/desc/master.svg)](https://codecov.io/github/r-lib/desc?branch=master)
 
 Parse, manipulate and reformat DESCRIPTION files. The package
 provides two APIs, one is object oriented, the other one is
@@ -33,7 +33,7 @@ procedural and manipulates the files *in place*.
 
 
 ```r
-source("https://install-github.me/r-pkgs/desc")
+source("https://install-github.me/r-lib/desc")
 ```
 
 ## The object oriented API
@@ -69,8 +69,8 @@ desc
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
 #> License: MIT + file LICENSE
-#> URL: https://github.com/r-pkgs/desc
-#> BugReports: https://github.com/r-pkgs/desc/issues
+#> URL: https://github.com/r-lib/desc
+#> BugReports: https://github.com/r-lib/desc/issues
 #> Imports:
 #>     R6
 #> Suggests:
@@ -188,8 +188,8 @@ desc
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
 #> License: MIT + file LICENSE
-#> URL: https://github.com/r-pkgs/desc
-#> BugReports: https://github.com/r-pkgs/desc/issues
+#> URL: https://github.com/r-lib/desc
+#> BugReports: https://github.com/r-lib/desc/issues
 #> Imports:
 #>     R6,
 #>     mvtnorm
@@ -284,8 +284,8 @@ desc_set_dep("newpackage", "Suggests")
 #>     files.  It is intented for packages that create or manipulate other
 #>     packages.
 #> License: MIT + file LICENSE
-#> URL: https://github.com/r-pkgs/desc
-#> BugReports: https://github.com/r-pkgs/desc/issues
+#> URL: https://github.com/r-lib/desc
+#> BugReports: https://github.com/r-lib/desc/issues
 #> Imports:
 #>     R6
 #> Suggests:
