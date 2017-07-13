@@ -11,14 +11,18 @@ read_dcf <- function(file) {
 
   con <- textConnection(lines, local = TRUE)
   fields <- colnames(read.dcf(con))
+
+  # Whitespace in version numbers cause massive problems further down the line
+  keep_white_fields <- setdiff(fields, "Version")
+
   close(con)
 
   con <- textConnection(lines, local = TRUE)
-  res <- read.dcf(con, keep.white = fields)
+  res <- read.dcf(con, keep.white = keep_white_fields)
   close(con)
 
   con <- textConnection(lines, local = TRUE)
-  res2 <- read.dcf(con, keep.white = fields, all = TRUE)
+  res2 <- read.dcf(con, keep.white = keep_white_fields, all = TRUE)
   close(con)
 
   if (any(mismatch <- res != res2)) {
