@@ -1,4 +1,4 @@
-
+# trimws() needs R 3.2.0
 str_trim <- function(x) {
   sub("^\\s+", "", sub("\\s+$", "", x))
 }
