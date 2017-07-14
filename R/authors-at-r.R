@@ -88,12 +88,12 @@ coerce_authors_at_r <- function(obj) {
       auths = c(auths, auth)
     }
     obj$set_authors(auths)
-    obj$del("Author")
+    # obj$del("Author")
   }
-  if (has_author & has_authors_at_r) {
-    # Delete Author as it has Authors@R
-    obj$del("Author")
-  }  
+  # if (has_author & has_authors_at_r) {
+  #   # Delete Author as it has Authors@R
+  #   obj$del("Author")
+  # }  
 }
 
 ## Find an author in the Authors@R field, based on a partical
