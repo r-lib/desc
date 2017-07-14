@@ -61,11 +61,7 @@ coerce_authors_at_r <- function(obj) {
     stop("No 'Authors@R' or 'Author' field!\n",
          "You can create one with $add_author")
   }
-  if (has_author & has_authors_at_r) {
-    # Delete Author as it has Authors@R
-    obj$del("Author")
-  }
-  
+
   if ( !has_authors_at_r & has_author) {
     # Get author field
     auth = obj$get("Author")
@@ -94,6 +90,10 @@ coerce_authors_at_r <- function(obj) {
     obj$set_authors(auths)
     obj$del("Author")
   }
+  if (has_author & has_authors_at_r) {
+    # Delete Author as it has Authors@R
+    obj$del("Author")
+  }  
 }
 
 ## Find an author in the Authors@R field, based on a partical
