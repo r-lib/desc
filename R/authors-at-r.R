@@ -53,6 +53,47 @@ ensure_authors_at_r <- function(obj) {
   }
 }
 
+coerce_authors_at_r <- function(self) {
+  has_authors_at_r = self$has_fields("Authors@R")
+  has_author = self$has_fields("Author")
+  if (! (has_authors_at_r | has_author) ) {
+    stop("No 'Authors@R' or 'Authors' field!\n",
+         "You can create one with $add_author")
+  }
+  if (has_author & has_authors_at_r) {
+    # Delete Author as it has Authors@R
+    self$del("Author")
+  }
+  
+  if ( !has_authors_at_r & has_author) {
+    # Get author field
+    auth = self$get("Author")
+    auth = as.person(auth)
+    auth$role = "aut"
+    
+    # Get maintainer field - set creator role
+    man = self$get_maintainer()
+    man = as.person(man)
+    man$role = c("cre")
+    
+    # Set author as maintainer
+    auths = man
+    
+    # If Maintainer in Author field, remove it and keep the maintainer one
+    # may want to use del_author
+    check_same = function(x) {
+      identical(c(man$given, man$family),
+                c(x$given, x$family))
+    }
+    same_auth = sapply(auth, check_same)
+    auth = auth[!same_auth]
+    if (length(auth) > 0) {
+      auths = c(auths, auth)
+    }
+    self$set_authors(auths)
+    self$del("Author")
+  }
+}
 
 ## Find an author in the Authors@R field, based on a partical
 ## specification. E.g. it is enough to give the first name.
