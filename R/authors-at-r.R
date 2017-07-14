@@ -47,32 +47,33 @@ set_author_field <- function(authors, which, field, value) {
 
 
 ensure_authors_at_r <- function(obj) {
+  coerce_authors_at_r(obj)
   if (! obj$has_fields("Authors@R")) {
     stop("No 'Authors@R' field!\n",
          "You can create one with $add_author")
   }
 }
 
-coerce_authors_at_r <- function(self) {
-  has_authors_at_r = self$has_fields("Authors@R")
-  has_author = self$has_fields("Author")
+coerce_authors_at_r <- function(obj) {
+  has_authors_at_r = obj$has_fields("Authors@R")
+  has_author = obj$has_fields("Author")
   if (! (has_authors_at_r | has_author) ) {
     stop("No 'Authors@R' or 'Authors' field!\n",
          "You can create one with $add_author")
   }
   if (has_author & has_authors_at_r) {
     # Delete Author as it has Authors@R
-    self$del("Author")
+    obj$del("Author")
   }
   
   if ( !has_authors_at_r & has_author) {
     # Get author field
-    auth = self$get("Author")
+    auth = obj$get("Author")
     auth = as.person(auth)
     auth$role = "aut"
     
     # Get maintainer field - set creator role
-    man = self$get_maintainer()
+    man = obj$get_maintainer()
     man = as.person(man)
     man$role = c("cre")
     
@@ -90,8 +91,8 @@ coerce_authors_at_r <- function(self) {
     if (length(auth) > 0) {
       auths = c(auths, auth)
     }
-    self$set_authors(auths)
-    self$del("Author")
+    obj$set_authors(auths)
+    obj$del("Author")
   }
 }
 
