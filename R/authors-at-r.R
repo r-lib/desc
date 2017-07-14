@@ -58,7 +58,7 @@ coerce_authors_at_r <- function(obj) {
   has_authors_at_r = obj$has_fields("Authors@R")
   has_author = obj$has_fields("Author")
   if (! (has_authors_at_r | has_author) ) {
-    stop("No 'Authors@R' or 'Authors' field!\n",
+    stop("No 'Authors@R' or 'Author' field!\n",
          "You can create one with $add_author")
   }
   if (has_author & has_authors_at_r) {
