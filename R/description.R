@@ -559,6 +559,9 @@ description <- R6Class("description",
 
     get_maintainer = function()
       idesc_get_maintainer(self, private),
+    
+    coerce_authors_at_r = function()
+      idesc_coerce_authors_at_r(self, private),    
 
     ## -----------------------------------------------------------------
     ## URL
