@@ -197,6 +197,18 @@ test_that("coerce_authors_at_r if there is no Authors@R field", {
   )
 })
 
+
+test_that("coerce_authors_at_r error if no authors fields at all", {
+  D1 <- description$new("D1")
+  D1$del("Author")
+  expect_error(D1$coerce_authors_at_r())
+})
+
+test_that("coerce_authors_at_r with multiple authors in Author: field", {
+  D6 <- description$new("D6")
+  expect_silent(D6$coerce_authors_at_r())
+})
+
 test_that("add_author if there is no Authors@R field", {
   D1 <- description$new("D1")
   D1$add_author("Gabor", "Csardi", "csardi.gabor@gmail.com", role = "ctb")
