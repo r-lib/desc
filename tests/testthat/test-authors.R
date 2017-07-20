@@ -186,6 +186,17 @@ test_that("get_maintainer is OK, too", {
   )
 })
 
+test_that("coerce_authors_at_r if there is no Authors@R field", {
+  D1 <- description$new("D1")
+  expect_error(D1$get_authors())
+  D1$coerce_authors_at_r()
+  expect_silent(D1$get_authors())
+  expect_identical(
+    format(D1$get_authors()[1]),
+    "Gábor Csárdi <csardi.gabor@gmail.com> [cre]"
+  )
+})
+
 test_that("add_author if there is no Authors@R field", {
   D1 <- description$new("D1")
   D1$add_author("Gabor", "Csardi", "csardi.gabor@gmail.com", role = "ctb")
