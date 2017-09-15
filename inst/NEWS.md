@@ -1,3 +1,7 @@
+# devel
+
+* add `get_built()` function to parse the Built field used in package binaries.
+  (#48, @jimhester)
 
 # 1.1.1
 

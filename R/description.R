@@ -396,6 +396,15 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' \code{$clear_remotes()} deletes all remotes.
 #'
+#' @section Built:
+#'
+#' The \sQuote{Built} field is used in binary packages to store information
+#' about when and how a binary package was built.
+#'
+#' \code{$get_built()} returns the built information as a list with fields
+#' \sQuote{R}, \sQuote{Platform}, \sQuote{Date}, \sQuote{OStype}. It throws an
+#' error if the package does not have a \sQuote{Built} field.
+#'
 #' @export
 #' @importFrom R6 R6Class
 #' @docType class
@@ -594,7 +603,13 @@ description <- R6Class("description",
       idesc_del_remotes(self, private, pattern),
 
     clear_remotes = function()
-      idesc_clear_remotes(self, private)
+      idesc_clear_remotes(self, private),
+
+    ## -----------------------------------------------------------------
+    ## Built
+
+    get_built = function()
+      idesc_get_built(self, private)
   ),
 
   private = list(

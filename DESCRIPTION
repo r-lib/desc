@@ -25,10 +25,11 @@ Imports:
     crayon,
     rprojroot
 Encoding: UTF-8
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 6.0.1
 Collate: 
     'assertions.R'
     'authors-at-r.R'
+    'built.R'
     'classes.R'
     'collate.R'
     'constants.R'

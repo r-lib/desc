@@ -392,6 +392,17 @@ pattern.
 \code{$clear_remotes()} deletes all remotes.
 }
 
+\section{Built}{
+
+
+The \sQuote{Built} field is used in binary packages to store information
+about when and how a binary package was built.
+
+\code{$get_built()} returns the built information as a list with fields
+\sQuote{R}, \sQuote{Platform}, \sQuote{Date}, \sQuote{OStype}. It throws an
+error if the package does not have a \sQuote{Built} field.
+}
+
 \examples{
 ## Create a template
 desc <- description$new("!new")

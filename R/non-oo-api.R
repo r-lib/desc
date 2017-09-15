@@ -625,4 +625,17 @@ desc_bump_version <- generate_api("bump_version")
 
 ## -------------------------------------------------------------------
 
+#' Query the built field in DESCRIPTION
+#'
+#' If the file has no \code{Built} field then it throws an error.
+#'
+#' @inheritParams desc_set
+#' @return A list with fields \sQuote{R}, \sQuote{Platform}, \sQuote{Date},
+#' \sQuote{OStype}. 
+#'
+#' @export
+#' @family built
+desc_get_built <- generate_api("get_built")
+
+## -------------------------------------------------------------------
 # nocov end
