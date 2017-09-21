@@ -28,7 +28,7 @@ is_path <- function(x) {
 }
 
 on_failure(is_path) <- function(call, env) {
-  paste0(deparse(call$x), " is not a path")
+  paste0(eval(call$x, env), " is not a path")
 }
 
 is_existing_file <- function(x) {
@@ -36,7 +36,7 @@ is_existing_file <- function(x) {
 }
 
 on_failure(is_existing_file) <- function(call, env) {
-  paste0("File ", deparse(call$x), " does not exist")
+  paste0("File `", eval(call$x, env), "' does not exist")
 }
 
 has_no_na <- function(x) {
