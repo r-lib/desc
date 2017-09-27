@@ -1,5 +1,9 @@
 # devel
 
+* If a DESCRIPTION field uses an `Encoding:` field that differs from the
+  sessions encoding, the fields are now converted to the sessions encoding if
+  possible, (#52, @jimhester).
+
 * add `get_built()` function to parse the Built field used in package binaries.
   (#48, @jimhester)
 

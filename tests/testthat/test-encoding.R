@@ -39,3 +39,22 @@ test_that("Unset Encoding results warning", {
   expect_warning(desc$set(Author = "Gábor Csárdi"), "Encoding")
 
 })
+
+test_that("different encoding is converted", {
+
+  expect_silent(
+    desc <- description$new(
+      text = paste0(
+        "Package: foo\n",
+        "Title: Foo Package\n",
+        "Author: Package Author\n",
+        "Maintainer: G\xE1bor Cs\xE1rdi <author@here.net>\n",
+        "Description: The great foo package.\n",
+        "License: GPL\n",
+        "Encoding: latin1\n"
+        )
+      )
+    )
+
+  expect_silent(desc$set(Author = "Gábor Csárdi"))
+})
