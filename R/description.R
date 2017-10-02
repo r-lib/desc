@@ -123,7 +123,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \code{$reorder_fields()}. The format of the various fields is
 #' opinionated and you might like it or not. Note that \code{desc} only
 #' reformats fields that it updates, and only on demand, so if your
-#' formatting preferences differ, you can still manually edit 
+#' formatting preferences differ, you can still manually edit
 #' \code{DESCRIPTION} and \code{desc} will respect your edits.
 #'
 #' \preformatted{  description$str(by_field = FALSE, normalize = TRUE,
@@ -404,6 +404,18 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \code{$get_built()} returns the built information as a list with fields
 #' \sQuote{R}, \sQuote{Platform}, \sQuote{Date}, \sQuote{OStype}. It throws an
 #' error if the package does not have a \sQuote{Built} field.
+#'
+#' @section Encodings:
+#' When creating a `description` object, `desc` observes the `Encoding`
+#' field, if present, and uses the specified encoding to parse the file.
+#' Internally, it converts all fields to UTF-8.
+#'
+#' When writing a `description` object to a file, `desc` uses the
+#' `Encoding` field (if present), and converts all fields to the specified
+#' encoding.
+#'
+#' We suggest that whenever you need to use non-ASCII characters in your
+#' package, you use the UTF-8 encoding, for maximum portability.
 #'
 #' @export
 #' @importFrom R6 R6Class
@@ -688,7 +700,7 @@ idesc_create_file <- function(self, private, file) {
   } else {
     private$path <- normalizePath(file)
   }
-  
+
   tryCatch(
     lines <- readLines(file),
     error = function(e) stop("Cannot read ", file, ": ", e$message)
@@ -725,7 +737,7 @@ idesc_write <- function(self, private, file) {
           to update DESCRIPTION files within package archives")
   }
 
-  mat <- idesc_as_matrix(private$data)
+  mat <- fix_dcf_encoding_write(idesc_as_matrix(private$data))
 
   ## Need to write to a temp file first, to preserve absense of trailing ws
   tmp <- tempfile()

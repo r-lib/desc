@@ -104,7 +104,7 @@ via \code{$reformat_fields()} and also reordering them via
 \code{$reorder_fields()}. The format of the various fields is
 opinionated and you might like it or not. Note that \code{desc} only
 reformats fields that it updates, and only on demand, so if your
-formatting preferences differ, you can still manually edit 
+formatting preferences differ, you can still manually edit
 \code{DESCRIPTION} and \code{desc} will respect your edits.
 
 \preformatted{  description$str(by_field = FALSE, normalize = TRUE,
@@ -401,6 +401,20 @@ about when and how a binary package was built.
 \code{$get_built()} returns the built information as a list with fields
 \sQuote{R}, \sQuote{Platform}, \sQuote{Date}, \sQuote{OStype}. It throws an
 error if the package does not have a \sQuote{Built} field.
+}
+
+\section{Encodings}{
+
+When creating a `description` object, `desc` observes the `Encoding`
+field, if present, and uses the specified encoding to parse the file.
+Internally, it converts all fields to UTF-8.
+
+When writing a `description` object to a file, `desc` uses the
+`Encoding` field (if present), and converts all fields to the specified
+encoding.
+
+We suggest that whenever you need to use non-ASCII characters in your
+package, you use the UTF-8 encoding, for maximum portability.
 }
 
 \examples{

@@ -1,6 +1,8 @@
 
 ## TODO: handle empty files
 
+portable_dcf_encodings <- function() c("latin1", "latin2", "UTF-8")
+
 read_dcf <- function(file) {
   lines <- readLines(file)
   no_tws_fields <- sub(
@@ -25,6 +27,8 @@ read_dcf <- function(file) {
     stop("Duplicate DESCRIPTION fields: ",
          paste(sQuote(colnames(res)[mismatch]), collapse = ", "))
   }
+
+  res <- fix_dcf_encoding_read(res)
 
   notws <- res[1, match(no_tws_fields, fields)]
 
