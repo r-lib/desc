@@ -51,12 +51,31 @@ same_deps <- function(d1, d2) {
     all(d1$version == d2$version)
 }
 
+#' Get dependencies
+#'
+#' In case the package has no dependencies at all, we `rbind` the
+#' list of data frames with the various dependency types, with an
+#' empty data frame. This ensures that we don't get `NULL` for the edge
+#' case, but a nice data frame with zero rows.
+#'
+#' @param self self
+#' @param private private self
+#' @return data frame of dependencies
+#'
+#' @keywords internal
+#' @noRd
 
 idesc_get_deps <- function(self, private) {
   types <- intersect(names(private$data), dep_types)
   res <- lapply(types, function(type)
     parse_deps(type, private$data[[type]]$value))
-  do.call(rbind, res)
+  empty <- data.frame(
+    stringsAsFactors = FALSE,
+    type = character(),
+    package = character(),
+    version = character()
+  )
+  do.call(rbind, c(list(empty), res))
 }
 
 

@@ -1,0 +1,11 @@
+Package: desc
+Title: Manipulate DESCRIPTION Files
+Version: 1.0.0
+Author: Gábor Csárdi
+Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
+Description: Tools to read, write, create, and manipulate DESCRIPTION
+    files. It is intented for packages that create or manipulate other
+    packages.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Built: R 3.4.1; x86_64-apple-darwin15.6.0; 2017-09-14 20:30:19 UTC; unix

@@ -103,7 +103,7 @@ test_that("desc_del_deps", {
   d <- temp_desc()
   on.exit(unlink(d))
   desc_del_deps(file = d)
-  expect_null(desc_get_deps(file = d))
+  expect_equal(nrow(desc_get_deps(file = d)), 0)
 })
 
 test_that("desc_del_role", {

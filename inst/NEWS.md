@@ -1,7 +1,11 @@
+
 # devel
 
-* add `get_built()` function to parse the Built field used in package binaries.
-  (#48, @jimhester)
+* Add `get_built()` function to parse the Built field used in package
+  binaries. (#48, @jimhester)
+
+* `get_deps()` (and `desc_get_deps()`) return a zero-row data frame
+  instead of `NULL` for packages without any dependencies, for consistency.
 
 # 1.1.1
 

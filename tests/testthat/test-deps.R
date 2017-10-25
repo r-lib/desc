@@ -156,5 +156,23 @@ test_that("issue #34 is fine (empty dep fields)", {
 
   expect_silent(desc$set_deps(deps))
   expect_silent(deps <- desc$get_deps())
-  expect_null(deps)
+  expect_equal(deps, empty_deps)
+})
+
+test_that("no dependencies at all", {
+
+  empty_deps <- data.frame(
+    stringsAsFactors = FALSE,
+    type = character(),
+    package = character(),
+    version = character()
+  )
+
+  desc <- description$new("D6")
+  expect_silent(deps <- desc$get_deps())
+  expect_equal(deps, empty_deps)
+
+  expect_silent(desc$set_deps(deps))
+  expect_silent(deps <- desc$get_deps())
+  expect_equal(deps, empty_deps)
 })
