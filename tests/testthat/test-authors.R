@@ -170,7 +170,7 @@ test_that("get_maintainer is OK, too", {
   D1 <- description$new("D1")
   expect_equal(
     D1$get_maintainer(),
-    "Gábor Csárdi <csardi.gabor@gmail.com>"
+    "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com>"
   )
 
   D2 <- description$new("D2")

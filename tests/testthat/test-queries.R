@@ -6,7 +6,7 @@ test_that("get works", {
 
   expect_equal(desc$get("Package"), c(Package = "desc"))
   expect_equal(desc$get("Version"), c(Version = "1.0.0"))
-  expect_equal(desc$get("Author"), c(Author = "Gábor Csárdi"))
+  expect_equal(desc$get("Author"), c(Author = "G\u00e1bor Cs\u00e1rdi"))
   expect_equal(desc$get("Imports"), c(Imports = "\n    R6"))
 })
 
@@ -15,7 +15,7 @@ test_that("get_or_fail works", {
 
   expect_equal(desc$get_or_fail("Package"), c(Package = "desc"))
   expect_equal(desc$get_or_fail("Version"), c(Version = "1.0.0"))
-  expect_equal(desc$get_or_fail("Author"), c(Author = "Gábor Csárdi"))
+  expect_equal(desc$get_or_fail("Author"), c(Author = "G\u00e1bor Cs\u00e1rdi"))
   expect_equal(desc$get_or_fail("Imports"), c(Imports = "\n    R6"))
 
   expect_equal(
