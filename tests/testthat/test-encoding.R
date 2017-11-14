@@ -76,7 +76,9 @@ test_that("encoding is converted to specified when writing", {
 
   desc$write(file = tmp <- tempfile())
   on.exit(unlink(tmp))
-  lines <- readLines(tmp, encoding = "latin1")
+  tmpf <- file(tmp, encoding = "", open = "r")
+  lines <- readLines(tmpf, encoding = "latin1")
+  close(tmpf)
   maint <- grep("^Maintainer", lines, value = TRUE)
 
   exp <- "Maintainer: G\xE1bor Cs\xE1rdi <author@here.net>"

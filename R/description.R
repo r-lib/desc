@@ -737,7 +737,14 @@ idesc_write <- function(self, private, file) {
           to update DESCRIPTION files within package archives")
   }
 
-  mat <- fix_dcf_encoding_write(idesc_as_matrix(private$data))
+  mat <- idesc_as_matrix(private$data)
+  if ("Encoding" %in% colnames(mat)) {
+    encoding <- mat[, "Encoding"]
+    mat[] <- iconv(mat[], from = "UTF-8", to = encoding)
+    Encoding(mat) <- encoding
+  } else {
+    encoding <- ""
+  }
 
   ## Need to write to a temp file first, to preserve absense of trailing ws
   tmp <- tempfile()
@@ -752,7 +759,10 @@ idesc_write <- function(self, private, file) {
 
   postprocess_trailing_ws(tmp, names(private$notws))
   if (file.exists(file) && is_dir(file)) file <- find_description(file)
-  writeLines(readLines(tmp), file)
+
+  ofile <- file(file, encoding = encoding, open = "w+")
+  on.exit(close(ofile), add = TRUE)
+  writeLines(readLines(tmp), ofile)
 
   invisible(self)
 }
@@ -819,7 +829,7 @@ idesc_set <- function(self, private, ...) {
     stop("$set needs two unnamed args, or all named args, see docs")
   }
 
-  fields <- create_fields(keys, values)
+  fields <- create_fields(keys, enc2utf8(values))
   lapply(fields, check_field, warn = TRUE)
   check_encoding(self, private, lapply(fields, "[[", "value"))
   private$data[keys] <- fields

@@ -23,9 +23,14 @@ read_dcf <- function(file) {
          paste(sQuote(colnames(res)[mismatch]), collapse = ", "))
   }
 
-  res <- fix_dcf_encoding_read(res)
+  if ("Encoding" %in% colnames(res)) {
+    encoding <- res[, "Encoding"]
+    Encoding(res) <- encoding
+    res[] <- enc2utf8(res)
+    Encoding(lines) <- encoding
+    lines <- enc2utf8(lines)
+  }
 
-  lines <- enc2utf8(lines)
   no_tws_fields <- sub(
     ":$",
     "",
