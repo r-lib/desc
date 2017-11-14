@@ -29,3 +29,4 @@ Other Collate field: \code{\link{desc_add_to_collate}},
   \code{\link{desc_del_from_collate}},
   \code{\link{desc_get_collate}}
 }
+\concept{Collate field}

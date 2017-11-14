@@ -26,3 +26,4 @@ Other Collate field: \code{\link{desc_add_to_collate}},
   \code{\link{desc_del_from_collate}},
   \code{\link{desc_set_collate}}
 }
+\concept{Collate field}

@@ -26,3 +26,4 @@ Other simple queries: \code{\link{desc_del}},
   \code{\link{desc_get_or_fail}},
   \code{\link{desc_has_fields}}, \code{\link{desc_set}}
 }
+\concept{simple queries}

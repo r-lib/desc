@@ -21,3 +21,4 @@ A list with fields \sQuote{R}, \sQuote{Platform}, \sQuote{Date},
 \description{
 If the file has no \code{Built} field then it throws an error.
 }
+\concept{built}
