@@ -66,3 +66,11 @@ test_that("authors are printed to the screen properly", {
   )
 
 })
+
+test_that("continuation lines", {
+  desc <- description$new("D7")
+  t1 <- desc$str(normalize = TRUE)
+  t2 <- desc$str(normalize = FALSE)
+  expect_false(grepl("\n[ \t]*\n", t1))
+  expect_false(grepl("\n[ \t]*\n", t2))
+})

@@ -14,7 +14,10 @@ idesc_str <- function(self, private, by_field, normalize = TRUE,
       if (normalize) {
         format(private$data[[col]], mode = mode)
       } else {
-        paste0(private$data[[col]]$key, ": ", private$data[[col]]$value)
+        paste0(
+          private$data[[col]]$key, ": ",
+          mark_continuation_lines(private$data[[col]]$value)
+        )
       }
     })
 
@@ -49,10 +52,10 @@ color_bad <- function(x) {
 #' @method format DescriptionField
 
 format.DescriptionField <- function(x, ..., width = 75) {
-  paste(
+  mark_continuation_lines(paste(
     strwrap(paste0(blue(x$key), ": ", color_bad(x)), exdent = 4, width = width),
     collapse = "\n"
-  )
+  ))
 }
 
 #' @export

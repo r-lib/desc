@@ -1,0 +1,26 @@
+Package: doBy
+Version: 4.5-15
+Title: Groupwise Statistics, LSmeans, Linear Contrasts, Utilities
+Author: Søren Højsgaard <sorenh@math.aau.dk> and Ulrich Halekoh <uhalekoh@health.sdu.dk> 
+Maintainer: Søren Højsgaard <sorenh@math.aau.dk>
+Description: The facilities can roughly be grouped as: 
+ .
+   1) Facilities for groupwise computations of summary statistics and
+ other facilities for working with grouped data: 'do' something to data 
+ stratified 'by' some variables.  
+ .
+   2) LSmeans (least-squares means), general linear contrasts.
+ .
+   3) Miscellaneous other utilities.
+Encoding: latin1
+URL: http://people.math.aau.dk/~sorenh/software/doBy/
+ZipData: no
+License: GPL (>= 2)
+Depends: R (>= 3.2.0), methods
+Imports: MASS, Matrix
+Suggests: pbkrtest (>= 0.4-6), ggplot2, multcomp, geepack, lme4,
+        survival
+NeedsCompilation: no
+Packaged: 2016-03-31 03:26:07 UTC; sorenh
+Repository: CRAN
+Date/Publication: 2016-03-31 17:38:50
