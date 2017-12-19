@@ -352,12 +352,12 @@ check_field.DescriptionLanguage <- function(x, warn = FALSE, ...) {
 
   is_language_list <- function(x) {
     x <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
-    all(grepl("^[a-z][a-z][a-z]?$", x))
+    all(grepl("^[a-z][a-z][a-z]?(-[A-Z]+)?$", x))
   }
 
   chks(
     x = x, warn = warn,
-    chk("must be a list of IETF language codes defined by defined by RFC 5646",
+    chk("must be a list of IETF language codes defined by RFC 5646",
         is_language_list(x$value))
   )
 }
