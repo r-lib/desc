@@ -29,3 +29,12 @@ test_that("get, set, etc. urls", {
   expect_identical(desc$get_urls(), character())
   expect_identical(desc$get("URL"), c(URL = NA_character_))
 })
+
+test_that("leading newlines and embedded descriptors are ignored", {
+  desc <- description$new("D8")
+  expect_identical(
+    desc$get_urls(),
+    c("https://github.com/ropensci/hunspell#readme",
+      "https://hunspell.github.io")
+  )
+})
