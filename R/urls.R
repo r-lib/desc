@@ -1,6 +1,7 @@
 
 parse_urls <- function(urls) {
-  str_trim(strsplit(urls, "[,\\s]+", perl = TRUE)[[1]])
+  out <- str_trim(strsplit(str_trim(urls), "[,\\s]+", perl = TRUE)[[1]])
+  grep("^http", out, value = TRUE)
 }
 
 deparse_urls <- function(urls) {
