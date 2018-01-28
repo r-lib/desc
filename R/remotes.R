@@ -4,7 +4,7 @@ parse_remotes <- function(remotes) {
 }
 
 deparse_remotes <- function(remotes) {
-  paste(str_trim(remotes), collapse = ",\n    ")
+  paste0(" \n    ", paste(str_trim(remotes), collapse = ",\n    "))
 }
 
 idesc_get_remotes <- function(self, private) {

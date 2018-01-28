@@ -29,7 +29,8 @@ field_order <- function(fields) {
     "Type", "Package", "Title", "Version", "Date",
     "Authors@R", "Author", "Maintainer",
     "Description", "License", "URL", "BugReports",
-    "Depends", setdiff(dep_types, "Depends"), "VignetteBuilder"
+    "Depends", setdiff(dep_types, "Depends"), "VignetteBuilder",
+    "RdMacros", "Remotes"
   )
 
   last <- collate_fields
@@ -72,6 +73,16 @@ format.DescriptionDependencyList <- function(x, ...) {
     )
   )
 }
+
+#' @export
+#' @method format DescriptionPackageList
+
+format.DescriptionPackageList <- format.DescriptionDependencyList
+
+#' @export
+#' @method format DescriptionRemotes
+
+format.DescriptionRemotes <- format.DescriptionDependencyList
 
 #' @export
 #' @importFrom crayon blue

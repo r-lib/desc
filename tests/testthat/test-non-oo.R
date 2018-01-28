@@ -5,7 +5,7 @@ test_that("desc_add_author", {
   d <- temp_desc()
   on.exit(unlink(d))
   x <- desc_add_author(file = d, "Bunny", "Bugs", "bugs.bunny@acme.com")
-  expect_match(desc_get(file = d, "Authors@R"), "Bunny")  
+  expect_match(desc_get(file = d, "Authors@R"), "Bunny")
 })
 
 test_that("desc_add_me", {
@@ -51,7 +51,7 @@ test_that("desc_get_maintainer, desc_change_maintainer", {
   expect_match(
     as.character(desc_get_maintainer(file = d)),
     "Peter"
-  )  
+  )
 })
 
 test_that("desc_set, desc_get, desc_del", {
@@ -65,7 +65,7 @@ test_that("desc_set, desc_get, desc_del", {
   expect_equal(
     desc_get(file = d, c("Package", "Version")),
     c(Package = "foobar", Version = "4.1.1.9000")
-  )  
+  )
 })
 
 test_that("desc_del_author", {
@@ -173,9 +173,9 @@ test_that("desc_reorder_fields", {
   desc_reorder_fields(file = d)
   expect_equal(
     desc_fields(file = d),
-    c("Package", "Title", "Version", "Authors@R", "Description", 
-      "License", "URL", "Depends", "Imports", "Suggests", "LinkingTo", 
-      "VignetteBuilder", "Encoding", "Remotes", "RoxygenNote", "Collate")
+    c("Package", "Title", "Version", "Authors@R", "Description",
+      "License", "URL", "Depends", "Imports", "Suggests", "LinkingTo",
+      "VignetteBuilder", "Remotes", "Encoding", "RoxygenNote", "Collate")
   )
 })
 
