@@ -215,24 +215,14 @@ check_field.DescriptionDependencyList <- function(x, warn = FALSE, ...) {
 check_field.DescriptionRemotes <- function(x, warn = FALSE, ...) {
 
   is_remote <- function(x) {
-    # Adapted from the remotes package:
-    username_rx <- "(?:([^/]+)/)?"
-    repo_rx <- "([^/@#]+)"
-    subdir_rx <- "(?:/([^@#]*[^@#/])/?)?"
-    ref_rx <- "(?:@([^*].*))"
-    pull_rx <- "(?:#([0-9]+))"
-    release_rx <- "(?:@([*]release))"
-    ref_or_pull_or_release_rx <- sprintf("(?:%s|%s|%s)?", ref_rx, pull_rx, release_rx)
-    github_rx <- paste0("^", username_rx, repo_rx, subdir_rx, ref_or_pull_or_release_rx, "$")
-
     xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
-    p <- grepl(github_rx, xx)
+    p <- grepl("^[^[:space:]]+$", xx)
     all_true(p)
   }
 
   chks(
     x = x, warn = warn,
-    chk("must be a comma separated list of GitHub remotes",
+    chk("must be a comma separated list of remotes",
         is_remote(x$value))
   )
 }
