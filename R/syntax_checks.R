@@ -210,6 +210,43 @@ check_field.DescriptionDependencyList <- function(x, warn = FALSE, ...) {
 }
 
 ##' @export
+##' @method check_field DescriptionRemotes
+
+check_field.DescriptionRemotes <- function(x, warn = FALSE, ...) {
+
+  is_remote <- function(x) {
+    xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
+    p <- grepl("^[^[:space:]]+$", xx)
+    all_true(p)
+  }
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a comma separated list of remotes",
+        is_remote(x$value))
+  )
+}
+
+##' @export
+##' @method check_field DescriptionPackageList
+
+check_field.DescriptionPackageList <- function(x, warn = FALSE, ...) {
+
+  is_package_list <- function(x) {
+    xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
+    p <- lapply(xx, function(pc)
+      check_field.DescriptionPackage(list(key = "Package", value = pc)))
+    all_true(p)
+  }
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a comma separated list of package names",
+        is_package_list(x$value))
+  )
+}
+
+##' @export
 ##' @method check_field DescriptionRepoList
 
 check_field.DescriptionRepoList <- function(x, warn = FALSE, ...) {
@@ -280,25 +317,6 @@ check_field.DescriptionLogical <- function(x, warn = FALSE, ...) {
     x = x, warn = warn,
     chk("must be one of 'true', 'false', 'yes' or 'no' (case insensitive)",
         str_trim(tolower(x$value)) %in% c("true", "false", "yes", "no"))
-  )
-}
-
-##' @export
-##' @method check_field DescriptionPackageList
-
-check_field.DescriptionPackageList <- function(x, warn = FALSE, ...) {
-
-  is_package_list <- function(x) {
-    xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
-    p <- lapply(xx, function(pc)
-      check_field.DescriptionPackage(list(key = "Package", value = pc)))
-    all_true(p)
-  }
-
-  chks(
-    x = x, warn = warn,
-    chk("must be a comma separated list of package names",
-        is_package_list(x$value))
   )
 }
 

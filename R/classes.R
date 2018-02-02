@@ -17,6 +17,8 @@ field_classes <- list(
 
   DependencyList = c("Imports", "Suggests", "Depends", "Enhances",
     "LinkingTo"),
+  PackageList = c("VignetteBuilder", "RdMacros"),
+  Remotes = "Remotes",
   RepoList = "Additional_repositories",
   URL = "BugReports",
   URLList = "URL",
@@ -26,7 +28,6 @@ field_classes <- list(
     "BuildVignettes", "NeedsCompilation", "License_is_FOSS",
     "License_restricts_use", "BuildKeepEmpty", "BuildManual",
     "BuildResaveData", "LazyLoad"),
-  PackageList = c("VignetteBuilder", "RdMacros"),
   Encoding = "Encoding",
   OSType = "OS_type",
   Type = "Type",
