@@ -1,6 +1,9 @@
 
 # devel
 
+* Use the `Encoding` field to read and write DESCRIPTION with the
+  corect encoding. UTF-8 is always used internall by desc. (#52, #53)
+
 * Add `get_built()` function to parse the Built field used in package
   binaries. (#48, @jimhester)
 
