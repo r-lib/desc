@@ -10,6 +10,13 @@ read_dcf <- function(file) {
   fields <- colnames(read.dcf(con))
   close(con)
 
+  if (!length(fields)) {
+    return(list(
+      dcf = create_fields(character(), character()),
+      notws = character()
+    ))
+  }
+
   con <- textConnection(lines, local = TRUE)
   res <- read.dcf(con, keep.white = fields)
   close(con)

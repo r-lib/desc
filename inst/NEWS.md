@@ -10,6 +10,9 @@
 * `get_deps()` (and `desc_get_deps()`) return a zero-row data frame
   instead of `NULL` for packages without any dependencies, for consistency.
 
+* Empty `DESCRIPTION` files are handled more gracefully, as are querying
+  no fields with `desc_get()`
+
 # 1.1.1
 
 * Relax the R >= 3.2.0 dependency, R 3.1.0 is enough now.

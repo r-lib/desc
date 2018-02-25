@@ -30,3 +30,8 @@ test_that("duplicate fields, #43", {
     "Duplicate DESCRIPTION fields.*Remotes"
   )
 })
+
+test_that("Empty DESCRIPTION", {
+  expect_error(description$new(text = ""), NA)
+  expect_error(description$new(text = character()), NA)
+})

@@ -788,7 +788,7 @@ idesc_get <- function(self, private, keys) {
   assert_that(is.character(keys), has_no_na(keys))
   res <- lapply(private$data[keys], "[[", "value")
   res[vapply(res, is.null, logical(1))] <- NA_character_
-  res <- unlist(res)
+  res <- as.character(unlist(res))
   names(res) <- keys
   res
 }

@@ -10,6 +10,12 @@ test_that("get works", {
   expect_equal(desc$get("Imports"), c(Imports = "\n    R6"))
 })
 
+test_that("get nothing", {
+  desc <- description$new("D1")
+  empty <- structure(character(), names = character())
+  expect_identical(desc$get(character()), empty)
+})
+
 test_that("get_or_fail works", {
   desc <- description$new("D1")
 
