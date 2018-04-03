@@ -74,18 +74,22 @@ The \code{$del} method removes the specified fields:
 \preformatted{  x$set(foo = "bar")
   x$del("foo")}
 
-\code{$get_or_fail} is similar to \code{$get}, but throws an error
-if a field does not exist, except of silently returning
-\code{NA_character}.
+\code{$get_field} is similar to \code{$get}, but it queries a single
+field, it returns an unnamed vector if found, and returns the
+speficied \code{default} value if not. By default it throws an error
+if the field is not found.
 
 The complete API reference:
 \preformatted{  description$get(keys)
-  description$get_or_fail(keys)
+  description$get_field(key, default)
   description$set(...)
   description$fields()
   description$has_fields(keys)
   description$del(keys)}
 \describe{
+  \item{key:}{A character string (length one), the key to query.}
+  \item{default:}{If specified and \code{key} is missing, this value
+    is returned. If not specified, an error is thrown.}
   \item{keys:}{A character vector of keys to query, check or delete.}
   \item{...:}{This must be either two unnamed arguments, the key and
     and the value to set; or an arbitrary number of named arguments,
