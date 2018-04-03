@@ -1,6 +1,9 @@
 
 # devel
 
+* Add `get_field()` method, with easier to use failure and fallback
+  semantics (#62)
+
 * Use the `Encoding` field to read and write DESCRIPTION with the
   corect encoding. UTF-8 is always used internall by desc. (#52, #53)
 
