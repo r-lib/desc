@@ -95,18 +95,22 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \preformatted{  x$set(foo = "bar")
 #'   x$del("foo")}
 #'
-#' \code{$get_or_fail} is similar to \code{$get}, but throws an error
-#' if a field does not exist, except of silently returning
-#' \code{NA_character}.
+#' \code{$get_field} is similar to \code{$get}, but it queries a single
+#' field, it returns an unnamed vector if found, and returns the
+#' speficied \code{default} value if not. By default it throws an error
+#' if the field is not found.
 #'
 #' The complete API reference:
 #' \preformatted{  description$get(keys)
-#'   description$get_or_fail(keys)
+#'   description$get_field(key, default)
 #'   description$set(...)
 #'   description$fields()
 #'   description$has_fields(keys)
 #'   description$del(keys)}
 #' \describe{
+#'   \item{key:}{A character string (length one), the key to query.}
+#'   \item{default:}{If specified and \code{key} is missing, this value
+#'     is returned. If not specified, an error is thrown.}
 #'   \item{keys:}{A character vector of keys to query, check or delete.}
 #'   \item{...:}{This must be either two unnamed arguments, the key and
 #'     and the value to set; or an arbitrary number of named arguments,
@@ -123,7 +127,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \code{$reorder_fields()}. The format of the various fields is
 #' opinionated and you might like it or not. Note that \code{desc} only
 #' reformats fields that it updates, and only on demand, so if your
-#' formatting preferences differ, you can still manually edit 
+#' formatting preferences differ, you can still manually edit
 #' \code{DESCRIPTION} and \code{desc} will respect your edits.
 #'
 #' \preformatted{  description$str(by_field = FALSE, normalize = TRUE,
@@ -396,6 +400,27 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' \code{$clear_remotes()} deletes all remotes.
 #'
+#' @section Built:
+#'
+#' The \sQuote{Built} field is used in binary packages to store information
+#' about when and how a binary package was built.
+#'
+#' \code{$get_built()} returns the built information as a list with fields
+#' \sQuote{R}, \sQuote{Platform}, \sQuote{Date}, \sQuote{OStype}. It throws an
+#' error if the package does not have a \sQuote{Built} field.
+#'
+#' @section Encodings:
+#' When creating a `description` object, `desc` observes the `Encoding`
+#' field, if present, and uses the specified encoding to parse the file.
+#' Internally, it converts all fields to UTF-8.
+#'
+#' When writing a `description` object to a file, `desc` uses the
+#' `Encoding` field (if present), and converts all fields to the specified
+#' encoding.
+#'
+#' We suggest that whenever you need to use non-ASCII characters in your
+#' package, you use the UTF-8 encoding, for maximum portability.
+#'
 #' @export
 #' @importFrom R6 R6Class
 #' @docType class
@@ -437,6 +462,9 @@ description <- R6Class("description",
 
     get = function(keys)
       idesc_get(self, private, keys),
+
+    get_field = function(key, default = stop("Field '", key, "' not found"))
+      idesc_get_field(self, private, key, default),
 
     get_or_fail = function(keys)
       idesc_get_or_fail(self, private, keys),
@@ -597,7 +625,13 @@ description <- R6Class("description",
       idesc_del_remotes(self, private, pattern),
 
     clear_remotes = function()
-      idesc_clear_remotes(self, private)
+      idesc_clear_remotes(self, private),
+
+    ## -----------------------------------------------------------------
+    ## Built
+
+    get_built = function()
+      idesc_get_built(self, private)
   ),
 
   private = list(
@@ -676,7 +710,7 @@ idesc_create_file <- function(self, private, file) {
   } else {
     private$path <- normalizePath(file)
   }
-  
+
   tryCatch(
     lines <- readLines(file),
     error = function(e) stop("Cannot read ", file, ": ", e$message)
@@ -714,6 +748,13 @@ idesc_write <- function(self, private, file) {
   }
 
   mat <- idesc_as_matrix(private$data)
+  if ("Encoding" %in% colnames(mat)) {
+    encoding <- mat[, "Encoding"]
+    mat[] <- iconv(mat[], from = "UTF-8", to = encoding)
+    Encoding(mat) <- encoding
+  } else {
+    encoding <- ""
+  }
 
   ## Need to write to a temp file first, to preserve absense of trailing ws
   tmp <- tempfile()
@@ -728,7 +769,10 @@ idesc_write <- function(self, private, file) {
 
   postprocess_trailing_ws(tmp, names(private$notws))
   if (file.exists(file) && is_dir(file)) file <- find_description(file)
-  writeLines(readLines(tmp), file)
+
+  ofile <- file(file, encoding = encoding, open = "w+")
+  on.exit(close(ofile), add = TRUE)
+  writeLines(readLines(tmp), ofile)
 
   invisible(self)
 }
@@ -754,9 +798,14 @@ idesc_get <- function(self, private, keys) {
   assert_that(is.character(keys), has_no_na(keys))
   res <- lapply(private$data[keys], "[[", "value")
   res[vapply(res, is.null, logical(1))] <- NA_character_
-  res <- unlist(res)
+  res <- as.character(unlist(res))
   names(res) <- keys
   res
+}
+
+idesc_get_field <- function(self, private, key, default) {
+  assert_that(is_string(key))
+  private$data[[key]]$value %||% default
 }
 
 idesc_get_or_fail <- function(self, private, keys) {
@@ -795,7 +844,7 @@ idesc_set <- function(self, private, ...) {
     stop("$set needs two unnamed args, or all named args, see docs")
   }
 
-  fields <- create_fields(keys, values)
+  fields <- create_fields(keys, enc2utf8(values))
   lapply(fields, check_field, warn = TRUE)
   check_encoding(self, private, lapply(fields, "[[", "value"))
   private$data[keys] <- fields

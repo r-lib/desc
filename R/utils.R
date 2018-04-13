@@ -1,4 +1,6 @@
 
+`%||%` <- function(l, r) if (is.null(l)) r else l
+
 str_trim <- function(x) {
   sub("^\\s+", "", sub("\\s+$", "", x))
 }
@@ -106,4 +108,9 @@ postprocess_trailing_ws <- function(file, notws) {
 find_description <- function(dir) {
   pkg_root <- find_root(is_r_package, dir)
   file.path(pkg_root, "DESCRIPTION")
+}
+
+mark_continuation_lines <- function(x) {
+  x <- gsub("\n[ \t]*\n", "\n .\n ", x, perl = TRUE, useBytes = TRUE)
+  gsub("\n \\.([^\n])", "\n  .\\1", x, perl = TRUE, useBytes = TRUE)
 }

@@ -57,7 +57,7 @@ test_that("authors are printed to the screen properly", {
 
   expect_output(
     print(desc),
-    "Authors@R (parsed):
+    "(parsed):
     * Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph]
     * Peter Danenberg <pcd@roxygen.org> [aut, cph]
     * Manuel Eugster [aut, cph]
@@ -65,4 +65,12 @@ test_that("authors are printed to the screen properly", {
     fixed = TRUE
   )
 
+})
+
+test_that("continuation lines", {
+  desc <- description$new("D7")
+  t1 <- desc$str(normalize = TRUE)
+  t2 <- desc$str(normalize = FALSE)
+  expect_false(grepl("\n[ \t]*\n", t1))
+  expect_false(grepl("\n[ \t]*\n", t2))
 })

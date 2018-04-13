@@ -17,4 +17,5 @@ manual for when to use which.
 Other field types: \code{\link{cran_ascii_fields}},
   \code{\link{cran_valid_fields}}
 }
+\concept{field types}
 \keyword{datasets}

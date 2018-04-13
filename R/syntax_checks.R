@@ -210,6 +210,43 @@ check_field.DescriptionDependencyList <- function(x, warn = FALSE, ...) {
 }
 
 ##' @export
+##' @method check_field DescriptionRemotes
+
+check_field.DescriptionRemotes <- function(x, warn = FALSE, ...) {
+
+  is_remote <- function(x) {
+    xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
+    p <- grepl("^[^[:space:]]+$", xx)
+    all_true(p)
+  }
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a comma separated list of remotes",
+        is_remote(x$value))
+  )
+}
+
+##' @export
+##' @method check_field DescriptionPackageList
+
+check_field.DescriptionPackageList <- function(x, warn = FALSE, ...) {
+
+  is_package_list <- function(x) {
+    xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
+    p <- lapply(xx, function(pc)
+      check_field.DescriptionPackage(list(key = "Package", value = pc)))
+    all_true(p)
+  }
+
+  chks(
+    x = x, warn = warn,
+    chk("must be a comma separated list of package names",
+        is_package_list(x$value))
+  )
+}
+
+##' @export
 ##' @method check_field DescriptionRepoList
 
 check_field.DescriptionRepoList <- function(x, warn = FALSE, ...) {
@@ -284,25 +321,6 @@ check_field.DescriptionLogical <- function(x, warn = FALSE, ...) {
 }
 
 ##' @export
-##' @method check_field DescriptionPackageList
-
-check_field.DescriptionPackageList <- function(x, warn = FALSE, ...) {
-
-  is_package_list <- function(x) {
-    xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
-    p <- lapply(xx, function(pc)
-      check_field.DescriptionPackage(list(key = "Package", value = pc)))
-    all_true(p)
-  }
-
-  chks(
-    x = x, warn = warn,
-    chk("must be a comma separated list of package names",
-        is_package_list(x$value))
-  )
-}
-
-##' @export
 ##' @method check_field DescriptionEncoding
 
 check_field.DescriptionEncoding <- function(x, warn = FALSE, ...) {
@@ -352,12 +370,12 @@ check_field.DescriptionLanguage <- function(x, warn = FALSE, ...) {
 
   is_language_list <- function(x) {
     x <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
-    all(grepl("^[a-z][a-z][a-z]?$", x))
+    all(grepl("^[a-z][a-z][a-z]?(-[A-Z]+)?$", x))
   }
 
   chks(
     x = x, warn = warn,
-    chk("must be a list of IETF language codes defined by defined by RFC 5646",
+    chk("must be a list of IETF language codes defined by RFC 5646",
         is_language_list(x$value))
   )
 }

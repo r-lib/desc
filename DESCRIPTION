@@ -1,6 +1,6 @@
 Package: desc
 Title: Manipulate DESCRIPTION Files
-Version: 1.1.1.9999
+Version: 1.1.1.9004
 Authors@R: c(
     person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
     person("Kirill", "Müller", role = c("aut")))
@@ -25,10 +25,11 @@ Imports:
     crayon,
     rprojroot
 Encoding: UTF-8
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 6.0.1.9000
 Collate: 
     'assertions.R'
     'authors-at-r.R'
+    'built.R'
     'classes.R'
     'collate.R'
     'constants.R'

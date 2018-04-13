@@ -6,7 +6,7 @@ test_that("DCF reader works", {
 
   expect_equal(desc$get("Package"), c(Package = "desc"))
   expect_equal(desc$get("Version"), c(Version = "1.0.0"))
-  expect_equal(desc$get("Author"), c(Author = "Gábor Csárdi"))
+  expect_equal(desc$get("Author"), c(Author = "G\u00e1bor Cs\u00e1rdi"))
   expect_equal(desc$get("Imports"), c(Imports = "\n    R6"))
 })
 
@@ -29,4 +29,9 @@ test_that("duplicate fields, #43", {
     description$new("D5"),
     "Duplicate DESCRIPTION fields.*Remotes"
   )
+})
+
+test_that("Empty DESCRIPTION", {
+  expect_error(description$new(text = ""), NA)
+  expect_error(description$new(text = character()), NA)
 })

@@ -7,11 +7,5 @@ Description: Tools to read, write, create, and manipulate DESCRIPTION
     files. It is intented for packages that create or manipulate other
     packages.
 License: MIT + file LICENSE
-URL: https://github.com/r-pkgs/desc
-BugReports: https://github.com/r-pkgs/desc/issues
-Imports:
-    R6
-Suggests:
-    testthat
-VignetteBuilder: knitr
 Encoding: UTF-8
+Built: R 3.4.1; x86_64-apple-darwin15.6.0; 2017-09-14 20:30:19 UTC; unix

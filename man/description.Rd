@@ -74,18 +74,22 @@ The \code{$del} method removes the specified fields:
 \preformatted{  x$set(foo = "bar")
   x$del("foo")}
 
-\code{$get_or_fail} is similar to \code{$get}, but throws an error
-if a field does not exist, except of silently returning
-\code{NA_character}.
+\code{$get_field} is similar to \code{$get}, but it queries a single
+field, it returns an unnamed vector if found, and returns the
+speficied \code{default} value if not. By default it throws an error
+if the field is not found.
 
 The complete API reference:
 \preformatted{  description$get(keys)
-  description$get_or_fail(keys)
+  description$get_field(key, default)
   description$set(...)
   description$fields()
   description$has_fields(keys)
   description$del(keys)}
 \describe{
+  \item{key:}{A character string (length one), the key to query.}
+  \item{default:}{If specified and \code{key} is missing, this value
+    is returned. If not specified, an error is thrown.}
   \item{keys:}{A character vector of keys to query, check or delete.}
   \item{...:}{This must be either two unnamed arguments, the key and
     and the value to set; or an arbitrary number of named arguments,
@@ -104,7 +108,7 @@ via \code{$reformat_fields()} and also reordering them via
 \code{$reorder_fields()}. The format of the various fields is
 opinionated and you might like it or not. Note that \code{desc} only
 reformats fields that it updates, and only on demand, so if your
-formatting preferences differ, you can still manually edit 
+formatting preferences differ, you can still manually edit
 \code{DESCRIPTION} and \code{desc} will respect your edits.
 
 \preformatted{  description$str(by_field = FALSE, normalize = TRUE,
@@ -390,6 +394,31 @@ Duplicate remotes are removed.
 pattern.
 
 \code{$clear_remotes()} deletes all remotes.
+}
+
+\section{Built}{
+
+
+The \sQuote{Built} field is used in binary packages to store information
+about when and how a binary package was built.
+
+\code{$get_built()} returns the built information as a list with fields
+\sQuote{R}, \sQuote{Platform}, \sQuote{Date}, \sQuote{OStype}. It throws an
+error if the package does not have a \sQuote{Built} field.
+}
+
+\section{Encodings}{
+
+When creating a `description` object, `desc` observes the `Encoding`
+field, if present, and uses the specified encoding to parse the file.
+Internally, it converts all fields to UTF-8.
+
+When writing a `description` object to a file, `desc` uses the
+`Encoding` field (if present), and converts all fields to the specified
+encoding.
+
+We suggest that whenever you need to use non-ASCII characters in your
+package, you use the UTF-8 encoding, for maximum portability.
 }
 
 \examples{

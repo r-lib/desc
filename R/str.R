@@ -14,7 +14,10 @@ idesc_str <- function(self, private, by_field, normalize = TRUE,
       if (normalize) {
         format(private$data[[col]], mode = mode)
       } else {
-        paste0(private$data[[col]]$key, ": ", private$data[[col]]$value)
+        paste0(
+          private$data[[col]]$key, ": ",
+          mark_continuation_lines(private$data[[col]]$value)
+        )
       }
     })
 
@@ -26,7 +29,8 @@ field_order <- function(fields) {
     "Type", "Package", "Title", "Version", "Date",
     "Authors@R", "Author", "Maintainer",
     "Description", "License", "URL", "BugReports",
-    "Depends", setdiff(dep_types, "Depends"), "VignetteBuilder"
+    "Depends", setdiff(dep_types, "Depends"), "VignetteBuilder",
+    "RdMacros", "Remotes"
   )
 
   last <- collate_fields
@@ -49,10 +53,10 @@ color_bad <- function(x) {
 #' @method format DescriptionField
 
 format.DescriptionField <- function(x, ..., width = 75) {
-  paste(
+  mark_continuation_lines(paste(
     strwrap(paste0(blue(x$key), ": ", color_bad(x)), exdent = 4, width = width),
     collapse = "\n"
-  )
+  ))
 }
 
 #' @export
@@ -69,6 +73,16 @@ format.DescriptionDependencyList <- function(x, ...) {
     )
   )
 }
+
+#' @export
+#' @method format DescriptionPackageList
+
+format.DescriptionPackageList <- format.DescriptionDependencyList
+
+#' @export
+#' @method format DescriptionRemotes
+
+format.DescriptionRemotes <- format.DescriptionDependencyList
 
 #' @export
 #' @importFrom crayon blue

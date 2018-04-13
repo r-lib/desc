@@ -18,3 +18,4 @@ Reformats and reorders fields in DESCRIPTION in a standard way.
 Other repair functions: \code{\link{desc_reformat_fields}},
   \code{\link{desc_reorder_fields}}
 }
+\concept{repair functions}

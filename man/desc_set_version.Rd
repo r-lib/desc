@@ -25,3 +25,4 @@ separate the version number components.
 Other version numbers: \code{\link{desc_bump_version}},
   \code{\link{desc_get_version}}
 }
+\concept{version numbers}

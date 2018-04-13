@@ -35,4 +35,9 @@ test_that("get, set, etc. remotes", {
   desc$del_remotes("stringr")
   expect_identical(desc$get_remotes(), character())
   expect_identical(desc$get("Remotes"), c(Remotes = NA_character_))
+
+  expect_warning(
+    desc$set("Remotes", "my remote"),
+    "must be a comma separated list of remotes"
+  )
 })
