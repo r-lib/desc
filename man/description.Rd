@@ -81,7 +81,7 @@ if the field is not found.
 
 The complete API reference:
 \preformatted{  description$get(keys)
-  description$get_field(key, default)
+  description$get_field(key, default, trim_ws = TRUE)
   description$set(...)
   description$fields()
   description$has_fields(keys)
@@ -90,6 +90,8 @@ The complete API reference:
   \item{key:}{A character string (length one), the key to query.}
   \item{default:}{If specified and \code{key} is missing, this value
     is returned. If not specified, an error is thrown.}
+  \item{trim_ws:}{Whether to trim leading  and trailing whitespace
+    from the returned value.}
   \item{keys:}{A character vector of keys to query, check or delete.}
   \item{...:}{This must be either two unnamed arguments, the key and
     and the value to set; or an arbitrary number of named arguments,

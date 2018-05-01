@@ -101,6 +101,8 @@ desc_get <- generate_api("get", self = FALSE)
 #' @param key The field to query.
 #' @param default Value to return if \code{key} is not found.
 #'   By default it throws an error.
+#' @param trim_ws Whether to trim leading and trailing whitespace
+#'   from the value. Defaults to \code{TRUE}.
 #' @return Character string, the value of \code{key}, or \code{default}
 #'   if \code{key} is not found and \code{default} is specified.
 #'
