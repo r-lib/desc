@@ -1,8 +1,6 @@
 
 ## TODO: handle empty files
 
-portable_dcf_encodings <- function() c("latin1", "latin2", "UTF-8")
-
 read_dcf <- function(file) {
   lines <- readLines(file)
 
