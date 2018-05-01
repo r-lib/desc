@@ -18,7 +18,7 @@ Object, invisibly.
 }
 \description{
 If \code{new_fields} is \code{NULL}, then the existing
-fields are checked. Otherwised \code{new_fields} are checked.
+fields are checked. Otherwise \code{new_fields} are checked.
 }
 \details{
 Warnings are given for non-ascii fields, if the \code{Encoding}

@@ -76,7 +76,7 @@ The \code{$del} method removes the specified fields:
 
 \code{$get_field} is similar to \code{$get}, but it queries a single
 field, it returns an unnamed vector if found, and returns the
-speficied \code{default} value if not. By default it throws an error
+specified \code{default} value if not. By default it throws an error
 if the field is not found.
 
 The complete API reference:
@@ -107,7 +107,7 @@ it changes the object). Normalization means reformatting the fields,
 via \code{$reformat_fields()} and also reordering them via
 \code{$reorder_fields()}. The format of the various fields is
 opinionated and you might like it or not. Note that \code{desc} only
-reformats fields that it updates, and only on demand, so if your
+re-formats fields that it updates, and only on demand, so if your
 formatting preferences differ, you can still manually edit
 \code{DESCRIPTION} and \code{desc} will respect your edits.
 
@@ -133,7 +133,7 @@ formatting preferences differ, you can still manually edit
 
 The \code{$write} method writes the description to a file.
 By default it writes it to the file it was created from, if it was
-created from a file. Otherwise giving a file name is compulsary:
+created from a file. Otherwise giving a file name is compulsory:
 \preformatted{  x$write(file = "DESCRIPTION")}
 
 The \code{normalize} argument controls whether the fields are
@@ -271,7 +271,7 @@ The API:
 \section{Authors}{
 
 There is a specialized API for the \code{Authors@R} field,
-to add and remove authors, udpate their roles, change the maintainer,
+to add and remove authors, update their roles, change the maintainer,
 etc.
 
 The API:

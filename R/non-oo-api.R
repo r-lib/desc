@@ -165,7 +165,7 @@ desc_to_latex <- generate_api("to_latex", self = FALSE)
 
 #' Normalize a DESCRIPTION file
 #'
-#' Reformats and reorders fields in DESCRIPTION in a standard way.
+#' Re-formats and re-orders fields in DESCRIPTION in a standard way.
 #'
 #' @inheritParams desc_set
 #' @family repair functions
