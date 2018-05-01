@@ -326,4 +326,5 @@ desc_get_deps()
 
 ## License
 
-MIT © [Gábor Csárdi](https://github.com/gaborcsardi).
+MIT © [Gábor Csárdi](https://github.com/gaborcsardi),
+      [RStudio Inc](https://github.com/rstudio)
