@@ -761,9 +761,6 @@ idesc_write <- function(self, private, file) {
   removed <- ! names(private$notws) %in% colnames(mat)
   if (any(removed)) private$notws <- private$notws[! removed]
 
-  changed <- mat[, names(private$notws)] != private$notws
-  if (any(changed)) private$notws <- private$notws[! changed]
-
   postprocess_trailing_ws(tmp, names(private$notws))
   if (file.exists(file) && is_dir(file)) file <- find_description(file)
 
