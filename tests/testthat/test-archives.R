@@ -75,3 +75,8 @@ test_that("get_description_from_package", {
     "Cannot extract DESCRIPTION"
   )
 })
+
+test_that("write errors if from archive", {
+  d <- description$new(file.path("fixtures", "pkg_1.0.0.tar.gz"))
+  expect_error(d$write(), "Cannot write back DESCRIPTION")
+})

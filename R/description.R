@@ -636,7 +636,7 @@ description <- R6Class("description",
 
   private = list(
     data = NULL,
-    path = "DESCRIPTION",
+    path = NULL,
     notws = character()                   # entries without trailing ws
   )
 )
