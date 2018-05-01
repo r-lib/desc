@@ -65,10 +65,12 @@ test_that("get_description_from_package", {
     "fixtures",
     "pkg_1.0.0_R_x86_64-pc-linux-gnu.tar.gz"
   ))
+  d4 <- description$new(file.path("fixtures", "pkg_1.0.0.zip"))
 
   expect_equal(d1$get("Package"), c(Package = "pkg"))
   expect_equal(d2$get("Package"), c(Package = "pkg"))
   expect_equal(d3$get("Package"), c(Package = "pkg"))
+  expect_equal(d4$get("Package"), c(Package = "pkg"))
 
   expect_error(
     d4 <- description$new(file.path("fixtures", "notpkg_1.0.tar.gz")),
