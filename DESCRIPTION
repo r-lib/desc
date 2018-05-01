@@ -3,7 +3,8 @@ Title: Manipulate DESCRIPTION Files
 Version: 1.2.0
 Authors@R: c(
     person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
-    person("Kirill", "Müller", role = c("aut")))
+    person("Kirill", "Müller", role = c("aut")),
+    person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut")))
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Tools to read, write, create, and manipulate DESCRIPTION files.
     It is intended for packages that create or manipulate other packages.
