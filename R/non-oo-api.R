@@ -653,7 +653,7 @@ desc_bump_version <- generate_api("bump_version")
 #'
 #' @inheritParams desc_set
 #' @return A list with fields \sQuote{R}, \sQuote{Platform}, \sQuote{Date},
-#' \sQuote{OStype}.
+#' \sQuote{OStype}. 
 #'
 #' @export
 #' @family built
