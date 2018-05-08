@@ -1,6 +1,9 @@
 
 # 1.2.0
 
+* Add `coerce_authors_at_r()` method to convert `Author` to 
+  `Authors@R` (#44, @muschellij2).
+  
 * Add `get_field()` method, with easier to use failure and fallback
   semantics (#62)
 
