@@ -6,7 +6,7 @@
 \title{Get a single field from a DESCRIPTION file, fail if not found}
 \usage{
 desc_get_field(key, default = stop("Field '", key, "' not found"),
-  file = ".")
+  trim_ws = TRUE, file = ".")
 
 desc_get_or_fail(keys, file = ".")
 }
@@ -15,6 +15,9 @@ desc_get_or_fail(keys, file = ".")
 
 \item{default}{Value to return if \code{key} is not found.
 By default it throws an error.}
+
+\item{trim_ws}{Whether to trim leading and trailing whitespace
+from the value. Defaults to \code{TRUE}.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
@@ -34,3 +37,4 @@ Other simple queries: \code{\link{desc_del}},
   \code{\link{desc_fields}}, \code{\link{desc_get}},
   \code{\link{desc_has_fields}}, \code{\link{desc_set}}
 }
+\concept{simple queries}

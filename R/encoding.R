@@ -2,7 +2,7 @@
 #' Check encoding of new or existing fields
 #'
 #' If \code{new_fields} is \code{NULL}, then the existing
-#' fields are checked. Otherwised \code{new_fields} are checked.
+#' fields are checked. Otherwise \code{new_fields} are checked.
 #'
 #' Warnings are given for non-ascii fields, if the \code{Encoding}
 #' field is not set.

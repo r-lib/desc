@@ -50,7 +50,7 @@ ensure_authors_at_r <- function(obj) {
   if (! obj$has_fields("Authors@R")) {
     stop("No 'Authors@R' field!\n",
          "You can create one with $add_author.\n",
-         "You can also use coerce_authors_at_r(obj) to change Author fields")
+         "You can also use coerce_authors_at_r() to change Author fields")
   }
 }
 
@@ -243,21 +243,21 @@ idesc_coerce_authors_at_r <- function(self, private) {
     stop("No 'Authors@R' or 'Author' field!\n",
          "You can create one with $add_author")
   }
-  
+
   if ( !has_authors_at_r & has_author) {
     # Get author field
     auth = self$get("Author")
     auth = as.person(auth)
     auth$role = "aut"
-    
+
     # Get maintainer field - set creator role
     man = self$get_maintainer()
     man = as.person(man)
     man$role = c("cre")
-    
+
     # Set author as maintainer
     auths = man
-    
+
     # If Maintainer in Author field, remove it and keep the maintainer one
     # may want to use del_author
     check_same = function(x) {

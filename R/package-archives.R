@@ -40,19 +40,30 @@ is_valid_package_file_name <- function(filename) {
 
 #' @importFrom utils untar unzip
 
+con_unzip <- function(archive, pkgname) {
+  filename <-  paste0(pkgname, "/", "DESCRIPTION")
+  con <- unz(archive, filename)
+  on.exit(close(con), add = TRUE)
+  tmp <- tempfile()
+  writeLines(readLines(con), tmp)
+  tmp
+}
+
+con_untar <- function(archive, pkgname) {
+  filename <- paste0(pkgname, "/", "DESCRIPTION")
+  tmp <- tempfile()
+  suppressWarnings(
+    untar(con <- gzfile(archive, open = "rb"), files = filename, exdir = tmp)
+  )
+  on.exit(close(con), add = TRUE)
+  file.path(tmp, pkgname, "DESCRIPTION")
+}
+
 get_description_from_package <- function(file) {
-  uncompress <- if (is_zip_file(file)) unzip else untar
   package_name <- sub("_.*$", "", basename(file))
 
-  tmp <- tempfile()
-
-  suppressWarnings(uncompress(
-    file,
-    files = paste(package_name, sep = "/", "DESCRIPTION"),
-    exdir = tmp
-  ))
-
-  desc <- file.path(tmp, package_name, "DESCRIPTION")
+  uncompress <- if (is_zip_file(file)) con_unzip else con_untar
+  desc <- uncompress(file, package_name)
 
   if (!file.exists(desc)) {
     stop("Cannot extract DESCRIPTION from ", sQuote(file))

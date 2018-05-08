@@ -101,6 +101,8 @@ desc_get <- generate_api("get", self = FALSE)
 #' @param key The field to query.
 #' @param default Value to return if \code{key} is not found.
 #'   By default it throws an error.
+#' @param trim_ws Whether to trim leading and trailing whitespace
+#'   from the value. Defaults to \code{TRUE}.
 #' @return Character string, the value of \code{key}, or \code{default}
 #'   if \code{key} is not found and \code{default} is specified.
 #'
@@ -165,7 +167,7 @@ desc_to_latex <- generate_api("to_latex", self = FALSE)
 
 #' Normalize a DESCRIPTION file
 #'
-#' Reformats and reorders fields in DESCRIPTION in a standard way.
+#' Re-formats and re-orders fields in DESCRIPTION in a standard way.
 #'
 #' @inheritParams desc_set
 #' @family repair functions

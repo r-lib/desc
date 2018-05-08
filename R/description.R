@@ -97,12 +97,12 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' \code{$get_field} is similar to \code{$get}, but it queries a single
 #' field, it returns an unnamed vector if found, and returns the
-#' speficied \code{default} value if not. By default it throws an error
+#' specified \code{default} value if not. By default it throws an error
 #' if the field is not found.
 #'
 #' The complete API reference:
 #' \preformatted{  description$get(keys)
-#'   description$get_field(key, default)
+#'   description$get_field(key, default, trim_ws = TRUE)
 #'   description$set(...)
 #'   description$fields()
 #'   description$has_fields(keys)
@@ -111,6 +111,8 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'   \item{key:}{A character string (length one), the key to query.}
 #'   \item{default:}{If specified and \code{key} is missing, this value
 #'     is returned. If not specified, an error is thrown.}
+#'   \item{trim_ws:}{Whether to trim leading  and trailing whitespace
+#'     from the returned value.}
 #'   \item{keys:}{A character vector of keys to query, check or delete.}
 #'   \item{...:}{This must be either two unnamed arguments, the key and
 #'     and the value to set; or an arbitrary number of named arguments,
@@ -126,7 +128,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' via \code{$reformat_fields()} and also reordering them via
 #' \code{$reorder_fields()}. The format of the various fields is
 #' opinionated and you might like it or not. Note that \code{desc} only
-#' reformats fields that it updates, and only on demand, so if your
+#' re-formats fields that it updates, and only on demand, so if your
 #' formatting preferences differ, you can still manually edit
 #' \code{DESCRIPTION} and \code{desc} will respect your edits.
 #'
@@ -150,7 +152,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' @section Writing it to file:
 #' The \code{$write} method writes the description to a file.
 #' By default it writes it to the file it was created from, if it was
-#' created from a file. Otherwise giving a file name is compulsary:
+#' created from a file. Otherwise giving a file name is compulsory:
 #' \preformatted{  x$write(file = "DESCRIPTION")}
 #'
 #' The \code{normalize} argument controls whether the fields are
@@ -280,7 +282,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' @section Authors:
 #' There is a specialized API for the \code{Authors@R} field,
-#' to add and remove authors, udpate their roles, change the maintainer,
+#' to add and remove authors, update their roles, change the maintainer,
 #' etc.
 #'
 #' The API:
@@ -288,6 +290,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'   description$set_authors(authors)
 #'   description$get_author(role)
 #'   description$get_maintainer()
+#'   description$coerce_authors_at_r()
 #' }
 #' \describe{
 #'    \item{authors:}{A \code{person} object, a list of authors.}
@@ -302,6 +305,10 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \code{$get_maintainer} returns the maintainer of the package. It works
 #' with \code{Authors@R} fields and with traditional \code{Maintainer}
 #' fields as well.
+#'
+#' \code{$coerce_authors_at_r} converts an \code{Author} field to one with
+#' a \code{person} object. This coercion may be necessary for other
+#' packages such as \code{pkgdown}.
 #'
 #' \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
 #'     role = NULL, comment = NULL)
@@ -463,8 +470,9 @@ description <- R6Class("description",
     get = function(keys)
       idesc_get(self, private, keys),
 
-    get_field = function(key, default = stop("Field '", key, "' not found"))
-      idesc_get_field(self, private, key, default),
+    get_field = function(key, default = stop("Field '", key, "' not found"),
+                         trim_ws = TRUE)
+      idesc_get_field(self, private, key, default, trim_ws),
 
     get_or_fail = function(keys)
       idesc_get_or_fail(self, private, keys),
@@ -587,9 +595,9 @@ description <- R6Class("description",
 
     get_maintainer = function()
       idesc_get_maintainer(self, private),
-    
+
     coerce_authors_at_r = function()
-      idesc_coerce_authors_at_r(self, private),    
+      idesc_coerce_authors_at_r(self, private),
 
     ## -----------------------------------------------------------------
     ## URL
@@ -636,7 +644,7 @@ description <- R6Class("description",
 
   private = list(
     data = NULL,
-    path = "DESCRIPTION",
+    path = NULL,
     notws = character()                   # entries without trailing ws
   )
 )
@@ -682,7 +690,7 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
 'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
-Authors@R: 
+Authors@R:
     c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
       role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}
@@ -764,9 +772,6 @@ idesc_write <- function(self, private, file) {
   removed <- ! names(private$notws) %in% colnames(mat)
   if (any(removed)) private$notws <- private$notws[! removed]
 
-  changed <- mat[, names(private$notws)] != private$notws
-  if (any(changed)) private$notws <- private$notws[! changed]
-
   postprocess_trailing_ws(tmp, names(private$notws))
   if (file.exists(file) && is_dir(file)) file <- find_description(file)
 
@@ -803,9 +808,12 @@ idesc_get <- function(self, private, keys) {
   res
 }
 
-idesc_get_field <- function(self, private, key, default) {
+idesc_get_field <- function(self, private, key, default, trim_ws) {
   assert_that(is_string(key))
-  private$data[[key]]$value %||% default
+  assert_that(is_flag(trim_ws))
+  val <- private$data[[key]]$value
+  if (trim_ws && !is.null(val)) val <- str_trim(val)
+  val %||% default
 }
 
 idesc_get_or_fail <- function(self, private, keys) {

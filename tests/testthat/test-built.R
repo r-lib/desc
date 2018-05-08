@@ -11,3 +11,9 @@ test_that("get built", {
       OStype = "unix")
   )
 })
+
+test_that("corrupted Build field", {
+  desc <- description$new("!new")
+  desc$set(Built = "foobar")
+  expect_error(desc$get_built(), "corrupted")
+})

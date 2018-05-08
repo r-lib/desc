@@ -22,7 +22,8 @@ test_that("get_field works", {
   expect_identical(desc$get_field("Package"), "desc")
   expect_identical(desc$get_field("Version"), "1.0.0")
   expect_identical(desc$get_field("Author"), "G\u00e1bor Cs\u00e1rdi")
-  expect_identical(desc$get_field("Imports"), "\n    R6")
+  expect_identical(desc$get_field("Imports"), "R6")
+  expect_identical(desc$get_field("Imports", trim_ws = FALSE), "\n    R6")
 
   expect_error(
     desc$get_field("package"),
