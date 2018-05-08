@@ -299,7 +299,7 @@ fields as well.
 
 \code{$coerce_authors_at_r} converts an \code{Author} field to one with
 a \code{person} object. This coercion may be necessary for other
-packages such as \code{pkgdown}.
+functions such as \code{$get_authors}.
 
 \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL)

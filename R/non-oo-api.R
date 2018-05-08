@@ -461,6 +461,18 @@ desc_add_me <- generate_api("add_me")
 
 desc_get_maintainer <- generate_api("get_maintainer", self = FALSE)
 
+#' Coerce Author Field to Authors@R
+#'
+#' Convert an \sQuote{Author} to a \sQuote{Authors@R} field, which is necessary
+#' for other functions such as getting authors.
+#'
+#' @inheritParams desc_set
+#'
+#' @export
+#' @family Authors@R
+desc_coerce_authors_at_r <- generate_api("coerce_authors_at_r")
+
+
 ## -------------------------------------------------------------------
 
 #' Query the URL field in DESCRIPTION
@@ -641,7 +653,7 @@ desc_bump_version <- generate_api("bump_version")
 #'
 #' @inheritParams desc_set
 #' @return A list with fields \sQuote{R}, \sQuote{Platform}, \sQuote{Date},
-#' \sQuote{OStype}. 
+#' \sQuote{OStype}.
 #'
 #' @export
 #' @family built
