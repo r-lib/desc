@@ -54,7 +54,7 @@ ensure_authors_at_r <- function(obj) {
   }
 }
 
-## Find an author in the Authors@R field, based on a partical
+## Find an author in the Authors@R field, based on a particular
 ## specification. E.g. it is enough to give the first name.
 
 search_for_author <- function(authors, given = NULL, family = NULL,
@@ -272,3 +272,5 @@ idesc_coerce_authors_at_r <- function(self, private) {
     self$set_authors(auths)
   }
 }
+
+
