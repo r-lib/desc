@@ -129,6 +129,21 @@ desc$add_me()
 desc$get_authors()
 ```
 
+If the `Author` field is specified, it can be changed to a `Authors@R` field
+using `coerce_authors_at_r()`, incorporating the `Maintainer` information if necessary: 
+```{r, message=FALSE}
+tfile <- tempfile()
+dir.create(tfile)
+package.skeleton(name = "pkg", path = tfile)
+desc <- description$new(file.path(tfile, "pkg", "DESCRIPTION"))
+desc
+desc$coerce_authors_at_r()
+desc
+```
+
+If you run `get_authors()` without conversion, then an error will result.
+
+
 ## The procedural API
 
 The procedural API is simpler to use for one-off `DESCRIPTION`
