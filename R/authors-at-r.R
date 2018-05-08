@@ -50,7 +50,7 @@ ensure_authors_at_r <- function(obj) {
   if (! obj$has_fields("Authors@R")) {
     stop("No 'Authors@R' field!\n",
          "You can create one with $add_author.\n",
-         "You can also use coerce_authors_at_r() to change Author fields")
+         "You can also use $coerce_authors_at_r() to change Author fields")
   }
 }
 
