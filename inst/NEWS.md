@@ -1,4 +1,8 @@
 
+* When using `desc(text=)` parameter, set `textConnection(encoding =
+  "bytes")` to handle cases when the input text is in a different marked
+  encoding than the default encoding, such as UTF-8 input on Windows.
+
 # 1.2.0
 
 * Add `get_field()` method, with easier to use failure and fallback
