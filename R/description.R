@@ -729,7 +729,7 @@ idesc_create_file <- function(self, private, file) {
 
 idesc_create_text <- function(self, private, text) {
   assert_that(is.character(text))
-  con <- textConnection(text, local = TRUE)
+  con <- textConnection(text, local = TRUE, encoding = "bytes")
   on.exit(close(con), add = TRUE)
   dcf <- read_dcf(con)
   private$notws <- dcf$notws

@@ -60,6 +60,26 @@ test_that("different encoding is converted to UTF-8 when reading", {
   expect_silent(desc$set(Author = "G\u00e1bor Cs\u00e1rdi"))
 })
 
+test_that("handles case when text is marked with a non-default locale", {
+
+  expect_silent(
+    desc <- description$new(
+      text = enc2utf8(paste0(
+        "Package: foo\n",
+        "Title: Foo Package\n",
+        "Author: Package Author\n",
+        "Maintainer: G\u00e1bor Cs\u00e1rdi <author@here.net>\n",
+        "Description: The great foo package.\n",
+        "License: GPL\n",
+        "Encoding: UTF-8\n"
+      ))
+    )
+  )
+
+  expect_equal(Encoding(desc$get("Maintainer")), "UTF-8")
+  expect_silent(desc$set(Author = "G\u00e1bor Cs\u00e1rdi"))
+})
+
 test_that("encoding is converted to specified when writing", {
 
   desc <- description$new(
