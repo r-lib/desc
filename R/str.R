@@ -68,7 +68,7 @@ format.DescriptionDependencyList <- function(x, ...) {
     blue(x$key), ":\n",
     paste0(
       "    ",
-      str_trim(strsplit(color_bad(x), ",", fixed = TRUE)[[1]]),
+      sort(str_trim(strsplit(color_bad(x), ",", fixed = TRUE)[[1]])),
       collapse = ",\n"
     )
   )
