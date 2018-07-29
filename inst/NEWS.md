@@ -1,3 +1,5 @@
+* When using `desc_normalize()` the package dependencies are now alphabetically 
+  sorted. (#66, @llrs)
 
 * When using `desc(text=)` parameter, set `textConnection(encoding =
   "bytes")` to handle cases when the input text is in a different marked
