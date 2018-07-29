@@ -142,7 +142,7 @@ idesc_reformat_fields <- function(self, private) {
   norm_fields <- strip_style(idesc_str(self, private, by_field = TRUE))
   for (f in names(norm_fields)) {
     private$data[[f]]$value <-
-      sub(paste0(f, ":[ ]?"), "", sort(norm_fields[[f]]))
+      sub(paste0(f, ":[ ]?"), "", norm_fields[[f]])
   }
   invisible(self)
 }
