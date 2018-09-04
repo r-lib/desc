@@ -23,8 +23,8 @@ is_character <- function(x) {
 
 is_named_character_or_null <- function(x){
   is.null(x) ||
-    is.character(x) && length(x) == 1 ||
-    is.character(x) && length(names(x)) == length(x)
+    is.character(x) && length(x) == 1 && !is.na(x) ||
+    is.character(x) && length(names(x)) == length(x) && all(!is.na(x))
 
 }
 
