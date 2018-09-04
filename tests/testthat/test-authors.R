@@ -36,6 +36,17 @@ test_that("we can add an author", {
     format(desc$get_authors()[5]),
     "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?)"
   )
+
+  desc <- description$new(cmd = "!new")
+
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+                  role = "ctb",
+                  comment = c(ORCID = "orcid_number", what="he did it"))
+
+  expect_identical(
+    format(desc$get_authors()[2]),
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (<https://orcid.org/orcid_number>, he did it)"
+  )
 })
 
 test_that("we can search for authors", {

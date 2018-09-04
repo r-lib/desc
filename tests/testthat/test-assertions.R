@@ -8,3 +8,19 @@ test_that("is_existing_file", {
     expect_error(desc::desc(miss), paste0(miss, ".*does not exist"))
   )
 })
+
+test_that("is_named_character", {
+  x <- c(2, 3)
+  expect_false(is_named_character(x))
+
+  x <- "comment"
+  expect_true(is_named_character(x))
+
+  x <- c("comment1", "comment")
+  expect_false(is_named_character(x))
+
+  x <- c(comment1 = "comment1",
+         comment2 = "comment")
+  expect_true(is_named_character(x))
+})
+
