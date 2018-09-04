@@ -58,6 +58,18 @@ test_that("we can add an author with ORCID", {
   )
 })
 
+test_that("we cannot add an author with malformatted comment", {
+
+  desc <- description$new(cmd = "!new")
+
+  expect_error(desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+                  role = "ctb",
+                  comment = c(ORCID = "orcid_number", what=NA)),
+               "comment is_not")
+
+
+})
+
 test_that("we can search for authors", {
   desc <- description$new("D2")
   authors <- desc$get_authors()
