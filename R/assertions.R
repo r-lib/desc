@@ -28,7 +28,7 @@ is_named_character_or_null <- function(x){
 
 }
 
-on_failure(is_character) <- function(call, env) {
+on_failure(is_named_character_or_null) <- function(call, env) {
   paste0(deparse(call$x), " is not a named character vector")
 }
 
