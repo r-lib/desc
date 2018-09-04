@@ -21,12 +21,11 @@ is_character <- function(x) {
   is.character(x) && all(! is.na(x))
 }
 
-is_named_character <- function(x){
-  if(length(x) == 1){
-    is_character(x)
-  }else{
-    is_character(x) && length(names(x)) == length(x)
-  }
+is_named_character_or_null <- function(x){
+  is.null(x) ||
+    is.character(x) && length(x) == 1 ||
+    is.character(x) && length(names(x)) == length(x)
+
 }
 
 on_failure(is_character) <- function(call, env) {
@@ -85,9 +84,6 @@ is_string_or_null <- function(x) {
   is_string(x) || is.null(x)
 }
 
-is_named_character_or_null <- function(x) {
-  is_named_character(x) || is.null(x)
-}
 
 on_failure(is_string_or_null) <- function(call, env) {
   paste0(deparse(call$x), " must be a string or NULL")
