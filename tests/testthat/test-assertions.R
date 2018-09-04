@@ -23,6 +23,10 @@ test_that("is_named_character_or_null", {
          comment2 = "comment")
   expect_true(is_named_character_or_null(x))
 
+  x <- c(comment1 = "comment1",
+         comment2 = NA)
+  expect_false(is_named_character_or_null(x))
+
 
   x <- NULL
   expect_true(is_named_character_or_null(x))
