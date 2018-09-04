@@ -36,6 +36,15 @@ test_that("we can add an author", {
     format(desc$get_authors()[5]),
     "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?)"
   )
+})
+
+test_that("we can add an author with ORCID", {
+
+  R_version <- paste(R.version$major,
+                   R.version$minor,
+                   sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
 
   desc <- description$new(cmd = "!new")
 
