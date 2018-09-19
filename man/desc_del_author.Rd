@@ -4,8 +4,8 @@
 \alias{desc_del_author}
 \title{Remove one or more authors from DESCRIPTION.}
 \usage{
-desc_del_author(given = NULL, family = NULL, email = NULL, role = NULL,
-  comment = NULL, file = ".", normalize = FALSE)
+desc_del_author(given = NULL, family = NULL, email = NULL,
+  role = NULL, comment = NULL, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{given}{Given name to filter on. Regular expression.}

@@ -26,7 +26,7 @@ Imports:
     crayon,
     rprojroot
 Encoding: UTF-8
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.1.0.9000
 Collate: 
     'assertions.R'
     'authors-at-r.R'

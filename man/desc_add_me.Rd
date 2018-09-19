@@ -4,7 +4,8 @@
 \alias{desc_add_me}
 \title{Add the current user as an author to DESCRIPTION}
 \usage{
-desc_add_me(role = "ctb", comment = NULL, file = ".", normalize = FALSE)
+desc_add_me(role = "ctb", comment = NULL, file = ".",
+  normalize = FALSE)
 }
 \arguments{
 \item{role}{Role to set for the user, defaults to contributor.}
