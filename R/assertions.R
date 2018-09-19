@@ -15,6 +15,23 @@ on_failure(is_string) <- function(call, env) {
   paste0(deparse(call$x), " is not a string")
 }
 
+# Comment can be either a single string
+# or a named vector of strings
+is_character <- function(x) {
+  is.character(x) && all(! is.na(x))
+}
+
+is_named_character_or_null <- function(x){
+  is.null(x) ||
+    is.character(x) && length(x) == 1 && !is.na(x) ||
+    is.character(x) && length(names(x)) == length(x) && all(!is.na(x))
+
+}
+
+on_failure(is_named_character_or_null) <- function(call, env) {
+  paste0(deparse(call$x), " is not a named character vector")
+}
+
 is_constructor_cmd <- function(x) {
   is_string(x) && substring(x, 1, 1) == "!"
 }
@@ -66,6 +83,7 @@ on_failure(is_authors) <- function(call, env) {
 is_string_or_null <- function(x) {
   is_string(x) || is.null(x)
 }
+
 
 on_failure(is_string_or_null) <- function(call, env) {
   paste0(deparse(call$x), " must be a string or NULL")

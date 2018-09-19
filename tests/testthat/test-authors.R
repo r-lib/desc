@@ -38,6 +38,38 @@ test_that("we can add an author", {
   )
 })
 
+test_that("we can add an author with ORCID", {
+
+  R_version <- paste(R.version$major,
+                   R.version$minor,
+                   sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+
+  desc <- description$new(cmd = "!new")
+
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+                  role = "ctb",
+                  comment = c(ORCID = "orcid_number", what="he did it"))
+
+  expect_identical(
+    format(desc$get_authors()[2]),
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (<https://orcid.org/orcid_number>, he did it)"
+  )
+})
+
+test_that("we cannot add an author with malformatted comment", {
+
+  desc <- description$new(cmd = "!new")
+
+  expect_error(desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+                  role = "ctb",
+                  comment = c(ORCID = "orcid_number", what=NA)),
+               "comment is not")
+
+
+})
+
 test_that("we can search for authors", {
   desc <- description$new("D2")
   authors <- desc$get_authors()
