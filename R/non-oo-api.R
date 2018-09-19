@@ -376,9 +376,9 @@ desc_set_authors <- generate_api("set_authors")
 
 desc_add_author <- generate_api("add_author")
 
-#' Add a role to one or more authors in Authors@R, in DESCRIPTION
+#' @title Add a role to one or more authors in Authors@R, in DESCRIPTION
 #'
-#' The author(s) can be specified by a combination of the \code{given},
+#' @description The author(s) can be specified by a combination of the \code{given},
 #' \code{family}, \code{email} and \code{comment} fields. If multiple
 #' filters are specified, then all must match to identify the author(s).
 #'
@@ -410,11 +410,9 @@ desc_add_role <- generate_api("add_role")
 
 desc_del_author <- generate_api("del_author")
 
-#' Delete a role of an author, in DESCRIPTION
+#' @title Delete a role of an author, in DESCRIPTION
 #'
-#' The author(s) can be specified by a combination of the \code{given},
-#' \code{family}, \code{email} and \code{comment} fields. If multiple
-#' filters are specified, then all must match to identify the author(s).
+#' @inherit desc_add_role description
 #'
 #' @param role Role to remove.
 #' @inheritParams desc_add_role
@@ -641,7 +639,7 @@ desc_bump_version <- generate_api("bump_version")
 #'
 #' @inheritParams desc_set
 #' @return A list with fields \sQuote{R}, \sQuote{Platform}, \sQuote{Date},
-#' \sQuote{OStype}. 
+#' \sQuote{OStype}.
 #'
 #' @export
 #' @family built
