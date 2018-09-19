@@ -369,6 +369,7 @@ desc_set_authors <- generate_api("set_authors")
 #' @param email Email address.
 #' @param role Role.
 #' @param comment Comment.
+#' @param orcid ORCID.
 #' @inheritParams desc_set
 #'
 #' @family Authors@R
@@ -379,14 +380,16 @@ desc_add_author <- generate_api("add_author")
 #' @title Add a role to one or more authors in Authors@R, in DESCRIPTION
 #'
 #' @description The author(s) can be specified by a combination of the \code{given},
-#' \code{family}, \code{email} and \code{comment} fields. If multiple
-#' filters are specified, then all must match to identify the author(s).
+#' \code{family}, \code{email}, \code{comment} and \code{orcid} fields.
+#' If multiple filters are specified, then all must match
+#' to identify the author(s).
 #'
 #' @param role Role to add.
 #' @param given Given name to filter on. Regular expression.
 #' @param family Family name to filter on. Regular expression.
 #' @param email Email address to filter on. Regular expression.
 #' @param comment Comment field to filter on. Regular expression.
+#' @param orcid ORCID field to filter on.
 #' @inheritParams desc_set
 #'
 #' @family Authors@R
@@ -441,6 +444,7 @@ desc_change_maintainer <- generate_api("change_maintainer")
 #'
 #' @param role Role to set for the user, defaults to contributor.
 #' @param comment Comment, empty by default.
+#' @param orcid ORCID, empty by default.
 #' @inheritParams desc_set
 #'
 #' @family Authors@R

@@ -24,6 +24,8 @@ is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}
+
+\item{orcid}{ORCID.}
 }
 \description{
 Add an author to Authors@R in DESCRIPTION

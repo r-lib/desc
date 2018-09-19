@@ -24,11 +24,14 @@ is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}
+
+\item{orcid}{ORCID field to filter on.}
 }
 \description{
 The author(s) can be specified by a combination of the \code{given},
-\code{family}, \code{email} and \code{comment} fields. If multiple
-filters are specified, then all must match to identify the author(s).
+\code{family}, \code{email}, \code{comment} and \code{orcid} fields.
+If multiple filters are specified, then all must match
+to identify the author(s).
 }
 \seealso{
 Other Authors@R: \code{\link{desc_add_author}},
