@@ -156,6 +156,32 @@ idesc_add_role <- function(self, private, role, given, family, email,
   self$set_authors(orig)
 }
 
+idesc_add_orcid <- function(self, private, orcid, given, family, email,
+                            comment, role) {
+
+  check_author_args(given = given, family = family,
+                    email = email,
+                    comment = comment,
+                    orcid = orcid, role = role)
+
+  orig <- idesc_get_authors(self, private, ensure = FALSE)
+  wh <- search_for_author(
+    orig, given = given, family = family, email = email, comment = comment,
+    orcid = NULL,
+    role = role
+  )
+
+  for (w in wh$index) {
+    orig <- set_author_field(
+      orig,
+      w,
+      "orcid",
+      orcid
+    )
+  }
+
+  self$set_authors(orig)
+}
 
 idesc_del_author <- function(self, private, given, family, email, role,
                             comment, orcid = NULL) {

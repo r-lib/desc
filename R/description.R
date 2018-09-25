@@ -325,6 +325,8 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' \preformatted{  description$add_role(role, given = NULL, family = NULL, email = NULL,
 #'     comment = NULL, orcid = NULL)
+#'     description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
+#'     comment = NULL, role = NULL)
 #'   description$del_role(role, given = NULL, family = NULL, email = NULL,
 #'      comment = NULL, orcid = NULL)
 #'   description$change_maintainer(given = NULL, family = NULL,
@@ -574,6 +576,12 @@ description <- R6Class("description",
                         comment = NULL, orcid = NULL)
       idesc_add_role(self, private, role, given, family, email, comment,
                      orcid),
+
+    add_orcid = function(orcid, given = NULL, family = NULL, email = NULL,
+                        comment = NULL, role = NULL)
+      idesc_add_orcid(self, private, role = role, given = given, family = family,
+                     email = email, comment = comment,
+                     orcid = orcid),
 
     del_author = function(given = NULL, family = NULL, email = NULL,
                           role = NULL, comment = NULL, orcid = NULL)
