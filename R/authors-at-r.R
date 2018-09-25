@@ -252,6 +252,15 @@ idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
   assert_that(is_named_character_or_null(comment))
   assert_that(is_string_or_null(orcid))
   check_for_package("whoami", "$add_me needs the 'whoami' package")
+
+ # guess ORCID
+  if(is.null(orcid)){
+    orcid <- Sys.getenv("ORCID_ID")
+    if(orcid == ""){
+      orcid <- NULL
+    }
+  }
+
   fn <- strsplit(whoami::fullname(), "[ ]+")[[1]]
   family <- tail(fn, 1)
   given <- paste(fn[-length(fn)], collapse = " ")

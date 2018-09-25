@@ -303,7 +303,9 @@ fields as well.
 Add a new author. The arguments correspond to the arguments of the
 \code{\link[utils]{person}} function. \code{add_me} is a convenience
 function, it adds the current user as an author, and it needs the
-\code{whoami} package to be installed.
+\code{whoami} package to be installed. It'll add your ORCID ID
+if you provide as argument or save it as \code{ORCID_ID} environment
+variable in .Renviron.
 
 \preformatted{  description$del_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL, orcid = NULL)
