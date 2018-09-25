@@ -698,8 +698,8 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
 Title: {{ Title }}
 Version: 1.0.0
 Authors@R: 
-c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
-role = c("aut", "cre")))
+    c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
+      role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}
 Description: {{ Description }}
 License: {{ License }}
