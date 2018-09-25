@@ -92,7 +92,7 @@ test_that("we cannot add an author with malformatted comment", {
 })
 
 test_that("we can search for authors", {
-  desc <- description$new("D2")
+  desc <- description$new("D9")
   authors <- desc$get_authors()
 
   expect_equal(
