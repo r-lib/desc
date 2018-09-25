@@ -100,6 +100,17 @@ test_that("we can search for authors", {
     1L
   )
 
+  expect_equal(
+    search_for_author(authors, orcid = "0000-0003-4757-117X")$index,
+    1L
+  )
+
+
+  expect_equal(
+    search_for_author(authors, orcid = "117X")$index,
+    1L
+  )
+
 })
 
 test_that("we can add a role to an author", {
