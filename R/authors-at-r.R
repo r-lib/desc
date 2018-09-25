@@ -175,8 +175,8 @@ idesc_add_orcid <- function(self, private, orcid, given, family, email,
     orig <- set_author_field(
       orig,
       w,
-      "orcid",
-      orcid
+      "comment",
+      c(comment, ORCID = orcid)
     )
   }
 

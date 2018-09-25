@@ -126,6 +126,26 @@ test_that("we can add a role to an author", {
   )
 })
 
+test_that("we can add an ORCID to an author", {
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+
+  desc <- description$new("D2")
+
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+                  role = "ctb", comment = "Really?")
+  desc$add_orcid(given = "Gábor", orcid = "notanorcid")
+
+  expect_identical(
+    format(desc$get_authors()[5]),
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (<https://orcid.org/notanorcid>)"
+  )
+})
+
+
 test_that("we can delete an author", {
   desc <- description$new("D2")
 
