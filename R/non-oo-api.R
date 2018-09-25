@@ -404,7 +404,7 @@ desc_add_role <- generate_api("add_role")
 #' If multiple filters are specified, then all must match
 #' to identify the author(s).
 #'
-#' @param ORCID orcid to add.
+#' @param orcid orcid to add.
 #' @param given Given name to filter on. Regular expression.
 #' @param family Family name to filter on. Regular expression.
 #' @param email Email address to filter on. Regular expression.

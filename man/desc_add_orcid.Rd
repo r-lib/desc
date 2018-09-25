@@ -8,6 +8,8 @@ desc_add_orcid(orcid, given = NULL, family = NULL, email = NULL,
   comment = NULL, role = NULL, file = ".", normalize = FALSE)
 }
 \arguments{
+\item{orcid}{orcid to add.}
+
 \item{given}{Given name to filter on. Regular expression.}
 
 \item{family}{Family name to filter on. Regular expression.}
@@ -24,8 +26,6 @@ is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}
-
-\item{ORCID}{orcid to add.}
 }
 \description{
 The author(s) can be specified by a combination of the \code{given},
