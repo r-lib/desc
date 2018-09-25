@@ -38,7 +38,7 @@ test_that("we can add an author", {
   )
 })
 
-test_that("we can add an author with ORCID", {
+test_that("we can add an author with ORCID via comment", {
 
   R_version <- paste(R.version$major,
                    R.version$minor,
@@ -55,6 +55,27 @@ test_that("we can add an author with ORCID", {
   expect_identical(
     format(desc$get_authors()[2]),
     "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (<https://orcid.org/orcid_number>, he did it)"
+  )
+})
+
+test_that("we can add an author with ORCID", {
+
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+
+  desc <- description$new(cmd = "!new")
+
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+                  role = "ctb",
+                  comment = c(what="he did it"),
+                  orcid = "orcid_number")
+
+  expect_identical(
+    format(desc$get_authors()[2]),
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (he did it, <https://orcid.org/orcid_number>)"
   )
 })
 
