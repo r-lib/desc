@@ -115,7 +115,7 @@ check_author_args <- function(given = NULL, family = NULL, email = NULL,
 #' @importFrom utils person
 
 idesc_add_author <- function(self, private, given, family, email, role,
-                             comment, orcid) {
+                             comment, orcid = NULL) {
   check_author_args(given, family, email, role, comment, orcid)
   orig <- idesc_get_authors(self, private, ensure = FALSE)
 
@@ -131,7 +131,7 @@ idesc_add_author <- function(self, private, given, family, email, role,
 
 
 idesc_add_role <- function(self, private, role, given, family, email,
-                           comment, orcid) {
+                           comment, orcid = NULL) {
 
   assert_that(is.character(role))
   check_author_args(given, family, email, comment = comment,
@@ -158,7 +158,7 @@ idesc_add_role <- function(self, private, role, given, family, email,
 
 
 idesc_del_author <- function(self, private, given, family, email, role,
-                            comment, orcid) {
+                            comment, orcid = NULL) {
 
   check_author_args(given, family, email, role, comment, orcid)
 
@@ -185,7 +185,7 @@ idesc_del_author <- function(self, private, given, family, email, role,
 
 
 idesc_del_role <- function(self, private, role, given, family, email,
-                          comment, orcid) {
+                          comment, orcid = NULL) {
 
   assert_that(is.character(role))
   check_author_args(given, family, email, role = NULL, comment, orcid)
@@ -210,7 +210,7 @@ idesc_del_role <- function(self, private, role, given, family, email,
 
 
 idesc_change_maintainer <- function(self, private, given, family, email,
-                                   comment, orcid) {
+                                   comment, orcid = NULL) {
   check_author_args(given, family, email, role = NULL, comment, orcid)
   ensure_authors_at_r(self)
   self$del_role(role = "cre")
@@ -221,7 +221,7 @@ idesc_change_maintainer <- function(self, private, given, family, email,
 
 #' @importFrom utils tail
 
-idesc_add_me <- function(self, private, role, comment, orcid) {
+idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
   assert_that(is_string_or_null(role))
   assert_that(is_named_character_or_null(comment))
   assert_that(is_string_or_null(orcid))
