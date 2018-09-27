@@ -145,6 +145,23 @@ test_that("we can add an ORCID to an author", {
   )
 })
 
+test_that("we can replace the ORCID of an author", {
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+
+  desc <- description$new("D9")
+
+  desc$add_orcid(given = "Hadley", orcid = "notanorcid")
+
+  expect_identical(
+    format(desc$get_authors()[1]),
+    "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph] (<https://orcid.org/notanorcid>)"
+  )
+})
+
 test_that("we cannot add the same ORCID to more than one author", {
 
   desc <- description$new("D10")
