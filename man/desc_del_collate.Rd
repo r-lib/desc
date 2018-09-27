@@ -4,8 +4,8 @@
 \alias{desc_del_collate}
 \title{Delete the Collate field from DESCRIPTION}
 \usage{
-desc_del_collate(which = c("all", "main", "windows", "unix"), file = ".",
-  normalize = FALSE)
+desc_del_collate(which = c("all", "main", "windows", "unix"),
+  file = ".", normalize = FALSE)
 }
 \arguments{
 \item{which}{Which collate field to use. Collate fields can

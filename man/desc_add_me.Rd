@@ -4,12 +4,15 @@
 \alias{desc_add_me}
 \title{Add the current user as an author to DESCRIPTION}
 \usage{
-desc_add_me(role = "ctb", comment = NULL, file = ".", normalize = FALSE)
+desc_add_me(role = "ctb", comment = NULL, orcid = NULL, file = ".",
+  normalize = FALSE)
 }
 \arguments{
 \item{role}{Role to set for the user, defaults to contributor.}
 
 \item{comment}{Comment, empty by default.}
+
+\item{orcid}{ORCID, empty by default.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
@@ -23,6 +26,7 @@ Uses the Authors@R field.
 }
 \seealso{
 Other Authors@R: \code{\link{desc_add_author}},
+  \code{\link{desc_add_orcid}},
   \code{\link{desc_add_role}},
   \code{\link{desc_change_maintainer}},
   \code{\link{desc_del_author}},

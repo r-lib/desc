@@ -58,14 +58,16 @@ ensure_authors_at_r <- function(obj) {
 ## specification. E.g. it is enough to give the first name.
 
 search_for_author <- function(authors, given = NULL, family = NULL,
-                              email = NULL, role = NULL, comment = NULL) {
+                              email = NULL, role = NULL, comment = NULL,
+                              orcid = NULL) {
 
   matching <-
     ngrepl(given, authors$given) &
     ngrepl(family, authors$family) &
     ngrepl(email, authors$email) &
     ngrepl(role, authors$role) &
-    ngrepl(comment, authors$comment)
+    ngrepl(comment, authors$comment) &
+    ngrepl(orcid, authors$comment)
 
   list(index = which(matching), authors = authors[matching])
 }
@@ -98,22 +100,29 @@ idesc_set_authors <- function(self, private, authors) {
 }
 
 check_author_args <- function(given = NULL, family = NULL, email = NULL,
-                              role = NULL, comment = NULL) {
+                              role = NULL, comment = NULL,
+                              orcid = NULL) {
   assert_that(
     is_string_or_null(given),
     is_string_or_null(family),
     is_string_or_null(email),
     is_string_or_null(role),
-    is_named_character_or_null(comment)
+    is_named_character_or_null(comment),
+    is_string_or_null(orcid)
   )
 }
 
 #' @importFrom utils person
 
 idesc_add_author <- function(self, private, given, family, email, role,
-                             comment) {
-  check_author_args(given, family, email, role, comment)
+                             comment, orcid = NULL) {
+  check_author_args(given, family, email, role, comment, orcid)
   orig <- idesc_get_authors(self, private, ensure = FALSE)
+
+  if (!is.null(orcid)) {
+    comment["ORCID"] <- orcid
+  }
+
   newp <- person(given = given, family = family, email = email,
                  role = role, comment = comment)
   new_authors <- if (is.null(orig)) newp else c(orig, newp)
@@ -122,14 +131,16 @@ idesc_add_author <- function(self, private, given, family, email, role,
 
 
 idesc_add_role <- function(self, private, role, given, family, email,
-                           comment) {
+                           comment, orcid = NULL) {
 
   assert_that(is.character(role))
-  check_author_args(given, family, email, comment = comment)
+  check_author_args(given, family, email, comment = comment,
+                    orcid = orcid)
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
     orig, given = given, family = family, email = email, comment = comment,
+    orcid = orcid,
     role = NULL
   )
 
@@ -145,15 +156,47 @@ idesc_add_role <- function(self, private, role, given, family, email,
   self$set_authors(orig)
 }
 
+idesc_add_orcid <- function(self, private, orcid, given, family, email,
+                            comment, role) {
 
-idesc_del_author <- function(self, private, given, family, email, role,
-                            comment) {
-
-  check_author_args(given, family, email, role, comment)
+  check_author_args(given = given, family = family,
+                    email = email,
+                    comment = comment,
+                    orcid = orcid, role = role)
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
-    orig, given = given, family = family, email = email, comment = comment
+    orig, given = given, family = family, email = email, comment = comment,
+    orcid = NULL,
+    role = role
+  )
+
+  if (length(wh$index) > 1) {
+    stop("More than one author correspond to the provided arguments.
+         ORCID IDs have to be distinct.",
+         call. = FALSE)
+  }
+
+  orig <- set_author_field(
+      orig,
+      wh$index,
+      "comment",
+      add_orcid_to_comment(orig[wh$index]$comment,
+                           orcid)
+    )
+
+  self$set_authors(orig)
+}
+
+idesc_del_author <- function(self, private, given, family, email, role,
+                            comment, orcid = NULL) {
+
+  check_author_args(given, family, email, role, comment, orcid)
+
+  orig <- idesc_get_authors(self, private, ensure = FALSE)
+  wh <- search_for_author(
+    orig, given = given, family = family, email = email,
+    comment = comment, orcid = orcid
   )
 
   if (length(wh$index) == 0) {
@@ -173,15 +216,15 @@ idesc_del_author <- function(self, private, given, family, email, role,
 
 
 idesc_del_role <- function(self, private, role, given, family, email,
-                          comment) {
+                          comment, orcid = NULL) {
 
   assert_that(is.character(role))
-  check_author_args(given, family, email, role = NULL, comment)
+  check_author_args(given, family, email, role = NULL, comment, orcid)
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
     orig, given = given, family = family, email = email, comment = comment,
-    role = NULL
+    orcid = orcid, role = NULL
   )
 
   for (w in wh$index) {
@@ -198,27 +241,37 @@ idesc_del_role <- function(self, private, role, given, family, email,
 
 
 idesc_change_maintainer <- function(self, private, given, family, email,
-                                   comment) {
-  check_author_args(given, family, email, role = NULL, comment)
+                                   comment, orcid = NULL) {
+  check_author_args(given, family, email, role = NULL, comment, orcid)
   ensure_authors_at_r(self)
   self$del_role(role = "cre")
   self$add_role(role = "cre", given = given, family = family,
-                email = email, comment = comment)
+                email = email, comment = comment, orcid = orcid)
 }
 
 
 #' @importFrom utils tail
 
-idesc_add_me <- function(self, private, role, comment) {
+idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
   assert_that(is_string_or_null(role))
-  assert_that(is_string_or_null(comment))
+  assert_that(is_named_character_or_null(comment))
+  assert_that(is_string_or_null(orcid))
   check_for_package("whoami", "$add_me needs the 'whoami' package")
+
+ # guess ORCID
+  if (is.null(orcid)) {
+    orcid <- Sys.getenv("ORCID_ID")
+    if (orcid == "") {
+      orcid <- NULL
+    }
+  }
+
   fn <- strsplit(whoami::fullname(), "[ ]+")[[1]]
   family <- tail(fn, 1)
   given <- paste(fn[-length(fn)], collapse = " ")
   email <- whoami::email_address()
   self$add_author(given = given, family = family, email = email,
-                  comment = comment, role = role)
+                  comment = comment, role = role, orcid = orcid)
 }
 
 
@@ -233,4 +286,11 @@ idesc_get_maintainer <- function(self, private) {
   } else {
     NA_character_
   }
+}
+
+# helper to add or replace ORCID in comment
+add_orcid_to_comment <- function(comment, orcid){
+
+  comment["ORCID"] <- orcid
+  comment
 }
