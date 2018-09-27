@@ -176,7 +176,7 @@ idesc_add_orcid <- function(self, private, orcid, given, family, email,
       orig,
       w,
       "comment",
-      c(comment, ORCID = orcid)
+      add_orcid_to_comment(comment, orcid)
     )
   }
 
@@ -281,4 +281,10 @@ idesc_get_maintainer <- function(self, private) {
   } else {
     NA_character_
   }
+}
+
+# helper to add or replace ORCID in comment
+add_orcid_to_comment <- function(comment, orcid){
+  comment["ORCID"] <- orcid
+  comment
 }
