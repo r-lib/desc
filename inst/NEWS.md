@@ -1,10 +1,11 @@
 
-* ORCID support (@maelle, #70):
-    * Expose an orcid argument in several functions to add and search authors, 
-    * add an add_orcid function, 
-    * add_me now can use the `ORCID_ID` environment variable.
+* New `add_orcid()` method and `desc_add_orcid()` functions make it possible to add ORCID IDs to authors directly instead of via the `comment` argument. (@maelle, #70) 
 
-* The comment field can now be a named character vector. (@maelle, #69; @gvegayon, #65)
+* All functions and methods managing authors (`add_me`, `add_author()`, `del_author()`, `add_role()`, `del_role()`, `change_maintainer()`, `search_for_author()`, etc.) gain an `orcid` argument. (@maelle, #70) 
+     
+* `add_me()` gains an `orcid` argument and by default use the `ORCID_ID` environment variable. (@maelle, #70)
+
+* In `person()` within the `Authors@R` field, `comment` can now be a named character vector. (@maelle, #69; @gvegayon, #65)
 
 * When using `desc(text=)` parameter, set `textConnection(encoding =
   "bytes")` to handle cases when the input text is in a different marked
