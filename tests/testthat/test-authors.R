@@ -246,7 +246,7 @@ test_that("add_me can use ORCID_ID", {
     `whoami::fullname` = function() "Bugs Bunny",
     `whoami::email_address` = function() "bugs.bunny@acme.com",
     Sys.getenv = function(x){
-      if(x == "ORCID_ID"){
+      if (x == "ORCID_ID") {
         "orcid_number"
       }else{
         Sys.getenv(x)
