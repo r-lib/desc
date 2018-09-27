@@ -141,7 +141,7 @@ test_that("we can add an ORCID to an author", {
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (<https://orcid.org/notanorcid>)"
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?, <https://orcid.org/notanorcid>)"
   )
 })
 

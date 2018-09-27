@@ -177,14 +177,13 @@ idesc_add_orcid <- function(self, private, orcid, given, family, email,
          call. = FALSE)
   }
 
-  for (w in wh$index) {
-    orig <- set_author_field(
+  orig <- set_author_field(
       orig,
-      w,
+      wh$index,
       "comment",
-      add_orcid_to_comment(comment, orcid)
+      add_orcid_to_comment(orig[wh$index]$comment,
+                           orcid)
     )
-  }
 
   self$set_authors(orig)
 }
@@ -291,6 +290,7 @@ idesc_get_maintainer <- function(self, private) {
 
 # helper to add or replace ORCID in comment
 add_orcid_to_comment <- function(comment, orcid){
+
   comment["ORCID"] <- orcid
   comment
 }
