@@ -119,7 +119,7 @@ idesc_add_author <- function(self, private, given, family, email, role,
   check_author_args(given, family, email, role, comment, orcid)
   orig <- idesc_get_authors(self, private, ensure = FALSE)
 
-  if(!is.null(orcid)){
+  if (!is.null(orcid)) {
     comment["ORCID"] <- orcid
   }
 
@@ -254,9 +254,9 @@ idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
   check_for_package("whoami", "$add_me needs the 'whoami' package")
 
  # guess ORCID
-  if(is.null(orcid)){
+  if (is.null(orcid)) {
     orcid <- Sys.getenv("ORCID_ID")
-    if(orcid == ""){
+    if (orcid == "") {
       orcid <- NULL
     }
   }
