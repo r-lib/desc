@@ -146,13 +146,13 @@ test_that("we can add an ORCID to an author", {
 })
 
 test_that("we cannot add the same ORCID to more than one author", {
- 
+
   desc <- description$new("D10")
-  
+
   expect_error(desc$add_orcid(given = "Peter",
                               orcid = "orcidid"),
                "More than one author correspond")
-  
+
 })
 
 
@@ -214,6 +214,34 @@ test_that("add_me works", {
   expect_identical(
     format(desc$get_authors()[5]),
     "Bugs Bunny <bugs.bunny@acme.com> [ctb] (Yikes!)"
+  )
+})
+
+test_that("add_me can use ORCID_ID", {
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+  desc <- description$new("D2")
+  with_mock(
+    `desc:::check_for_package` = function(...) TRUE,
+    `whoami::fullname` = function() "Bugs Bunny",
+    `whoami::email_address` = function() "bugs.bunny@acme.com",
+    Sys.getenv = function(x){
+      if(x == "ORCID_ID"){
+        "orcid_number"
+      }else{
+        Sys.getenv(x)
+      }
+    },
+    desc$add_me()
+
+  )
+
+  expect_identical(
+    format(desc$get_authors()[5]),
+    "Bugs Bunny <bugs.bunny@acme.com> [ctb] (<https://orcid.org/orcid_number>)"
   )
 })
 
