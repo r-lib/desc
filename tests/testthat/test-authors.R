@@ -145,6 +145,16 @@ test_that("we can add an ORCID to an author", {
   )
 })
 
+test_that("we cannot add the same ORCID to more than one author", {
+ 
+  desc <- description$new("D10")
+  
+  expect_error(desc$add_orcid(given = "Peter",
+                              orcid = "orcidid"),
+               "More than one author correspond")
+  
+})
+
 
 test_that("we can delete an author", {
   desc <- description$new("D2")

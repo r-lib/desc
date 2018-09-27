@@ -171,6 +171,12 @@ idesc_add_orcid <- function(self, private, orcid, given, family, email,
     role = role
   )
 
+  if(length(wh$index) > 1){
+    stop("More than one author correspond to the provided arguments.
+         ORCID IDs have to be distinct.",
+         call. = FALSE)
+  }
+  
   for (w in wh$index) {
     orig <- set_author_field(
       orig,
