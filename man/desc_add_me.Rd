@@ -24,6 +24,17 @@ the result. See \code{\link{desc_normalize}}.}
 \description{
 Uses the Authors@R field.
 }
+\details{
+\code{add_me} is a convenience function, it adds the
+ current user as an author, and it needs the
+\code{whoami} package to be installed. It'll add your ORCID ID
+if you provide it as argument or save it as \code{ORCID_ID} environment
+variable in .Renviron.
+The full name is parsed using
+\code{as.person} and collapsing the given name and the family name
+in order to e.g. have the first and middle names together as given
+name. This approach might be limited to some full name structures.
+}
 \seealso{
 Other Authors@R: \code{\link{desc_add_author}},
   \code{\link{desc_add_orcid}},
