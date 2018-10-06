@@ -5,7 +5,7 @@
 \title{Change maintainer of the package, in DESCRIPTION}
 \usage{
 desc_change_maintainer(given = NULL, family = NULL, email = NULL,
-  comment = NULL, file = ".", normalize = FALSE)
+  comment = NULL, orcid = NULL, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{given}{Given name.}
@@ -15,6 +15,8 @@ desc_change_maintainer(given = NULL, family = NULL, email = NULL,
 \item{email}{Email address.}
 
 \item{comment}{Comment.}
+
+\item{orcid}{ORCID.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
@@ -31,8 +33,9 @@ The current maintainer is kept if they have at least another role.
 }
 \seealso{
 Other Authors@R: \code{\link{desc_add_author}},
-  \code{\link{desc_add_me}}, \code{\link{desc_add_role}},
-  \code{\link{desc_coerce_authors_at_r}},
+  \code{\link{desc_add_me}}, \code{\link{desc_add_orcid}},
+  \code{\link{desc_add_role}},
+  \code{\link{desc_coerce_authors_at_r}}
   \code{\link{desc_del_author}},
   \code{\link{desc_del_role}},
   \code{\link{desc_get_authors}},

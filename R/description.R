@@ -311,16 +311,18 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' functions such as \code{$get_authors}.
 #'
 #' \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
-#'     role = NULL, comment = NULL)
-#'   description$add_me(role = "ctb", comment = NULL)
+#'     role = NULL, comment = NULL, orcid = NULL)
+#'   description$add_me(role = "ctb", comment = NULL, orcid = NULL)
 #' }
 #' Add a new author. The arguments correspond to the arguments of the
 #' \code{\link[utils]{person}} function. \code{add_me} is a convenience
 #' function, it adds the current user as an author, and it needs the
-#' \code{whoami} package to be installed.
+#' \code{whoami} package to be installed. It'll add your ORCID ID
+#' if you provide it as argument or save it as \code{ORCID_ID} environment
+#' variable in .Renviron.
 #'
 #' \preformatted{  description$del_author(given = NULL, family = NULL, email = NULL,
-#'     role = NULL, comment = NULL)
+#'     role = NULL, comment = NULL, orcid = NULL)
 #' }
 #' Remove an author, or multiple authors. The author(s) to be removed
 #' can be specified via any field(s). All authors matching all
@@ -329,11 +331,13 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' be removed. The specifications can be (PCRE) regular expressions.
 #'
 #' \preformatted{  description$add_role(role, given = NULL, family = NULL, email = NULL,
-#'     comment = NULL)
+#'     comment = NULL, orcid = NULL)
+#'     description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
+#'     comment = NULL, role = NULL)
 #'   description$del_role(role, given = NULL, family = NULL, email = NULL,
-#'      comment = NULL)
+#'      comment = NULL, orcid = NULL)
 #'   description$change_maintainer(given = NULL, family = NULL,
-#'     email = NULL, comment = NULL)
+#'     email = NULL, comment = NULL, orcid = NULL)
 #' }
 #' \code{role} is the role to add or delete. The other arguments
 #' are used to select a subset of the authors, on which the operation
@@ -571,27 +575,38 @@ description <- R6Class("description",
       idesc_set_authors(self, private, authors),
 
     add_author = function(given = NULL, family = NULL, email = NULL,
-                          role = NULL, comment = NULL)
-      idesc_add_author(self, private, given, family, email, role, comment),
+                          role = NULL, comment = NULL, orcid = NULL)
+      idesc_add_author(self, private, given, family, email, role, comment,
+                       orcid),
 
     add_role = function(role, given = NULL, family = NULL, email = NULL,
-                        comment = NULL)
-      idesc_add_role(self, private, role, given, family, email, comment),
+                        comment = NULL, orcid = NULL)
+      idesc_add_role(self, private, role, given, family, email, comment,
+                     orcid),
+
+    add_orcid = function(orcid, given = NULL, family = NULL, email = NULL,
+                        comment = NULL, role = NULL)
+      idesc_add_orcid(self, private, role = role, given = given, family = family,
+                     email = email, comment = comment,
+                     orcid = orcid),
 
     del_author = function(given = NULL, family = NULL, email = NULL,
-                          role = NULL, comment = NULL)
-      idesc_del_author(self, private, given, family, email, role, comment),
+                          role = NULL, comment = NULL, orcid = NULL)
+      idesc_del_author(self, private, given, family, email, role, comment,
+                       orcid),
 
     del_role = function(role, given = NULL, family = NULL, email = NULL,
-                        comment = NULL)
-      idesc_del_role(self, private, role, given, family, email, comment),
+                        comment = NULL, orcid = NULL)
+      idesc_del_role(self, private, role, given, family, email, comment,
+                     orcid),
 
     change_maintainer = function(given = NULL, family = NULL, email = NULL,
-                                 comment = NULL)
-      idesc_change_maintainer(self, private, given, family, email, comment),
+                                 comment = NULL, orcid = NULL)
+      idesc_change_maintainer(self, private, given, family, email, comment,
+                              orcid),
 
-    add_me = function(role = "ctb", comment = NULL)
-      idesc_add_me(self, private, role, comment),
+    add_me = function(role = "ctb", comment = NULL, orcid = NULL)
+      idesc_add_me(self, private, role, comment, orcid),
 
     get_maintainer = function()
       idesc_get_maintainer(self, private),

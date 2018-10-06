@@ -4,8 +4,8 @@
 \alias{desc_set_collate}
 \title{Set the Collate field in DESCRIPTION}
 \usage{
-desc_set_collate(files, which = c("main", "windows", "unix"), file = ".",
-  normalize = FALSE)
+desc_set_collate(files, which = c("main", "windows", "unix"),
+  file = ".", normalize = FALSE)
 }
 \arguments{
 \item{files}{Collate field to set, as a character vector.}

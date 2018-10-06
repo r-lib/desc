@@ -5,7 +5,7 @@
 \title{Delete a role of an author, in DESCRIPTION}
 \usage{
 desc_del_role(role, given = NULL, family = NULL, email = NULL,
-  comment = NULL, file = ".", normalize = FALSE)
+  comment = NULL, orcid = NULL, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{role}{Role to remove.}
@@ -18,6 +18,8 @@ desc_del_role(role, given = NULL, family = NULL, email = NULL,
 
 \item{comment}{Comment field to filter on. Regular expression.}
 
+\item{orcid}{ORCID field to filter on.}
+
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
 is part of) is used.}
@@ -27,12 +29,14 @@ the result. See \code{\link{desc_normalize}}.}
 }
 \description{
 The author(s) can be specified by a combination of the \code{given},
-\code{family}, \code{email} and \code{comment} fields. If multiple
-filters are specified, then all must match to identify the author(s).
+\code{family}, \code{email}, \code{comment} and \code{orcid} fields.
+If multiple filters are specified, then all must match
+to identify the author(s).
 }
 \seealso{
 Other Authors@R: \code{\link{desc_add_author}},
-  \code{\link{desc_add_me}}, \code{\link{desc_add_role}},
+  \code{\link{desc_add_me}}, \code{\link{desc_add_orcid}},
+  \code{\link{desc_add_role}},
   \code{\link{desc_change_maintainer}},
   \code{\link{desc_coerce_authors_at_r}},
   \code{\link{desc_del_author}},

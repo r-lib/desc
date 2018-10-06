@@ -1,10 +1,22 @@
 Package: desc
 Title: Manipulate DESCRIPTION Files
 Version: 1.2.0
-Authors@R: c(
-    person("Gábor", "Csárdi",, "csardi.gabor@gmail.com", role = c("aut", "cre")),
-    person("Kirill", "Müller", role = c("aut")),
-    person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut")))
+Authors@R: 
+    c(person(given = "Gábor",
+             family = "Csárdi",
+             role = c("aut", "cre"),
+             email = "csardi.gabor@gmail.com"),
+      person(given = "Kirill",
+             family = "Müller",
+             role = "aut"),
+      person(given = "Jim",
+             family = "Hester",
+             role = "aut",
+             email = "james.f.hester@gmail.com"),
+      person(given = "Maëlle",
+             family = "Salmon",
+             role = "ctb",
+             comment = c(ORCID = "0000-0002-2815-0399")))
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Tools to read, write, create, and manipulate DESCRIPTION files.
     It is intended for packages that create or manipulate other packages.
@@ -26,7 +38,7 @@ Imports:
     crayon,
     rprojroot
 Encoding: UTF-8
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.1.0.9000
 Collate: 
     'assertions.R'
     'authors-at-r.R'
