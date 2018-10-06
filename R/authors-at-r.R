@@ -327,7 +327,6 @@ idesc_coerce_authors_at_r <- function(self, private) {
 }
 
 
-
 # helper to add or replace ORCID in comment
 add_orcid_to_comment <- function(comment, orcid){
 
