@@ -4,8 +4,8 @@
 \alias{desc_set_dep}
 \title{Add a package dependency to a DESCRIPTION file}
 \usage{
-desc_set_dep(package, type = desc::dep_types, version = "*", file = ".",
-  normalize = FALSE)
+desc_set_dep(package, type = desc::dep_types, version = "*",
+  file = ".", normalize = FALSE)
 }
 \arguments{
 \item{package}{Package to depend on.}

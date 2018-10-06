@@ -4,8 +4,9 @@
 \alias{desc_del_author}
 \title{Remove one or more authors from DESCRIPTION.}
 \usage{
-desc_del_author(given = NULL, family = NULL, email = NULL, role = NULL,
-  comment = NULL, file = ".", normalize = FALSE)
+desc_del_author(given = NULL, family = NULL, email = NULL,
+  role = NULL, comment = NULL, orcid = NULL, file = ".",
+  normalize = FALSE)
 }
 \arguments{
 \item{given}{Given name to filter on. Regular expression.}
@@ -17,6 +18,8 @@ desc_del_author(given = NULL, family = NULL, email = NULL, role = NULL,
 \item{role}{Role to filter on. Regular expression.}
 
 \item{comment}{Comment field to filter on. Regular expression.}
+
+\item{orcid}{ORCID field to filter on.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
@@ -34,7 +37,8 @@ be removed. The specifications can be (PCRE) regular expressions.
 }
 \seealso{
 Other Authors@R: \code{\link{desc_add_author}},
-  \code{\link{desc_add_me}}, \code{\link{desc_add_role}},
+  \code{\link{desc_add_me}}, \code{\link{desc_add_orcid}},
+  \code{\link{desc_add_role}},
   \code{\link{desc_change_maintainer}},
   \code{\link{desc_coerce_authors_at_r}},
   \code{\link{desc_del_role}},
