@@ -40,7 +40,6 @@ test_that("we can add an author", {
 
 test_that("we can add an author with ORCID via comment", {
 
-
   R_version <- paste(R.version$major,
                    R.version$minor,
                    sep = ".")
@@ -58,7 +57,6 @@ test_that("we can add an author with ORCID via comment", {
     "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (<https://orcid.org/orcid_number>, he did it)"
   )
 })
-
 
 test_that("we can add an author with ORCID", {
 
@@ -80,7 +78,6 @@ test_that("we can add an author with ORCID", {
     "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (he did it, <https://orcid.org/orcid_number>)"
   )
 })
-
 
 test_that("we cannot add an author with malformatted comment", {
 
@@ -174,7 +171,6 @@ test_that("we cannot add the same ORCID to more than one author", {
                "More than one author correspond")
 
 })
-
 
 test_that("we can delete an author", {
   desc <- description$new("D2")
