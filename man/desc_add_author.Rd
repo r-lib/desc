@@ -5,7 +5,8 @@
 \title{Add an author to Authors@R in DESCRIPTION}
 \usage{
 desc_add_author(given = NULL, family = NULL, email = NULL,
-  role = NULL, comment = NULL, file = ".", normalize = FALSE)
+  role = NULL, comment = NULL, orcid = NULL, file = ".",
+  normalize = FALSE)
 }
 \arguments{
 \item{given}{Given name.}
@@ -17,6 +18,8 @@ desc_add_author(given = NULL, family = NULL, email = NULL,
 \item{role}{Role.}
 
 \item{comment}{Comment.}
+
+\item{orcid}{ORCID.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
@@ -30,6 +33,7 @@ Add an author to Authors@R in DESCRIPTION
 }
 \seealso{
 Other Authors@R: \code{\link{desc_add_me}},
+  \code{\link{desc_add_orcid}},
   \code{\link{desc_add_role}},
   \code{\link{desc_change_maintainer}},
   \code{\link{desc_del_author}},

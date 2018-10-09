@@ -297,16 +297,18 @@ with \code{Authors@R} fields and with traditional \code{Maintainer}
 fields as well.
 
 \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
-    role = NULL, comment = NULL)
-  description$add_me(role = "ctb", comment = NULL)
+    role = NULL, comment = NULL, orcid = NULL)
+  description$add_me(role = "ctb", comment = NULL, orcid = NULL)
 }
 Add a new author. The arguments correspond to the arguments of the
 \code{\link[utils]{person}} function. \code{add_me} is a convenience
 function, it adds the current user as an author, and it needs the
-\code{whoami} package to be installed.
+\code{whoami} package to be installed. It'll add your ORCID ID
+if you provide it as argument or save it as \code{ORCID_ID} environment
+variable in .Renviron.
 
 \preformatted{  description$del_author(given = NULL, family = NULL, email = NULL,
-    role = NULL, comment = NULL)
+    role = NULL, comment = NULL, orcid = NULL)
 }
 Remove an author, or multiple authors. The author(s) to be removed
 can be specified via any field(s). All authors matching all
@@ -315,11 +317,13 @@ is supplied, then all authors whole given name matches \code{Joe} will
 be removed. The specifications can be (PCRE) regular expressions.
 
 \preformatted{  description$add_role(role, given = NULL, family = NULL, email = NULL,
-    comment = NULL)
+    comment = NULL, orcid = NULL)
+    description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
+    comment = NULL, role = NULL)
   description$del_role(role, given = NULL, family = NULL, email = NULL,
-     comment = NULL)
+     comment = NULL, orcid = NULL)
   description$change_maintainer(given = NULL, family = NULL,
-    email = NULL, comment = NULL)
+    email = NULL, comment = NULL, orcid = NULL)
 }
 \code{role} is the role to add or delete. The other arguments
 are used to select a subset of the authors, on which the operation

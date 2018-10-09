@@ -38,7 +38,8 @@ test_that("we can add an author", {
   )
 })
 
-test_that("we can add an author with ORCID", {
+test_that("we can add an author with ORCID via comment", {
+
 
   R_version <- paste(R.version$major,
                    R.version$minor,
@@ -58,6 +59,29 @@ test_that("we can add an author with ORCID", {
   )
 })
 
+
+test_that("we can add an author with ORCID", {
+
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+
+  desc <- description$new(cmd = "!new")
+
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+                  role = "ctb",
+                  comment = c(what="he did it"),
+                  orcid = "orcid_number")
+
+  expect_identical(
+    format(desc$get_authors()[2]),
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (he did it, <https://orcid.org/orcid_number>)"
+  )
+})
+
+
 test_that("we cannot add an author with malformatted comment", {
 
   desc <- description$new(cmd = "!new")
@@ -71,11 +95,22 @@ test_that("we cannot add an author with malformatted comment", {
 })
 
 test_that("we can search for authors", {
-  desc <- description$new("D2")
+  desc <- description$new("D9")
   authors <- desc$get_authors()
 
   expect_equal(
     search_for_author(authors, given = "Hadley")$index,
+    1L
+  )
+
+  expect_equal(
+    search_for_author(authors, orcid = "0000-0003-4757-117X")$index,
+    1L
+  )
+
+
+  expect_equal(
+    search_for_author(authors, orcid = "117X")$index,
     1L
   )
 
@@ -93,6 +128,53 @@ test_that("we can add a role to an author", {
     "Gábor Csárdi <csardi.gabor@gmail.com> [ctb, cph] (Really?)"
   )
 })
+
+test_that("we can add an ORCID to an author", {
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+
+  desc <- description$new("D2")
+
+  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+                  role = "ctb", comment = "Really?")
+  desc$add_orcid(given = "Gábor", orcid = "notanorcid")
+
+  expect_identical(
+    format(desc$get_authors()[5]),
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?, <https://orcid.org/notanorcid>)"
+  )
+})
+
+test_that("we can replace the ORCID of an author", {
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+
+  desc <- description$new("D9")
+
+  desc$add_orcid(given = "Hadley", orcid = "notanorcid")
+
+  expect_identical(
+    format(desc$get_authors()[1]),
+    "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph] (<https://orcid.org/notanorcid>)"
+  )
+})
+
+test_that("we cannot add the same ORCID to more than one author", {
+
+  desc <- description$new("D10")
+
+  expect_error(desc$add_orcid(given = "Peter",
+                              orcid = "orcidid"),
+               "More than one author correspond")
+
+})
+
 
 test_that("we can delete an author", {
   desc <- description$new("D2")
@@ -152,6 +234,34 @@ test_that("add_me works", {
   expect_identical(
     format(desc$get_authors()[5]),
     "Bugs Bunny <bugs.bunny@acme.com> [ctb] (Yikes!)"
+  )
+})
+
+test_that("add_me can use ORCID_ID", {
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+  desc <- description$new("D2")
+  with_mock(
+    `desc:::check_for_package` = function(...) TRUE,
+    `whoami::fullname` = function() "Bugs Bunny",
+    `whoami::email_address` = function() "bugs.bunny@acme.com",
+    Sys.getenv = function(x){
+      if (x == "ORCID_ID") {
+        "orcid_number"
+      }else{
+        Sys.getenv(x)
+      }
+    },
+    desc$add_me()
+
+  )
+
+  expect_identical(
+    format(desc$get_authors()[5]),
+    "Bugs Bunny <bugs.bunny@acme.com> [ctb] (<https://orcid.org/orcid_number>)"
   )
 })
 
