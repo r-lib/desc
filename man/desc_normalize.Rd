@@ -13,6 +13,7 @@ is part of) is used.}
 }
 \description{
 Re-formats and re-orders fields in DESCRIPTION in a standard way.
+Reorders the packages alphabetically.
 }
 \seealso{
 Other repair functions: \code{\link{desc_reformat_fields}},
