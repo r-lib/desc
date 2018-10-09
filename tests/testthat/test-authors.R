@@ -172,6 +172,7 @@ test_that("we cannot add the same ORCID to more than one author", {
 
 })
 
+
 test_that("we can delete an author", {
   desc <- description$new("D2")
 
