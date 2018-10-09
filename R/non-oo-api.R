@@ -168,6 +168,7 @@ desc_to_latex <- generate_api("to_latex", self = FALSE)
 #' Normalize a DESCRIPTION file
 #'
 #' Re-formats and re-orders fields in DESCRIPTION in a standard way.
+#' Reorders alphabetically the packages.
 #'
 #' @inheritParams desc_set
 #' @family repair functions
@@ -641,7 +642,7 @@ desc_bump_version <- generate_api("bump_version")
 #'
 #' @inheritParams desc_set
 #' @return A list with fields \sQuote{R}, \sQuote{Platform}, \sQuote{Date},
-#' \sQuote{OStype}. 
+#' \sQuote{OStype}.
 #'
 #' @export
 #' @family built

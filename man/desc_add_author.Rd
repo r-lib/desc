@@ -4,8 +4,8 @@
 \alias{desc_add_author}
 \title{Add an author to Authors@R in DESCRIPTION}
 \usage{
-desc_add_author(given = NULL, family = NULL, email = NULL, role = NULL,
-  comment = NULL, file = ".", normalize = FALSE)
+desc_add_author(given = NULL, family = NULL, email = NULL,
+  role = NULL, comment = NULL, file = ".", normalize = FALSE)
 }
 \arguments{
 \item{given}{Given name.}
