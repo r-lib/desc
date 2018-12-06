@@ -468,10 +468,45 @@ desc_change_maintainer <- generate_api("change_maintainer")
 #' @param orcid ORCID, empty by default.
 #' @inheritParams desc_set
 #'
+#' @details
+#' \code{desc_add_me} is a convenience function, it adds the
+#'  current user as an author, and it needs the
+#' \code{whoami} package to be installed. It'll add your ORCID ID
+#' if you provide it as argument or save it as \code{ORCID_ID} environment
+#' variable in .Renviron.
+#' The full name is parsed using
+#' \code{as.person} and collapsing the given name and the family name
+#' in order to e.g. have the first and middle names together as given
+#' name. This approach might be limited to some full name structures.
+#'
 #' @family Authors@R
 #' @export
 
 desc_add_me <- generate_api("add_me")
+
+#' Add a GitHub user as an author to DESCRIPTION
+#'
+#' Uses the Authors@R field.
+#'
+#' @param username GitHub username of the GitHub user
+#' @param role Role to set for the user, defaults to contributor.
+#' @param comment Comment, empty by default.
+#' @param orcid ORCID, empty by default.
+#' @inheritParams desc_set
+#'
+#' @details
+#' \code{desc_add_author_gh} is a convenience function, it adds the
+#'  GitHub user as an author, and it needs the
+#' \code{gh} package to be installed.
+#' The full name is parsed using
+#' \code{as.person} and collapsing the given name and the family name
+#' in order to e.g. have the first and middle names together as given
+#' name. This approach might be limited to some full name structures.
+#'
+#' @family Authors@R
+#' @export
+
+desc_add_author_gh <- generate_api("add_author_gh")
 
 #' Query the package maintainer in DESCRIPTION
 #'

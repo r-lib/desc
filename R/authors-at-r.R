@@ -266,10 +266,28 @@ idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
     }
   }
 
-  fn <- strsplit(whoami::fullname(), "[ ]+")[[1]]
-  family <- tail(fn, 1)
-  given <- paste(fn[-length(fn)], collapse = " ")
+  fn <- parse_full_name(whoami::fullname())
+  family <- fn$family
+  given <- fn$given
   email <- whoami::email_address()
+  self$add_author(given = given, family = family, email = email,
+                  comment = comment, role = role, orcid = orcid)
+}
+
+idesc_add_author_gh <- function(self, private, username, role, comment, orcid = NULL) {
+  assert_that(is_string_or_null(role))
+  assert_that(is.character(username))
+  assert_that(is_named_character_or_null(comment))
+  assert_that(is_string_or_null(orcid))
+  check_for_package("gh", "$add_author_gh needs the 'gh' package")
+
+  gh_info <- gh::gh("GET /users/:username",
+                    username = username)
+
+  fn <- parse_full_name(gh_info$name)
+  family <- fn$family
+  given <- fn$given
+  email <- gh_info$email
   self$add_author(given = given, family = family, email = email,
                   comment = comment, role = role, orcid = orcid)
 }
