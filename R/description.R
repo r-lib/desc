@@ -308,7 +308,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
 #'     role = NULL, comment = NULL, orcid = NULL)
 #'   description$add_me(role = "ctb", comment = NULL, orcid = NULL)
-#'   description$add_author_gh(role = "ctb", username = "jeroen")
+#'   description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
 #' }
 #' Add a new author. The arguments correspond to the arguments of the
 #' \code{\link[utils]{person}} function. \code{add_me} is a convenience
@@ -707,7 +707,7 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
 'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
-Authors@R: 
+Authors@R:
     c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
       role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}
