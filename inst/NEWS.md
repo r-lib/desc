@@ -1,5 +1,8 @@
 * New `add_author_gh()` method and `desc_add_author_gh()` function to add an author using the information available from GitHub V3 API. This method and function depend on `gh` and are limited when the GitHub user fullname is incomplete or not well parsed by `as.person()` and when their email address isn't available. (@maelle, #71)
 
+* When using `desc_normalize()` the package dependencies are now alphabetically 
+  sorted. (#66, @llrs)
+
 * New `add_orcid()` method and `desc_add_orcid()` functions make it possible to add ORCID IDs to authors directly instead of via the `comment` argument. (@maelle, #70) 
 
 * All functions and methods managing authors (`add_me`, `add_author()`, `del_author()`, `add_role()`, `del_role()`, `change_maintainer()`, `search_for_author()`, etc.) gain an `orcid` argument. (@maelle, #70) 
