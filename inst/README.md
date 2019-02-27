@@ -246,6 +246,7 @@ desc$get_authors()
 ```r
 desc$add_author("Bugs", "Bunny", email = "bb@acme.com")
 desc$add_me()
+desc$add_author_gh("jeroen")
 desc$get_authors()
 ```
 

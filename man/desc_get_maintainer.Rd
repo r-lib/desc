@@ -18,8 +18,9 @@ A character scalar.
 Either from the \sQuote{Maintainer} or the \sQuote{Authors@R} field.
 }
 \seealso{
-Other Authors@R: \code{\link{desc_add_author}},
-  \code{\link{desc_add_me}}, \code{\link{desc_add_orcid}},
+Other Authors@R: \code{\link{desc_add_author_gh}},
+  \code{\link{desc_add_author}}, \code{\link{desc_add_me}},
+  \code{\link{desc_add_orcid}},
   \code{\link{desc_add_role}},
   \code{\link{desc_change_maintainer}},
   \code{\link{desc_del_author}},

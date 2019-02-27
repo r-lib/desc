@@ -114,3 +114,13 @@ mark_continuation_lines <- function(x) {
   x <- gsub("\n[ \t]*\n", "\n .\n ", x, perl = TRUE, useBytes = TRUE)
   gsub("\n \\.([^\n])", "\n  .\\1", x, perl = TRUE, useBytes = TRUE)
 }
+
+parse_full_name <- function(x) {
+  given <- paste(as.person(x)$given,
+                  collapse = " ")
+  family <- paste(as.person(x)$family,
+                   collapse = " ")
+
+  return(list(given = given,
+              family = family))
+}

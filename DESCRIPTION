@@ -31,7 +31,8 @@ Suggests:
     testthat,
     whoami,
     withr,
-    spelling
+    spelling,
+    gh
 Imports:
     assertthat,
     utils,

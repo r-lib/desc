@@ -308,6 +308,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
 #'     role = NULL, comment = NULL, orcid = NULL)
 #'   description$add_me(role = "ctb", comment = NULL, orcid = NULL)
+#'   description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
 #' }
 #' Add a new author. The arguments correspond to the arguments of the
 #' \code{\link[utils]{person}} function. \code{add_me} is a convenience
@@ -315,6 +316,10 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' \code{whoami} package to be installed. It'll add your ORCID ID
 #' if you provide it as argument or save it as \code{ORCID_ID} environment
 #' variable in .Renviron.
+#' The full name is parsed by \code{add_me} and \code{add_author_gh} using
+#' \code{as.person} and collapsing the given name and the family name
+#' in order to e.g. have the first and middle names together as given
+#' name. This approach might be limited to some full name structures.
 #'
 #' \preformatted{  description$del_author(given = NULL, family = NULL, email = NULL,
 #'     role = NULL, comment = NULL, orcid = NULL)
@@ -603,6 +608,11 @@ description <- R6Class("description",
     add_me = function(role = "ctb", comment = NULL, orcid = NULL)
       idesc_add_me(self, private, role, comment, orcid),
 
+    add_author_gh = function(username, role = "ctb", comment = NULL, orcid = NULL)
+      idesc_add_author_gh(self, private, role = role,
+                   username = username,
+                   comment = comment, orcid = orcid),
+
     get_maintainer = function()
       idesc_get_maintainer(self, private),
 
@@ -697,7 +707,7 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
 'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
-Authors@R: 
+Authors@R:
     c(person(given = "Jo", family = "Doe", email = "jodoe@dom.ain",
       role = c("aut", "cre")))
 Maintainer: {{ Maintainer }}
