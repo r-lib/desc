@@ -1,3 +1,5 @@
+* When using `desc_normalize()` the package dependencies are now alphabetically 
+  sorted. (#66, @llrs)
 
 * New `add_orcid()` method and `desc_add_orcid()` functions make it possible to add ORCID IDs to authors directly instead of via the `comment` argument. (@maelle, #70) 
 
