@@ -20,6 +20,19 @@ test_that("desc_add_me", {
   expect_match(desc_get(file = d, "Authors@R"), "first.last@dom.com")
 })
 
+test_that("desc_add_author_gh", {
+  d <- temp_desc()
+  on.exit(unlink(d))
+  with_mock(
+    `gh::gh` = function(...) list(name = "Jeroen Ooms",
+                                  email = "notanemail"),
+     desc_add_author_gh(file = d,
+                        username = "jeroen")
+  )
+  expect_match(desc_get(file = d, "Authors@R"), "Jeroen")
+  expect_match(desc_get(file = d, "Authors@R"), "notanemail")
+})
+
 test_that("desc_add_role", {
   d <- temp_desc()
   on.exit(unlink(d))

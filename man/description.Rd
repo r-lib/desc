@@ -304,6 +304,7 @@ functions such as \code{$get_authors}.
 \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL, orcid = NULL)
   description$add_me(role = "ctb", comment = NULL, orcid = NULL)
+  description$add_author_gh(role = "ctb", username = "jeroen")
 }
 Add a new author. The arguments correspond to the arguments of the
 \code{\link[utils]{person}} function. \code{add_me} is a convenience
@@ -311,6 +312,10 @@ function, it adds the current user as an author, and it needs the
 \code{whoami} package to be installed. It'll add your ORCID ID
 if you provide it as argument or save it as \code{ORCID_ID} environment
 variable in .Renviron.
+The full name is parsed by \code{add_me} and \code{add_author_gh} using
+\code{as.person} and collapsing the given name and the family name
+in order to e.g. have the first and middle names together as given
+name. This approach might be limited to some full name structures.
 
 \preformatted{  description$del_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL, orcid = NULL)

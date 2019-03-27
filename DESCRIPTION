@@ -30,7 +30,9 @@ Suggests:
     covr,
     testthat,
     whoami,
-    withr
+    withr,
+    spelling,
+    gh
 Imports:
     assertthat,
     utils,
@@ -60,3 +62,4 @@ Collate:
     'utils.R'
     'validate.R'
     'version.R'
+Language: en-US

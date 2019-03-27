@@ -9,7 +9,7 @@ test_that("check_for_package works", {
     check_for_package("foobarfoobarfoobar"),
     "Package 'foobarfoobarfoobar' is needed"
   )
-  
+
 })
 
 test_that("is_ascii", {
@@ -62,4 +62,25 @@ test_that("is_url_list", {
 
   expect_false(is_url_list("this is not it"))
   expect_false(is_url_list("http://so.far.so.good, oh, no!"))
+})
+
+test_that("parse_full_name works", {
+  # thanks charlatan::ch_name()
+  name <- "Chanie Reynolds"
+  parsed_name <- parse_full_name(name)
+  expect_equal(parsed_name$given, "Chanie")
+  expect_equal(parsed_name$family, "Reynolds")
+
+
+  name <- "Cathryn Schuster-Cruickshank"
+  parsed_name <- parse_full_name(name)
+  expect_equal(parsed_name$given, "Cathryn")
+  expect_equal(parsed_name$family, "Schuster-Cruickshank")
+
+  name <- "Petra J. Heaney"
+  parsed_name <- parse_full_name(name)
+  expect_equal(parsed_name$given, "Petra J.")
+  expect_equal(parsed_name$family, "Heaney")
+
+
 })

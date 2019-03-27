@@ -54,7 +54,7 @@ The object oriented API uses [R6](https://github.com/wch/R6) classes.
 
 ### Loading or creating new `DESCRIPTION` files
 
-A new `description` object can be created by reading a `DESCRPTION`
+A new `description` object can be created by reading a `DESCRIPTION`
 file form the disk. By default the `DESCRIPTION` file in the current
 directory is read:
 
@@ -126,6 +126,7 @@ desc <- description$new("DESCRIPTION2")
 desc$get_authors()
 desc$add_author("Bugs", "Bunny", email = "bb@acme.com")
 desc$add_me()
+desc$add_author_gh("jeroen")
 desc$get_authors()
 ```
 

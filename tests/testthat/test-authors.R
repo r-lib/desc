@@ -262,6 +262,20 @@ test_that("add_me can use ORCID_ID", {
   )
 })
 
+test_that("add_author_gh works", {
+  desc <- description$new("D2")
+  with_mock(
+    `gh::gh` = function(...) list(name = "Jeroen Ooms",
+                                  email = "notanemail"),
+    desc$add_author_gh(username = "jeroen")
+  )
+
+  expect_identical(
+    format(desc$get_authors()[5]),
+    "Jeroen Ooms <notanemail> [ctb]"
+  )
+})
+
 test_that("error if not Authors@R field", {
 
   desc <- description$new("D1")
