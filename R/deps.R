@@ -6,15 +6,28 @@ idesc_set_dep <- function(self, private, package, type, version) {
 
   if (length(has)) {
     deps[ has, "version" ] <- version
-
   } else {
-    deps <- rbind(
-      deps,
-      data.frame(
-        stringsAsFactors = FALSE,
-        type = type, package = package, version = version
-      )
+    row <- data.frame(
+      stringsAsFactors = FALSE,
+      type = type, package = package, version = version
     )
+    others <- deps$package[deps$type == type]
+    sorted <- !is.unsorted(others) && length(others) > 0
+
+    if (sorted) {
+      # find first row it should come after
+      idx <- which(deps$type == type && package > deps$package)
+      if (length(idx) == 0) {
+        # must be first
+        idx <- which(deps$type == type)[[1]]
+      } else {
+        idx <- idx[[1]] + 1
+      }
+    } else {
+      idx <- nrow(deps) + 1
+    }
+
+    deps <- insert_row(deps, row, where = idx)
   }
 
   idesc_set_deps(self, private, deps)
@@ -148,3 +161,15 @@ idesc_has_dep <- function(self, private, package, type) {
       type %in% deps[match(package, deps$package), "type"]
   }
 }
+
+insert_row <- function(x, y, where = 1L) {
+  if (where == 1L) {
+    rbind(y, x)
+  } else if (where > nrow(x)) {
+    rbind(x, y)
+  } else {
+    top <- 1:(where - 1)
+    rbind(x[top, , drop = FALSE], y, x[-top, , drop = FALSE])
+  }
+}
+

@@ -15,7 +15,6 @@ is_ascii <- function(x) {
   )
 }
 
-
 ## This is from tools/R/QC.R
 ## We do not calculate code coverage for this, as
 ## it is run at install time

@@ -1,3 +1,5 @@
+* `desc_set_deps()` now inserts new packages in alphabetical order, if the existing packages are already in alphabetical order
+
 * New `add_author_gh()` method and `desc_add_author_gh()` function to add an author using the information available from GitHub V3 API. This method and function depend on `gh` and are limited when the GitHub user fullname is incomplete or not well parsed by `as.person()` and when their email address isn't available. (@maelle, #71)
 
 * When using `desc_normalize()` the package dependencies are now alphabetically 
