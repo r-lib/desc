@@ -17,8 +17,8 @@ argument.}
 default), then the \code{DESCRIPTION} file in the current working
 directory is used. The file can also be an R package (source, or
 binary), in which case the DESCRIPTION file is extracted from it, but
-note that in this case \code{$write()} cannot write the file back in
-the package archive.}
+note that in this case \code{$write()} may modify the entire package
+archive.}
 
 \item{text}{A character scalar containing the full DESCRIPTION.
 Character vectors are collapsed into a character scalar, with

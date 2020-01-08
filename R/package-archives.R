@@ -38,7 +38,7 @@ is_valid_package_file_name <- function(filename) {
   grepl(valid_package_archive_name, basename(filename))
 }
 
-#' @importFrom utils untar unzip
+#' @importFrom utils tar untar unzip zip
 
 con_unzip <- function(archive, pkgname) {
   filename <-  paste0(pkgname, "/", "DESCRIPTION")
@@ -70,4 +70,48 @@ get_description_from_package <- function(file) {
   }
 
   desc
+}
+
+write_description_to_archive <- function(file, desc) {
+  package_name <- sub("_.*$", "", basename(file))
+
+  # Mirror the conditions under which the package archive was created so that we
+  # match the path structure.
+  dir.create(dir <- tempfile("desc"))
+  oldwd <- getwd()
+  setwd(dir)
+  on.exit({
+    setwd(oldwd)
+    unlink(dir, recursive = TRUE)
+  })
+
+  # The easy case: zip supports replacing files individually.
+  if (is_zip_file(file)) {
+    dir.create(file.path(dir, package_name))
+    file.create(file.path(dir, package_name, "DESCRIPTION"))
+    desc$write(
+      file = file.path(dir, package_name, "DESCRIPTION")
+    )
+    # Note: the -r flag is the key here.
+    zip(file, files = file.path(package_name, "DESCRIPTION"), flags = "-r9Xq")
+  } else {
+    # The hard case: tar does not support replacing files, especially not with
+    # the "internal" method. So we untar everything, then tar it back up again.
+    suppressWarnings(
+      untar(con <- gzfile(file, open = "rb"), exdir = dir)
+    )
+    on.exit(close(con), add = TRUE)
+
+    desc$write(
+      file = file.path(dir, package_name, "DESCRIPTION")
+    )
+
+    # Match the tools/build.R invocation.
+    tar(
+      file, package_name, compression = "gzip", compression_level = 9L,
+      tar = Sys.getenv("R_BUILD_TAR"), extra_flags = NULL
+    )
+  }
+
+  invisible(desc)
 }

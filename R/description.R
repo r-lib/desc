@@ -15,8 +15,8 @@
 #'   default), then the \code{DESCRIPTION} file in the current working
 #'   directory is used. The file can also be an R package (source, or
 #'   binary), in which case the DESCRIPTION file is extracted from it, but
-#'   note that in this case \code{$write()} cannot write the file back in
-#'   the package archive.
+#'   note that in this case \code{$write()} may modify the entire package
+#'   archive.
 #' @param text A character scalar containing the full DESCRIPTION.
 #'   Character vectors are collapsed into a character scalar, with
 #'   newline as the separator.
@@ -63,8 +63,8 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'     are all \code{NULL} (the default), then the search is started from
 #'     the working directory. The file can also be an R package (source, or
 #'     binary), in which case the DESCRIPTION file is extracted from it,
-#'     but note that in this case \code{$write()} cannot write the file
-#'     back in the package archive.}
+#'     but note that in this case \code{$write()} may modify the entire
+#'     package archive.}
 #'   \item{text:}{A character scalar containing the full DESCRIPTION.
 #'     Character vectors are collapsed into a character scalar, with
 #'     newline as the separator.}
@@ -729,11 +729,10 @@ idesc_create_file <- function(self, private, file) {
   if (file.exists(file) && is_dir(file)) file <- find_description(file)
   assert_that(is_existing_file(file))
 
+  private$path <- normalizePath(file)
+
   if (is_package_archive(file)) {
     file <- get_description_from_package(file)
-
-  } else {
-    private$path <- normalizePath(file)
   }
 
   tryCatch(
@@ -767,6 +766,9 @@ idesc_create_package <- function(self, private, package) {
 
 idesc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
+  if (file.exists(file) && is_package_archive(file)) {
+    return(write_description_to_archive(file, self))
+  }
   if (is.null(file)) {
     stop("Cannot write back DESCRIPTION. Note that it is not possible
           to update DESCRIPTION files within package archives")
