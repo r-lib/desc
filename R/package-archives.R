@@ -72,7 +72,26 @@ get_description_from_package <- function(file) {
   desc
 }
 
-write_description_to_archive <- function(file, desc) {
+update_metadata <- function(meta_file, private) {
+  # TODO: tools:::.read_description() encodes this slightly differently than
+  # idesc_as_matrix() as it does not keep whitespace for fields other than those
+  # in tools:::.keep_white_description_fields.
+  mat <- idesc_as_matrix(private$data)
+  if ("Encoding" %in% colnames(mat)) {
+    encoding <- mat[, "Encoding"]
+    mat[] <- iconv(mat[], from = "UTF-8", to = encoding)
+    Encoding(mat) <- encoding
+  }
+  db <- mat[1,]
+  # Drop the Archs field, which is not present in Meta_File/packages.rds.
+  db <- db[names(db) != "Archs"]
+
+  pkg_desc <- readRDS(meta_file)
+  pkg_desc$DESCRIPTION <- db
+  saveRDS(pkg_desc, meta_file)
+}
+
+write_description_to_archive <- function(file, desc, private) {
   package_name <- sub("_.*$", "", basename(file))
 
   # Mirror the conditions under which the package archive was created so that we
@@ -87,13 +106,26 @@ write_description_to_archive <- function(file, desc) {
 
   # The easy case: zip supports replacing files individually.
   if (is_zip_file(file)) {
-    dir.create(file.path(dir, package_name))
+    dir.create(file.path(dir, package_name, "Meta"), recursive = TRUE)
     file.create(file.path(dir, package_name, "DESCRIPTION"))
     desc$write(
       file = file.path(dir, package_name, "DESCRIPTION")
     )
+
+    # We also need to extract and modify Meta/package.rds to keep it consistent
+    # with any updates to the DESCRIPTION file.
+    con <- unz(file, file.path(package_name, "Meta", "package.rds"), "rb")
+    on.exit(close(con), add = TRUE)
+    meta_file <- file.path(dir, package_name, "Meta", "package.rds")
+    writeBin(readBin(con, "raw", 1e5), meta_file)
+    update_metadata(meta_file, private)
+
+    files <- c(
+      file.path(package_name, "DESCRIPTION"),
+      file.path(package_name, "Meta", "package.rds")
+    )
     # Note: the -r flag is the key here.
-    zip(file, files = file.path(package_name, "DESCRIPTION"), flags = "-r9Xq")
+    zip(file, files = files, flags = "-r9Xq")
   } else {
     # The hard case: tar does not support replacing files, especially not with
     # the "internal" method. So we untar everything, then tar it back up again.
@@ -105,6 +137,13 @@ write_description_to_archive <- function(file, desc) {
     desc$write(
       file = file.path(dir, package_name, "DESCRIPTION")
     )
+
+    # As above, keep Meta/package.rds consistent with any updates to the
+    # DESCRIPTION file.
+    meta_file <- file.path(dir, package_name, "Meta", "packages.rds")
+    if (file.exists(meta_file)) {
+      update_metadata(meta_file, private)
+    }
 
     # Match the tools/build.R invocation.
     tar(

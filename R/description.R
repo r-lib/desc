@@ -767,7 +767,7 @@ idesc_create_package <- function(self, private, package) {
 idesc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
   if (file.exists(file) && is_package_archive(file)) {
-    return(write_description_to_archive(file, self))
+    return(write_description_to_archive(file, self, private))
   }
   if (is.null(file)) {
     stop("Cannot write back DESCRIPTION. Note that it is not possible
