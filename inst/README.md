@@ -33,7 +33,7 @@ procedural and manipulates the files *in place*.
 
 
 ```r
-source("https://install-github.me/r-lib/desc")
+install.packages("desc")
 ```
 
 ## The object oriented API
