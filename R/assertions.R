@@ -21,6 +21,14 @@ is_character <- function(x) {
   is.character(x) && all(! is.na(x))
 }
 
+is_character_or_null <- function(x){
+  is.null(x) || is_character(x)
+}
+
+on_failure(is_character_or_null) <- function(call, env) {
+  paste0(deparse(call$x), " is not a character vector")
+}
+
 is_named_character_or_null <- function(x){
   is.null(x) ||
     is.character(x) && length(x) == 1 && !is.na(x) ||

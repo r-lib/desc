@@ -106,7 +106,7 @@ check_author_args <- function(given = NULL, family = NULL, email = NULL,
     is_string_or_null(given),
     is_string_or_null(family),
     is_string_or_null(email),
-    is_string_or_null(role),
+    is_character_or_null(role),
     is_named_character_or_null(comment),
     is_string_or_null(orcid)
   )
