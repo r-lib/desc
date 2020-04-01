@@ -1,3 +1,5 @@
+* `check_author_args()` now allows character vector with any length for `role` argument. This accepts specifying multiple roles for `role` argument in fuctions such as `add_author()`. (#89)
+
 * `desc_set_deps()` now inserts new packages in alphabetical order, if the existing packages are already in alphabetical order
 
 * New `add_author_gh()` method and `desc_add_author_gh()` function to add an author using the information available from GitHub V3 API. This method and function depend on `gh` and are limited when the GitHub user fullname is incomplete or not well parsed by `as.person()` and when their email address isn't available. (@maelle, #71)
