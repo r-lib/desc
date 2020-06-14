@@ -54,7 +54,7 @@ test_that("we can add an author with ORCID via comment", {
 
   expect_identical(
     format(desc$get_authors()[2]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (<https://orcid.org/orcid_number>, he did it)"
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (orcid_number, he did it)"
   )
 })
 
@@ -75,7 +75,7 @@ test_that("we can add an author with ORCID", {
 
   expect_identical(
     format(desc$get_authors()[2]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (he did it, <https://orcid.org/orcid_number>)"
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (he did it, orcid_number)"
   )
 })
 
@@ -141,7 +141,7 @@ test_that("we can add an ORCID to an author", {
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?, <https://orcid.org/notanorcid>)"
+    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?, notanorcid)"
   )
 })
 
@@ -158,7 +158,7 @@ test_that("we can replace the ORCID of an author", {
 
   expect_identical(
     format(desc$get_authors()[1]),
-    "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph] (<https://orcid.org/notanorcid>)"
+    "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph] (notanorcid)"
   )
 })
 
@@ -258,7 +258,7 @@ test_that("add_me can use ORCID_ID", {
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Bugs Bunny <bugs.bunny@acme.com> [ctb] (<https://orcid.org/orcid_number>)"
+    "Bugs Bunny <bugs.bunny@acme.com> [ctb] (orcid_number)"
   )
 })
 
