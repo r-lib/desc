@@ -16,12 +16,10 @@ idesc_set_dep <- function(self, private, package, type, version) {
 
     if (sorted) {
       # find first row it should come after
-      idx <- which(deps$type == type && package > deps$package)
+      idx <- which(deps$type == type & package < deps$package)
       if (length(idx) == 0) {
         # must be first
         idx <- which(deps$type == type)[[1]]
-      } else {
-        idx <- idx[[1]] + 1
       }
     } else {
       idx <- nrow(deps) + 1
