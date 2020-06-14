@@ -84,6 +84,13 @@ test_that("set_dep preserves order", {
     desc$get_deps()$package,
     c("covr", "R6", "testthat")
   )
+  desc$set_dep('styler', 'Imports')
+  expect_equal(
+    desc$get_deps()$package,
+    c("covr", "R6", 'styler', "testthat")
+  )
+
+
 })
 test_that("set_dep inserts at end if not ordered", {
   desc <- description$new("!new")
