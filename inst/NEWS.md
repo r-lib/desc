@@ -1,4 +1,7 @@
-* `check_author_args()` now allows character vector with any length for `role` argument. This accepts specifying multiple roles for `role` argument in fuctions such as `add_author()`. (#89)
+
+# Development version
+
+* `add_author()` and similar functions now allow a character vector of multiple roles (@niceume, #89).
 
 * `desc_set_deps()` now inserts new packages in alphabetical order, if the existing packages are already in alphabetical order
 
