@@ -26,7 +26,7 @@ is_character_or_null <- function(x){
 }
 
 on_failure(is_character_or_null) <- function(call, env) {
-  paste0(deparse(call$x), " must be a character vector, if given")
+  paste0(deparse(call$x), " must be a character vector, or NULL")
 }
 
 is_named_character_or_null <- function(x){
