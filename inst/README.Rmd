@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
 [![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/desc)](http://www.r-pkg.org/pkg/desc)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/desc/master.svg)](https://codecov.io/github/r-lib/desc?branch=master)
 
 Parse, manipulate and reformat DESCRIPTION files. The package
