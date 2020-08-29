@@ -9,6 +9,7 @@
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
 [![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/desc)](http://www.r-pkg.org/pkg/desc)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/desc/master.svg)](https://codecov.io/github/r-lib/desc?branch=master)
 
 Parse, manipulate and reformat DESCRIPTION files. The package
@@ -49,7 +50,7 @@ The object oriented API uses [R6](https://github.com/wch/R6) classes.
 
 ### Loading or creating new `DESCRIPTION` files
 
-A new `description` object can be created by reading a `DESCRPTION`
+A new `description` object can be created by reading a `DESCRIPTION`
 file form the disk. By default the `DESCRIPTION` file in the current
 directory is read:
 
@@ -74,9 +75,9 @@ desc
 #> Imports:
 #>     R6
 #> Suggests:
+#>     newpackage,
 #>     testthat,
-#>     whoami,
-#>     newpackage
+#>     whoami
 #> Encoding: UTF-8
 #> LazyData: true
 #> RoxygenNote: 5.0.0
@@ -169,8 +170,8 @@ desc$get_deps()
 #> 1  Suggests   testthat       *
 #> 2  Suggests     whoami       *
 #> 3  Suggests newpackage       *
-#> 4   Imports         R6       *
-#> 5   Imports    mvtnorm       *
+#> 4   Imports    mvtnorm       *
+#> 5   Imports         R6       *
 #> 6 LinkingTo       Rcpp       *
 ```
 
@@ -191,12 +192,12 @@ desc
 #> URL: https://github.com/r-lib/desc
 #> BugReports: https://github.com/r-lib/desc/issues
 #> Imports:
-#>     R6,
-#>     mvtnorm
+#>     mvtnorm,
+#>     R6
 #> Suggests:
+#>     newpackage,
 #>     testthat,
-#>     whoami,
-#>     newpackage
+#>     whoami
 #> LinkingTo:
 #>     Rcpp
 #> Encoding: UTF-8
@@ -216,13 +217,13 @@ desc$get_collate()
 ```
 
 ```
-#>  [1] "assertions.R"       "authors-at-r.R"     "classes.R"         
-#>  [4] "collate.R"          "constants.R"        "deps.R"            
-#>  [7] "description.R"      "encoding.R"         "latex.R"           
-#> [10] "non-oo-api.R"       "package-archives.R" "read.R"            
-#> [13] "remotes.R"          "str.R"              "syntax_checks.R"   
-#> [16] "urls.R"             "utils.R"            "validate.R"        
-#> [19] "version.R"
+#>  [1] "assertions.R"       "authors-at-r.R"     "built.R"           
+#>  [4] "classes.R"          "collate.R"          "constants.R"       
+#>  [7] "deps.R"             "description.R"      "encoding.R"        
+#> [10] "latex.R"            "non-oo-api.R"       "package-archives.R"
+#> [13] "read.R"             "remotes.R"          "str.R"             
+#> [16] "syntax_checks.R"    "urls.R"             "utils.R"           
+#> [19] "validate.R"         "version.R"
 ```
 
 ### Authors
@@ -257,6 +258,7 @@ desc$get_authors()
 #> [4] "RStudio [cph]"                                       
 #> [5] "Bugs Bunny <bb@acme.com>"                            
 #> [6] "Gabor Csardi <csardi.gabor@gmail.com> [ctb]"
+#> [7] "Jeroen Ooms [ctb]"
 ```
 
 ## The procedural API
@@ -290,9 +292,9 @@ desc_set_dep("newpackage", "Suggests")
 #> Imports:
 #>     R6
 #> Suggests:
+#>     newpackage,
 #>     testthat,
-#>     whoami,
-#>     newpackage
+#>     whoami
 #> Encoding: UTF-8
 #> LazyData: true
 #> RoxygenNote: 5.0.0
