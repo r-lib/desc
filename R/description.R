@@ -703,7 +703,7 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
   assert_that(is_constructor_cmd(cmd))
 
   if (cmd == "!new") {
-    idesc_create_text(self, private, text =
+    txt <-
 'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
@@ -717,7 +717,9 @@ LazyData: true
 URL: {{ URL }}
 BugReports: {{ BugReports }}
 Encoding: UTF-8
-')
+'
+    txt <- sub("Authors@R:", "Authors@R: ", txt)
+    idesc_create_text(self, private, text = txt)
   }
 
   invisible(self)
