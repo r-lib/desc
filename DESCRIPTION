@@ -34,7 +34,6 @@ Suggests:
     spelling,
     gh
 Imports:
-    assertthat,
     utils,
     R6,
     crayon,

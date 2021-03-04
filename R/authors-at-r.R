@@ -74,14 +74,14 @@ search_for_author <- function(authors, given = NULL, family = NULL,
 
 
 idesc_get_authors <- function(self, private, ensure = TRUE) {
-  assert_that(is_flag(ensure))
+  stopifnot(is_flag(ensure))
   if (ensure) ensure_authors_at_r(self)
   parse_authors_at_r(self$get("Authors@R"))
 }
 
 
 idesc_get_author <- function(self, private, role) {
-  assert_that(is_string(role))
+  stopifnot(is_string(role))
   if (self$has_fields("Authors@R")) {
     aut <- self$get_authors()
     roles <- aut$role
@@ -95,14 +95,14 @@ idesc_get_author <- function(self, private, role) {
 }
 
 idesc_set_authors <- function(self, private, authors) {
-  assert_that(is_authors(authors))
+  stopifnot(is_authors(authors))
   self$set("Authors@R", deparse_authors_at_r(authors))
 }
 
 check_author_args <- function(given = NULL, family = NULL, email = NULL,
                               role = NULL, comment = NULL,
                               orcid = NULL) {
-  assert_that(
+  stopifnot(
     is_string_or_null(given),
     is_string_or_null(family),
     is_string_or_null(email),
@@ -133,7 +133,7 @@ idesc_add_author <- function(self, private, given, family, email, role,
 idesc_add_role <- function(self, private, role, given, family, email,
                            comment, orcid = NULL) {
 
-  assert_that(is.character(role))
+  stopifnot(is.character(role))
   check_author_args(given, family, email, comment = comment,
                     orcid = orcid)
 
@@ -218,7 +218,7 @@ idesc_del_author <- function(self, private, given, family, email, role,
 idesc_del_role <- function(self, private, role, given, family, email,
                           comment, orcid = NULL) {
 
-  assert_that(is.character(role))
+  stopifnot(is.character(role))
   check_author_args(given, family, email, role = NULL, comment, orcid)
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
@@ -253,9 +253,11 @@ idesc_change_maintainer <- function(self, private, given, family, email,
 #' @importFrom utils tail
 
 idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
-  assert_that(is_string_or_null(role))
-  assert_that(is_named_character_or_null(comment))
-  assert_that(is_string_or_null(orcid))
+  stopifnot(
+    is_string_or_null(role),
+    is_named_character_or_null(comment),
+    is_string_or_null(orcid)
+  )
   check_for_package("whoami", "$add_me needs the 'whoami' package")
 
  # guess ORCID
@@ -275,10 +277,12 @@ idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
 }
 
 idesc_add_author_gh <- function(self, private, username, role, comment, orcid = NULL) {
-  assert_that(is_string_or_null(role))
-  assert_that(is.character(username))
-  assert_that(is_named_character_or_null(comment))
-  assert_that(is_string_or_null(orcid))
+  stopifnot(
+    is_string_or_null(role),
+    is.character(username),
+    is_named_character_or_null(comment),
+    is_string_or_null(orcid)
+  )
   check_for_package("gh", "$add_author_gh needs the 'gh' package")
 
   gh_info <- gh::gh("GET /users/:username",

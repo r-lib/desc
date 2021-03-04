@@ -92,7 +92,7 @@ test_that("we cannot add an author with malformatted comment", {
   expect_error(desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
                   role = "ctb",
                   comment = c(ORCID = "orcid_number", what=NA)),
-               "comment is not")
+               "is_named_character_or_null")
 
 
 })

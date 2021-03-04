@@ -1,6 +1,6 @@
 
 idesc_set_dep <- function(self, private, package, type, version) {
-  assert_that(is_string(package), is_string(version))
+  stopifnot(is_string(package), is_string(version))
   deps <- self$get_deps()
   has <- which(deps$package == package & deps$type == type)
 
@@ -35,7 +35,7 @@ idesc_set_dep <- function(self, private, package, type, version) {
 
 
 idesc_set_deps <- function(self, private, deps) {
-  assert_that(is_deps_df(deps))
+  stopifnot(is_deps_df(deps))
   depdeps <- deparse_deps(deps)
   for (d in names(depdeps)) {
     if (! same_deps(depdeps[[d]], private$data[[d]]$value)) {
@@ -125,7 +125,7 @@ deparse_deps <- function(deps) {
 
 
 idesc_del_dep <- function(self, private, package, type) {
-  assert_that(is_string(package))
+  stopifnot(is_string(package))
   deps <- self$get_deps()
 
   if (type == "all") {
@@ -150,7 +150,7 @@ idesc_del_deps <- function(self, private) {
 
 
 idesc_has_dep <- function(self, private, package, type) {
-  assert_that(is_string(package))
+  stopifnot(is_string(package))
 
   deps <- self$get_deps()
   if (type == "any") {
