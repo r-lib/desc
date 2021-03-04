@@ -1,11 +1,13 @@
+---
+output: github_document
+---
 
 ```{r, setup, echo = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
   tidy = FALSE,
-  error = FALSE,
-  fig.width = 8,
-  fig.height = 8)
+  error = FALSE
+)
 ```
 
 # desc
@@ -58,8 +60,15 @@ A new `description` object can be created by reading a `DESCRIPTION`
 file form the disk. By default the `DESCRIPTION` file in the current
 directory is read:
 
-```{r}
+```{r include = FALSE}
+desc <- description$new("tools/pkg1")
+```
+
+```{r eval = FALSE}
 desc <- description$new()
+```
+
+```{r}
 desc
 ```
 
@@ -122,7 +131,7 @@ Authors information, when specified via the `Authors@R` field,
 also has a simplified API:
 
 ```{r}
-desc <- description$new("DESCRIPTION2")
+desc <- description$new("tools/pkg2")
 desc$get_authors()
 desc$add_author("Bugs", "Bunny", email = "bb@acme.com")
 desc$add_me()
@@ -143,6 +152,10 @@ current working directory can be done with
 
 ```{r}
 desc_set_dep("newpackage", "Suggests")
+```
+
+```{r include = FALSE}
+desc_del_dep("newpackage")
 ```
 
 This added `newpackage` to the `Suggests` field:
