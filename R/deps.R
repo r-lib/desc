@@ -12,11 +12,11 @@ idesc_set_dep <- function(self, private, package, type, version) {
       type = type, package = package, version = version
     )
     others <- deps$package[deps$type == type]
-    sorted <- !is.unsorted(others) && length(others) > 0
+    sorted <- !is.unsorted(tolower(others)) && length(others) > 0
 
     if (sorted) {
       # find first row it should come after
-      idx <- which(deps$type == type & package > deps$package)
+      idx <- which(deps$type == type & tolower(package) > tolower(deps$package))
       if (length(idx) == 0) {
         # must be first
         idx <- which(deps$type == type)[[1]]
