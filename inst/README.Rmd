@@ -12,11 +12,11 @@ knitr::opts_chunk$set(
 
 > Parse DESCRIPTION files
 
-[![Linux Build Status](https://travis-ci.org/r-lib/desc.svg?branch=master)](https://travis-ci.org/r-lib/desc)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
+![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![R build status](https://github.com/r-lib/desc/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/desc/actions)
 [![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/desc)](http://www.r-pkg.org/pkg/desc)
-[![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/desc/master.svg)](https://codecov.io/github/r-lib/desc?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/r-lib/pak/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/pak?branch=master)
 
 Parse, manipulate and reformat DESCRIPTION files. The package
 provides two APIs, one is object oriented, the other one is
