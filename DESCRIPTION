@@ -40,7 +40,8 @@ Imports:
     crayon,
     rprojroot
 Encoding: UTF-8
-RoxygenNote: 6.1.0.9000
+RoxygenNote: 7.1.1.9000
+Roxygen: list(r6 = FALSE, load = "installed")
 Collate: 
     'assertions.R'
     'authors-at-r.R'

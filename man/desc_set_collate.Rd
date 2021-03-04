@@ -4,8 +4,12 @@
 \alias{desc_set_collate}
 \title{Set the Collate field in DESCRIPTION}
 \usage{
-desc_set_collate(files, which = c("main", "windows", "unix"),
-  file = ".", normalize = FALSE)
+desc_set_collate(
+  files,
+  which = c("main", "windows", "unix"),
+  file = ".",
+  normalize = FALSE
+)
 }
 \arguments{
 \item{files}{Collate field to set, as a character vector.}
@@ -24,9 +28,10 @@ the result. See \code{\link{desc_normalize}}.}
 Set the Collate field in DESCRIPTION
 }
 \seealso{
-Other Collate field: \code{\link{desc_add_to_collate}},
-  \code{\link{desc_del_collate}},
-  \code{\link{desc_del_from_collate}},
-  \code{\link{desc_get_collate}}
+Other Collate field: 
+\code{\link{desc_add_to_collate}()},
+\code{\link{desc_del_collate}()},
+\code{\link{desc_del_from_collate}()},
+\code{\link{desc_get_collate}()}
 }
 \concept{Collate field}

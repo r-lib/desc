@@ -4,7 +4,9 @@
 \name{dep_types}
 \alias{dep_types}
 \title{DESCRIPTION fields that denote package dependencies}
-\format{An object of class \code{character} of length 5.}
+\format{
+An object of class \code{character} of length 5.
+}
 \usage{
 dep_types
 }
@@ -14,8 +16,9 @@ Suggests, Enhances and LinkingTo. See the \emph{Writing R Extensions}
 manual for when to use which.
 }
 \seealso{
-Other field types: \code{\link{cran_ascii_fields}},
-  \code{\link{cran_valid_fields}}
+Other field types: 
+\code{\link{cran_ascii_fields}},
+\code{\link{cran_valid_fields}}
 }
 \concept{field types}
 \keyword{datasets}

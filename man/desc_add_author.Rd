@@ -4,9 +4,16 @@
 \alias{desc_add_author}
 \title{Add an author to Authors@R in DESCRIPTION}
 \usage{
-desc_add_author(given = NULL, family = NULL, email = NULL,
-  role = NULL, comment = NULL, orcid = NULL, file = ".",
-  normalize = FALSE)
+desc_add_author(
+  given = NULL,
+  family = NULL,
+  email = NULL,
+  role = NULL,
+  comment = NULL,
+  orcid = NULL,
+  file = ".",
+  normalize = FALSE
+)
 }
 \arguments{
 \item{given}{Given name.}
@@ -32,15 +39,17 @@ the result. See \code{\link{desc_normalize}}.}
 Add an author to Authors@R in DESCRIPTION
 }
 \seealso{
-Other Authors@R: \code{\link{desc_add_author_gh}},
-  \code{\link{desc_add_me}}, \code{\link{desc_add_orcid}},
-  \code{\link{desc_add_role}},
-  \code{\link{desc_change_maintainer}},
-  \code{\link{desc_del_author}},
-  \code{\link{desc_del_role}},
-  \code{\link{desc_get_authors}},
-  \code{\link{desc_get_author}},
-  \code{\link{desc_get_maintainer}},
-  \code{\link{desc_set_authors}}
+Other Authors@R: 
+\code{\link{desc_add_author_gh}()},
+\code{\link{desc_add_me}()},
+\code{\link{desc_add_orcid}()},
+\code{\link{desc_add_role}()},
+\code{\link{desc_change_maintainer}()},
+\code{\link{desc_del_author}()},
+\code{\link{desc_del_role}()},
+\code{\link{desc_get_authors}()},
+\code{\link{desc_get_author}()},
+\code{\link{desc_get_maintainer}()},
+\code{\link{desc_set_authors}()}
 }
 \concept{Authors@R}

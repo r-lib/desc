@@ -4,7 +4,9 @@
 \name{cran_valid_fields}
 \alias{cran_valid_fields}
 \title{A list of DESCRIPTION fields that are valid according to the CRAN checks}
-\format{An object of class \code{character} of length 125.}
+\format{
+An object of class \code{character} of length 125.
+}
 \usage{
 cran_valid_fields
 }
@@ -12,8 +14,9 @@ cran_valid_fields
 A list of DESCRIPTION fields that are valid according to the CRAN checks
 }
 \seealso{
-Other field types: \code{\link{cran_ascii_fields}},
-  \code{\link{dep_types}}
+Other field types: 
+\code{\link{cran_ascii_fields}},
+\code{\link{dep_types}}
 }
 \concept{field types}
 \keyword{datasets}

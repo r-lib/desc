@@ -4,9 +4,8 @@
 \name{description}
 \alias{description}
 \title{Read, write, update, validate DESCRIPTION files}
-\format{An R6 class.}
-\usage{
-description
+\format{
+An R6 class.
 }
 \description{
 Read, write, update, validate DESCRIPTION files
@@ -299,7 +298,7 @@ fields as well.
 \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL, orcid = NULL)
   description$add_me(role = "ctb", comment = NULL, orcid = NULL)
-  description$add_author_gh(role = "ctb", username = "jeroen")
+  description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
 }
 Add a new author. The arguments correspond to the arguments of the
 \code{\link[utils]{person}} function. \code{add_me} is a convenience
@@ -450,4 +449,3 @@ desc2$set(VignetteBuilder = "knitr")
 desc2$get("VignetteBuilder")
 desc2
 }
-\keyword{datasets}
