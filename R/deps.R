@@ -157,8 +157,7 @@ idesc_has_dep <- function(self, private, package, type) {
     package %in% deps$package
 
   } else {
-    package %in% deps$package &&
-      type %in% deps[match(package, deps$package), "type"]
+    any(deps$package == package & deps$type == type)
   }
 }
 

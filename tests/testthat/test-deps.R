@@ -170,6 +170,14 @@ test_that("has_dep", {
   expect_error(desc$has_dep("testthat", "xxx"))
 })
 
+test_that("has_dep works when package listed twice", {
+  desc <- description$new("D2")
+  expect_true(desc$has_dep("Rcpp"))
+  expect_true(desc$has_dep("Rcpp", "Imports"))
+  expect_true(desc$has_dep("Rcpp", "LinkingTo"))
+  expect_false(desc$has_dep("Rcpp", "Suggests"))
+})
+
 test_that("issue #34 is fine (empty dep fields)", {
 
   empty_deps <- data.frame(
