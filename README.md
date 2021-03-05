@@ -238,6 +238,29 @@ desc$get_authors()
     #> [6] "Gabor Csardi <csardi.gabor@gmail.com> [ctb]"         
     #> [7] "Jeroen Ooms <jeroen@berkeley.edu> [ctb]"
 
+If the `Author` field is specified, it can be changed to a `Authors@R`
+field using `coerce_authors_at_r()`, incorporating the `Maintainer`
+information if necessary:
+
+``` r
+desc <- description$new("!new")
+desc$del("Authors@R")
+desc$del("Maintainer")
+desc$set(Author = "Gábor Csárdi <csardi.gabor@gmail.com>")
+desc$get_authors()
+```
+
+    #> Error in ensure_authors_at_r(self): No 'Authors@R' field!
+    #> You can create one with $add_author.
+    #> You can also use $coerce_authors_at_r() to change Author fields
+
+``` r
+desc$coerce_authors_at_r()
+desc$get_authors()
+```
+
+    #> [1] "Gábor Csárdi <csardi.gabor@gmail.com> [aut]"
+
 ## The procedural API
 
 The procedural API is simpler to use for one-off `DESCRIPTION`
@@ -316,8 +339,8 @@ This added `newpackage` to the `Suggests` field:
 desc_get("Suggests")
 ```
 
-    #>                                                                     Suggests 
-    #> "\n    covr,\n    testthat,\n    whoami,\n    withr,\n    spelling,\n    gh"
+    #>                                                                                      Suggests 
+    #> "\n    covr,\n    testthat,\n    whoami,\n    withr,\n    spelling,\n    gh,\n    newpackage"
 
 So the full list of dependencies are now
 
@@ -325,18 +348,19 @@ So the full list of dependencies are now
 desc_get_deps()
 ```
 
-    #>        type   package  version
-    #> 1   Depends         R >= 3.1.0
-    #> 2  Suggests      covr        *
-    #> 3  Suggests  testthat        *
-    #> 4  Suggests    whoami        *
-    #> 5  Suggests     withr        *
-    #> 6  Suggests  spelling        *
-    #> 7  Suggests        gh        *
-    #> 8   Imports     utils        *
-    #> 9   Imports        R6        *
-    #> 10  Imports    crayon        *
-    #> 11  Imports rprojroot        *
+    #>        type    package  version
+    #> 1   Depends          R >= 3.1.0
+    #> 2  Suggests       covr        *
+    #> 3  Suggests   testthat        *
+    #> 4  Suggests     whoami        *
+    #> 5  Suggests      withr        *
+    #> 6  Suggests   spelling        *
+    #> 7  Suggests         gh        *
+    #> 8  Suggests newpackage        *
+    #> 9   Imports      utils        *
+    #> 10  Imports         R6        *
+    #> 11  Imports     crayon        *
+    #> 12  Imports  rprojroot        *
 
 ## License
 

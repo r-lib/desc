@@ -141,18 +141,16 @@ desc$get_authors()
 
 If the `Author` field is specified, it can be changed to a `Authors@R` field
 using `coerce_authors_at_r()`, incorporating the `Maintainer` information if necessary: 
-```{r, message=FALSE}
-tfile <- tempfile()
-dir.create(tfile)
-package.skeleton(name = "pkg", path = tfile)
-desc <- description$new(file.path(tfile, "pkg", "DESCRIPTION"))
-desc
+
+```{r, error = TRUE}
+desc <- description$new("!new")
+desc$del("Authors@R")
+desc$del("Maintainer")
+desc$set(Author = "Gábor Csárdi <csardi.gabor@gmail.com>")
+desc$get_authors()
 desc$coerce_authors_at_r()
-desc
+desc$get_authors()
 ```
-
-If you run `get_authors()` without conversion, then an error will result.
-
 
 ## The procedural API
 
@@ -169,10 +167,6 @@ current working directory can be done with
 desc_set_dep("newpackage", "Suggests")
 ```
 
-```{r include = FALSE}
-desc_del_dep("newpackage")
-```
-
 This added `newpackage` to the `Suggests` field:
 
 ```{r}
@@ -183,6 +177,10 @@ So the full list of dependencies are now
 
 ```{r}
 desc_get_deps()
+```
+
+```{r include = FALSE}
+desc_del_dep("newpackage")
 ```
 
 ## License
