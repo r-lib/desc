@@ -141,7 +141,7 @@ idesc_normalize <- function(self, private) {
 idesc_reformat_fields <- function(self, private) {
   old <- options(crayon.enabled = FALSE)
   on.exit(options(old), add = TRUE)
-  norm_fields <- strip_style(idesc_str(self, private, by_field = TRUE))
+  norm_fields <- idesc_str(self, private, by_field = TRUE)
   for (f in names(norm_fields)) {
     private$data[[f]]$value <-
       sub(paste0(f, ":[ ]?"), "", norm_fields[[f]])
