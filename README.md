@@ -3,7 +3,8 @@
 
 > Parse DESCRIPTION files
 
-![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![R build
 status](https://github.com/r-lib/desc/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/desc/actions)
 [![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
