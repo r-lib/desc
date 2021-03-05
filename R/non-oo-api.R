@@ -103,6 +103,8 @@ desc_get <- generate_api("get", self = FALSE)
 #'   By default it throws an error.
 #' @param trim_ws Whether to trim leading and trailing whitespace
 #'   from the value. Defaults to \code{TRUE}.
+#' @param squish_ws Whether to reduce repeated whitespace in the value.
+#'   Defaults to \code{trim_ws}.
 #' @return Character string, the value of \code{key}, or \code{default}
 #'   if \code{key} is not found and \code{default} is specified.
 #'

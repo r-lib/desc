@@ -102,7 +102,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' The complete API reference:
 #' \preformatted{  description$get(keys)
-#'   description$get_field(key, default, trim_ws = TRUE)
+#'   description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
 #'   description$set(...)
 #'   description$fields()
 #'   description$has_fields(keys)
@@ -111,8 +111,10 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'   \item{key:}{A character string (length one), the key to query.}
 #'   \item{default:}{If specified and \code{key} is missing, this value
 #'     is returned. If not specified, an error is thrown.}
-#'   \item{trim_ws:}{Whether to trim leading  and trailing whitespace
+#'   \item{trim_ws:}{Whether to trim leading and trailing whitespace
 #'     from the returned value.}
+#'   \item{squish_ws:}{Whether to reduce repeated whitespace in the
+#'     returned value.}
 #'   \item{keys:}{A character vector of keys to query, check or delete.}
 #'   \item{...:}{This must be either two unnamed arguments, the key and
 #'     and the value to set; or an arbitrary number of named arguments,
@@ -480,8 +482,8 @@ description <- R6Class("description",
       idesc_get(self, private, keys),
 
     get_field = function(key, default = stop("Field '", key, "' not found"),
-                         trim_ws = TRUE)
-      idesc_get_field(self, private, key, default, trim_ws),
+                         trim_ws = TRUE, squish_ws = trim_ws)
+      idesc_get_field(self, private, key, default, trim_ws, squish_ws),
 
     get_or_fail = function(keys)
       idesc_get_or_fail(self, private, keys),
@@ -835,11 +837,14 @@ idesc_get <- function(self, private, keys) {
   res
 }
 
-idesc_get_field <- function(self, private, key, default, trim_ws) {
+idesc_get_field <- function(self, private, key, default, trim_ws, squish_ws) {
   stopifnot(is_string(key))
   stopifnot(is_flag(trim_ws))
   val <- private$data[[key]]$value
-  if (trim_ws && !is.null(val)) val <- str_trim(val)
+  if (!is.null(val)) {
+    if (trim_ws) val <- str_trim(val)
+    if (squish_ws) val <- str_squish(val)
+  }
   val %||% default
 }
 
