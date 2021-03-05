@@ -102,6 +102,12 @@ postprocess_trailing_ws <- function(file, notws) {
   writeLines(lines, file)
 }
 
+# We both import and qualify, this is not a mistake.
+# We import for work around a jetpack revdep failure.
+# We qualify to make desc work in (patched) pkgload
+
+#' @importFrom rprojroot find_root
+
 find_description <- function(dir) {
   pkg_root <- rprojroot::find_root(rprojroot::is_r_package, dir)
   file.path(pkg_root, "DESCRIPTION")
