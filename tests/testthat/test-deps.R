@@ -217,3 +217,21 @@ test_that("no dependencies at all", {
   expect_silent(deps <- desc$get_deps())
   expect_equal(deps, empty_deps)
 })
+
+test_that("extra whitespace is removed from deps, but kept in raw data", {
+  D7 <- description$new(test_path("D7"))
+  deps <- D7$get_deps()
+  expect_equal(
+    deps$version[deps$package == "lme4"],
+    ">= 1.0.0"
+  )
+  expect_equal(
+    deps$version[deps$package == "survival"],
+    ">= 1.0.1"
+  )
+  expect_match(
+    D7$get("Suggests"),
+    "lme4\n        (>= 1.0.0), survival (>=\n        1.0.1)",
+    fixed = TRUE
+  )
+})

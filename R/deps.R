@@ -102,7 +102,8 @@ parse_deps <- function(type, deps) {
     package = vapply(deps, "[", "", 1),
     version = vapply(deps, "[", "", 2)
   )
-  res [ is.na(res) ] <- "*"
+  res$version <- gsub("\\s+", " ", res$version)
+  res$version [ is.na(res$version) ] <- "*"
   res
 }
 

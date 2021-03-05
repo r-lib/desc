@@ -1,6 +1,9 @@
 
 # Development version
 
+* `get_deps()` now removes unneeded whitespace from version requirements
+  (#84).
+
 * `normalize()` now does not drop `Authors@R` on non-UTF-8 systems
   when it has non-ASCII characters (#80).
 
