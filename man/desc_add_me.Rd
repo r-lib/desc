@@ -4,8 +4,13 @@
 \alias{desc_add_me}
 \title{Add the current user as an author to DESCRIPTION}
 \usage{
-desc_add_me(role = "ctb", comment = NULL, orcid = NULL, file = ".",
-  normalize = FALSE)
+desc_add_me(
+  role = "ctb",
+  comment = NULL,
+  orcid = NULL,
+  file = ".",
+  normalize = FALSE
+)
 }
 \arguments{
 \item{role}{Role to set for the user, defaults to contributor.}
@@ -36,16 +41,18 @@ in order to e.g. have the first and middle names together as given
 name. This approach might be limited to some full name structures.
 }
 \seealso{
-Other Authors@R: \code{\link{desc_add_author_gh}},
-  \code{\link{desc_add_author}},
-  \code{\link{desc_add_orcid}},
-  \code{\link{desc_add_role}},
-  \code{\link{desc_change_maintainer}},
-  \code{\link{desc_del_author}},
-  \code{\link{desc_del_role}},
-  \code{\link{desc_get_authors}},
-  \code{\link{desc_get_author}},
-  \code{\link{desc_get_maintainer}},
-  \code{\link{desc_set_authors}}
+Other Authors@R: 
+\code{\link{desc_add_author_gh}()},
+\code{\link{desc_add_author}()},
+\code{\link{desc_add_orcid}()},
+\code{\link{desc_add_role}()},
+\code{\link{desc_change_maintainer}()},
+\code{\link{desc_coerce_authors_at_r}()},
+\code{\link{desc_del_author}()},
+\code{\link{desc_del_role}()},
+\code{\link{desc_get_authors}()},
+\code{\link{desc_get_author}()},
+\code{\link{desc_get_maintainer}()},
+\code{\link{desc_set_authors}()}
 }
 \concept{Authors@R}

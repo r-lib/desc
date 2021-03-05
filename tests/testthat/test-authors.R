@@ -50,11 +50,14 @@ test_that("we can add an author with ORCID via comment", {
 
   desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
                   role = "ctb",
-                  comment = c(ORCID = "orcid_number", what="he did it"))
+                  comment = c(ORCID = "0000-0001-7098-9676", what="he did it"))
 
   expect_identical(
     format(desc$get_authors()[2]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (<https://orcid.org/orcid_number>, he did it)"
+    paste0(
+      "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] ",
+      "(<https://orcid.org/0000-0001-7098-9676>, he did it)"
+    )
   )
 })
 
@@ -71,11 +74,14 @@ test_that("we can add an author with ORCID", {
   desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
                   role = "ctb",
                   comment = c(what="he did it"),
-                  orcid = "orcid_number")
+                  orcid = "0000-0001-7098-9676")
 
   expect_identical(
     format(desc$get_authors()[2]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (he did it, <https://orcid.org/orcid_number>)"
+    paste0(
+      "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] ",
+      "(he did it, <https://orcid.org/0000-0001-7098-9676>)"
+    )
   )
 })
 
@@ -86,7 +92,7 @@ test_that("we cannot add an author with malformatted comment", {
   expect_error(desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
                   role = "ctb",
                   comment = c(ORCID = "orcid_number", what=NA)),
-               "comment is not")
+               "is_named_character_or_null")
 
 
 })
@@ -137,11 +143,14 @@ test_that("we can add an ORCID to an author", {
 
   desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
-  desc$add_orcid(given = "Gábor", orcid = "notanorcid")
+  desc$add_orcid(given = "Gábor", orcid = "0000-0001-7098-9676")
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?, <https://orcid.org/notanorcid>)"
+    paste0(
+      "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] ",
+      "(Really?, <https://orcid.org/0000-0001-7098-9676>)"
+    )
   )
 })
 
@@ -154,11 +163,14 @@ test_that("we can replace the ORCID of an author", {
 
   desc <- description$new("D9")
 
-  desc$add_orcid(given = "Hadley", orcid = "notanorcid")
+  desc$add_orcid(given = "Hadley", orcid = "0000-0003-4757-117X")
 
   expect_identical(
     format(desc$get_authors()[1]),
-    "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph] (<https://orcid.org/notanorcid>)"
+    paste0(
+      "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph] ",
+      "(<https://orcid.org/0000-0003-4757-117X>)"
+    )
   )
 })
 
@@ -247,8 +259,8 @@ test_that("add_me can use ORCID_ID", {
     `whoami::email_address` = function() "bugs.bunny@acme.com",
     Sys.getenv = function(x){
       if (x == "ORCID_ID") {
-        "orcid_number"
-      }else{
+        "0000-0002-0775-162X"
+      } else {
         Sys.getenv(x)
       }
     },
@@ -258,7 +270,10 @@ test_that("add_me can use ORCID_ID", {
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Bugs Bunny <bugs.bunny@acme.com> [ctb] (<https://orcid.org/orcid_number>)"
+    paste0(
+      "Bugs Bunny <bugs.bunny@acme.com> [ctb] ",
+      "(<https://orcid.org/0000-0002-0775-162X>)"
+    )
   )
 })
 
@@ -337,6 +352,29 @@ test_that("get_maintainer is OK, too", {
     D1$get_maintainer(),
     NA_character_
   )
+})
+
+test_that("coerce_authors_at_r if there is no Authors@R field", {
+  D1 <- description$new("D1")
+  expect_error(D1$get_authors())
+  D1$coerce_authors_at_r()
+  expect_silent(D1$get_authors())
+  expect_identical(
+    format(D1$get_authors()[1]),
+    "Gábor Csárdi <csardi.gabor@gmail.com> [cre]"
+  )
+})
+
+
+test_that("coerce_authors_at_r error if no authors fields at all", {
+  D1 <- description$new("D1")
+  D1$del("Author")
+  expect_error(D1$coerce_authors_at_r())
+})
+
+test_that("coerce_authors_at_r with multiple authors in Author: field", {
+  D6 <- description$new("D6")
+  expect_silent(D6$coerce_authors_at_r())
 })
 
 test_that("add_author if there is no Authors@R field", {

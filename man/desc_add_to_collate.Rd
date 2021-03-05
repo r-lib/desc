@@ -4,8 +4,12 @@
 \alias{desc_add_to_collate}
 \title{Add one or more files to the Collate field, in DESCRIPTION}
 \usage{
-desc_add_to_collate(files, which = c("default", "all", "main", "windows",
-  "unix"), file = ".", normalize = FALSE)
+desc_add_to_collate(
+  files,
+  which = c("default", "all", "main", "windows", "unix"),
+  file = ".",
+  normalize = FALSE
+)
 }
 \arguments{
 \item{files}{Character vector, files to add.}
@@ -24,9 +28,10 @@ the result. See \code{\link{desc_normalize}}.}
 Add one or more files to the Collate field, in DESCRIPTION
 }
 \seealso{
-Other Collate field: \code{\link{desc_del_collate}},
-  \code{\link{desc_del_from_collate}},
-  \code{\link{desc_get_collate}},
-  \code{\link{desc_set_collate}}
+Other Collate field: 
+\code{\link{desc_del_collate}()},
+\code{\link{desc_del_from_collate}()},
+\code{\link{desc_get_collate}()},
+\code{\link{desc_set_collate}()}
 }
 \concept{Collate field}

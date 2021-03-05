@@ -1,7 +1,7 @@
 Package: desc
 Title: Manipulate DESCRIPTION Files
 Version: 1.0.0
-Author: Gábor Csárdi
+Author: Gábor Csárdi, John Muschelli
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Tools to read, write, create, and manipulate DESCRIPTION
     files. It is intented for packages that create or manipulate other

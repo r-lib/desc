@@ -4,9 +4,16 @@
 \alias{desc_del_author}
 \title{Remove one or more authors from DESCRIPTION.}
 \usage{
-desc_del_author(given = NULL, family = NULL, email = NULL,
-  role = NULL, comment = NULL, orcid = NULL, file = ".",
-  normalize = FALSE)
+desc_del_author(
+  given = NULL,
+  family = NULL,
+  email = NULL,
+  role = NULL,
+  comment = NULL,
+  orcid = NULL,
+  file = ".",
+  normalize = FALSE
+)
 }
 \arguments{
 \item{given}{Given name to filter on. Regular expression.}
@@ -36,15 +43,18 @@ is supplied, then all authors whole given name matches \code{Joe} will
 be removed. The specifications can be (PCRE) regular expressions.
 }
 \seealso{
-Other Authors@R: \code{\link{desc_add_author_gh}},
-  \code{\link{desc_add_author}}, \code{\link{desc_add_me}},
-  \code{\link{desc_add_orcid}},
-  \code{\link{desc_add_role}},
-  \code{\link{desc_change_maintainer}},
-  \code{\link{desc_del_role}},
-  \code{\link{desc_get_authors}},
-  \code{\link{desc_get_author}},
-  \code{\link{desc_get_maintainer}},
-  \code{\link{desc_set_authors}}
+Other Authors@R: 
+\code{\link{desc_add_author_gh}()},
+\code{\link{desc_add_author}()},
+\code{\link{desc_add_me}()},
+\code{\link{desc_add_orcid}()},
+\code{\link{desc_add_role}()},
+\code{\link{desc_change_maintainer}()},
+\code{\link{desc_coerce_authors_at_r}()},
+\code{\link{desc_del_role}()},
+\code{\link{desc_get_authors}()},
+\code{\link{desc_get_author}()},
+\code{\link{desc_get_maintainer}()},
+\code{\link{desc_set_authors}()}
 }
 \concept{Authors@R}

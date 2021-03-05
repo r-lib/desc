@@ -4,8 +4,13 @@
 \alias{desc_set_dep}
 \title{Add a package dependency to a DESCRIPTION file}
 \usage{
-desc_set_dep(package, type = desc::dep_types, version = "*",
-  file = ".", normalize = FALSE)
+desc_set_dep(
+  package,
+  type = desc::dep_types,
+  version = "*",
+  file = ".",
+  normalize = FALSE
+)
 }
 \arguments{
 \item{package}{Package to depend on.}
@@ -25,8 +30,11 @@ the result. See \code{\link{desc_normalize}}.}
 Add a package dependency to a DESCRIPTION file
 }
 \seealso{
-Other dependencies: \code{\link{desc_del_deps}},
-  \code{\link{desc_del_dep}}, \code{\link{desc_get_deps}},
-  \code{\link{desc_has_dep}}, \code{\link{desc_set_deps}}
+Other dependencies: 
+\code{\link{desc_del_deps}()},
+\code{\link{desc_del_dep}()},
+\code{\link{desc_get_deps}()},
+\code{\link{desc_has_dep}()},
+\code{\link{desc_set_deps}()}
 }
 \concept{dependencies}

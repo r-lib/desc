@@ -18,8 +18,11 @@ the result. See \code{\link{desc_normalize}}.}
 Remove all dependencies from DESCRIPTION
 }
 \seealso{
-Other dependencies: \code{\link{desc_del_dep}},
-  \code{\link{desc_get_deps}}, \code{\link{desc_has_dep}},
-  \code{\link{desc_set_deps}}, \code{\link{desc_set_dep}}
+Other dependencies: 
+\code{\link{desc_del_dep}()},
+\code{\link{desc_get_deps}()},
+\code{\link{desc_has_dep}()},
+\code{\link{desc_set_deps}()},
+\code{\link{desc_set_dep}()}
 }
 \concept{dependencies}

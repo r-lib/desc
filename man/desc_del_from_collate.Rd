@@ -4,8 +4,12 @@
 \alias{desc_del_from_collate}
 \title{Remove files from the Collate field.}
 \usage{
-desc_del_from_collate(files, which = c("all", "main", "windows", "unix"),
-  file = ".", normalize = FALSE)
+desc_del_from_collate(
+  files,
+  which = c("all", "main", "windows", "unix"),
+  file = ".",
+  normalize = FALSE
+)
 }
 \arguments{
 \item{files}{Files to remove from the Collate field.}
@@ -24,9 +28,10 @@ the result. See \code{\link{desc_normalize}}.}
 Remove files from the Collate field.
 }
 \seealso{
-Other Collate field: \code{\link{desc_add_to_collate}},
-  \code{\link{desc_del_collate}},
-  \code{\link{desc_get_collate}},
-  \code{\link{desc_set_collate}}
+Other Collate field: 
+\code{\link{desc_add_to_collate}()},
+\code{\link{desc_del_collate}()},
+\code{\link{desc_get_collate}()},
+\code{\link{desc_set_collate}()}
 }
 \concept{Collate field}

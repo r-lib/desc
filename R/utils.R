@@ -102,10 +102,8 @@ postprocess_trailing_ws <- function(file, notws) {
   writeLines(lines, file)
 }
 
-#' @importFrom rprojroot find_root is_r_package
-
 find_description <- function(dir) {
-  pkg_root <- find_root(is_r_package, dir)
+  pkg_root <- rprojroot::find_root(rprojroot::is_r_package, dir)
   file.path(pkg_root, "DESCRIPTION")
 }
 

@@ -21,8 +21,11 @@ Character vector, values of the specified keys.
 Get a field from a DESCRIPTION file
 }
 \seealso{
-Other simple queries: \code{\link{desc_del}},
-  \code{\link{desc_fields}}, \code{\link{desc_get_field}},
-  \code{\link{desc_has_fields}}, \code{\link{desc_set}}
+Other simple queries: 
+\code{\link{desc_del}()},
+\code{\link{desc_fields}()},
+\code{\link{desc_get_field}()},
+\code{\link{desc_has_fields}()},
+\code{\link{desc_set}()}
 }
 \concept{simple queries}
