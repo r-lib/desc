@@ -1,4 +1,6 @@
 
+# Development version
+
 # 1.3.0
 
 * Adding authors with long names or other fields (`comment`, typically)
