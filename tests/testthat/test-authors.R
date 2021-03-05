@@ -449,6 +449,4 @@ test_that("long comments are deparsed properly", {
     desc$get_authors()[[2]]$comment,
     authors[[2]]$comment
   )
-
-  expect_equal(
 })
