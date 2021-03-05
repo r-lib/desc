@@ -280,6 +280,7 @@ The API:
   description$set_authors(authors)
   description$get_author(role)
   description$get_maintainer()
+  description$coerce_authors_at_r()
 }
 \describe{
    \item{authors:}{A \code{person} object, a list of authors.}
@@ -294,6 +295,10 @@ the specified role.
 \code{$get_maintainer} returns the maintainer of the package. It works
 with \code{Authors@R} fields and with traditional \code{Maintainer}
 fields as well.
+
+\code{$coerce_authors_at_r} converts an \code{Author} field to one with
+a \code{person} object. This coercion may be necessary for other
+functions such as \code{$get_authors}.
 
 \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL, orcid = NULL)

@@ -1,6 +1,9 @@
 
 # Development version
 
+* Add `coerce_authors_at_r()` method to convert `Author` to 
+  `Authors@R` (#44, @muschellij2).
+
 * `add_author()` and similar functions now allow a character vector of multiple roles (@niceume, #89).
 
 * `desc_set_deps()` now inserts new packages in alphabetical order, if the existing packages are already in alphabetical order
