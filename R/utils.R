@@ -126,12 +126,12 @@ parse_full_name <- function(x) {
 # keep everything in UTF-8. Apparently, if you mark the input string
 # as native, then it will not have a chance to do any conversion.
 
-fixed_deparse <- function(x, ...) {
+fixed_deparse1 <- function(x, ...) {
   # Need to do this, because console and code input might be in
   # the native encoding
   x <- enc2utf8(x)
   Encoding(x) <- "unknown"
-  out <- deparse(x, ...)
+  out <- paste(deparse(x, width.cutoff = 500L, ...), collapse = " ")
   Encoding(out) <- "UTF-8"
   out
 }

@@ -1,6 +1,9 @@
 
 # Development version
 
+* Adding authors with long names or other fields (`comment`, typically)
+  works well now (#91).
+
 * `get_deps()` now removes unneeded whitespace from version requirements
   (#84).
 

@@ -413,3 +413,42 @@ test_that("normalization keeps authors in UTF-8", {
     "UTF-8"
   )
 })
+
+test_that("long comments are deparsed properly", {
+  authors <- c(
+    person(
+      given = "First",
+      family = "Last",
+      role = c("aut", "cre"),
+      email = "flast@email.org",
+      comment = c(
+        ORCID = "0000-0000-0000-0000",
+        affiliation = "University One"
+      )
+    ),
+    person(
+      given = "Second",
+      family = "Last",
+      role = "aut",
+      email = "slast@email.org",
+      comment = c(
+        ORCID = "0000-0000-0000-0000",
+        affiliation = c("University One", "University Two")
+      )
+    )
+  )
+
+  desc <- desc::description$new("!new")
+  desc$set_authors(authors)
+
+  expect_equal(
+    desc$get_authors()[[1]]$comment,
+    authors[[1]]$comment
+  )
+  expect_equal(
+    desc$get_authors()[[2]]$comment,
+    authors[[2]]$comment
+  )
+
+  expect_equal(
+})
