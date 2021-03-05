@@ -1,6 +1,9 @@
 
 # Development version
 
+* `has_dep()` now works well with dependencies listed multiple times
+   (#97, @richfitz).
+
 * Add `coerce_authors_at_r()` method to convert `Author` to 
   `Authors@R` (#44, @muschellij2).
 
