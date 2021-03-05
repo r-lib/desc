@@ -48,7 +48,7 @@ library(desc)
 
 ### Introduction
 
-The object oriented API uses [R6](https://github.com/wch/R6) classes.
+The object oriented API uses [R6](https://github.com/r-lib/R6) classes.
 
 ### Loading or creating new `DESCRIPTION` files
 
