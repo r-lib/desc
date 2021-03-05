@@ -1,22 +1,24 @@
+---
+output: github_document
+---
 
 ```{r, setup, echo = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
   tidy = FALSE,
-  error = FALSE,
-  fig.width = 8,
-  fig.height = 8)
+  error = FALSE
+)
 ```
 
 # desc
 
 > Parse DESCRIPTION files
 
-[![Linux Build Status](https://travis-ci.org/r-lib/desc.svg?branch=master)](https://travis-ci.org/r-lib/desc)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/desc?svg=true)](https://ci.appveyor.com/project/gaborcsardi/desc)
+![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![R build status](https://github.com/r-lib/desc/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/desc/actions)
 [![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/desc)](http://www.r-pkg.org/pkg/desc)
-[![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/desc/master.svg)](https://codecov.io/github/r-lib/desc?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/r-lib/pak/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/pak?branch=master)
 
 Parse, manipulate and reformat DESCRIPTION files. The package
 provides two APIs, one is object oriented, the other one is
@@ -39,7 +41,7 @@ procedural and manipulates the files *in place*.
 ## Installation
 
 ```{r eval = FALSE}
-source("https://install-github.me/r-lib/desc")
+install.packages("desc")
 ```
 
 ## The object oriented API
@@ -58,8 +60,15 @@ A new `description` object can be created by reading a `DESCRIPTION`
 file form the disk. By default the `DESCRIPTION` file in the current
 directory is read:
 
-```{r}
+```{r include = FALSE}
+desc <- description$new("tools/pkg1")
+```
+
+```{r eval = FALSE}
 desc <- description$new()
+```
+
+```{r}
 desc
 ```
 
@@ -122,7 +131,7 @@ Authors information, when specified via the `Authors@R` field,
 also has a simplified API:
 
 ```{r}
-desc <- description$new("DESCRIPTION2")
+desc <- description$new("tools/pkg2")
 desc$get_authors()
 desc$add_author("Bugs", "Bunny", email = "bb@acme.com")
 desc$add_me()
@@ -158,6 +167,10 @@ current working directory can be done with
 
 ```{r}
 desc_set_dep("newpackage", "Suggests")
+```
+
+```{r include = FALSE}
+desc_del_dep("newpackage")
 ```
 
 This added `newpackage` to the `Suggests` field:

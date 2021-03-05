@@ -15,7 +15,8 @@ is part of) is used.}
 Reformat the fields in DESCRIPTION in a standard way.
 }
 \seealso{
-Other repair functions: \code{\link{desc_normalize}},
-  \code{\link{desc_reorder_fields}}
+Other repair functions: 
+\code{\link{desc_normalize}()},
+\code{\link{desc_reorder_fields}()}
 }
 \concept{repair functions}

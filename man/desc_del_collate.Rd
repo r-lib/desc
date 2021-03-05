@@ -4,8 +4,11 @@
 \alias{desc_del_collate}
 \title{Delete the Collate field from DESCRIPTION}
 \usage{
-desc_del_collate(which = c("all", "main", "windows", "unix"),
-  file = ".", normalize = FALSE)
+desc_del_collate(
+  which = c("all", "main", "windows", "unix"),
+  file = ".",
+  normalize = FALSE
+)
 }
 \arguments{
 \item{which}{Which collate field to use. Collate fields can
@@ -22,9 +25,10 @@ the result. See \code{\link{desc_normalize}}.}
 Delete the Collate field from DESCRIPTION
 }
 \seealso{
-Other Collate field: \code{\link{desc_add_to_collate}},
-  \code{\link{desc_del_from_collate}},
-  \code{\link{desc_get_collate}},
-  \code{\link{desc_set_collate}}
+Other Collate field: 
+\code{\link{desc_add_to_collate}()},
+\code{\link{desc_del_from_collate}()},
+\code{\link{desc_get_collate}()},
+\code{\link{desc_set_collate}()}
 }
 \concept{Collate field}

@@ -6,12 +6,12 @@ idesc_get_version <- function(self, private) {
 }
 
 idesc_set_version <- function(self, private, version) {
-  assert_that(is_package_version(version))
+  stopifnot(is_package_version(version))
   self$set(Version = as.character(version))
 }
 
 idesc_bump_version <- function(self, private, which) {
-  assert_that(is_version_component(which))
+  stopifnot(is_version_component(which))
   if (is.character(which)) {
     which <- match(which, c("major", "minor", "patch", "dev"))
   }

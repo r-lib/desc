@@ -16,14 +16,14 @@ test_that("get_deps", {
 
 
 test_that("set_dep", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   desc$set_dep("igraph")
 
   res <- data.frame(
     stringsAsFactors = FALSE,
     type = c("Imports", "Imports", "Suggests"),
-    package = c("R6", "igraph", "testthat"),
+    package = c("igraph", "R6", "testthat"),
     version = c("*", "*", "*")
   )
   expect_equal(desc$get_deps(), res)
@@ -33,8 +33,8 @@ test_that("set_dep", {
   res <- data.frame(
     stringsAsFactors = FALSE,
     type = c("Imports", "Imports", "Suggests"),
-    package = c("R6", "igraph", "testthat"),
-    version = c("*", ">= 1.0.0", "*")
+    package = c("igraph", "R6", "testthat"),
+    version = c(">= 1.0.0", "*", "*")
   )
 
   expect_equal(desc$get_deps(), res)
@@ -44,8 +44,8 @@ test_that("set_dep", {
   res <- data.frame(
     stringsAsFactors = FALSE,
     type = c("Imports", "Imports", "Suggests", "Depends"),
-    package = c("R6", "igraph", "testthat", "igraph"),
-    version = c("*", ">= 1.0.0", "*", ">= 1.0.0")
+    package = c("igraph", "R6", "testthat", "igraph"),
+    version = c(">= 1.0.0", "*", "*", ">= 1.0.0")
   )
 
   expect_equal(desc$get_deps(), res)
@@ -67,6 +67,39 @@ test_that("set_dep for the first dependency", {
     version = c("*")
   )
   expect_equal(desc$get_deps(), res)
+})
+
+test_that("set_dep preserves order", {
+  desc <- description$new("!new")
+
+  desc$set_deps(data.frame(
+    stringsAsFactors = FALSE,
+    type = "Imports",
+    package = c("covr", "testthat"),
+    version = "*"
+  ))
+  desc$set_dep("R6", "Imports")
+
+  expect_equal(
+    desc$get_deps()$package,
+    c("covr", "R6", "testthat")
+  )
+})
+test_that("set_dep inserts at end if not ordered", {
+  desc <- description$new("!new")
+
+  desc$set_deps(data.frame(
+    stringsAsFactors = FALSE,
+    type = "Imports",
+    package = c("testthat", "covr"),
+    version = "*"
+  ))
+  desc$set_dep("R6", "Imports")
+
+  expect_equal(
+    desc$get_deps()$package,
+    c("testthat", "covr", "R6")
+  )
 })
 
 test_that("del_dep", {

@@ -19,7 +19,8 @@ If the file has no \code{Version} field, or it is an invalid
 version string, then it throws an error.
 }
 \seealso{
-Other version numbers: \code{\link{desc_bump_version}},
-  \code{\link{desc_set_version}}
+Other version numbers: 
+\code{\link{desc_bump_version}()},
+\code{\link{desc_set_version}()}
 }
 \concept{version numbers}

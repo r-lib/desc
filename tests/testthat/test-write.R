@@ -32,21 +32,21 @@ test_that("whitespace after : if field was updated", {
 
   ## Space is kept if it was there
   desc <- description$new(text = "Imports: \n    one,\n    two\n")
-  desc$set_dep("doh")
+  desc$set_dep("ugh")
   desc$write(t1 <- tempfile())
 
   expect_equal(
     readLines(t1),
-    c("Imports: ", "    one,", "    two,", "    doh")
+    c("Imports: ", "    one,", "    two,", "    ugh")
   )
 
   ## Space is not added if it was not there
   desc <- description$new(text = "Imports:\n    one,\n    two\n")
-  desc$set_dep("doh")
+  desc$set_dep("ugh")
   desc$write(t2  <- tempfile())
 
   expect_equal(
     readLines(t2),
-    c("Imports:", "    one,", "    two,", "    doh")
+    c("Imports:", "    one,", "    two,", "    ugh")
   )
 })

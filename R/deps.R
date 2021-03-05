@@ -1,20 +1,33 @@
 
 idesc_set_dep <- function(self, private, package, type, version) {
-  assert_that(is_string(package), is_string(version))
+  stopifnot(is_string(package), is_string(version))
   deps <- self$get_deps()
   has <- which(deps$package == package & deps$type == type)
 
   if (length(has)) {
     deps[ has, "version" ] <- version
-
   } else {
-    deps <- rbind(
-      deps,
-      data.frame(
-        stringsAsFactors = FALSE,
-        type = type, package = package, version = version
-      )
+    row <- data.frame(
+      stringsAsFactors = FALSE,
+      type = type, package = package, version = version
     )
+    others <- deps$package[deps$type == type]
+    sorted <- !is.unsorted(tolower(others)) && length(others) > 0
+
+    if (sorted) {
+      # find first row it should come after
+      idx <- which(deps$type == type & tolower(package) > tolower(deps$package))
+      if (length(idx) == 0) {
+        # must be first
+        idx <- which(deps$type == type)[[1]]
+      } else {
+        idx <- length(idx) + 1
+      }
+    } else {
+      idx <- nrow(deps) + 1
+    }
+
+    deps <- insert_row(deps, row, where = idx)
   }
 
   idesc_set_deps(self, private, deps)
@@ -22,7 +35,7 @@ idesc_set_dep <- function(self, private, package, type, version) {
 
 
 idesc_set_deps <- function(self, private, deps) {
-  assert_that(is_deps_df(deps))
+  stopifnot(is_deps_df(deps))
   depdeps <- deparse_deps(deps)
   for (d in names(depdeps)) {
     if (! same_deps(depdeps[[d]], private$data[[d]]$value)) {
@@ -112,7 +125,7 @@ deparse_deps <- function(deps) {
 
 
 idesc_del_dep <- function(self, private, package, type) {
-  assert_that(is_string(package))
+  stopifnot(is_string(package))
   deps <- self$get_deps()
 
   if (type == "all") {
@@ -137,7 +150,7 @@ idesc_del_deps <- function(self, private) {
 
 
 idesc_has_dep <- function(self, private, package, type) {
-  assert_that(is_string(package))
+  stopifnot(is_string(package))
 
   deps <- self$get_deps()
   if (type == "any") {
@@ -148,3 +161,15 @@ idesc_has_dep <- function(self, private, package, type) {
       type %in% deps[match(package, deps$package), "type"]
   }
 }
+
+insert_row <- function(x, y, where = 1L) {
+  if (where == 1L) {
+    rbind(y, x)
+  } else if (where > nrow(x)) {
+    rbind(x, y)
+  } else {
+    top <- 1:(where - 1)
+    rbind(x[top, , drop = FALSE], y, x[-top, , drop = FALSE])
+  }
+}
+

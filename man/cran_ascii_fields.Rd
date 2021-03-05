@@ -4,7 +4,9 @@
 \name{cran_ascii_fields}
 \alias{cran_ascii_fields}
 \title{The DESCRIPTION fields that are supposed to be in plain ASCII encoding}
-\format{An object of class \code{character} of length 16.}
+\format{
+An object of class \code{character} of length 16.
+}
 \usage{
 cran_ascii_fields
 }
@@ -12,8 +14,9 @@ cran_ascii_fields
 The DESCRIPTION fields that are supposed to be in plain ASCII encoding
 }
 \seealso{
-Other field types: \code{\link{cran_valid_fields}},
-  \code{\link{dep_types}}
+Other field types: 
+\code{\link{cran_valid_fields}},
+\code{\link{dep_types}}
 }
 \concept{field types}
 \keyword{datasets}

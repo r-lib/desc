@@ -4,7 +4,7 @@
 idesc_str <- function(self, private, by_field, normalize = TRUE,
                       mode = c("file", "screen")) {
 
-  assert_that(is_flag(by_field))
+  stopifnot(is_flag(by_field))
   mode <- match.arg(mode)
   cols <- names(private$data)
   if (normalize) cols <- field_order(cols)

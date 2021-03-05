@@ -708,10 +708,10 @@ idesc_create <- function(self, private, cmd, file, text, package) {
 }
 
 idesc_create_cmd <- function(self, private, cmd = c("new")) {
-  assert_that(is_constructor_cmd(cmd))
+  stopifnot(is_constructor_cmd(cmd))
 
   if (cmd == "!new") {
-    idesc_create_text(self, private, text =
+    txt <-
 'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
@@ -725,17 +725,19 @@ LazyData: true
 URL: {{ URL }}
 BugReports: {{ BugReports }}
 Encoding: UTF-8
-')
+'
+    txt <- sub("Authors@R:", "Authors@R: ", txt)
+    idesc_create_text(self, private, text = txt)
   }
 
   invisible(self)
 }
 
 idesc_create_file <- function(self, private, file) {
-  assert_that(is_path(file))
+  stopifnot(is_path(file))
 
   if (file.exists(file) && is_dir(file)) file <- find_description(file)
-  assert_that(is_existing_file(file))
+  stopifnot(is_existing_file(file))
 
   if (is_package_archive(file)) {
     file <- get_description_from_package(file)
@@ -753,7 +755,7 @@ idesc_create_file <- function(self, private, file) {
 }
 
 idesc_create_text <- function(self, private, text) {
-  assert_that(is.character(text))
+  stopifnot(is.character(text))
   con <- textConnection(text, local = TRUE, encoding = "bytes")
   on.exit(close(con), add = TRUE)
   dcf <- read_dcf(con)
@@ -763,7 +765,7 @@ idesc_create_text <- function(self, private, text) {
 }
 
 idesc_create_package <- function(self, private, package) {
-  assert_that(is_string(package))
+  stopifnot(is_string(package))
   path <- system.file(package = package, "DESCRIPTION")
   if (path == "") {
     stop("Cannot find DESCRIPTION for installed package ", package)
@@ -812,7 +814,7 @@ idesc_fields <- function(self, private) {
 }
 
 idesc_has_fields <- function(self, private, keys) {
-  assert_that(is.character(keys), has_no_na(keys))
+  stopifnot(is.character(keys), has_no_na(keys))
   keys %in% self$fields()
 }
 
@@ -825,7 +827,7 @@ idesc_as_matrix <- function(data) {
 }
 
 idesc_get <- function(self, private, keys) {
-  assert_that(is.character(keys), has_no_na(keys))
+  stopifnot(is.character(keys), has_no_na(keys))
   res <- lapply(private$data[keys], "[[", "value")
   res[vapply(res, is.null, logical(1))] <- NA_character_
   res <- as.character(unlist(res))
@@ -834,15 +836,15 @@ idesc_get <- function(self, private, keys) {
 }
 
 idesc_get_field <- function(self, private, key, default, trim_ws) {
-  assert_that(is_string(key))
-  assert_that(is_flag(trim_ws))
+  stopifnot(is_string(key))
+  stopifnot(is_flag(trim_ws))
   val <- private$data[[key]]$value
   if (trim_ws && !is.null(val)) val <- str_trim(val)
   val %||% default
 }
 
 idesc_get_or_fail <- function(self, private, keys) {
-  assert_that(is.character(keys), has_no_na(keys))
+  stopifnot(is.character(keys), has_no_na(keys))
   res <- self$get(keys)
   if (any(is.na(res))) {
     w <- is.na(res)
@@ -887,7 +889,7 @@ idesc_set <- function(self, private, ...) {
 
 
 idesc_del <- function(self, private, keys) {
-  assert_that(is.character(keys), has_no_na(keys))
+  stopifnot(is.character(keys), has_no_na(keys))
   private$data <- private$data[setdiff(names(private$data), keys)]
   invisible(self)
 }

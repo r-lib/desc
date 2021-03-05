@@ -5,8 +5,12 @@
 \alias{desc_get_or_fail}
 \title{Get a single field from a DESCRIPTION file, fail if not found}
 \usage{
-desc_get_field(key, default = stop("Field '", key, "' not found"),
-  trim_ws = TRUE, file = ".")
+desc_get_field(
+  key,
+  default = stop("Field '", key, "' not found"),
+  trim_ws = TRUE,
+  file = "."
+)
 
 desc_get_or_fail(keys, file = ".")
 }
@@ -33,8 +37,11 @@ Character string, the value of \code{key}, or \code{default}
 Get a single field from a DESCRIPTION file, fail if not found
 }
 \seealso{
-Other simple queries: \code{\link{desc_del}},
-  \code{\link{desc_fields}}, \code{\link{desc_get}},
-  \code{\link{desc_has_fields}}, \code{\link{desc_set}}
+Other simple queries: 
+\code{\link{desc_del}()},
+\code{\link{desc_fields}()},
+\code{\link{desc_get}()},
+\code{\link{desc_has_fields}()},
+\code{\link{desc_set}()}
 }
 \concept{simple queries}
