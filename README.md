@@ -4,12 +4,12 @@
 > Parse DESCRIPTION files
 
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
+stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build
 status](https://github.com/r-lib/desc/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/desc/actions)
-[![](http://www.r-pkg.org/badges/version/desc)](http://www.r-pkg.org/pkg/desc)
+[![](https://www.r-pkg.org/badges/version/desc)](https://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror
-downloads](http://cranlogs.r-pkg.org/badges/desc)](http://www.r-pkg.org/pkg/desc)
+downloads](https://cranlogs.r-pkg.org/badges/desc)](https://www.r-pkg.org/pkg/desc)
 [![Codecov test
 coverage](https://codecov.io/gh/r-lib/pak/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/pak?branch=master)
 
