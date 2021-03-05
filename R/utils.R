@@ -135,3 +135,10 @@ fixed_deparse1 <- function(x, ...) {
   Encoding(out) <- "UTF-8"
   out
 }
+
+desc_message <- function(...) {
+  msg <- simpleMessage(paste0(..., "\n"), sys.call())
+  class(msg) <- c("descMessage", class(msg))
+  message(msg)
+
+}

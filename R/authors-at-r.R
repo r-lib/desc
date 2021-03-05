@@ -200,10 +200,10 @@ idesc_del_author <- function(self, private, given, family, email, role,
   )
 
   if (length(wh$index) == 0) {
-    message("Could not find author to remove.")
+    desc_message("Could not find author to remove.")
   } else {
     au <- if (length(wh$index) == 1) "Author" else "Authors"
-    message(
+    desc_message(
       au, "removed: ",
       paste(wh$authors$given, wh$authors$family, collapse = ", "),
       "."

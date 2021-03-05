@@ -41,9 +41,8 @@ idesc_bump_version <- function(self, private, which) {
   self$set_version(new_ver)
 
   ## Give a message
-  message(
-    "Package version bumped from ", sQuote(ver_str),
-    " to ", sQuote(new_ver)
+  desc_message(
+    "Package version bumped from ", sQuote(ver_str), " to ", sQuote(new_ver)
   )
 
   invisible(self)

@@ -66,3 +66,11 @@ test_that("bump_version", {
     )
   }
 })
+
+test_that("message class", {
+  desc <- description$new(test_path("D1"))
+  expect_message(
+    desc$bump_version("patch"),
+    class = "descMessage"
+  )
+})
