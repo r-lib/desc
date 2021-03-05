@@ -6,7 +6,7 @@ parse_authors_at_r <- function(x) {
   if (is.null(x) || is.na(x)) return(NULL)
 
   out <- tryCatch(
-    eval(parse(text = x)),
+    eval(parse(text = x, encoding = "UTF-8")),
     error = identity
   )
   if (inherits(out, "error")) NULL else out
