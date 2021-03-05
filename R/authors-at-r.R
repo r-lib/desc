@@ -33,7 +33,7 @@ deparse_author_at_r <- function(x1) {
   x1 <- x1[! vapply(x1, is.null, TRUE)]
   paste0(
     c("person(", rep("       ", length(x1) - 1)),
-    names(x1), " = ", vapply(x1, deparse, ""),
+    names(x1), " = ", vapply(x1, fixed_deparse, ""),
     c(rep(",", length(x1) - 1), ")")
   )
 }

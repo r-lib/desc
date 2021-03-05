@@ -400,3 +400,16 @@ test_that("add myself if there is no Authors@R field", {
     "Bugs Bunny <bugs.bunny@acme.com> [ctb] (Yikes!)"
   )
 })
+
+test_that("normalization keeps authors in UTF-8", {
+  D11 <- description$new(test_path("D11"))
+  expect_equal(
+    Encoding(private(D11)$data$`Authors@R`$value),
+    "UTF-8"
+  )
+  D11$normalize()
+  expect_equal(
+    Encoding(private(D11)$data$`Authors@R`$value),
+    "UTF-8"
+  )
+})

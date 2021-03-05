@@ -121,3 +121,17 @@ parse_full_name <- function(x) {
   return(list(given = given,
               family = family))
 }
+
+# deparse() converts strings to the native encoding, and we want to
+# keep everything in UTF-8. Apparently, if you mark the input string
+# as native, then it will not have a chance to do any conversion.
+
+fixed_deparse <- function(x, ...) {
+  # Need to do this, because console and code input might be in
+  # the native encoding
+  x <- enc2utf8(x)
+  Encoding(x) <- "unknown"
+  out <- deparse(x, ...)
+  Encoding(out) <- "UTF-8"
+  out
+}

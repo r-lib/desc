@@ -1,6 +1,9 @@
 
 # Development version
 
+* `normalize()` now does not drop `Authors@R` on non-UTF-8 systems
+  when it has non-ASCII characters (#80).
+
 * `has_dep()` now works well with dependencies listed multiple times
    (#97, @richfitz).
 
