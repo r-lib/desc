@@ -5,10 +5,16 @@ parse_authors_at_r <- function(x) {
 
   if (is.null(x) || is.na(x)) return(NULL)
 
+  # Need a connection on R 3.6 and before, because the encoding will
+  # be messed up. Also need to set the input to `unknown`.
+  Encoding(x) <- "unknown"
+  con <- textConnection(x)
+  on.exit(close(con), add = TRUE)
   out <- tryCatch(
-    eval(parse(text = x, encoding = "UTF-8")),
+    eval(parse(con, encoding = "UTF-8")),
     error = identity
   )
+
   if (inherits(out, "error")) NULL else out
 }
 

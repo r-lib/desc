@@ -13,5 +13,9 @@ test_that("Test expected LaTeX output", {
 
   new <- capture_output(print(desc$to_latex()))
   old <- readLines(test_path("output/to_latex.tex"), encoding = "UTF-8")
-  expect_equal(strsplit(new, "\n")[[1]], enc2native(old))
+
+  new1 <- strsplit(new, "\n")[[1]]
+  old1 <- enc2native(old)
+
+  expect_equal(new1, old1)
 })
