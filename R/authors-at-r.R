@@ -260,7 +260,7 @@ idesc_change_maintainer <- function(self, private, given, family, email,
 
 idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
   stopifnot(
-    is_string_or_null(role),
+    is_character_or_null(role),
     is_named_character_or_null(comment),
     is_string_or_null(orcid)
   )
