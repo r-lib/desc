@@ -24,6 +24,10 @@ test_that("get_field works", {
   expect_identical(desc$get_field("Author"), "G\u00e1bor Cs\u00e1rdi")
   expect_identical(desc$get_field("Imports"), "R6")
   expect_identical(desc$get_field("Imports", trim_ws = FALSE), "\n    R6")
+  expect_match(desc$get_field("Description", trim_ws = FALSE), "\\s+")
+  expect_match(desc$get_field("Description", trim_ws = TRUE, squish_ws = FALSE), "\\s+")
+  expect_false(grepl("\n", desc$get_field("Description", trim_ws = TRUE)))
+  expect_false(grepl("\n", desc$get_field("Description", trim_ws = FALSE, squish_ws = TRUE)))
 
   expect_error(
     desc$get_field("package"),
