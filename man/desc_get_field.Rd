@@ -9,6 +9,7 @@ desc_get_field(
   key,
   default = stop("Field '", key, "' not found"),
   trim_ws = TRUE,
+  squish_ws = trim_ws,
   file = "."
 )
 
@@ -22,6 +23,9 @@ By default it throws an error.}
 
 \item{trim_ws}{Whether to trim leading and trailing whitespace
 from the value. Defaults to \code{TRUE}.}
+
+\item{squish_ws}{Whether to reduce repeated whitespace in the value.
+Defaults to \code{trim_ws}.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory

@@ -1,6 +1,28 @@
 
 # Development version
 
+## Breaking changes
+
+* `desc_get_field()` gains a boolean `squish_ws` parameter to normalize
+  whitespace within the retrieved value. It defaults to the value of `trim_ws`
+  (`TRUE` by default). Example with desc's current DESCRIPTION:
+  
+  Old behaviour:
+  
+  ```r
+  > desc::desc_get_field("Description")
+  [1] "Tools to read, write, create, and manipulate DESCRIPTION files.\n    It is intended for packages that create or manipulate other packages."
+  ```
+  
+  New behaviour:
+  
+  ```r
+  > desc::desc_get_field("Description")
+  [1] "Tools to read, write, create, and manipulate DESCRIPTION files. It is intended for packages that create or manipulate other packages."
+  ```
+  
+  If you want the old behaviour, just set `squish_ws = FALSE`.
+
 # 1.3.0
 
 * Adding authors with long names or other fields (`comment`, typically)

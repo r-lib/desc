@@ -5,6 +5,9 @@ str_trim <- function(x) {
   sub("^\\s+", "", sub("\\s+$", "", x))
 }
 
+str_squish <- function(x) {
+  gsub("\\s+", " ", x)
+}
 
 is_ascii <- function(x) {
   vapply(
