@@ -1,6 +1,9 @@
 
 # Development version
 
+* DESCRIPTION objects created with the `!new` command now omit `LazyData: true` 
+  to match new CRAN checks (#105, @malcolmbarrett)
+
 ## Breaking changes
 
 * `desc_get_field()` gains a boolean `squish_ws` parameter to normalize

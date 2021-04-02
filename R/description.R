@@ -723,7 +723,6 @@ Authors@R:
 Maintainer: {{ Maintainer }}
 Description: {{ Description }}
 License: {{ License }}
-LazyData: true
 URL: {{ URL }}
 BugReports: {{ BugReports }}
 Encoding: UTF-8
