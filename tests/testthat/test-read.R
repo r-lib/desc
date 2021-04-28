@@ -31,6 +31,13 @@ test_that("duplicate fields, #43", {
   )
 })
 
+test_that("empty lines error", {
+  expect_error(
+    description$new("D12"),
+    "Empty lines found in DESCRIPTION file"
+  )
+})
+
 test_that("Empty DESCRIPTION", {
   expect_error(description$new(text = ""), NA)
   expect_error(description$new(text = character()), NA)
