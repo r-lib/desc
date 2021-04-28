@@ -19,6 +19,10 @@ read_dcf <- function(file) {
   res <- read.dcf(con, keep.white = fields)
   close(con)
 
+  if (nrow(res) > 1) {
+    stop("Empty lines found in DESCRIPTION file", call. = FALSE)
+  }
+
   con <- textConnection(lines, local = TRUE)
   res2 <- read.dcf(con, keep.white = fields, all = TRUE)
   close(con)

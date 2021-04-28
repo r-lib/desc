@@ -1,0 +1,18 @@
+Package: desc
+Title: Manipulate DESCRIPTION Files
+Version: 1.0.0
+Author: Gábor Csárdi
+Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
+Description: Tools to read, write, create, and manipulate DESCRIPTION
+    files. It is intented for packages that create or manipulate other
+    packages.
+License: MIT + file LICENSE
+
+URL: https://github.com/r-pkgs/desc
+BugReports: https://github.com/r-pkgs/desc/issues
+Imports:
+    R6
+Suggests:
+    testthat
+VignetteBuilder: knitr
+Encoding: UTF-8
