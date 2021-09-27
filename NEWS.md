@@ -10,6 +10,10 @@
 * `Authors@R` fields are now formatted differently when normalizing a
   DESCRIPTION file (#78).
 
+* New `description$get_list()`, `description$set_list()` and
+  corresponding `desc_get_list()` and `desc_set_list()` values to query
+  and create comma separated fields (#86).
+
 ## Breaking change
 
 * `desc_get_field()` gains a boolean `squish_ws` parameter to normalize
