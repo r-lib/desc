@@ -4,7 +4,13 @@
 * DESCRIPTION objects created with the `!new` command now omit `LazyData: true` 
   to match new CRAN checks (#105, @malcolmbarrett)
 
-## Breaking changes
+* `description$write()` now writes out the file in the correct encoding
+  (#109).
+
+* `Authors@R` fields are now formatted differently when normalizing a
+  DESCRIPTION file (#78).
+
+## Breaking change
 
 * `desc_get_field()` gains a boolean `squish_ws` parameter to normalize
   whitespace within the retrieved value. It defaults to the value of `trim_ws`
@@ -14,14 +20,14 @@
   
   ```r
   > desc::desc_get_field("Description")
-  [1] "Tools to read, write, create, and manipulate DESCRIPTION files.\n    It is intended for packages that create or manipulate other packages."
+  [1] "... DESCRIPTION files.\n    It is intended for packages ..."
   ```
   
   New behaviour:
   
   ```r
   > desc::desc_get_field("Description")
-  [1] "Tools to read, write, create, and manipulate DESCRIPTION files. It is intended for packages that create or manipulate other packages."
+  [1] "... DESCRIPTION files. It is intended for packages ..."
   ```
   
   If you want the old behaviour, just set `squish_ws = FALSE`.
