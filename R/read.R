@@ -1,6 +1,4 @@
 
-## TODO: handle empty files
-
 read_dcf <- function(file) {
   lines <- readLines(file)
 

@@ -53,7 +53,12 @@ field_classes$FreeForm <- c(
 )
 
 create_fields <- function(keys, values) {
-  mapply(keys, values, SIMPLIFY = FALSE, FUN = create_field)
+  # Need to add names explicitly, because mapply() might drop them
+  # https://bugs.r-project.org/show_bug.cgi?id=18201
+  structure(
+    mapply(keys, values, SIMPLIFY = FALSE, FUN = create_field),
+    names = keys
+  )
 }
 
 create_field <- function(key, value) {
