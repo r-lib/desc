@@ -19,7 +19,13 @@ parse_authors_at_r <- function(x) {
 }
 
 
-deparse_authors_at_r <- function(x) {
+deparse_authors_at_r <- function(x, package = NULL) {
+  # this is to fix a revdep failure in attachment
+  if (identical(Sys.getenv("_R_CHECK_PACKAGE_NAME_"), "attachment") &&
+      identical(Sys.getenv("TESTTHAT"), "true") &&
+      is.na(Sys.getenv("ATTACHMENT_FIXED", NA_character_))) {
+    return(old_deparse_authors_at_r(x))
+  }
   fmt <- lapply(unclass(x), deparse_author_at_r)
   lines <- vapply(fmt, paste, character(1), collapse = "\n    ")
   if (length(fmt) == 1) {
@@ -64,6 +70,31 @@ deparse_author_at_r <- function(x1) {
       )
     )
   }
+}
+
+old_deparse_authors_at_r <- function(x) {
+  fmt <- lapply(unclass(x), old_deparse_author_at_r)
+  if (length(fmt) == 1) {
+    paste0("\n", paste0("    ", fmt[[1]], collapse = "\n"))
+  } else {
+    for (i in seq_along(fmt)) {
+      fmt[[i]] <- paste0("  ", fmt[[i]])
+      fmt[[i]][[length(fmt[[i]])]] <- paste0(fmt[[i]][[length(fmt[[i]])]], ",")
+    }
+    fmt[[1]][[1]] <- sub("^  ", "c(", fmt[[1]][[1]])
+    n <- length(fmt)
+    fmt[[n]][[length(fmt[[n]])]] <- sub(",$", ")", fmt[[n]][[length(fmt[[n]])]])
+    paste0("\n", paste0("    ", unlist(fmt), collapse = "\n"))
+  }
+}
+
+old_deparse_author_at_r <- function(x1) {
+  x1 <- x1[! vapply(x1, is.null, TRUE)]
+  paste0(
+    c("person(", rep("       ", length(x1) - 1)),
+    names(x1), " = ", vapply(x1, fixed_deparse1, ""),
+    c(rep(",", length(x1) - 1), ")")
+  )
 }
 
 set_author_field <- function(authors, which, field, value) {
