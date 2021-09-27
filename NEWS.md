@@ -1,5 +1,5 @@
 
-# Development version
+# desc 1.4.0
 
 * DESCRIPTION objects created with the `!new` command now omit `LazyData: true` 
   to match new CRAN checks (#105, @malcolmbarrett)
