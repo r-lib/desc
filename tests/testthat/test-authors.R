@@ -442,3 +442,28 @@ test_that("long comments are deparsed properly", {
     authors[[2]]$comment
   )
 })
+
+test_that("deparse_authors_at_r", {
+  ppl <- c(
+    person("Hadley", "Wickham", , "hadley@rstudio.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-4757-117X")
+           ),
+    person("Jennifer", "Bryan", , "jenny@rstudio.com", role = "aut",
+           comment = c(ORCID = "0000-0002-6983-2759")
+           ),
+    person("RStudio", role = c("cph", "fnd"))
+  )
+
+  tmp <- tempfile()
+  on.exit(unlink(tmp), add = TRUE)
+
+  desc <- description$new(text = "")
+
+  desc$set_authors(ppl[[1]])
+  desc$write(tmp)
+  expect_snapshot(readLines(tmp))
+
+  desc$set_authors(ppl)
+  desc$write(tmp)
+  expect_snapshot(readLines(tmp))
+})

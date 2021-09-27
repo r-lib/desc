@@ -21,27 +21,49 @@ parse_authors_at_r <- function(x) {
 
 deparse_authors_at_r <- function(x) {
   fmt <- lapply(unclass(x), deparse_author_at_r)
+  lines <- vapply(fmt, paste, character(1), collapse = "\n    ")
   if (length(fmt) == 1) {
-    paste0("\n", paste0("    ", fmt[[1]], collapse = "\n"))
+    paste0("\n    ", lines)
   } else {
-    for (i in seq_along(fmt)) {
-      fmt[[i]] <- paste0("  ", fmt[[i]])
-      fmt[[i]][[length(fmt[[i]])]] <- paste0(fmt[[i]][[length(fmt[[i]])]], ",")
-    }
-    fmt[[1]][[1]] <- sub("^  ", "c(", fmt[[1]][[1]])
-    n <- length(fmt)
-    fmt[[n]][[length(fmt[[n]])]] <- sub(",$", ")", fmt[[n]][[length(fmt[[n]])]])
-    paste0("\n", paste0("    ", unlist(fmt), collapse = "\n"))
+    paste0(
+      "c(\n",
+      paste("   ", lines, collapse = ",\n"),
+      "\n  )"
+    )
   }
 }
 
 deparse_author_at_r <- function(x1) {
   x1 <- x1[! vapply(x1, is.null, TRUE)]
-  paste0(
-    c("person(", rep("       ", length(x1) - 1)),
-    names(x1), " = ", vapply(x1, fixed_deparse1, ""),
-    c(rep(",", length(x1) - 1), ")")
+  d <- function(n) {
+    if (n %in% names(x1)) fixed_deparse1(x1[[n]]) else ""
+  }
+  hdr <- paste0(
+    "person(",
+    d("given"),
+    if (any(c("family", "middle", "email") %in% names(x1))) ", ",
+    d("family"),
+    if (any(c("middle", "email") %in% names(x1))) ", ",
+    d("middle"),
+    if ("email" %in% names(x1)) ", ",
+    d("email"),
+    if ("role" %in% names(x1)) paste0(", role = ", d("role"))
   )
+
+  x1 <- x1[setdiff(names(x1), c("given", "family", "middle", "role", "email"))]
+
+  if (length(x1) == 0) {
+    paste0(hdr, ")")
+  } else {
+    c(
+      paste0(hdr, ","),
+      paste0(
+        rep("       ", length(x1)),
+        names(x1), " = ", vapply(x1, fixed_deparse1, ""),
+        c(rep(",", length(x1) - 1), ")")
+      )
+    )
+  }
 }
 
 set_author_field <- function(authors, which, field, value) {

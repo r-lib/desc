@@ -28,24 +28,8 @@ test_that("str formats authors properly", {
 
   desc <- description$new("D2")
 
-  expect_equal(
-    crayon::strip_style(desc$str(by_field = TRUE)[["Authors@R"]]),
-    paste0(
-      "Authors@R:\n    ",
-      "c(person(given = \"Hadley\",\n             ",
-      "family = \"Wickham\",\n             ",
-      "role = c(\"aut\", \"cre\", \"cph\"),\n             ",
-      "email = \"h.wickham@gmail.com\"),\n      ",
-      "person(given = \"Peter\",\n             ",
-      "family = \"Danenberg\",\n             ",
-      "role = c(\"aut\", \"cph\"),\n             ",
-      "email = \"pcd@roxygen.org\"),\n      ",
-      "person(given = \"Manuel\",\n             ",
-      "family = \"Eugster\",\n             ",
-      "role = c(\"aut\", \"cph\")),\n      ",
-      "person(given = \"RStudio\",\n             ",
-      "role = \"cph\"))"
-    )
+  expect_snapshot(
+    cat(crayon::strip_style(desc$str(by_field = TRUE)[["Authors@R"]]))
   )
 })
 

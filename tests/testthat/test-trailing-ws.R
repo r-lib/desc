@@ -30,10 +30,10 @@ test_that("WS is added if field is changed", {
   d <- description$new("D3")
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
-  d$add_author("Gabor", "Csardi", "foo@bar.com")
+  d$set(Author = "Gabor Csardi <foo@bar.com>")
   d$write(tmp)
   contents <- paste0(readLines(tmp), collapse = "\n")
-  expect_match(contents, "Authors@R: \n")
+  expect_match(contents, "Author: ")
 })
 
 test_that("No WS is added if an other field is changed", {
