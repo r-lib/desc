@@ -787,10 +787,9 @@ idesc_write <- function(self, private, file) {
   if ("Encoding" %in% colnames(mat)) {
     encoding <- mat[, "Encoding"]
     mat[] <- iconv(mat[], from = "UTF-8", to = encoding)
-    Encoding(mat) <- encoding
-  } else {
-    encoding <- ""
   }
+  # This is to avoid re-encoding
+  Encoding(mat) <- "unknown"
 
   ## Need to write to a temp file first, to preserve absense of trailing ws
   tmp <- tempfile()
@@ -803,7 +802,7 @@ idesc_write <- function(self, private, file) {
   postprocess_trailing_ws(tmp, names(private$notws))
   if (file.exists(file) && is_dir(file)) file <- find_description(file)
 
-  ofile <- file(file, encoding = encoding, open = "w+")
+  ofile <- file(file, raw = TRUE, open = "wb+")
   on.exit(close(ofile), add = TRUE)
   writeLines(readLines(tmp), ofile)
 
