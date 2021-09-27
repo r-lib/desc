@@ -1,6 +1,4 @@
 
-context("Absense of trailing WS is kept")
-
 test_that("No WS is kept if field is not modified", {
   d <- description$new("D3")
   tmp <- tempfile()

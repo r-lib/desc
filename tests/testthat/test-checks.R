@@ -1,7 +1,4 @@
 
-context("Syntax checks")
-
-
 test_that("checking other fields is always ok", {
 
   desc <- description$new("D1")

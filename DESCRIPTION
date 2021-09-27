@@ -62,3 +62,4 @@ Collate:
     'validate.R'
     'version.R'
 Language: en-US
+Config/testthat/edition: 3

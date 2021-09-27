@@ -1,6 +1,4 @@
 
-context("DCF reader")
-
 test_that("DCF reader works", {
   desc <- description$new("D1")
 

@@ -1,6 +1,4 @@
 
-context("Version")
-
 test_that("get_version", {
   desc <- description$new("D1")
   v <- desc$get_version()

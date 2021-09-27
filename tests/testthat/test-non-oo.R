@@ -1,6 +1,4 @@
 
-context("Non OO API")
-
 test_that("desc_add_author", {
   d <- temp_desc()
   on.exit(unlink(d))
@@ -9,26 +7,28 @@ test_that("desc_add_author", {
 })
 
 test_that("desc_add_me", {
+  withr::local_envvar(
+    FULLNAME = "First Last",
+    EMAIL = "first.last@dom.com"
+  )
+
   d <- temp_desc()
   on.exit(unlink(d))
-  with_mock(
-    `whoami::fullname` = function() "First Last",
-    `whoami::email_address` = function() "first.last@dom.com",
-    x <- desc_add_me(file = d)
-  )
+  desc_add_me(file = d)
+
   expect_match(desc_get(file = d, "Authors@R"), "First")
   expect_match(desc_get(file = d, "Authors@R"), "first.last@dom.com")
 })
 
 test_that("desc_add_author_gh", {
+  withr::local_options(
+    desc.gh_user = list(name = "Jeroen Ooms", email = "notanemail")
+  )
   d <- temp_desc()
   on.exit(unlink(d))
-  with_mock(
-    `gh::gh` = function(...) list(name = "Jeroen Ooms",
-                                  email = "notanemail"),
-     desc_add_author_gh(file = d,
-                        username = "jeroen")
-  )
+  desc_add_author_gh(file = d,
+                     username = "jeroen")
+
   expect_match(desc_get(file = d, "Authors@R"), "Jeroen")
   expect_match(desc_get(file = d, "Authors@R"), "notanemail")
 })

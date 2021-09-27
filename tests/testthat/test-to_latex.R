@@ -1,4 +1,3 @@
-context("to_latex")
 
 test_that("Test expected LaTeX output", {
   desc <- description$new("!new")

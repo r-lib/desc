@@ -1,6 +1,4 @@
 
-context("Dependencies")
-
 test_that("get_deps", {
   desc <- description$new("D1")
 

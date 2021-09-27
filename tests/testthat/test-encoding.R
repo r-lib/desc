@@ -1,6 +1,4 @@
 
-context("Encoding")
-
 test_that("Encoding field is observed", {
 
   expect_silent(

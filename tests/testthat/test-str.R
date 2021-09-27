@@ -1,6 +1,4 @@
 
-context("Formatting")
-
 test_that("str orders fields", {
   desc <- description$new("!new")
 

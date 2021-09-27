@@ -1,6 +1,4 @@
 
-context("Constructors")
-
 test_that("can create new object", {
   desc <- description$new("!new")
 

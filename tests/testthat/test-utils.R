@@ -1,6 +1,4 @@
 
-context("Utility functions")
-
 test_that("check_for_package works", {
 
   expect_true(check_for_package("utils"))

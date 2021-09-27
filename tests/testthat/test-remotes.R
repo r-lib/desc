@@ -1,6 +1,4 @@
 
-context("REMOTE")
-
 test_that("get, set, etc. remotes", {
   desc <- description$new("D2")
   expect_identical(

@@ -1,6 +1,4 @@
 
-context("Write")
-
 test_that("can write to file", {
 
   desc <- description$new("!new")

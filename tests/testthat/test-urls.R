@@ -1,6 +1,4 @@
 
-context("URL")
-
 test_that("get, set, etc. urls", {
   desc <- description$new("D2")
   expect_identical(

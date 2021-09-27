@@ -289,10 +289,8 @@ idesc_add_author_gh <- function(self, private, username, role, comment, orcid = 
     is_named_character_or_null(comment),
     is_string_or_null(orcid)
   )
-  check_for_package("gh", "$add_author_gh needs the 'gh' package")
 
-  gh_info <- gh::gh("GET /users/:username",
-                    username = username)
+  gh_info <- author_gh(username)
 
   fn <- parse_full_name(gh_info$name)
   family <- fn$family
@@ -302,6 +300,12 @@ idesc_add_author_gh <- function(self, private, username, role, comment, orcid = 
                   comment = comment, role = role, orcid = orcid)
 }
 
+author_gh <- function(username) {
+  opt <- getOption("desc.gh_user")
+  if (!is.null(opt)) return(opt)
+  check_for_package("gh", "$add_author_gh needs the 'gh' package")
+  gh::gh("GET /users/:username", username = username)
+}
 
 idesc_get_maintainer <- function(self, private) {
   if (self$has_fields("Maintainer")) {

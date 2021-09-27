@@ -1,6 +1,4 @@
 
-context("Assertions")
-
 test_that("is_existing_file", {
   miss <- basename(tempfile())
   withr::with_dir(

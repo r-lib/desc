@@ -1,6 +1,4 @@
 
-context("Collate API")
-
 test_that("set_collate and get_collate work", {
   desc <- description$new("D1")
 

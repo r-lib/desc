@@ -1,6 +1,4 @@
 
-context("Nice behavior")
-
 test_that("dependencies are not reformatted if new value is the same", {
 
   desc <- description$new("D1")

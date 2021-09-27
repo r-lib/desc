@@ -1,6 +1,4 @@
 
-context("Queries")
-
 test_that("get works", {
   desc <- description$new("D1")
 

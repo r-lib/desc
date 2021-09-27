@@ -1,4 +1,3 @@
-context("repair")
 
 test_that("normalization", {
 

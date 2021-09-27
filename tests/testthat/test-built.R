@@ -1,6 +1,4 @@
 
-context("BUILT")
-
 test_that("get built", {
   desc <- description$new("D4")
   expect_identical(
