@@ -794,7 +794,7 @@ idesc_write <- function(self, private, file) {
   ## Need to write to a temp file first, to preserve absense of trailing ws
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
-  write.dcf(mat, file = tmp, keep.white = names(private$data), useBytes = TRUE)
+  write.dcf(mat, file = tmp, keep.white = names(private$data))
 
   removed <- ! names(private$notws) %in% colnames(mat)
   if (any(removed)) private$notws <- private$notws[! removed]
