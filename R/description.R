@@ -488,8 +488,15 @@ description <- R6Class("description",
     get_or_fail = function(keys)
       idesc_get_or_fail(self, private, keys),
 
+    get_list = function(key, default = stop("Field '", key, "' not found"),
+                        sep = ",", trim_ws = TRUE, squish_ws = trim_ws)
+      idesc_get_list(self, private, key, default, sep, trim_ws, squish_ws),
+
     set = function(...)
       idesc_set(self, private, ...),
+
+    set_list = function(key, list_value, sep = ", ")
+      idesc_set_list(self, private, key, list_value, sep),
 
     del = function(keys)
       idesc_del(self, private, keys),
@@ -862,6 +869,15 @@ idesc_get_or_fail <- function(self, private, keys) {
   res
 }
 
+idesc_get_list <- function(self, private, key, default, sep, trim_ws, squish_ws) {
+  stopifnot(is_string(key), is_flag(trim_ws), is_flag(squish_ws))
+  val <- private$data[[key]]$value %||% default
+  val <- strsplit(val, sep, fixed = TRUE)[[1]]
+  if (trim_ws) val <- str_trim(val)
+  if (squish_ws) val <- str_squish(val)
+  val
+}
+
 ## ... are either
 ## - two unnamed arguments, key and value, or
 ## - an arbitrary number of named arguments, the names are the keys,
@@ -890,6 +906,11 @@ idesc_set <- function(self, private, ...) {
   invisible(self)
 }
 
+idesc_set_list <- function(self, private, key, list_value, sep) {
+  stopifnot(is_string(key), is.character(list_value))
+  value <- paste(list_value, collapse = sep)
+  idesc_set(self, private, key, value)
+}
 
 idesc_del <- function(self, private, keys) {
   stopifnot(is.character(keys), has_no_na(keys))

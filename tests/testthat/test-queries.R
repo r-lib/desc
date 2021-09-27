@@ -101,3 +101,27 @@ test_that("set errors on invalid input", {
     "needs two unnamed args"
   )
 })
+
+test_that("get_list, set_list", {
+  desc <- description$new("D1")
+  desc$set(foo = "  this, is   a, \n   list")
+  expect_equal(
+    desc$get_list("foo"),
+    c("this", "is a", "list")
+  )
+  expect_equal(
+    desc$get_list("foo", trim_ws = FALSE, squish_ws = TRUE),
+    c(" this", " is a", " list")
+  )
+  expect_equal(
+    desc$get_list("foo", trim_ws = TRUE, squish_ws = FALSE),
+    c("this", "is   a", "list")
+  )
+  expect_equal(
+    desc$get_list("foo", trim_ws = FALSE, squish_ws = FALSE),
+    c("  this", " is   a", " \n   list")
+  )
+
+  desc$set_list("key", c("this", "that"))
+  expect_equal(desc$get_list("key"), c("this", "that"))
+})

@@ -97,6 +97,9 @@ desc_get <- generate_api("get", self = FALSE)
 
 #' Get a single field from a DESCRIPTION file, fail if not found
 #'
+#' \code{desc_get_list()} parses a comma separated list into a character
+#' vector.
+#'
 #' @inheritParams desc_get
 #' @param key The field to query.
 #' @param default Value to return if \code{key} is not found.
@@ -105,6 +108,7 @@ desc_get <- generate_api("get", self = FALSE)
 #'   from the value. Defaults to \code{TRUE}.
 #' @param squish_ws Whether to reduce repeated whitespace in the value.
 #'   Defaults to \code{trim_ws}.
+#' @param sep Separator string for \code{desc_get_list()}.
 #' @return Character string, the value of \code{key}, or \code{default}
 #'   if \code{key} is not found and \code{default} is specified.
 #'
@@ -118,6 +122,11 @@ desc_get_field <- generate_api("get_field", self = FALSE)
 
 desc_get_or_fail <- generate_api("get_or_fail", self = FALSE)
 
+#' @rdname desc_get_field
+#' @export
+
+desc_get_list <- generate_api("get_list", self = FALSE)
+
 #' Set one or more fields in a DESCRIPTION file
 #'
 #' @details
@@ -127,17 +136,29 @@ desc_get_or_fail <- generate_api("get_or_fail", self = FALSE)
 #' The second form requires named arguments: names are used as keys
 #' and values as values to set.
 #'
+#' \code{desc_set_list()} collapses a character vector into string,
+#' separating the elements by commas.
+#'
 #' @param ... Values to set, see details below.
 #' @param file DESCRIPTION file to use. By default the DESCRIPTION
 #'    file of the current package (i.e. the package the working directory
 #'    is part of) is used.
 #' @param normalize Whether to normalize the write when writing back
 #'   the result. See \code{\link{desc_normalize}}.
+#' @param key Key to set in \code{desc_set_list()}.
+#' @param list_value Character vector, to collapse in
+#'   \code{desc_set_list()}.
+#' @param sep Separator string for \code{desc_set_list()} list fields.
 #'
 #' @family simple queries
 #' @export
 
 desc_set <- generate_api("set")
+
+#' @rdname desc_set
+#' @export
+
+desc_set_list <- generate_api("set_list")
 
 #' Remove fields from a DESCRIPTION file
 #'

@@ -2,9 +2,12 @@
 % Please edit documentation in R/non-oo-api.R
 \name{desc_set}
 \alias{desc_set}
+\alias{desc_set_list}
 \title{Set one or more fields in a DESCRIPTION file}
 \usage{
 desc_set(..., file = ".", normalize = FALSE)
+
+desc_set_list(key, list_value, sep = ", ", file = ".", normalize = FALSE)
 }
 \arguments{
 \item{...}{Values to set, see details below.}
@@ -15,6 +18,13 @@ is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
 the result. See \code{\link{desc_normalize}}.}
+
+\item{key}{Key to set in \code{desc_set_list()}.}
+
+\item{list_value}{Character vector, to collapse in
+\code{desc_set_list()}.}
+
+\item{sep}{Separator string for \code{desc_set_list()} list fields.}
 }
 \description{
 Set one or more fields in a DESCRIPTION file
@@ -25,6 +35,9 @@ arguments: the key and its value to set.
 
 The second form requires named arguments: names are used as keys
 and values as values to set.
+
+\code{desc_set_list()} collapses a character vector into string,
+separating the elements by commas.
 }
 \seealso{
 Other simple queries: 

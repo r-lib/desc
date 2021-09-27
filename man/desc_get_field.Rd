@@ -3,6 +3,7 @@
 \name{desc_get_field}
 \alias{desc_get_field}
 \alias{desc_get_or_fail}
+\alias{desc_get_list}
 \title{Get a single field from a DESCRIPTION file, fail if not found}
 \usage{
 desc_get_field(
@@ -14,6 +15,15 @@ desc_get_field(
 )
 
 desc_get_or_fail(keys, file = ".")
+
+desc_get_list(
+  key,
+  default = stop("Field '", key, "' not found"),
+  sep = ",",
+  trim_ws = TRUE,
+  squish_ws = trim_ws,
+  file = "."
+)
 }
 \arguments{
 \item{key}{The field to query.}
@@ -32,13 +42,16 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{keys}{Character vector of fields to get.}
+
+\item{sep}{Separator string for \code{desc_get_list()}.}
 }
 \value{
 Character string, the value of \code{key}, or \code{default}
   if \code{key} is not found and \code{default} is specified.
 }
 \description{
-Get a single field from a DESCRIPTION file, fail if not found
+\code{desc_get_list()} parses a comma separated list into a character
+vector.
 }
 \seealso{
 Other simple queries: 
