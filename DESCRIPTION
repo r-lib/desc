@@ -1,6 +1,6 @@
 Package: desc
 Title: Manipulate DESCRIPTION Files
-Version: 1.4.0
+Version: 1.4.0.9000
 Authors@R: 
     c(person(given = "Gábor",
              family = "Csárdi",
