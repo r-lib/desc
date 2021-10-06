@@ -377,40 +377,48 @@ idesc_get_maintainer <- function(self, private) {
 idesc_coerce_authors_at_r <- function(self, private) {
   has_authors_at_r = self$has_fields("Authors@R")
   has_author = self$has_fields("Author")
+
   if (! (has_authors_at_r | has_author) ) {
     stop("No 'Authors@R' or 'Author' field!\n",
          "You can create one with $add_author")
   }
 
   if ( !has_authors_at_r & has_author) {
-    # Get author field
+
+    # helper function to set role if role is NULL
+    set_role_if_null <- function(person, role) {
+      if (length(person) == 1) {
+        person$role = person$role %||% role
+      }
+      person$role <- lapply(person$role, function(y) y %||% role)
+      person
+    }
+
+    # Parse author field as person and set role
     auth = self$get("Author")
     auth = as.person(auth)
-    auth$role = "aut"
+    auth = set_role_if_null(auth, "aut")
 
-    # Get maintainer field - set creator role
+    # Parse author field as person and set role
     man = self$get_maintainer()
     man = as.person(man)
-    man$role = c("cre")
+    man = set_role_if_null(man, "cre")
 
-    # Set author as maintainer
-    auths = man
+    # Determine which author is the maintainer and split auth accordingly
+    auth_in_man <- paste(auth$given, auth$family) %in% paste(man$given, man$family)
+    mauth <- auth[auth_in_man]
+    other_auth <- auth[!auth_in_man] # this is an empty list if single author
 
-    # If Maintainer in Author field, remove it and keep the maintainer one
-    # may want to use del_author
-    check_same = function(x) {
-      identical(c(man$given, man$family),
-                c(x$given, x$family))
-    }
-    same_auth = sapply(auth, check_same)
-    auth = auth[!same_auth]
-    if (length(auth) > 0) {
-      auths = c(auths, auth)
-    }
+    # combine info from mauth and man
+    mauth$role <- list(unique(c(mauth$role, man$role)))
+    mauth$email <- list(mauth$email %||% man$email)
+    mauth$comment <- list(mauth$comment %||% man$comment)
+
+    # combine all authors and set as authors@R
+    auths = c(mauth, other_auth)
     self$set_authors(auths)
   }
 }
-
 
 # helper to add or replace ORCID in comment
 add_orcid_to_comment <- function(comment, orcid){

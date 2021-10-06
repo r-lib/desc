@@ -1,0 +1,15 @@
+Package: pkgname
+Version: 0.5-1
+Date: 2015-01-01
+Title: My First Collection of Functions
+Author: Joe Developer [aut, cre],
+  Pat Developer [aut],
+  A. User [ctb]
+Maintainer: Joe Developer <Joe.Developer@some.domain.net>
+Depends: R (>= 3.1.0), nlme
+Suggests: MASS
+Description: A (one paragraph) description of what
+  the package does and why it may be useful.
+License: GPL (>= 2)
+URL: https://cran.r-project.org/doc/manuals/R-exts.html#The-DESCRIPTION-file
+BugReports: https://pkgname.bugtracker.url

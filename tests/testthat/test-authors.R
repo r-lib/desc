@@ -349,24 +349,52 @@ test_that("get_maintainer is OK, too", {
 test_that("coerce_authors_at_r if there is no Authors@R field", {
   D1 <- description$new(test_path("D1"))
   expect_error(D1$get_authors())
-  D1$coerce_authors_at_r()
-  expect_silent(D1$get_authors())
-  expect_identical(
-    format(D1$get_authors()[1]),
-    "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [cre]"
+  expect_silent(D1$coerce_authors_at_r())
+  expect_silent(auth <- D1$get_authors())
+  expect_equal(
+    auth,
+    as.person("G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [aut, cre]")
   )
+  # author and maintainer are the same in this case
+  expect_equal(D1$get_author("cre"), D1$get_author("aut"))
 })
-
 
 test_that("coerce_authors_at_r error if no authors fields at all", {
   D1 <- description$new(test_path("D1"))
   D1$del("Author")
-  expect_error(D1$coerce_authors_at_r())
+  expect_error(D1$coerce_authors_at_r(), "No 'Authors@R' or 'Author' field!")
 })
 
 test_that("coerce_authors_at_r with multiple authors in Author: field", {
   D6 <- description$new(test_path("D6"))
   expect_silent(D6$coerce_authors_at_r())
+  expect_equal(
+    D6$get_author("cre"),
+    as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]")
+  )
+  a <- D6$get_author("aut")
+  expect_equal(a[1], as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]"))
+  expect_equal(a[2], as.person("John Muschelli [aut]"))
+})
+
+test_that("coerce_authors_at_r handles role tags, #114", {
+  D13 <- description$new(test_path("D13"))
+  expect_silent(D13$coerce_authors_at_r())
+  # Joe Developer is a maintainer
+  expect_equal(
+    D13$get_author("cre"),
+    as.person("Joe Developer <Joe.Developer@some.domain.net> [aut, cre]")
+  )
+  # Joe and Pat Developer are authors
+  a <- D13$get_author("aut")
+  expect_length(a, 2)
+  expect_equal(
+    a[1],
+    as.person("Joe Developer <Joe.Developer@some.domain.net> [aut, cre]")
+  )
+  expect_equal(a[2], as.person("Pat Developer [aut]"))
+  # "A. User" is a contributor
+  expect_equal(D13$get_author("ctb"), as.person("A. User [ctb]"))
 })
 
 test_that("add_author if there is no Authors@R field", {
