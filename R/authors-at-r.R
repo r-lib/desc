@@ -263,7 +263,7 @@ idesc_del_author <- function(self, private, given, family, email, role,
   } else {
     au <- if (length(wh$index) == 1) "Author" else "Authors"
     desc_message(
-      au, "removed: ",
+      au, " removed: ",
       paste(wh$authors$given, wh$authors$family, collapse = ", "),
       "."
     )

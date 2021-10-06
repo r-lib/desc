@@ -186,8 +186,8 @@ test_that("we cannot add the same ORCID to more than one author", {
 test_that("we can delete an author", {
   desc <- description$new(test_path("D2"))
 
-  desc$del_author(given = "Hadley")
-  desc$del_author(family = "Danenberg")
+  expect_message(desc$del_author(given = "Hadley"), "removed:")
+  expect_message(desc$del_author(family = "Danenberg"), "removed:")
 
   ans <- c(
     person("Manuel", "Eugster", role = c("aut", "cph")),
