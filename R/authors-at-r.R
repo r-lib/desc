@@ -393,24 +393,35 @@ idesc_coerce_authors_at_r <- function(self, private) {
       person
     }
 
-    # Parse author field as person and set role
-    auth = self$get("Author")
-    auth = as.person(auth)
-    auth = set_role_if_null(auth, "aut")
-
-    # Parse author field as person and set role
+    # Parse maintainer field as person and set role
     man = self$get_maintainer()
     man = as.person(man)
     man = set_role_if_null(man, "cre")
 
+    # Parse author field as person and set role
+    auth = self$get("Author")
+    author_file <- grepl("AUTHOR", auth, ignore.case = FALSE, fixed = TRUE)
+    if (author_file) {
+      desc_message(
+        "The 'Author' field seems to refer to an AUTHOR file we do not parse. \n",
+        "Only the 'Maintainer' field will be converted to 'Authors@R'. \n",
+        "You can add additional authors with $add_author."
+      )
+      auth = man
+      auth$role = "aut"
+    } else {
+    auth = as.person(auth)
+    auth = set_role_if_null(auth, "aut")
+    }
+
     # Determine which author is the maintainer and split auth accordingly
     auth_in_man <- paste(auth$given, auth$family) %in% paste(man$given, man$family)
-    mauth <- auth[auth_in_man]
+    mauth <- if(any(auth_in_man)) auth[auth_in_man] else man
     other_auth <- auth[!auth_in_man] # this is an empty list if single author
 
     # combine info from mauth and man
     mauth$role <- list(unique(c(mauth$role, man$role)))
-    mauth$email <- list(mauth$email %||% man$email)
+    mauth$email <- man$email # email is mandatory for maintainers
     mauth$comment <- list(mauth$comment %||% man$comment)
 
     # combine all authors and set as authors@R

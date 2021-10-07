@@ -402,6 +402,28 @@ test_that("coerce_authors_at_r handles role tags, #114", {
   expect_equal(D13$get_author("ctb"), as.person("A. User [ctb]"))
 })
 
+test_that("coerce_authors_at_r ignores reference to AUTHOR files, #114", {
+  D14 <- description$new("D14")
+  expect_message(D14$coerce_authors_at_r(), "AUTHOR file")
+  expect_equal(
+    D14$get_authors(),
+    as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]")
+  )
+})
+
+test_that("coerce_authors_at_r handles maintainer not being author", {
+  D15 <- description$new("D15")
+  expect_silent(D15$coerce_authors_at_r())
+  expect_equal(
+    D15$get_author("cre"),
+    as.person("Masami Saga <msaga@mtb.biglobe.ne.jp> [cre]")
+  )
+  expect_equal(
+    D15$get_author("aut"),
+    as.person("The Institute of Statistical Mathematics [aut]")
+  )
+})
+
 test_that("add_author if there is no Authors@R field", {
   D1 <- description$new(test_path("D1"))
   D1$add_author("Gabor", "Csardi", "csardi.gabor@gmail.com", role = "ctb")
