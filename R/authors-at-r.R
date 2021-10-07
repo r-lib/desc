@@ -373,17 +373,16 @@ idesc_get_maintainer <- function(self, private) {
   }
 }
 
-
 idesc_coerce_authors_at_r <- function(self, private) {
-  has_authors_at_r = self$has_fields("Authors@R")
-  has_author = self$has_fields("Author")
 
-  if (! (has_authors_at_r | has_author) ) {
+  if (self$has_fields("Authors@R")) return(invisible(NULL)) # exit early
+
+  if (!self$has_fields("Author")) {
+
     stop("No 'Authors@R' or 'Author' field!\n",
          "You can create one with $add_author")
-  }
 
-  if ( !has_authors_at_r & has_author) {
+  } else {
 
     # helper function to set role if role is NULL
     set_role_if_null <- function(person, role) {

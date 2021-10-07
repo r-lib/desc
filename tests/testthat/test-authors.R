@@ -359,7 +359,12 @@ test_that("coerce_authors_at_r if there is no Authors@R field", {
   expect_equal(D1$get_author("cre"), D1$get_author("aut"))
 })
 
-test_that("coerce_authors_at_r error if no authors fields at all", {
+test_that("coerce_authors_at_r does nothing if there IS an Authors@R field", {
+  D2 <- description$new(teat_path("D2"))
+  expect_null(D2$coerce_authors_at_r())
+})
+
+test_that("coerce_authors_at_r errors if no authors fields at all", {
   D1 <- description$new(test_path("D1"))
   D1$del("Author")
   expect_error(D1$coerce_authors_at_r(), "No 'Authors@R' or 'Author' field!")
