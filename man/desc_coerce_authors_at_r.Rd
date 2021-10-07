@@ -2,7 +2,7 @@
 % Please edit documentation in R/non-oo-api.R
 \name{desc_coerce_authors_at_r}
 \alias{desc_coerce_authors_at_r}
-\title{Coerce Author Field to Authors@R}
+\title{Coerce Author and Maintainer Fields to Authors@R}
 \usage{
 desc_coerce_authors_at_r(file = ".", normalize = FALSE)
 }
@@ -15,8 +15,17 @@ is part of) is used.}
 the result. See \code{\link{desc_normalize}}.}
 }
 \description{
-Convert an \sQuote{Author} to a \sQuote{Authors@R} field, which is necessary
-for other functions such as getting authors.
+Convert the \sQuote{Author} and \sQuote{Maintainer} fields to
+\sQuote{Authors@R}, which is necessary for other functions such as
+\code{desc_get_authors()}.
+}
+\details{
+If the \sQuote{Authors@R} field does not exist,
+\code{desc_coerce_authors_at_r} tries to parse the \sQuote{Author} and
+\sQuote{Maintainer} fields with \code{\link[utils]{as.person}} and writes
+them to the \sQuote{Authors@R} field.
+Note that \sQuote{Author} and \sQuote{Maintainer} are free-form fields so
+parsing them may fail.
 }
 \seealso{
 Other Authors@R: 

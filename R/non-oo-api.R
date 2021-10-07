@@ -542,12 +542,21 @@ desc_add_author_gh <- generate_api("add_author_gh")
 
 desc_get_maintainer <- generate_api("get_maintainer", self = FALSE)
 
-#' Coerce Author Field to Authors@R
+#' Coerce Author and Maintainer Fields to Authors@R
 #'
-#' Convert an \sQuote{Author} to a \sQuote{Authors@R} field, which is necessary
-#' for other functions such as getting authors.
+#' Convert the \sQuote{Author} and \sQuote{Maintainer} fields to
+#' \sQuote{Authors@R}, which is necessary for other functions such as
+#' \code{desc_get_authors()}.
 #'
 #' @inheritParams desc_set
+#'
+#' @details
+#' If the \sQuote{Authors@R} field does not exist,
+#' \code{desc_coerce_authors_at_r} tries to parse the \sQuote{Author} and
+#' \sQuote{Maintainer} fields with \code{\link[utils]{as.person}} and writes
+#' them to the \sQuote{Authors@R} field.
+#' Note that \sQuote{Author} and \sQuote{Maintainer} are free-form fields, so
+#' parsing them may fail.
 #'
 #' @export
 #' @family Authors@R
