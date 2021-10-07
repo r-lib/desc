@@ -232,7 +232,8 @@ test_that("we can change the maintainer", {
 test_that("add_me works", {
   withr::local_envvar(
     FULLNAME = "Bugs Bunny",
-    EMAIL = "bugs.bunny@acme.com"
+    EMAIL = "bugs.bunny@acme.com",
+    ORCID_ID = ""
   )
 
   desc <- description$new(test_path("D2"))
@@ -436,7 +437,8 @@ test_that("add_author if there is no Authors@R field", {
 test_that("add myself if there is no Authors@R field", {
   withr::local_envvar(
     FULLNAME = "Bugs Bunny",
-    EMAIL = "bugs.bunny@acme.com"
+    EMAIL = "bugs.bunny@acme.com",
+    ORCID_ID = ""
   )
 
   D1 <- description$new(test_path("D1"))
