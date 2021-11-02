@@ -388,8 +388,9 @@ idesc_coerce_authors_at_r <- function(self, private) {
     set_role_if_null <- function(person, role) {
       if (length(person) == 1) {
         person$role = person$role %||% role
+      } else {
+        person$role <- lapply(person$role, function(y) y %||% role)
       }
-      person$role <- lapply(person$role, function(y) y %||% role)
       person
     }
 
