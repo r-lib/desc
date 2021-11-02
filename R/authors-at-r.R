@@ -387,7 +387,7 @@ idesc_coerce_authors_at_r <- function(self, private) {
     # helper function to set role if role is NULL
     set_role_if_null <- function(person, role) {
       if (length(person) == 1) {
-        person$role = person$role %||% role
+        person$role <- person$role %||% role
       } else {
         person$role <- lapply(person$role, function(y) y %||% role)
       }
@@ -395,12 +395,12 @@ idesc_coerce_authors_at_r <- function(self, private) {
     }
 
     # Parse maintainer field as person and set role
-    man = self$get_maintainer()
-    man = as.person(man)
-    man = set_role_if_null(man, "cre")
+    man <- self$get_maintainer()
+    man <- as.person(man)
+    man <- set_role_if_null(man, "cre")
 
     # Parse author field as person and set role
-    auth = self$get("Author")
+    auth <- self$get("Author")
     author_file <- grepl("AUTHOR", auth, ignore.case = FALSE, fixed = TRUE)
     if (author_file) {
       desc_message(
@@ -408,11 +408,11 @@ idesc_coerce_authors_at_r <- function(self, private) {
         "Only the 'Maintainer' field will be converted to 'Authors@R'. \n",
         "You can add additional authors with $add_author."
       )
-      auth = man
-      auth$role = "aut"
+      auth <- man
+      auth$role <- "aut"
     } else {
-    auth = as.person(auth)
-    auth = set_role_if_null(auth, "aut")
+    auth <- as.person(auth)
+    auth <- set_role_if_null(auth, "aut")
     }
 
     # Determine which author is the maintainer and split auth accordingly
