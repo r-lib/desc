@@ -21,7 +21,7 @@ idesc_set_dep <- function(self, private, package, type, version) {
         # must be first
         idx <- which(deps$type == type)[[1]]
       } else {
-        idx <- length(idx) + 1
+        idx <- max(idx) + 1
       }
     } else {
       idx <- nrow(deps) + 1
