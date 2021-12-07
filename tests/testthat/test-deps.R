@@ -72,17 +72,18 @@ test_that("set_dep preserves order", {
 
   desc$set_deps(data.frame(
     stringsAsFactors = FALSE,
-    type = "Imports",
-    package = c("covr", "testthat"),
+    type = c("Depends", "Imports", "Imports"),
+    package = c("R", "covr", "testthat"),
     version = "*"
   ))
   desc$set_dep("R6", "Imports")
 
   expect_equal(
     desc$get_deps()$package,
-    c("covr", "R6", "testthat")
+    c("R", "covr", "R6", "testthat")
   )
 })
+
 test_that("set_dep inserts at end if not ordered", {
   desc <- description$new("!new")
 
