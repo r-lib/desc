@@ -131,6 +131,8 @@ idesc_print <- function(self, private) {
 
 
 idesc_normalize <- function(self, private) {
+  old <- options(cli.num_colors = 1, crayon.enabled = FALSE)
+  on.exit(options(old), add = TRUE)
   self$reformat_fields()
   self$reorder_fields()
   invisible(self)
