@@ -132,16 +132,27 @@ parse_full_name <- function(x) {
 }
 
 # It is currently not possible to deparse UTF-8 objects to UTF-8 strings
-# without converting them to the local encoding. So we have to unescape
-# the <U+xxxx> strings after the deparsing. This function only works for
-# character vectors, obviously. Related:
+# without converting them to the local encoding. `deparse()` either converts
+# the UTF-8 characters to <U+xxxx> escapes or \ooo escapes. So it is better
+# if we convert them to <U+xxxx> with iconv, and then convert back the
+# <U+xxxx> strings after the deparsing.
+#
+# This function only works for character vectors, obviously. Related:
 # https://stat.ethz.ch/pipermail/r-devel/2022-February/081485.html
 
 fixed_deparse1 <- function(x, ...) {
-  x <- enc2utf8(x)
+  x <- unicode_encode(x)
   out <- paste(deparse(x, width.cutoff = 500L, ...), collapse = " ")
   out <- unicode_decode(out)
   out
+}
+
+unicode_encode <- function(x) {
+  x <- enc2utf8(x)
+  if (! l10n_info()$`UTF-8`) {
+    x <- iconv(x, "UTF-8", "ASCII", sub = "Unicode")
+  }
+  x
 }
 
 unicode_decode <- function(x) {
@@ -151,6 +162,7 @@ unicode_decode <- function(x) {
     rep <- lapply(uni, parse_escaped_unicode)
     regmatches(x, mch) <- rep
   }
+  x <- enc2utf8(x)
   Encoding(x) <- "UTF-8"
   x
 }
