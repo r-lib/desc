@@ -361,7 +361,7 @@ test_that("coerce_authors_at_r if there is no Authors@R field", {
 })
 
 test_that("coerce_authors_at_r does nothing if there IS an Authors@R field", {
-  D2 <- description$new(teat_path("D2"))
+  D2 <- description$new(test_path("D2"))
   expect_null(D2$coerce_authors_at_r())
 })
 
