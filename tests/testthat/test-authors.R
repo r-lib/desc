@@ -25,14 +25,14 @@ test_that("we can set the authors", {
 })
 
 test_that("we can add an author", {
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
-  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] (Really?)"
+    "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [ctb] (Really?)"
   )
 })
 
@@ -46,14 +46,14 @@ test_that("we can add an author with ORCID via comment", {
 
   desc <- description$new(cmd = "!new")
 
-  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb",
                   comment = c(ORCID = "0000-0001-7098-9676", what="he did it"))
 
   expect_identical(
     format(desc$get_authors()[2]),
     paste0(
-      "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] ",
+      "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [ctb] ",
       "(<https://orcid.org/0000-0001-7098-9676>, he did it)"
     )
   )
@@ -69,7 +69,7 @@ test_that("we can add an author with ORCID", {
 
   desc <- description$new(cmd = "!new")
 
-  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb",
                   comment = c(what="he did it"),
                   orcid = "0000-0001-7098-9676")
@@ -77,7 +77,7 @@ test_that("we can add an author with ORCID", {
   expect_identical(
     format(desc$get_authors()[2]),
     paste0(
-      "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] ",
+      "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [ctb] ",
       "(he did it, <https://orcid.org/0000-0001-7098-9676>)"
     )
   )
@@ -87,7 +87,7 @@ test_that("we cannot add an author with malformatted comment", {
 
   desc <- description$new(cmd = "!new")
 
-  expect_error(desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+  expect_error(desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb",
                   comment = c(ORCID = "orcid_number", what=NA)),
                "is_named_character_or_null")
@@ -120,13 +120,13 @@ test_that("we can search for authors", {
 test_that("we can add a role to an author", {
   desc <- description$new("D2")
 
-  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
-  desc$add_role(given = "Gábor", role = "cph")
+  desc$add_role(given = "G\u00e1bor", role = "cph")
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [ctb, cph] (Really?)"
+    "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [ctb, cph] (Really?)"
   )
 })
 
@@ -139,14 +139,14 @@ test_that("we can add an ORCID to an author", {
 
   desc <- description$new("D2")
 
-  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
-  desc$add_orcid(given = "Gábor", orcid = "0000-0001-7098-9676")
+  desc$add_orcid(given = "G\u00e1bor", orcid = "0000-0001-7098-9676")
 
   expect_identical(
     format(desc$get_authors()[5]),
     paste0(
-      "Gábor Csárdi <csardi.gabor@gmail.com> [ctb] ",
+      "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [ctb] ",
       "(Really?, <https://orcid.org/0000-0001-7098-9676>)"
     )
   )
@@ -200,14 +200,14 @@ test_that("we can delete an author", {
 test_that("we can delete a role", {
   desc <- description$new("D2")
 
-  desc$add_author("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
+  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
-  desc$add_role(given = "Gábor", role = "cph")
-  desc$del_role(family = "Csárdi", role = "ctb")
+  desc$add_role(given = "G\u00e1bor", role = "cph")
+  desc$del_role(family = "Cs\u00e1rdi", role = "ctb")
 
   expect_identical(
     format(desc$get_authors()[5]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [cph] (Really?)"
+    "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [cph] (Really?)"
   )
 })
 
@@ -296,7 +296,7 @@ test_that("message if not author to delete does not exist", {
 
   desc <- description$new("D2")
   expect_message(
-    desc$del_author(given = "Gábor"),
+    desc$del_author(given = "G\u00e1bor"),
     "Could not find author to remove"
   )
 })
@@ -353,7 +353,7 @@ test_that("coerce_authors_at_r if there is no Authors@R field", {
   expect_silent(D1$get_authors())
   expect_identical(
     format(D1$get_authors()[1]),
-    "Gábor Csárdi <csardi.gabor@gmail.com> [cre]"
+    "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [cre]"
   )
 })
 

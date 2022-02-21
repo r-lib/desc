@@ -26,6 +26,7 @@ BugReports: https://github.com/r-lib/desc/issues
 Depends:
     R (>= 3.1.0)
 Suggests:
+    callr,
     covr,
     testthat,
     whoami,
