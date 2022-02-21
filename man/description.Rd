@@ -139,16 +139,12 @@ By default it writes it to the file it was created from, if it was
 created from a file. Otherwise giving a file name is compulsory:
 \preformatted{  x$write(file = "DESCRIPTION")}
 
-The \code{normalize} argument controls whether the fields are
-reformatted according to a standard style. By default they are not.
-
 The API:
-\preformatted{  description$write(file = NULL, normalize = NULL)}
+\preformatted{  description$write(file = NULL)}
 \describe{
   \item{file:}{Path to write the description to. If it was created
      from a file in the first place, then it is written to the same
      file. Otherwise this argument must be specified.}
-  \item{normalize:}{Whether to reformat the fields in a standard way.}
 }
 }
 
