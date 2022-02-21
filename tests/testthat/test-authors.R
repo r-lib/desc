@@ -186,8 +186,8 @@ test_that("we cannot add the same ORCID to more than one author", {
 test_that("we can delete an author", {
   desc <- description$new(test_path("D2"))
 
-  desc$del_author(given = "Hadley")
-  desc$del_author(family = "Danenberg")
+  expect_message(desc$del_author(given = "Hadley"), "removed:")
+  expect_message(desc$del_author(family = "Danenberg"), "removed:")
 
   ans <- c(
     person("Manuel", "Eugster", role = c("aut", "cph")),
@@ -232,7 +232,8 @@ test_that("we can change the maintainer", {
 test_that("add_me works", {
   withr::local_envvar(
     FULLNAME = "Bugs Bunny",
-    EMAIL = "bugs.bunny@acme.com"
+    EMAIL = "bugs.bunny@acme.com",
+    ORCID_ID = ""
   )
 
   desc <- description$new(test_path("D2"))
@@ -349,24 +350,79 @@ test_that("get_maintainer is OK, too", {
 test_that("coerce_authors_at_r if there is no Authors@R field", {
   D1 <- description$new(test_path("D1"))
   expect_error(D1$get_authors())
-  D1$coerce_authors_at_r()
-  expect_silent(D1$get_authors())
-  expect_identical(
-    format(D1$get_authors()[1]),
-    "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [cre]"
+  expect_silent(D1$coerce_authors_at_r())
+  expect_silent(auth <- D1$get_authors())
+  expect_equal(
+    auth,
+    as.person("G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [aut, cre]")
   )
+  # author and maintainer are the same in this case
+  expect_equal(D1$get_author("cre"), D1$get_author("aut"))
 })
 
+test_that("coerce_authors_at_r does nothing if there IS an Authors@R field", {
+  D2 <- description$new(test_path("D2"))
+  expect_null(D2$coerce_authors_at_r())
+})
 
-test_that("coerce_authors_at_r error if no authors fields at all", {
+test_that("coerce_authors_at_r errors if no authors fields at all", {
   D1 <- description$new(test_path("D1"))
   D1$del("Author")
-  expect_error(D1$coerce_authors_at_r())
+  expect_error(D1$coerce_authors_at_r(), "No 'Authors@R' or 'Author' field!")
 })
 
 test_that("coerce_authors_at_r with multiple authors in Author: field", {
   D6 <- description$new(test_path("D6"))
   expect_silent(D6$coerce_authors_at_r())
+  expect_equal(
+    D6$get_author("cre"),
+    as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]")
+  )
+  a <- D6$get_author("aut")
+  expect_equal(a[1], as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]"))
+  expect_equal(a[2], as.person("John Muschelli [aut]"))
+})
+
+test_that("coerce_authors_at_r handles role tags, #114", {
+  D13 <- description$new(test_path("D13"))
+  expect_silent(D13$coerce_authors_at_r())
+  # Joe Developer is a maintainer
+  expect_equal(
+    D13$get_author("cre"),
+    as.person("Joe Developer <Joe.Developer@some.domain.net> [aut, cre]")
+  )
+  # Joe and Pat Developer are authors
+  a <- D13$get_author("aut")
+  expect_length(a, 2)
+  expect_equal(
+    a[1],
+    as.person("Joe Developer <Joe.Developer@some.domain.net> [aut, cre]")
+  )
+  expect_equal(a[2], as.person("Pat Developer [aut]"))
+  # "A. User" is a contributor
+  expect_equal(D13$get_author("ctb"), as.person("A. User [ctb]"))
+})
+
+test_that("coerce_authors_at_r ignores reference to AUTHOR files, #114", {
+  D14 <- description$new("D14")
+  expect_message(D14$coerce_authors_at_r(), "AUTHOR file")
+  expect_equal(
+    D14$get_authors(),
+    as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]")
+  )
+})
+
+test_that("coerce_authors_at_r handles maintainer not being author", {
+  D15 <- description$new("D15")
+  expect_silent(D15$coerce_authors_at_r())
+  expect_equal(
+    D15$get_author("cre"),
+    as.person("Masami Saga <msaga@mtb.biglobe.ne.jp> [cre]")
+  )
+  expect_equal(
+    D15$get_author("aut"),
+    as.person("The Institute of Statistical Mathematics [aut]")
+  )
 })
 
 test_that("add_author if there is no Authors@R field", {
@@ -381,7 +437,8 @@ test_that("add_author if there is no Authors@R field", {
 test_that("add myself if there is no Authors@R field", {
   withr::local_envvar(
     FULLNAME = "Bugs Bunny",
-    EMAIL = "bugs.bunny@acme.com"
+    EMAIL = "bugs.bunny@acme.com",
+    ORCID_ID = ""
   )
 
   D1 <- description$new(test_path("D1"))

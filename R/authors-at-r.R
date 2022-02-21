@@ -263,7 +263,7 @@ idesc_del_author <- function(self, private, given, family, email, role,
   } else {
     au <- if (length(wh$index) == 1) "Author" else "Authors"
     desc_message(
-      au, "removed: ",
+      au, " removed: ",
       paste(wh$authors$given, wh$authors$family, collapse = ", "),
       "."
     )
@@ -373,44 +373,63 @@ idesc_get_maintainer <- function(self, private) {
   }
 }
 
-
 idesc_coerce_authors_at_r <- function(self, private) {
-  has_authors_at_r = self$has_fields("Authors@R")
-  has_author = self$has_fields("Author")
-  if (! (has_authors_at_r | has_author) ) {
+
+  if (self$has_fields("Authors@R")) return(invisible(NULL)) # exit early
+
+  if (!self$has_fields("Author")) {
+
     stop("No 'Authors@R' or 'Author' field!\n",
          "You can create one with $add_author")
-  }
 
-  if ( !has_authors_at_r & has_author) {
-    # Get author field
-    auth = self$get("Author")
-    auth = as.person(auth)
-    auth$role = "aut"
+  } else {
 
-    # Get maintainer field - set creator role
-    man = self$get_maintainer()
-    man = as.person(man)
-    man$role = c("cre")
-
-    # Set author as maintainer
-    auths = man
-
-    # If Maintainer in Author field, remove it and keep the maintainer one
-    # may want to use del_author
-    check_same = function(x) {
-      identical(c(man$given, man$family),
-                c(x$given, x$family))
+    # helper function to set role if role is NULL
+    set_role_if_null <- function(person, role) {
+      if (length(person) == 1) {
+        person$role <- person$role %||% role
+      } else {
+        person$role <- lapply(person$role, function(y) y %||% role)
+      }
+      person
     }
-    same_auth = sapply(auth, check_same)
-    auth = auth[!same_auth]
-    if (length(auth) > 0) {
-      auths = c(auths, auth)
+
+    # Parse maintainer field as person and set role
+    man <- self$get_maintainer()
+    man <- as.person(man)
+    man <- set_role_if_null(man, "cre")
+
+    # Parse author field as person and set role
+    auth <- self$get("Author")
+    author_file <- grepl("AUTHOR", auth, ignore.case = FALSE, fixed = TRUE)
+    if (author_file) {
+      desc_message(
+        "The 'Author' field seems to refer to an AUTHOR file we do not parse. \n",
+        "Only the 'Maintainer' field will be converted to 'Authors@R'. \n",
+        "You can add additional authors with $add_author."
+      )
+      auth <- man
+      auth$role <- "aut"
+    } else {
+    auth <- as.person(auth)
+    auth <- set_role_if_null(auth, "aut")
     }
+
+    # Determine which author is the maintainer and split auth accordingly
+    auth_in_man <- paste(auth$given, auth$family) %in% paste(man$given, man$family)
+    mauth <- if(any(auth_in_man)) auth[auth_in_man] else man
+    other_auth <- auth[!auth_in_man] # this is an empty list if single author
+
+    # combine info from mauth and man
+    mauth$role <- list(unique(c(mauth$role, man$role)))
+    mauth$email <- man$email # email is mandatory for maintainers
+    mauth$comment <- list(mauth$comment %||% man$comment)
+
+    # combine all authors and set as authors@R
+    auths = c(mauth, other_auth)
     self$set_authors(auths)
   }
 }
-
 
 # helper to add or replace ORCID in comment
 add_orcid_to_comment <- function(comment, orcid){
