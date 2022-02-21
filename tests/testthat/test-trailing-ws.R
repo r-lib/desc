@@ -1,14 +1,14 @@
 
 test_that("No WS is kept if field is not modified", {
-  d <- description$new("D3")
+  d <- description$new(test_path("D3"))
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
   d$write(tmp)
-  expect_equal(readLines("D3"), readLines(tmp))
+  expect_equal(readLines(test_path("D3")), readLines(tmp))
 })
 
 test_that("WS is present in newly created fields", {
-  d <- description$new("D3")
+  d <- description$new(test_path("D3"))
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
   d$set("Foobar" = "\n    TRAZ")
@@ -27,7 +27,7 @@ test_that("WS is present in newly created files", {
 })
 
 test_that("WS is added if field is changed", {
-  d <- description$new("D3")
+  d <- description$new(test_path("D3"))
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
   d$set(Author = "Gabor Csardi <foo@bar.com>")
@@ -37,7 +37,7 @@ test_that("WS is added if field is changed", {
 })
 
 test_that("No WS is added if an other field is changed", {
-  d <- description$new("D3")
+  d <- description$new(test_path("D3"))
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
   d$add_author("Gabor", "Csardi", "foo@bar.com")

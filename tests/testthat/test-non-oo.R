@@ -162,7 +162,7 @@ test_that("desc_normalize", {
 test_that("desc_print", {
   d <- temp_desc()
   on.exit(unlink(d))
-  capt <- capture.output(description$new("D2")$print())
+  capt <- capture.output(description$new(test_path("D2"))$print())
   expect_output(
     desc_print(file = d),
     paste(capt, collapse = "\n"),
@@ -176,7 +176,7 @@ test_that("desc_reformat_fields", {
   desc_reformat_fields(file = d)
   expect_equal(
     desc_get(file = d, "Description"),
-    description$new("D2")$reformat_fields()$get("Description")
+    description$new(test_path("D2"))$reformat_fields()$get("Description")
   )
 })
 
@@ -193,12 +193,12 @@ test_that("desc_reorder_fields", {
 })
 
 test_that("desc_set_authors", {
-  d <- temp_desc("D1")
+  d <- temp_desc(test_path("D1"))
   on.exit(unlink(d))
-  desc_set_authors(file = d, desc_get_authors(file = "D2"))
+  desc_set_authors(file = d, desc_get_authors(file = test_path("D2")))
   expect_equal(
     desc_get_authors(file = d),
-    desc_get_authors("D2")
+    desc_get_authors(test_path("D2"))
   )
 })
 
@@ -224,23 +224,23 @@ test_that("desc_set_dep", {
 test_that("desc_set_deps", {
   d <- temp_desc()
   on.exit(unlink(d))
-  desc_set_deps(file = d, desc_get_deps(file = "D1"))
+  desc_set_deps(file = d, desc_get_deps(file = test_path("D1")))
   expect_equal(
     desc_get_deps(file = d),
-    desc_get_deps(file = "D1")
+    desc_get_deps(file = test_path("D1"))
   )
 })
 
 test_that("desc_to_latex", {
   expect_equal(
-    desc_to_latex(file = "D2"),
-    description$new("D2")$to_latex()
+    desc_to_latex(file = test_path("D2")),
+    description$new(test_path("D2"))$to_latex()
   )
 })
 
 test_that("desc_validate", {
   expect_warning(
-    desc_validate(file = "D1"),
+    desc_validate(file = test_path("D1")),
     "not implemented"
   )
 })

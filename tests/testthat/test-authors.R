@@ -1,6 +1,6 @@
 
 test_that("we can get the authors", {
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
   ans <- c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com",
@@ -16,8 +16,8 @@ test_that("we can get the authors", {
 
 test_that("we can set the authors", {
 
-  desc1 <- description$new("D1")
-  desc2 <- description$new("D2")
+  desc1 <- description$new(test_path("D1"))
+  desc2 <- description$new(test_path("D2"))
 
   desc1$set_authors(desc2$get_authors())
 
@@ -25,7 +25,7 @@ test_that("we can set the authors", {
 })
 
 test_that("we can add an author", {
-  desc <- description$new(test_path("D2"))
+  desc <- description$new(test_path(test_path("D2")))
 
   desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
@@ -96,7 +96,7 @@ test_that("we cannot add an author with malformatted comment", {
 })
 
 test_that("we can search for authors", {
-  desc <- description$new("D9")
+  desc <- description$new(test_path("D9"))
   authors <- desc$get_authors()
 
   expect_equal(
@@ -118,7 +118,7 @@ test_that("we can search for authors", {
 })
 
 test_that("we can add a role to an author", {
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
   desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
@@ -137,7 +137,7 @@ test_that("we can add an ORCID to an author", {
 
   skip_if_not(R_version >= "3.5.0")
 
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
   desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
@@ -159,7 +159,7 @@ test_that("we can replace the ORCID of an author", {
 
   skip_if_not(R_version >= "3.5.0")
 
-  desc <- description$new("D9")
+  desc <- description$new(test_path("D9"))
 
   desc$add_orcid(given = "Hadley", orcid = "0000-0003-4757-117X")
 
@@ -174,7 +174,7 @@ test_that("we can replace the ORCID of an author", {
 
 test_that("we cannot add the same ORCID to more than one author", {
 
-  desc <- description$new("D10")
+  desc <- description$new(test_path("D10"))
 
   expect_error(desc$add_orcid(given = "Peter",
                               orcid = "orcidid"),
@@ -184,7 +184,7 @@ test_that("we cannot add the same ORCID to more than one author", {
 
 
 test_that("we can delete an author", {
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
   desc$del_author(given = "Hadley")
   desc$del_author(family = "Danenberg")
@@ -198,7 +198,7 @@ test_that("we can delete an author", {
 })
 
 test_that("we can delete a role", {
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
   desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
                   role = "ctb", comment = "Really?")
@@ -212,7 +212,7 @@ test_that("we can delete a role", {
 })
 
 test_that("we can change the maintainer", {
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
   desc$change_maintainer(given = "Peter")
 
@@ -235,7 +235,7 @@ test_that("add_me works", {
     EMAIL = "bugs.bunny@acme.com"
   )
 
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
   desc$add_me(comment = "Yikes!")
 
   expect_identical(
@@ -257,7 +257,7 @@ test_that("add_me can use ORCID_ID", {
     ORCID_ID = "0000-0002-0775-162X"
   )
 
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
   desc$add_me()
 
   expect_identical(
@@ -274,7 +274,7 @@ test_that("add_author_gh works", {
     desc.gh_user = list(name = "Jeroen Ooms", email = "notanemail")
   )
 
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
   desc$add_author_gh(username = "jeroen")
 
   expect_identical(
@@ -285,7 +285,7 @@ test_that("add_author_gh works", {
 
 test_that("error if not Authors@R field", {
 
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   expect_error(
     desc$get_authors(),
     "No 'Authors@R' field"
@@ -294,7 +294,7 @@ test_that("error if not Authors@R field", {
 
 test_that("message if not author to delete does not exist", {
 
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
   expect_message(
     desc$del_author(given = "G\u00e1bor"),
     "Could not find author to remove"
@@ -303,7 +303,7 @@ test_that("message if not author to delete does not exist", {
 
 test_that("get_author is OK", {
 
-  D2 <- description$new("D2")
+  D2 <- description$new(test_path("D2"))
 
   expect_equal(
     D2$get_author(role = "cre"),
@@ -321,19 +321,19 @@ test_that("get_author is OK", {
     D2$get_authors()[1:3]
   )
 
-  D1 <- description$new("D1")
+  D1 <- description$new(test_path("D1"))
   expect_null(D1$get_author(role = "cre"))
 })
 
 test_that("get_maintainer is OK, too", {
 
-  D1 <- description$new("D1")
+  D1 <- description$new(test_path("D1"))
   expect_equal(
     D1$get_maintainer(),
     "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com>"
   )
 
-  D2 <- description$new("D2")
+  D2 <- description$new(test_path("D2"))
   expect_equal(
     D2$get_maintainer(),
     "Hadley Wickham <h.wickham@gmail.com>"
@@ -347,7 +347,7 @@ test_that("get_maintainer is OK, too", {
 })
 
 test_that("coerce_authors_at_r if there is no Authors@R field", {
-  D1 <- description$new("D1")
+  D1 <- description$new(test_path("D1"))
   expect_error(D1$get_authors())
   D1$coerce_authors_at_r()
   expect_silent(D1$get_authors())
@@ -359,18 +359,18 @@ test_that("coerce_authors_at_r if there is no Authors@R field", {
 
 
 test_that("coerce_authors_at_r error if no authors fields at all", {
-  D1 <- description$new("D1")
+  D1 <- description$new(test_path("D1"))
   D1$del("Author")
   expect_error(D1$coerce_authors_at_r())
 })
 
 test_that("coerce_authors_at_r with multiple authors in Author: field", {
-  D6 <- description$new("D6")
+  D6 <- description$new(test_path("D6"))
   expect_silent(D6$coerce_authors_at_r())
 })
 
 test_that("add_author if there is no Authors@R field", {
-  D1 <- description$new("D1")
+  D1 <- description$new(test_path("D1"))
   D1$add_author("Gabor", "Csardi", "csardi.gabor@gmail.com", role = "ctb")
   expect_identical(
     format(D1$get_authors()[1]),
@@ -384,7 +384,7 @@ test_that("add myself if there is no Authors@R field", {
     EMAIL = "bugs.bunny@acme.com"
   )
 
-  D1 <- description$new("D1")
+  D1 <- description$new(test_path("D1"))
   D1$add_me(comment = "Yikes!")
 
   expect_identical(

@@ -1,6 +1,6 @@
 
 test_that("get built", {
-  desc <- description$new("D4")
+  desc <- description$new(test_path("D4"))
   expect_identical(
     desc$get_built(),
     list(R = R_system_version("3.4.1"),

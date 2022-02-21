@@ -1,6 +1,6 @@
 
 test_that("set_collate and get_collate work", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   files <- c("foo.R", "bar.R", "foobar.R")
   desc$set_collate(files)
@@ -26,7 +26,7 @@ test_that("set_collate and get_collate work", {
 })
 
 test_that("del_collate works", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   files <- c("foo.R", "bar.R", "foobar.R")
   files2 <- c(files, "foo-win.R")
@@ -51,7 +51,7 @@ test_that("del_collate works", {
 })
 
 test_that("add_to_collate works", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   desc$add_to_collate("bar.R")
   expect_equal(desc$get_collate(), "bar.R")
@@ -71,7 +71,7 @@ test_that("add_to_collate works", {
 })
 
 test_that("del_from_collate works", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   files <- c("foo.R", "bar.R", "foobar.R")
   files2 <- c(files, "foo-win.R")
@@ -101,7 +101,7 @@ test_that("del_from_collate works", {
 
 test_that("add to all collate fields", {
 
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   desc$set_collate(c("f1.R", "f2.R"), which = "main")
   desc$set_collate(c("f3.R", "f4.R"), which = "win")
   desc$add_to_collate("f5.R", which = "all")
@@ -118,6 +118,6 @@ test_that("add to all collate fields", {
 
 test_that("deleting from non-existing collate does nothing", {
 
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   expect_silent(desc$del_from_collate('foo.R'))
 })

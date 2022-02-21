@@ -1,6 +1,6 @@
 
 test_that("get_version", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   v <- desc$get_version()
   expect_true(inherits(v, "package_version"))
   expect_equal(as.character(v), "1.0.0")
@@ -10,7 +10,7 @@ test_that("get_version", {
 })
 
 test_that("set_version", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   desc$set_version("2.1.3")$set_version("2.1.4")
   expect_equal(desc$get_version(), package_version("2.1.4"))
@@ -23,7 +23,7 @@ test_that("set_version", {
 })
 
 test_that("bump_version", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   cases <- list(
     c("1.2.3", "major", "2.0.0"),
@@ -66,7 +66,7 @@ test_that("bump_version", {
 })
 
 test_that("message class", {
-  desc <- description$new(test_path("D1"))
+  desc <- description$new(test_path(test_path("D1")))
   expect_message(
     desc$bump_version("patch"),
     class = "descMessage"

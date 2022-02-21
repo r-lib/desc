@@ -15,7 +15,7 @@ test_that("can create new object", {
 })
 
 test_that("can read object from file", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   expect_true(!is.na(desc$get("Package")))
   expect_true(!is.na(desc$get("Title")))
@@ -30,7 +30,7 @@ test_that("can read object from file", {
 })
 
 test_that("can read object from character vector", {
-  lines <- readLines("D1")
+  lines <- readLines(test_path("D1"))
   desc <- description$new(text = lines)
 
   expect_true(!is.na(desc$get("Package")))

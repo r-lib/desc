@@ -1,6 +1,6 @@
 
 test_that("get works", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   expect_equal(desc$get("Package"), c(Package = "desc"))
   expect_equal(desc$get("Version"), c(Version = "1.0.0"))
@@ -9,13 +9,13 @@ test_that("get works", {
 })
 
 test_that("get nothing", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   empty <- structure(character(), names = character())
   expect_identical(desc$get(character()), empty)
 })
 
 test_that("get_field works", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   expect_identical(desc$get_field("Package"), "desc")
   expect_identical(desc$get_field("Version"), "1.0.0")
@@ -34,7 +34,7 @@ test_that("get_field works", {
 })
 
 test_that("get_or_fail works", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   expect_equal(desc$get_or_fail("Package"), c(Package = "desc"))
   expect_equal(desc$get_or_fail("Version"), c(Version = "1.0.0"))
@@ -61,7 +61,7 @@ test_that("get_or_fail works", {
 })
 
 test_that("set works", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   expect_equal(desc$get("Package"), c(Package = "desc"))
 
   desc$set(Package = "foobar")
@@ -80,12 +80,12 @@ test_that("set works", {
 })
 
 test_that("get with non-exixting fields", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   expect_equal(desc$get("foobar"), c(foobar = NA_character_))
 })
 
 test_that("del works", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   desc$del("Package")
   expect_equal(desc$get("Package"), c(Package = NA_character_))
   expect_false(is.na(desc$get("Title")))
@@ -93,7 +93,7 @@ test_that("del works", {
 
 test_that("set errors on invalid input", {
 
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   expect_error(
     desc$set("foobar"),
     "needs two unnamed args"
@@ -101,7 +101,7 @@ test_that("set errors on invalid input", {
 })
 
 test_that("get_list, set_list", {
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   desc$set(foo = "  this, is   a, \n   list")
   expect_equal(
     desc$get_list("foo"),
