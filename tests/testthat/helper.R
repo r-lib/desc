@@ -1,7 +1,7 @@
 
 temp_desc <- function(file = "D2") {
   tmp <- tempfile()
-  file.copy(file, tmp)
+  file.copy(test_path(file), tmp)
   tmp
 }
 

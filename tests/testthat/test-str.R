@@ -26,7 +26,7 @@ test_that("str formats some fields specially", {
 
 test_that("str formats authors properly", {
 
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
   expect_snapshot(
     cat(crayon::strip_style(desc$str(by_field = TRUE)[["Authors@R"]]))
@@ -35,7 +35,7 @@ test_that("str formats authors properly", {
 
 test_that("authors are printed to the screen properly", {
 
-  desc <- description$new("D2")
+  desc <- description$new(test_path("D2"))
 
   expect_output(
     print(desc),
@@ -50,7 +50,7 @@ test_that("authors are printed to the screen properly", {
 })
 
 test_that("continuation lines", {
-  desc <- description$new("D7")
+  desc <- description$new(test_path("D7"))
   t1 <- desc$str(normalize = TRUE)
   t2 <- desc$str(normalize = FALSE)
   expect_false(grepl("\n[ \t]*\n", t1))

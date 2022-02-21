@@ -15,7 +15,7 @@ test_that("Encoding field is observed", {
     )
   )
 
-  expect_silent(desc$set(Author = "Gábor Csárdi"))
+  expect_silent(desc$set(Author = "G\u00e1bor Cs\u00e1rdi"))
 })
 
 test_that("Unset Encoding results warning", {
@@ -26,7 +26,7 @@ test_that("Unset Encoding results warning", {
         "Package: foo\n",
         "Title: Foo Package\n",
         "Author: Package Author\n",
-        "Maintainer: Gábor Csárdi <author@here.net>\n",
+        "Maintainer: G\u00e1bor Cs\u00e1rdi <author@here.net>\n",
         "Description: The great foo package.\n",
         "License: GPL\n"
       )
@@ -34,7 +34,7 @@ test_that("Unset Encoding results warning", {
     "Encoding"
   )
 
-  expect_warning(desc$set(Author = "Gábor Csárdi"), "Encoding")
+  expect_warning(desc$set(Author = "G\u00e1bor Cs\u00e1rdi"), "Encoding")
 
 })
 

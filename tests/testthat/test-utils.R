@@ -82,3 +82,19 @@ test_that("parse_full_name works", {
 
 
 })
+
+test_that("deparse", {
+  x <- "G\u00e1bor \U1F680"
+  expect_equal(utf8ToInt(x), c(71L, 225L, 98L, 111L, 114L, 32L, 128640L))
+  dx <- fixed_deparse1(x)
+  expect_equal(dx, paste0("\"", x, "\""))
+  expect_equal(Encoding(dx), "UTF-8")
+
+  # Test in non-UTF-8 locale as well
+  dx2 <- callr::r(function(x) {
+    Sys.setlocale("LC_ALL", "C")
+    asNamespace("desc")$fixed_deparse1(x)
+  }, list(x = x))
+  expect_equal(dx2, paste0("\"", x, "\""))
+  expect_equal(Encoding(dx2), "UTF-8")
+})

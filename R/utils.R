@@ -131,18 +131,58 @@ parse_full_name <- function(x) {
               family = family))
 }
 
-# deparse() converts strings to the native encoding, and we want to
-# keep everything in UTF-8. Apparently, if you mark the input string
-# as native, then it will not have a chance to do any conversion.
+# It is currently not possible to deparse UTF-8 objects to UTF-8 strings
+# without converting them to the local encoding. `deparse()` either converts
+# the UTF-8 characters to <U+xxxx> escapes or \ooo escapes. So it is better
+# if we convert them to <U+xxxx> with iconv, and then convert back the
+# <U+xxxx> strings after the deparsing.
+#
+# We cannot do the conversion to <U+> with iconv() because it only supports
+# this kind of escaping from R 4.0.x.
+#
+# We also need to do the conversion on UTF-8 systems, because `deparse()`
+# on older R versions escapes some Unicode characters.
+#
+# This function only works for character vectors, obviously. Related:
+# https://stat.ethz.ch/pipermail/r-devel/2022-February/081485.html
 
 fixed_deparse1 <- function(x, ...) {
-  # Need to do this, because console and code input might be in
-  # the native encoding
-  x <- enc2utf8(x)
-  Encoding(x) <- "unknown"
+  x <- unicode_encode(x)
   out <- paste(deparse(x, width.cutoff = 500L, ...), collapse = " ")
-  Encoding(out) <- "UTF-8"
+  out <- unicode_decode(out)
   out
+}
+
+unicode_encode <- function(x) {
+  x[] <- vapply(x, unicode_encode1, character(1), USE.NAMES = FALSE)
+  x
+}
+
+unicode_encode1 <- function(x) {
+  x <- enc2utf8(x)
+  nm <- utf8ToInt(x)
+  lt <- intToUtf8(nm, multiple = TRUE)
+  lt[nm > 127] <- paste0("<U+", as.hexmode(nm[nm > 127]), ">")
+  paste(lt, collapse = "")
+}
+
+unicode_decode <- function(x) {
+  mch <- gregexpr("<U\\+([0-9a-fA-F]+)>", x, perl = TRUE)
+  uni <- regmatches(x, mch)
+  rep <- lapply(uni, parse_escaped_unicode)
+  regmatches(x, mch) <- rep
+  x <- enc2utf8(x)
+  Encoding(x) <- "UTF-8"
+  x
+}
+
+parse_escaped_unicode <- function(x) {
+  vapply(x, parse_escaped_unicode1, character(1))
+}
+
+parse_escaped_unicode1 <- function(x) {
+  x <- gsub("<U\\+([0-9a-fA-F]+)>", "'\\\\U{\\1}'", x, perl = TRUE)
+  eval(parse(text = x, encoding = "UTF-8"))
 }
 
 desc_message <- function(...) {

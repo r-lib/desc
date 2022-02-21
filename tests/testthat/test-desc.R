@@ -1,7 +1,7 @@
 
 test_that("desc wrapper works", {
   expect_equal(
-    desc("D2"),
-    description$new("D2")
+    desc(test_path("D2")),
+    description$new(test_path("D2"))
   )
 })

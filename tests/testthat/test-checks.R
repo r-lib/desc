@@ -1,7 +1,7 @@
 
 test_that("checking other fields is always ok", {
 
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
   desc$set("Note", "Blah-blah")
 
   expect_equal(desc$get("Note"), c(Note = "Blah-blah"))
@@ -10,7 +10,7 @@ test_that("checking other fields is always ok", {
 
 test_that("we catch syntax errors", {
 
-  desc <- description$new("D1")
+  desc <- description$new(test_path("D1"))
 
   expect_warning(
     desc$set("Package", "444!!! not a valid package name"),
