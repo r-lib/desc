@@ -1,0 +1,23 @@
+url: http://r-lib.github.io/desc/
+template:
+  bootstrap: 5
+  template: tidytemplate
+
+development:
+  mode: auto
+
+reference:
+- title: Object Oriented R6 API
+  contents:
+  - description
+
+- title: Precedural API
+  contents:
+  - starts_with("desc")
+
+- title: Utilities and Metadata
+  contents:
+  - check_field
+  - cran_ascii_fields
+  - cran_valid_fields
+  - dep_types
