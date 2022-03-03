@@ -296,7 +296,7 @@ desc_set_dep("newpackage", "Suggests")
     #> Depends:
     #>     R (>= 3.1.0)
     #> Imports:
-    #>     crayon,
+    #>     cli,
     #>     R6,
     #>     rprojroot,
     #>     utils
@@ -361,7 +361,7 @@ desc_get_deps()
     #> 8  Suggests newpackage        *
     #> 9   Imports      utils        *
     #> 10  Imports         R6        *
-    #> 11  Imports     crayon        *
+    #> 11  Imports        cli        *
     #> 12  Imports  rprojroot        *
 
 ## License

@@ -801,8 +801,6 @@ idesc_create_package <- function(self, private, package) {
   idesc_create_file(self, private, path)
 }
 
-#' @importFrom crayon strip_style
-
 idesc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
   if (is.null(file)) {
