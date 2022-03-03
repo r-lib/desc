@@ -6,7 +6,8 @@ Authors@R: c(
     person("Kirill", "Müller", role = "aut"),
     person("Jim", "Hester", , "james.f.hester@gmail.com", role = "aut"),
     person("Maëlle", "Salmon", role = "ctb",
-           comment = c(ORCID = "0000-0002-2815-0399"))
+           comment = c(ORCID = "0000-0002-2815-0399")),
+    person("RStudio", role = "cph", "fnd")
   )
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Tools to read, write, create, and manipulate DESCRIPTION
