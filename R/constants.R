@@ -2,7 +2,7 @@
 #' DESCRIPTION fields that denote package dependencies
 #'
 #' Currently it has the following ones: Imports, Depends,
-#' Suggests, Enhances and LinkingTo. See the \emph{Writing R Extensions}
+#' Suggests, Enhances and LinkingTo. See the _Writing R Extensions_
 #' manual for when to use which.
 #'
 #' @family field types

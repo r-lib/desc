@@ -13,7 +13,7 @@ is part of) is used.}
 }
 \value{
 A character vectors or URLs. A length zero vector is returned
-  if there is no URL field in the package.
+if there is no URL field in the package.
 }
 \description{
 Query the URL field in DESCRIPTION

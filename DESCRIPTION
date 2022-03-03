@@ -40,7 +40,7 @@ Imports:
     rprojroot
 Encoding: UTF-8
 RoxygenNote: 7.1.2
-Roxygen: list(r6 = FALSE, load = "installed")
+Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
 Collate: 
     'assertions.R'
     'authors-at-r.R'

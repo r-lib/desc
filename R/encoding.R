@@ -1,15 +1,15 @@
 
 #' Check encoding of new or existing fields
 #'
-#' If \code{new_fields} is \code{NULL}, then the existing
-#' fields are checked. Otherwise \code{new_fields} are checked.
+#' If `new_fields` is `NULL`, then the existing
+#' fields are checked. Otherwise `new_fields` are checked.
 #'
-#' Warnings are given for non-ascii fields, if the \code{Encoding}
+#' Warnings are given for non-ascii fields, if the `Encoding`
 #' field is not set.
 #'
 #' @param self Object.
 #' @param private Private env.
-#' @param new_fields New fields, or \code{NULL} to check existing fields.
+#' @param new_fields New fields, or `NULL` to check existing fields.
 #' @return Object, invisibly.
 #'
 #' @keywords internal

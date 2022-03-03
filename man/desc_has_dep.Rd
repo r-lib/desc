@@ -9,7 +9,7 @@ desc_has_dep(package, type = c("any", desc::dep_types), file = ".")
 \arguments{
 \item{package}{The package name.}
 
-\item{type}{A dependency type or \sQuote{any}.}
+\item{type}{A dependency type or ``any`.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory

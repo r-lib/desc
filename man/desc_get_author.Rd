@@ -14,7 +14,7 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 }
 \value{
-A \code{\link[utils]{person}} object.
+A person object, see \code{\link[utils:person]{utils::person()}}.
 }
 \description{
 Query authors by role in Authors@R, in DESCRIPTION

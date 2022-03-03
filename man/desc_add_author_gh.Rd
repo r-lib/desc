@@ -27,14 +27,14 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 }
 \description{
 Uses the Authors@R field.
 }
 \details{
 \code{desc_add_author_gh} is a convenience function, it adds the
- GitHub user as an author, and it needs the
+GitHub user as an author, and it needs the
 \code{gh} package to be installed.
 The full name is parsed using
 \code{as.person} and collapsing the given name and the family name

@@ -13,8 +13,8 @@ is part of) is used.}
 }
 \value{
 Data frame with columns: \code{type} (dependency type),
-  \code{package}, and \code{version}. For non-versioned dependencies
-  \code{version} is \code{*}.
+\code{package}, and \code{version}. For non-versioned dependencies
+\code{version} is \code{*}.
 }
 \description{
 List all package dependencies from a DESCRIPTION file

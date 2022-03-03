@@ -12,11 +12,11 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 }
 \value{
-A list with fields \sQuote{R}, \sQuote{Platform}, \sQuote{Date},
-\sQuote{OStype}.
+A list with fields \code{R}, \code{Platform}, \code{Date},
+\code{OStype}.
 }
 \description{
 If the file has no \code{Built} field then it throws an error.

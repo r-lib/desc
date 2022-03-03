@@ -15,7 +15,7 @@ is part of) is used.}
 A character scalar.
 }
 \description{
-Either from the \sQuote{Maintainer} or the \sQuote{Authors@R} field.
+Either from the \code{Maintainer} or the \code{Authors@R} field.
 }
 \seealso{
 Other Authors@R: 

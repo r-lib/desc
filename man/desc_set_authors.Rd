@@ -7,14 +7,14 @@
 desc_set_authors(authors, file = ".", normalize = FALSE)
 }
 \arguments{
-\item{authors}{Authors, to set, a \code{\link[utils]{person}} object.}
+\item{authors}{Authors, to set, a person object, see \code{\link[utils:person]{utils::person()}}.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 }
 \description{
 Set authors in Authors@R, in DESCRIPTION

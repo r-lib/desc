@@ -14,14 +14,14 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 }
 \description{
 The \code{which} parameter specifies which component to increase.
-It can be a string referring to a component: \sQuote{major},
-\sQuote{minor}, \sQuote{patch} or \sQuote{dev}, or an integer
+It can be a string referring to a component: \code{major},
+\code{minor}, \code{patch} or \code{dev}, or an integer
 scalar, for the latter components are counted from one, and the
-beginning. I.e. component one is equivalent to \sQuote{major}.
+beginning. I.e. component one is equivalent to \code{major}.
 }
 \details{
 If a component is bumped, then the ones after it are zeroed out.
@@ -29,13 +29,13 @@ Trailing zero components are omitted from the new version number,
 but if the old version number had at least two or three components, then
 the one will also have two or three.
 
-The bumping of the \sQuote{dev} version (the fourth component) is
+The bumping of the \code{dev} version (the fourth component) is
 special: if the original version number had less than four components,
-and the \sQuote{dev} version is bumped, then it is set to \code{9000}
+and the \code{dev} version is bumped, then it is set to \code{9000}
 instead of \code{1}. This is a convention often used by R developers,
 it was originally invented by Winston Chang.
 
-Both \code{$set_version()} and \code{$bump_version()} use dots to
+Both \verb{$set_version()} and \verb{$bump_version()} use dots to
 separate the version number components.
 }
 \seealso{

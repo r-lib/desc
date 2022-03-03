@@ -24,14 +24,14 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 }
 \description{
 Uses the Authors@R field.
 }
 \details{
 \code{desc_add_me} is a convenience function, it adds the
- current user as an author, and it needs the
+current user as an author, and it needs the
 \code{whoami} package to be installed. It'll add your ORCID ID
 if you provide it as argument or save it as \code{ORCID_ID} environment
 variable in .Renviron.

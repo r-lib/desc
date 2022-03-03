@@ -12,19 +12,19 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 }
 \description{
-Convert the \sQuote{Author} and \sQuote{Maintainer} fields to
-\sQuote{Authors@R}, which is necessary for other functions such as
+Convert the \code{Author} and \code{Maintainer} fields to
+\code{Authors@R}, which is necessary for other functions such as
 \code{desc_get_authors()}.
 }
 \details{
-If the \sQuote{Authors@R} field does not exist,
-\code{desc_coerce_authors_at_r} tries to parse the \sQuote{Author} and
-\sQuote{Maintainer} fields with \code{\link[utils]{as.person}} and writes
-them to the \sQuote{Authors@R} field.
-Note that \sQuote{Author} and \sQuote{Maintainer} are free-form fields so
+If the \code{Authors@R} field does not exist,
+\code{desc_coerce_authors_at_r} tries to parse the \code{Author} and
+\code{Maintainer} fields with \code{\link[utils:person]{utils::as.person()}} and writes
+them to the \code{Authors@R} field.
+Note that \code{Author} and \code{Maintainer} are free-form fields, so
 parsing them may fail.
 }
 \seealso{
