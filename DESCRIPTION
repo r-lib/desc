@@ -1,47 +1,41 @@
 Package: desc
 Title: Manipulate DESCRIPTION Files
 Version: 1.4.0.9000
-Authors@R: 
-    c(person(given = "Gábor",
-             family = "Csárdi",
-             role = c("aut", "cre"),
-             email = "csardi.gabor@gmail.com"),
-      person(given = "Kirill",
-             family = "Müller",
-             role = "aut"),
-      person(given = "Jim",
-             family = "Hester",
-             role = "aut",
-             email = "james.f.hester@gmail.com"),
-      person(given = "Maëlle",
-             family = "Salmon",
-             role = "ctb",
-             comment = c(ORCID = "0000-0002-2815-0399")))
+Authors@R: c(
+    person("Gábor", "Csárdi", , "csardi.gabor@gmail.com", role = c("aut", "cre")),
+    person("Kirill", "Müller", role = "aut"),
+    person("Jim", "Hester", , "james.f.hester@gmail.com", role = "aut"),
+    person("Maëlle", "Salmon", role = "ctb",
+           comment = c(ORCID = "0000-0002-2815-0399"))
+  )
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
-Description: Tools to read, write, create, and manipulate DESCRIPTION files.
-    It is intended for packages that create or manipulate other packages.
+Description: Tools to read, write, create, and manipulate DESCRIPTION
+    files.  It is intended for packages that create or manipulate other
+    packages.
 License: MIT + file LICENSE
-URL: https://github.com/r-lib/desc#readme,
-    http://r-lib.github.io/desc/
+URL: https://github.com/r-lib/desc#readme, http://r-lib.github.io/desc/
 BugReports: https://github.com/r-lib/desc/issues
 Depends:
     R (>= 3.1.0)
+Imports:
+    crayon,
+    R6,
+    rprojroot,
+    utils
 Suggests:
     callr,
     covr,
+    gh,
+    spelling,
     testthat,
     whoami,
-    withr,
-    spelling,
-    gh
-Imports:
-    utils,
-    R6,
-    crayon,
-    rprojroot
+    withr
+Config/Needs/website: tidyverse/tidytemplate
+Config/testthat/edition: 3
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+Language: en-US
 Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
+RoxygenNote: 7.1.2
 Collate: 
     'assertions.R'
     'authors-at-r.R'
@@ -63,6 +57,3 @@ Collate:
     'utils.R'
     'validate.R'
     'version.R'
-Language: en-US
-Config/testthat/edition: 3
-Config/Needs/website: tidyverse/tidytemplate
