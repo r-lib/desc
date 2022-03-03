@@ -285,6 +285,7 @@ desc_set_dep("newpackage", "Suggests")
     #>     * Kirill Müller [aut]
     #>     * Jim Hester <james.f.hester@gmail.com> [aut]
     #>     * Maëlle Salmon [ctb] (<https://orcid.org/0000-0002-2815-0399>)
+    #>     * RStudio fnd [cph]
     #> Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
     #> Description: Tools to read, write, create, and manipulate DESCRIPTION
     #>     files.  It is intended for packages that create or manipulate other
@@ -293,7 +294,7 @@ desc_set_dep("newpackage", "Suggests")
     #> URL: https://github.com/r-lib/desc#readme, http://r-lib.github.io/desc/
     #> BugReports: https://github.com/r-lib/desc/issues
     #> Depends:
-    #>     R (>= 3.1.0)
+    #>     R (>= 3.4)
     #> Imports:
     #>     cli,
     #>     R6,
@@ -352,20 +353,26 @@ So the full list of dependencies are now
 desc_get_deps()
 ```
 
-    #>        type    package  version
-    #> 1   Depends          R >= 3.1.0
-    #> 2   Imports        cli        *
-    #> 3   Imports         R6        *
-    #> 4   Imports  rprojroot        *
-    #> 5   Imports      utils        *
-    #> 6  Suggests      callr        *
-    #> 7  Suggests       covr        *
-    #> 8  Suggests         gh        *
-    #> 9  Suggests newpackage        *
-    #> 10 Suggests   spelling        *
-    #> 11 Suggests   testthat        *
-    #> 12 Suggests     whoami        *
-    #> 13 Suggests      withr        *
+    #>        type    package version
+    #> 1   Depends          R  >= 3.4
+    #> 2   Imports        cli       *
+    #> 3   Imports         R6       *
+    #> 4   Imports  rprojroot       *
+    #> 5   Imports      utils       *
+    #> 6  Suggests      callr       *
+    #> 7  Suggests       covr       *
+    #> 8  Suggests         gh       *
+    #> 9  Suggests newpackage       *
+    #> 10 Suggests   spelling       *
+    #> 11 Suggests   testthat       *
+    #> 12 Suggests     whoami       *
+    #> 13 Suggests      withr       *
+
+## Code of Conduct
+
+Please note that the desc project is released with a [Contributor Code
+of Conduct](http://r-lib.github.io/desc/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
 
 ## License
 
