@@ -15,7 +15,7 @@ is part of) is used.}
 }
 \value{
 Character vector, values of the specified keys.
-  Non-existing keys return \code{NA}.
+Non-existing keys return \code{NA}.
 }
 \description{
 Get a field from a DESCRIPTION file

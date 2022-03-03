@@ -12,7 +12,7 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 }
 \value{
-A \code{\link[base]{package_version}} object.
+A \link[base:numeric_version]{base::package_version} object.
 }
 \description{
 If the file has no \code{Version} field, or it is an invalid

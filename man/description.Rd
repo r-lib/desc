@@ -15,230 +15,223 @@ Read, write, update, validate DESCRIPTION files
 
 There are two ways of creating a description object. The first
 is reading an already existing \code{DESCRIPTION} file; simply give
-the name of the file as an argument. The default is
-\code{DESCRIPTION}: \preformatted{  x <- description$new()
-  x2 <- description$new("path/to/DESCRIPTION")}
+the name of the file as an argument. The default is \code{DESCRIPTION}:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x <- description$new()
+x2 <- description$new("path/to/DESCRIPTION")
+}\if{html}{\out{</div>}}
 
 The second way is creating a description object from scratch,
-supply \code{"!new"} as an argument to do this.
-\preformatted{  x3 <- description$new("!new")}
+supply \code{"!new"} as an argument to do this.\if{html}{\out{<div class="sourceCode r">}}\preformatted{x3 <- description$new("!new")
+}\if{html}{\out{</div>}}
 
-The complete API reference:
-\preformatted{description$new(cmd = NULL, file = NULL, text = NULL,
-    package = NULL)}
-\describe{
-  \item{cmd:}{A command to create a description from scratch.
-    Currently only \code{"!new"} is implemented. If it does not start
-    with an exclamation mark, it will be interpreted as a \sQuote{file}
-    argument.}
-  \item{file:}{Name of the \code{DESCRIPTION} file to load. If it is
-    a directory, then we assume that it is inside an R package and
-    conduct a search for the package root directory, i.e. the first
-    directory up the tree that contains a \code{DESCRIPTION} file.
-    If \sQuote{cmd}, \sQuote{file}, \sQuote{text} and \sQuote{package}
-    are all \code{NULL} (the default), then the search is started from
-    the working directory. The file can also be an R package (source, or
-    binary), in which case the DESCRIPTION file is extracted from it,
-    but note that in this case \code{$write()} cannot write the file
-    back in the package archive.}
-  \item{text:}{A character scalar containing the full DESCRIPTION.
-    Character vectors are collapsed into a character scalar, with
-    newline as the separator.}
-  \item{package}{If not NULL, then the name of an installed package
-    and the DESCRIPTION file of this package will be loaded.}
+The complete API reference:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$new(cmd = NULL, file = NULL, text = NULL,
+    package = NULL)
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{cmd}: a command to create a description from scratch.
+Currently only \code{"!new"} is implemented. If it does not start
+with an exclamation mark, it will be interpreted as a \code{file}
+argument.
+\item \code{file}: name of the \code{DESCRIPTION} file to load. If it is
+a directory, then we assume that it is inside an R package and
+conduct a search for the package root directory, i.e. the first
+directory up the tree that contains a \code{DESCRIPTION} file.
+If \code{cmd}, \code{file}, \code{text} and \code{package} are all \code{NULL} (the default),
+then the search is started from the working directory. The file can
+also be an R package (source, or binary), in which case the
+\code{DESCRIPTION} file is extracted from it, but note that in this case
+\verb{$write()} cannot write the file back in the package archive.
+\item \code{text}: a character scalar containing the full DESCRIPTION.
+Character vectors are collapsed into a character scalar, with
+newline as the separator.
+\item \code{package}: if not NULL, then the name of an installed package
+and the DESCRIPTION file of this package will be loaded.
 }
 }
 
 \section{Setting and Querying fields}{
 
-Set a field with \code{$set} and query it with \code{$get}:
-\preformatted{  x <- description$new("!new")
-  x$get("Package)
-  x$set("Package", "foobar")
-  x$set(Title = "Example Package for 'description'")
-  x$get("Package")}
-Note that \code{$set} has two forms. You can either give the field name
+Set a field with \verb{$set} and query it with \verb{$get}:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x <- description$new("!new")
+x$get("Package")
+x$set("Package", "foobar")
+x$set(Title = "Example Package for 'description'")
+x$get("Package")
+}\if{html}{\out{</div>}}
+
+Note that \verb{$set} has two forms. You can either give the field name
 and new value as two arguments; or you can use a single named argument,
 the argument name is the field name, the argument value is the field
 value.
 
-The \code{$fields} method simply lists the fields in the object:
-\preformatted{  x$fields()}
+The \verb{$fields} method simply lists the fields in the object:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x$fields()
+}\if{html}{\out{</div>}}
 
-The \code{$has_fields} method checks if one or multiple fields are
-present in a description object: \preformatted{  x$has_fields("Package")
-  x$has_fields(c("Title", "foobar"))}
+The \verb{$has_fields} method checks if one or multiple fields are
+present in a description object:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x$has_fields("Package")
+x$has_fields(c("Title", "foobar"))
+}\if{html}{\out{</div>}}
 
-The \code{$del} method removes the specified fields:
-\preformatted{  x$set(foo = "bar")
-  x$del("foo")}
+The \verb{$del} method removes the specified fields:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x$set(foo = "bar")
+x$del("foo")
+}\if{html}{\out{</div>}}
 
-\code{$get_field} is similar to \code{$get}, but it queries a single
+\verb{$get_field} is similar to \verb{$get}, but it queries a single
 field, it returns an unnamed vector if found, and returns the
 specified \code{default} value if not. By default it throws an error
 if the field is not found.
 
-The complete API reference:
-\preformatted{  description$get(keys)
-  description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
-  description$set(...)
-  description$fields()
-  description$has_fields(keys)
-  description$del(keys)}
-\describe{
-  \item{key:}{A character string (length one), the key to query.}
-  \item{default:}{If specified and \code{key} is missing, this value
-    is returned. If not specified, an error is thrown.}
-  \item{trim_ws:}{Whether to trim leading and trailing whitespace
-    from the returned value.}
-  \item{squish_ws:}{Whether to reduce repeated whitespace in the
-    returned value.}
-  \item{keys:}{A character vector of keys to query, check or delete.}
-  \item{...:}{This must be either two unnamed arguments, the key and
-    and the value to set; or an arbitrary number of named arguments,
-    names are used as keys, values as values to set.}
+The complete API reference:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get(keys)
+description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
+description$set(...)
+description$fields()
+description$has_fields(keys)
+description$del(keys)
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{key}: a character string (length one), the key to query.
+\item \code{default}: If specified and \code{key} is missing, this value
+is returned. If not specified, an error is thrown.
+\item \code{trim_ws}: whether to trim leading and trailing whitespace
+from the returned value.
+\item \code{squish_ws}: whether to reduce repeated whitespace in the
+returned value.
+\item \code{keys}: a character vector of keys to query, check or delete.
+\item \code{...}: this must be either two unnamed arguments, the key and
+and the value to set; or an arbitrary number of named arguments,
+names are used as keys, values as values to set.
 }
 }
 
 \section{Normalizing}{
 
-Format DESCRIPTION in a standard way. \code{$str} formats each
+Format DESCRIPTION in a standard way. \verb{$str} formats each
 field in a standard way and returns them (it does not change the
-object itself), \code{$print} is used to print it to the
-screen. The \code{$normalize} function normalizes each field (i.e.
+object itself), \verb{$print} is used to print it to the
+screen. The \verb{$normalize} function normalizes each field (i.e.
 it changes the object). Normalization means reformatting the fields,
-via \code{$reformat_fields()} and also reordering them via
-\code{$reorder_fields()}. The format of the various fields is
+via \verb{\{$reformat_fields()} and also reordering them via
+\verb{$reorder_fields()}. The format of the various fields is
 opinionated and you might like it or not. Note that \code{desc} only
 re-formats fields that it updates, and only on demand, so if your
 formatting preferences differ, you can still manually edit
-\code{DESCRIPTION} and \code{desc} will respect your edits.
-
-\preformatted{  description$str(by_field = FALSE, normalize = TRUE,
+\code{DESCRIPTION} and \code{desc} will respect your edits.\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$str(by_field = FALSE, normalize = TRUE,
     mode = c("file", "screen"))
-  description$normalize()
-  description$reformat_fields()
-  description$reorder_fields()
-  description$print()
-}
-\describe{
-  \item{by_field:}{Whether to return the normalized format
-    by field, or collapsed into a character scalar.}
-  \item{normalize:}{Whether to reorder and reformat the fields.}
-  \item{mode:}{\sQuote{file} mode formats the fields as they are
-    written to a file with the \code{write} method. \sQuote{screen}
-    mode adds extra markup to some fields, e.g. formats the
-    \code{Authors@R} field in a readable way.}
+description$normalize()
+description$reformat_fields()
+description$reorder_fields()
+description$print()
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{by_field}: whether to return the normalized format
+by field, or collapsed into a character scalar.
+\item \code{normalize}: whether to reorder and reformat the fields.
+\item \code{mode}: \code{file} mode formats the fields as they are
+written to a file with the \code{write} method. \code{screen}
+mode adds extra markup to some fields, e.g. formats the
+\code{Authors@R} field in a readable way.
 }
 }
 
 \section{Writing it to file}{
 
-The \code{$write} method writes the description to a file.
+The \verb{$write} method writes the description to a file.
 By default it writes it to the file it was created from, if it was
-created from a file. Otherwise giving a file name is compulsory:
-\preformatted{  x$write(file = "DESCRIPTION")}
+created from a file. Otherwise giving a file name is compulsory:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x$write(file = "DESCRIPTION")
+}\if{html}{\out{</div>}}
 
-The API:
-\preformatted{  description$write(file = NULL)}
-\describe{
-  \item{file:}{Path to write the description to. If it was created
-     from a file in the first place, then it is written to the same
-     file. Otherwise this argument must be specified.}
+The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$write(file = NULL)
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{file}: path to write the description to. If it was created
+from a file in the first place, then it is written to the same
+file. Otherwise this argument must be specified.
 }
 }
 
 \section{Version numbers}{
-
-
-\preformatted{  description$get_version()
-  description$set_version(version)
-  description$bump_version(which = c("patch", "minor", "major", "dev"))
-}
-
-\describe{
-  \item{version:}{A string or a \code{\link[base]{package_version}}
-    object.}
-  \item{which:}{Which component of the version number to increase.
-    See details just below.}
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_version()
+description$set_version(version)
+description$bump_version(which = c("patch", "minor", "major", "dev"))
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{version}: a string or a \link[base:numeric_version]{base::package_version} object.
+\item \code{which}: which component of the version number to increase.
+See details just below.
 }
 
 These functions are simple helpers to make it easier to query, set and
 increase the version number of a package.
 
-\code{$get_version()} returns the version number as a
-\code{\link[base]{package_version}} object. It throws an error if the
-package does not have a \sQuote{Version} field.
+\verb{$get_version()} returns the version number as a
+\link[base:numeric_version]{base::package_version} object. It throws an error if the
+package does not have a \code{Version} field.
 
-\code{$set_version()} takes a string or a
-\code{\link[base]{package_version}} object and sets the \sQuote{Version}
-field to it.
+\verb{$set_version()} takes a string or a \link[base:numeric_version]{base::package_version} object and
+sets the \code{Version} field to it.
 
-\code{$bump_version()} increases the version number. The \code{which}
+\verb{$bump_version()} increases the version number. The \code{which}
 parameter specifies which component to increase.
-It can be a string referring to a component: \sQuote{major},
-\sQuote{minor}, \sQuote{patch} or \sQuote{dev}, or an integer
+It can be a string referring to a component: \code{major},
+\code{minor}, \code{patch} or \code{dev}, or an integer
 scalar, for the latter components are counted from one, and the
-beginning. I.e. component one is equivalent to \sQuote{major}.
+beginning. I.e. component one is equivalent to \code{major}.
 
 If a component is bumped, then the ones after it are zeroed out.
 Trailing zero components are omitted from the new version number,
 but if the old version number had at least two or three components, then
 the one will also have two or three.
 
-The bumping of the \sQuote{dev} version (the fourth component) is
+The bumping of the \code{dev} version (the fourth component) is
 special: if the original version number had less than four components,
-and the \sQuote{dev} version is bumped, then it is set to \code{9000}
+and the \code{dev} version is bumped, then it is set to \code{9000}
 instead of \code{1}. This is a convention often used by R developers,
 it was originally invented by Winston Chang.
 
-Both \code{$set_version()} and \code{$bump_version()} use dots to
+Both \verb{$set_version()} and \verb{$bump_version()} use dots to
 separate the version number components.
 }
 
 \section{Dependencies}{
 
 These functions handle the fields that define how the R package
-uses another R packages. See \code{\link{dep_types}} for the
+uses another R packages. See \link{dep_types} for the
 list of fields in this group.
 
-The \code{$get_deps} method returns all declared dependencies, in a
+The \verb{$get_deps} method returns all declared dependencies, in a
 data frame with columns: \code{type}, \code{package} and \code{version}.
 \code{type} is the name of the dependency field, \code{package} is the
 name of the R package, and \code{version} is the required version. If
-no specific versions are required, then this is a \code{"\*"}.
+no specific versions are required, then this is a \code{"*"}.
 
-The \code{$set_deps} method is the opposite of \code{$get_deps} and
+The \verb{$set_deps} method is the opposite of \verb{$get_deps} and
 it sets all dependencies. The input is a data frame, with the same
-structure as the return value of \code{$get_deps}.
+structure as the return value of \verb{$get_deps}.
 
-The \code{$has_dep} method checks if a package is included in the
+The \verb{$has_dep} method checks if a package is included in the
 dependencies. It returns a logical scalar. If \code{type} is not
-\sQuote{any}, then it has to match as well.
+\code{any}, then it has to match as well.
 
-The \code{$del_deps} method removes all declared dependencies.
+The \verb{$del_deps} method removes all declared dependencies.
 
-The \code{$set_dep} method adds or updates a single dependency. By
+The \verb{$set_dep} method adds or updates a single dependency. By
 default it adds the package to the \code{Imports} field.
 
-The API:
-\preformatted{  description$set_dep(package, type = dep_types, version = "\*")
-  description$set_deps(deps)
-  description$get_deps()
-  description$has_dep(package, type = c("any", dep_types))
-  description$del_dep(package, type = c("all", dep_types))
-  description$del_deps()
-}
-\describe{
-  \item{package:}{Name of the package to add to or remove from the
-    dependencies.}
-  \item{type:}{Dependency type, see \code{\link{dep_types}}. For
-    \code{$del_dep} it may also be \code{"all"}, and then the package
-    will be deleted from all dependency types.}
-  \item{version:}{Required version. Defaults to \code{"\*"}, which means
-    no explicit version requirements.}
-  \item{deps:}{A data frame with columns \code{type}, \code{package} and
-    \code{version}. \code{$get_deps} returns the same format.}
+The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$set_dep(package, type = dep_types, version = "*")
+description$set_deps(deps)
+description$get_deps()
+description$has_dep(package, type = c("any", dep_types))
+description$del_dep(package, type = c("all", dep_types))
+description$del_deps()
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{package}: name of the package to add to or remove from the
+dependencies.
+\item \code{type}: dependency type, see \link{dep_types}. For
+\verb{$del_dep} it may also be \code{"all"}, and then the package
+will be deleted from all dependency types.
+\item \code{version}: required version. Defaults to \code{"*"}, which means
+no explicit version requirements.
+\item \code{deps}: a data frame with columns \code{type}, \code{package} and
+\code{version}. \verb{$get_deps} returns the same format.
 }
 }
 
@@ -246,24 +239,22 @@ The API:
 
 Collate fields contain lists of file names with R source code,
 and the package has a separate API for them. In brief, you can
-use \code{$add_to_collate} to add one or more files to the main or
-other collate field. You can use \code{$del_from_collate} to remove
+use \verb{$add_to_collate} to add one or more files to the main or
+other collate field. You can use \verb{$del_from_collate} to remove
 it from there.
 
-The API:
-\preformatted{  description$set_collate(files, which = c("main", "windows", "unix"))
-  description$get_collate(which = c("main", "windows", "unix"))
-  description$del_collate(which = c("all", "main", "windows", "unix"))
-  description$add_to_collate(files, which = c("default", "all", "main",
-    "windows", "unix"))
-  description$del_from_collate(files, which = c("all", "main",
-    "windows", "unix"))
-}
-\describe{
-  \item{files:}{The files to add or remove, in a character vector.}
-  \item{which:}{Which collate field to manipulate. \code{"default"} for
-  \code{$add_to_collate} means all existing collate fields, or the
-  main one if none exist.}
+The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$set_collate(files, which = c("main", "windows", "unix"))
+description$get_collate(which = c("main", "windows", "unix"))
+description$del_collate(which = c("all", "main", "windows", "unix"))
+description$add_to_collate(files, which = c("default", "all", "main",
+  "windows", "unix"))
+description$del_from_collate(files, which = c("all", "main",
+  "windows", "unix"))
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{iles}: the files to add or remove, in a character vector.
+\item \verb{which: which collate field to manipulate. }"default"\code{for}$add_to_collate` means all existing collate fields, or the
+main one if none exist.
 }
 }
 
@@ -273,38 +264,37 @@ There is a specialized API for the \code{Authors@R} field,
 to add and remove authors, update their roles, change the maintainer,
 etc.
 
-The API:
-\preformatted{  description$get_authors()
-  description$set_authors(authors)
-  description$get_author(role)
-  description$get_maintainer()
-  description$coerce_authors_at_r()
+The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_authors()
+description$set_authors(authors)
+description$get_author(role)
+description$get_maintainer()
+description$coerce_authors_at_r()
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{authors}: a \code{person} object, a list of authors.
+\item \code{role}: The role to query. See \code{person} for details.
 }
-\describe{
-   \item{authors:}{A \code{person} object, a list of authors.}
-   \item{role:}{The role to query. See \code{person} for details.}
-}
-\code{$get_authors} returns a \code{person} object, the parsed
-authors. See \code{\link[utils]{person}} for details.
 
-\code{$get_author} returns a \code{person} object, all authors with
+\verb{$get_authors} returns a \code{person} object, the parsed
+authors. See \code{\link[utils:person]{utils::person()}} for details.
+
+\verb{$get_author} returns a \code{person} object, all authors with
 the specified role.
 
-\code{$get_maintainer} returns the maintainer of the package. It works
+\verb{$get_maintainer} returns the maintainer of the package. It works
 with \code{Authors@R} fields and with traditional \code{Maintainer}
 fields as well.
 
-\code{$coerce_authors_at_r} converts an \code{Author} field to one with
+\verb{$coerce_authors_at_r} converts an \code{Author} field to one with
 a \code{person} object. This coercion may be necessary for other
-functions such as \code{$get_authors}.
-
-\preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
+functions such as \verb{$get_authors}.\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$add_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL, orcid = NULL)
-  description$add_me(role = "ctb", comment = NULL, orcid = NULL)
-  description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
-}
+description$add_me(role = "ctb", comment = NULL, orcid = NULL)
+description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
+}\if{html}{\out{</div>}}
+
 Add a new author. The arguments correspond to the arguments of the
-\code{\link[utils]{person}} function. \code{add_me} is a convenience
+\code{\link[utils:person]{utils::person()}} function. \code{add_me} is a convenience
 function, it adds the current user as an author, and it needs the
 \code{whoami} package to be installed. It'll add your ORCID ID
 if you provide it as argument or save it as \code{ORCID_ID} environment
@@ -312,60 +302,57 @@ variable in .Renviron.
 The full name is parsed by \code{add_me} and \code{add_author_gh} using
 \code{as.person} and collapsing the given name and the family name
 in order to e.g. have the first and middle names together as given
-name. This approach might be limited to some full name structures.
-
-\preformatted{  description$del_author(given = NULL, family = NULL, email = NULL,
+name. This approach might be limited to some full name structures.\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$del_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL, orcid = NULL)
-}
+}\if{html}{\out{</div>}}
+
 Remove an author, or multiple authors. The author(s) to be removed
 can be specified via any field(s). All authors matching all
 specifications will be removed. E.g. if only \code{given = "Joe"}
 is supplied, then all authors whole given name matches \code{Joe} will
-be removed. The specifications can be (PCRE) regular expressions.
-
-\preformatted{  description$add_role(role, given = NULL, family = NULL, email = NULL,
+be removed. The specifications can be (PCRE) regular expressions.\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$add_role(role, given = NULL, family = NULL, email = NULL,
     comment = NULL, orcid = NULL)
-    description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
+description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
     comment = NULL, role = NULL)
-  description$del_role(role, given = NULL, family = NULL, email = NULL,
-     comment = NULL, orcid = NULL)
-  description$change_maintainer(given = NULL, family = NULL,
+description$del_role(role, given = NULL, family = NULL, email = NULL,
+    comment = NULL, orcid = NULL)
+description$change_maintainer(given = NULL, family = NULL,
     email = NULL, comment = NULL, orcid = NULL)
-}
+}\if{html}{\out{</div>}}
+
 \code{role} is the role to add or delete. The other arguments
 are used to select a subset of the authors, on which the operation
-is performed, similarly to \code{$del_author}.
+is performed, similarly to \verb{$del_author}.
 }
 
 \section{URLs}{
 
 
 We provide helper functions for manipulating URLs in the \code{URL}
-field:
+field:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_urls()
+description$set_urls(urls)
+description$add_urls(urls)
+description$del_urls(pattern)
+description$clear_urls()
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{urls}: character vector of URLs to set or add.
+\item \code{pattern}: Perl compatible regular expression to specify the
+URLs to be removed.
+}
 
-\preformatted{  description$get_urls()
-  description$set_urls(urls)
-  description$add_urls(urls)
-  description$del_urls(pattern)
-  description$clear_urls()
-}
-\describe{
-  \item{urls:}{Character vector of URLs to set or add.}
-  \item{pattern:}{Perl compatible regular expression to specify the
-    URLs to be removed.}
-}
-\code{$get_urls()} returns all urls in a character vector. If no URL
+\verb{$get_urls()} returns all urls in a character vector. If no URL
 fields are present, a zero length vector is returned.
 
-\code{$set_urls()} sets the URL field to the URLs specified in the
+\verb{$set_urls()} sets the URL field to the URLs specified in the
 character vector argument.
 
-\code{$add_urls()} appends the specified URLs to the URL field. It
+\verb{$add_urls()} appends the specified URLs to the URL field. It
 creates the field if it does not exists. Duplicate URLs are removed.
 
-\code{$del_urls()} deletes the URLs that match the specified pattern.
+\verb{$del_urls()} deletes the URLs that match the specified pattern.
 
-\code{$clear_urls()} deletes all URLs.
+\verb{$clear_urls()} deletes all URLs.
 }
 
 \section{Remotes}{
@@ -375,59 +362,58 @@ creates the field if it does not exists. Duplicate URLs are removed.
 non-standard \code{Remotes} field in \code{DESCRIPTION}. This field
 can be used to specify locations of dependent packages: GitHub or
 BitBucket repositories, generic git repositories, etc. Please see the
-\sQuote{Package remotes} vignette in the \code{devtools} package.
+\verb{Package remotes} vignette in the \code{devtools} package.
 
 \code{desc} has helper functions for manipulating the \code{Remotes}
-field:
+field:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_remotes()
+description$get_remotes()
+description$set_remotes(remotes)
+description$add_remotes(remotes)
+description$del_remotes(pattern)
+description$clear_remotes()
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{remotes}: character vector of remote dependency locations to
+set or add.
+\item \code{pattern}: Perl compatible regular expression to specify the
+remote dependency locations to remove.
+}
 
-\preformatted{  description$get_remotes()
-  description$get_remotes()
-  description$set_remotes(remotes)
-  description$add_remotes(remotes)
-  description$del_remotes(pattern)
-  description$clear_remotes()
-}
-\describe{
-  \item{remotes:}{Character vector of remote dependency locations to
-    set or add.}
-  \item{pattern:}{Perl compatible regular expression to specify the
-    remote dependency locations to remove.}
-}
-\code{$get_remotes()} returns all remotes in a character vector.
+\verb{$get_remotes()} returns all remotes in a character vector.
 If no URL fields are present, a zero length vector is returned.
 
-\code{$set_remotes()} sets the URL field to the Remotes specified in the
+\verb{$set_remotes()} sets the URL field to the Remotes specified in the
 character vector argument.
 
-\code{$add_remotes()} appends the specified remotes to the
+\verb{$add_remotes()} appends the specified remotes to the
 \code{Remotes} field. It creates the field if it does not exists.
 Duplicate remotes are removed.
 
-\code{$del_remotes()} deletes the remotes that match the specified
+\verb{$del_remotes()} deletes the remotes that match the specified
 pattern.
 
-\code{$clear_remotes()} deletes all remotes.
+\verb{$clear_remotes()} deletes all remotes.
 }
 
 \section{Built}{
 
 
-The \sQuote{Built} field is used in binary packages to store information
+The \code{Built} field is used in binary packages to store information
 about when and how a binary package was built.
 
-\code{$get_built()} returns the built information as a list with fields
-\sQuote{R}, \sQuote{Platform}, \sQuote{Date}, \sQuote{OStype}. It throws an
-error if the package does not have a \sQuote{Built} field.
+\verb{$get_built()} returns the built information as a list with fields
+\code{R}, \code{Platform}, \code{Date}, \code{OStype}. It throws an
+error if the package does not have a \code{Built} field.
 }
 
 \section{Encodings}{
 
-When creating a `description` object, `desc` observes the `Encoding`
+When creating a \code{description} object, \code{desc} observes the \code{Encoding}
 field, if present, and uses the specified encoding to parse the file.
 Internally, it converts all fields to UTF-8.
 
-When writing a `description` object to a file, `desc` uses the
-`Encoding` field (if present), and converts all fields to the specified
+When writing a \code{description} object to a file, \code{desc} uses the
+\code{Encoding} field (if present), and converts all fields to the specified
 encoding.
 
 We suggest that whenever you need to use non-ASCII characters in your

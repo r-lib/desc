@@ -3,36 +3,38 @@
 
 > Parse DESCRIPTION files
 
+<!-- badges: start -->
+
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-[![R build
-status](https://github.com/r-lib/desc/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/desc/actions)
+[![R-CMD-check](https://github.com/r-lib/desc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/desc/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/r-lib/desc/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/desc?branch=main)
 [![](https://www.r-pkg.org/badges/version/desc)](https://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/desc)](https://www.r-pkg.org/pkg/desc)
-[![Codecov test
-coverage](https://codecov.io/gh/r-lib/pak/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/pak?branch=master)
+<!-- badges: end -->
 
 Parse, manipulate and reformat DESCRIPTION files. The package provides
 two APIs, one is object oriented, the other one is procedural and
 manipulates the files *in place*.
 
------
+------------------------------------------------------------------------
 
-  - [Installation](#installation)
-  - [The object oriented API](#the-oo-api)
-      - [Introduction](#introduction)
-      - [Loading or creating new `DESCRIPTION`
+-   [Installation](#installation)
+-   [The object oriented API](#the-oo-api)
+    -   [Introduction](#introduction)
+    -   [Loading or creating new `DESCRIPTION`
         files](#loading-or-creating-new-description-files)
-      - [Normalizing `DESCRIPTION`
+    -   [Normalizing `DESCRIPTION`
         files](#normalizing-description-files)
-      - [Querying, changing and removing
+    -   [Querying, changing and removing
         fields](#querying-changing-and-removing-fields)
-      - [Dependencies](#dependencies)
-      - [Collate fields](#collate-fields)
-      - [Authors](#authors)
-  - [The procedural API](#the-procedural-api)
-  - [License](#license)
+    -   [Dependencies](#dependencies)
+    -   [Collate fields](#collate-fields)
+    -   [Authors](#authors)
+-   [The procedural API](#the-procedural-api)
+-   [License](#license)
 
 ## Installation
 
@@ -103,7 +105,6 @@ desc2
     #> URL: {{ URL }}
     #> BugReports: {{ BugReports }}
     #> Encoding: UTF-8
-    #> LazyData: true
 
 ### Normalizing `DESCRIPTION` files
 
@@ -278,27 +279,29 @@ desc_set_dep("newpackage", "Suggests")
 
     #> Package: desc
     #> Title: Manipulate DESCRIPTION Files
-    #> Version: 1.2.0.9000
+    #> Version: 1.4.0.9000
     #> Authors@R (parsed):
     #>     * Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]
     #>     * Kirill Müller [aut]
     #>     * Jim Hester <james.f.hester@gmail.com> [aut]
     #>     * Maëlle Salmon [ctb] (<https://orcid.org/0000-0002-2815-0399>)
+    #>     * RStudio fnd [cph]
     #> Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
     #> Description: Tools to read, write, create, and manipulate DESCRIPTION
     #>     files.  It is intended for packages that create or manipulate other
     #>     packages.
     #> License: MIT + file LICENSE
-    #> URL: https://github.com/r-lib/desc#readme
+    #> URL: https://github.com/r-lib/desc#readme, http://r-lib.github.io/desc/
     #> BugReports: https://github.com/r-lib/desc/issues
     #> Depends:
-    #>     R (>= 3.1.0)
+    #>     R (>= 3.4)
     #> Imports:
-    #>     crayon,
+    #>     cli,
     #>     R6,
     #>     rprojroot,
     #>     utils
     #> Suggests:
+    #>     callr,
     #>     covr,
     #>     gh,
     #>     newpackage,
@@ -306,11 +309,12 @@ desc_set_dep("newpackage", "Suggests")
     #>     testthat,
     #>     whoami,
     #>     withr
+    #> Config/Needs/website: tidyverse/tidytemplate
+    #> Config/testthat/edition: 3
     #> Encoding: UTF-8
     #> Language: en-US
-    #> LazyData: true
-    #> Roxygen: list(r6 = FALSE, load = "installed")
-    #> RoxygenNote: 7.1.1.9000
+    #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
+    #> RoxygenNote: 7.1.2
     #> Collate:
     #>     'assertions.R'
     #>     'authors-at-r.R'
@@ -319,6 +323,7 @@ desc_set_dep("newpackage", "Suggests")
     #>     'collate.R'
     #>     'constants.R'
     #>     'deps.R'
+    #>     'desc-package.R'
     #>     'description.R'
     #>     'encoding.R'
     #>     'latex.R'
@@ -339,8 +344,8 @@ This added `newpackage` to the `Suggests` field:
 desc_get("Suggests")
 ```
 
-    #>                                                                                      Suggests 
-    #> "\n    covr,\n    testthat,\n    whoami,\n    withr,\n    spelling,\n    gh,\n    newpackage"
+    #>                                                                                                  Suggests 
+    #> "\n    callr,\n    covr,\n    gh,\n    newpackage,\n    spelling,\n    testthat,\n    whoami,\n    withr"
 
 So the full list of dependencies are now
 
@@ -348,19 +353,26 @@ So the full list of dependencies are now
 desc_get_deps()
 ```
 
-    #>        type    package  version
-    #> 1   Depends          R >= 3.1.0
-    #> 2  Suggests       covr        *
-    #> 3  Suggests   testthat        *
-    #> 4  Suggests     whoami        *
-    #> 5  Suggests      withr        *
-    #> 6  Suggests   spelling        *
-    #> 7  Suggests         gh        *
-    #> 8  Suggests newpackage        *
-    #> 9   Imports      utils        *
-    #> 10  Imports         R6        *
-    #> 11  Imports     crayon        *
-    #> 12  Imports  rprojroot        *
+    #>        type    package version
+    #> 1   Depends          R  >= 3.4
+    #> 2   Imports        cli       *
+    #> 3   Imports         R6       *
+    #> 4   Imports  rprojroot       *
+    #> 5   Imports      utils       *
+    #> 6  Suggests      callr       *
+    #> 7  Suggests       covr       *
+    #> 8  Suggests         gh       *
+    #> 9  Suggests newpackage       *
+    #> 10 Suggests   spelling       *
+    #> 11 Suggests   testthat       *
+    #> 12 Suggests     whoami       *
+    #> 13 Suggests      withr       *
+
+## Code of Conduct
+
+Please note that the desc project is released with a [Contributor Code
+of Conduct](http://r-lib.github.io/desc/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
 
 ## License
 

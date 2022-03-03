@@ -9,15 +9,15 @@ desc(cmd = NULL, file = NULL, text = NULL, package = NULL)
 \arguments{
 \item{cmd}{A command to create a description from scratch.
 Currently only \code{"!new"} is implemented. If it does not start
-with an exclamation mark, it will be interpreted as the \sQuote{file}
+with an exclamation mark, it will be interpreted as the \code{file}
 argument.}
 
 \item{file}{Name of the \code{DESCRIPTION} file to load. If all of
-\sQuote{cmd}, \sQuote{file} and \sQuote{text} are \code{NULL} (the
-default), then the \code{DESCRIPTION} file in the current working
-directory is used. The file can also be an R package (source, or
-binary), in which case the DESCRIPTION file is extracted from it, but
-note that in this case \code{$write()} cannot write the file back in
+\code{cmd}, \code{file} and \code{text} are \code{NULL} (the default), then the
+\code{DESCRIPTION} file in the current working  directory is used.
+The file can also be an R package (source, or
+binary), in which case the \code{DESCRIPTION} file is extracted from it, but
+note that in this case \verb{$write()} cannot write the file back in
 the package archive.}
 
 \item{text}{A character scalar containing the full DESCRIPTION.

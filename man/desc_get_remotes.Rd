@@ -13,7 +13,7 @@ is part of) is used.}
 }
 \value{
 A character vectors or remote locations. A length zero vector
-  is returned if there is no Remotes field in the package.
+is returned if there is no Remotes field in the package.
 }
 \description{
 List the locations in the Remotes field in DESCRIPTION

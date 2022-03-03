@@ -43,11 +43,11 @@ is part of) is used.}
 
 \item{keys}{Character vector of fields to get.}
 
-\item{sep}{Separator string for \code{desc_get_list()}.}
+\item{sep}{Separator string for \code{\link[=desc_get_list]{desc_get_list()}}.}
 }
 \value{
 Character string, the value of \code{key}, or \code{default}
-  if \code{key} is not found and \code{default} is specified.
+if \code{key} is not found and \code{default} is specified.
 }
 \description{
 \code{desc_get_list()} parses a comma separated list into a character

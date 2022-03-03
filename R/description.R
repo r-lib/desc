@@ -1,21 +1,21 @@
 
 #' Read a DESCRIPTION file
 #'
-#' This is a convenience wrapper for \code{description$new()}.
-#' Very often you want to read an existing \code{DESCRIPTION}
+#' This is a convenience wrapper for `description$new()`.
+#' Very often you want to read an existing `DESCRIPTION`
 #' file, and to do this you can just supply the path to the file or its
-#' directory to \code{desc()}.
+#' directory to `desc()`.
 #'
 #' @param cmd A command to create a description from scratch.
-#'   Currently only \code{"!new"} is implemented. If it does not start
-#'   with an exclamation mark, it will be interpreted as the \sQuote{file}
+#'   Currently only `"!new"` is implemented. If it does not start
+#'   with an exclamation mark, it will be interpreted as the `file`
 #'   argument.
-#' @param file Name of the \code{DESCRIPTION} file to load. If all of
-#'   \sQuote{cmd}, \sQuote{file} and \sQuote{text} are \code{NULL} (the
-#'   default), then the \code{DESCRIPTION} file in the current working
-#'   directory is used. The file can also be an R package (source, or
-#'   binary), in which case the DESCRIPTION file is extracted from it, but
-#'   note that in this case \code{$write()} cannot write the file back in
+#' @param file Name of the `DESCRIPTION` file to load. If all of
+#'   `cmd`, `file` and `text` are `NULL` (the default), then the
+#'   `DESCRIPTION` file in the current working  directory is used.
+#'   The file can also be an R package (source, or
+#'   binary), in which case the `DESCRIPTION` file is extracted from it, but
+#'   note that in this case `$write()` cannot write the file back in
 #'   the package archive.
 #' @param text A character scalar containing the full DESCRIPTION.
 #'   Character vectors are collapsed into a character scalar, with
@@ -38,390 +38,414 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' @section Constructors:
 #'
 #' There are two ways of creating a description object. The first
-#' is reading an already existing \code{DESCRIPTION} file; simply give
-#' the name of the file as an argument. The default is
-#' \code{DESCRIPTION}: \preformatted{  x <- description$new()
-#'   x2 <- description$new("path/to/DESCRIPTION")}
+#' is reading an already existing `DESCRIPTION` file; simply give
+#' the name of the file as an argument. The default is `DESCRIPTION`:
+#' ```r
+#' x <- description$new()
+#' x2 <- description$new("path/to/DESCRIPTION")
+#' ```
 #'
 #' The second way is creating a description object from scratch,
-#' supply \code{"!new"} as an argument to do this.
-#' \preformatted{  x3 <- description$new("!new")}
+#' supply `"!new"` as an argument to do this.
+#' ```r
+#' x3 <- description$new("!new")
+#' ```
 #'
 #' The complete API reference:
-#' \preformatted{description$new(cmd = NULL, file = NULL, text = NULL,
-#'     package = NULL)}
-#' \describe{
-#'   \item{cmd:}{A command to create a description from scratch.
-#'     Currently only \code{"!new"} is implemented. If it does not start
-#'     with an exclamation mark, it will be interpreted as a \sQuote{file}
-#'     argument.}
-#'   \item{file:}{Name of the \code{DESCRIPTION} file to load. If it is
-#'     a directory, then we assume that it is inside an R package and
-#'     conduct a search for the package root directory, i.e. the first
-#'     directory up the tree that contains a \code{DESCRIPTION} file.
-#'     If \sQuote{cmd}, \sQuote{file}, \sQuote{text} and \sQuote{package}
-#'     are all \code{NULL} (the default), then the search is started from
-#'     the working directory. The file can also be an R package (source, or
-#'     binary), in which case the DESCRIPTION file is extracted from it,
-#'     but note that in this case \code{$write()} cannot write the file
-#'     back in the package archive.}
-#'   \item{text:}{A character scalar containing the full DESCRIPTION.
-#'     Character vectors are collapsed into a character scalar, with
-#'     newline as the separator.}
-#'   \item{package}{If not NULL, then the name of an installed package
-#'     and the DESCRIPTION file of this package will be loaded.}
-#' }
+#' ```r
+#' description$new(cmd = NULL, file = NULL, text = NULL,
+#'     package = NULL)
+#' ```
+#'
+#' * `cmd`: a command to create a description from scratch.
+#'   Currently only `"!new"` is implemented. If it does not start
+#'   with an exclamation mark, it will be interpreted as a `file`
+#'   argument.
+#' * `file`: name of the `DESCRIPTION` file to load. If it is
+#'   a directory, then we assume that it is inside an R package and
+#'   conduct a search for the package root directory, i.e. the first
+#'   directory up the tree that contains a `DESCRIPTION` file.
+#'   If `cmd`, `file`, `text` and `package` are all `NULL` (the default),
+#'   then the search is started from the working directory. The file can
+#'   also be an R package (source, or binary), in which case the
+#'   `DESCRIPTION` file is extracted from it, but note that in this case
+#'   `$write()` cannot write the file back in the package archive.
+#' * `text`: a character scalar containing the full DESCRIPTION.
+#'   Character vectors are collapsed into a character scalar, with
+#'   newline as the separator.
+#' * `package`: if not NULL, then the name of an installed package
+#'   and the DESCRIPTION file of this package will be loaded.
 #'
 #' @section Setting and Querying fields:
-#' Set a field with \code{$set} and query it with \code{$get}:
-#' \preformatted{  x <- description$new("!new")
-#'   x$get("Package)
-#'   x$set("Package", "foobar")
-#'   x$set(Title = "Example Package for 'description'")
-#'   x$get("Package")}
-#' Note that \code{$set} has two forms. You can either give the field name
+#' Set a field with `$set` and query it with `$get`:
+#' ```r
+#' x <- description$new("!new")
+#' x$get("Package")
+#' x$set("Package", "foobar")
+#' x$set(Title = "Example Package for 'description'")
+#' x$get("Package")
+#' ```
+#'
+#' Note that `$set` has two forms. You can either give the field name
 #' and new value as two arguments; or you can use a single named argument,
 #' the argument name is the field name, the argument value is the field
 #' value.
 #'
-#' The \code{$fields} method simply lists the fields in the object:
-#' \preformatted{  x$fields()}
+#' The `$fields` method simply lists the fields in the object:
+#' ```r
+#' x$fields()
+#' ```
 #'
-#' The \code{$has_fields} method checks if one or multiple fields are
-#' present in a description object: \preformatted{  x$has_fields("Package")
-#'   x$has_fields(c("Title", "foobar"))}
+#' The `$has_fields` method checks if one or multiple fields are
+#' present in a description object:
+#' ```r
+#' x$has_fields("Package")
+#' x$has_fields(c("Title", "foobar"))
+#' ```
 #'
-#' The \code{$del} method removes the specified fields:
-#' \preformatted{  x$set(foo = "bar")
-#'   x$del("foo")}
+#' The `$del` method removes the specified fields:
+#' ```r
+#' x$set(foo = "bar")
+#' x$del("foo")
+#' ```
 #'
-#' \code{$get_field} is similar to \code{$get}, but it queries a single
+#' `$get_field` is similar to `$get`, but it queries a single
 #' field, it returns an unnamed vector if found, and returns the
-#' specified \code{default} value if not. By default it throws an error
+#' specified `default` value if not. By default it throws an error
 #' if the field is not found.
 #'
 #' The complete API reference:
-#' \preformatted{  description$get(keys)
-#'   description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
-#'   description$set(...)
-#'   description$fields()
-#'   description$has_fields(keys)
-#'   description$del(keys)}
-#' \describe{
-#'   \item{key:}{A character string (length one), the key to query.}
-#'   \item{default:}{If specified and \code{key} is missing, this value
-#'     is returned. If not specified, an error is thrown.}
-#'   \item{trim_ws:}{Whether to trim leading and trailing whitespace
-#'     from the returned value.}
-#'   \item{squish_ws:}{Whether to reduce repeated whitespace in the
-#'     returned value.}
-#'   \item{keys:}{A character vector of keys to query, check or delete.}
-#'   \item{...:}{This must be either two unnamed arguments, the key and
+#' ```r
+#' description$get(keys)
+#' description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
+#' description$set(...)
+#' description$fields()
+#' description$has_fields(keys)
+#' description$del(keys)
+#' ```
+#'
+#'  * `key`: a character string (length one), the key to query.
+#'  * `default`: If specified and `key` is missing, this value
+#'     is returned. If not specified, an error is thrown.
+#'  * `trim_ws`: whether to trim leading and trailing whitespace
+#'     from the returned value.
+#'  * `squish_ws`: whether to reduce repeated whitespace in the
+#'     returned value.
+#'  * `keys`: a character vector of keys to query, check or delete.
+#'  * `...`: this must be either two unnamed arguments, the key and
 #'     and the value to set; or an arbitrary number of named arguments,
-#'     names are used as keys, values as values to set.}
-#' }
+#'     names are used as keys, values as values to set.
 #'
 #' @section Normalizing:
-#' Format DESCRIPTION in a standard way. \code{$str} formats each
+#' Format DESCRIPTION in a standard way. `$str` formats each
 #' field in a standard way and returns them (it does not change the
-#' object itself), \code{$print} is used to print it to the
-#' screen. The \code{$normalize} function normalizes each field (i.e.
+#' object itself), `$print` is used to print it to the
+#' screen. The `$normalize` function normalizes each field (i.e.
 #' it changes the object). Normalization means reformatting the fields,
-#' via \code{$reformat_fields()} and also reordering them via
-#' \code{$reorder_fields()}. The format of the various fields is
-#' opinionated and you might like it or not. Note that \code{desc} only
+#' via `{$reformat_fields()` and also reordering them via
+#' `$reorder_fields()`. The format of the various fields is
+#' opinionated and you might like it or not. Note that `desc` only
 #' re-formats fields that it updates, and only on demand, so if your
 #' formatting preferences differ, you can still manually edit
-#' \code{DESCRIPTION} and \code{desc} will respect your edits.
+#' `DESCRIPTION` and `desc` will respect your edits.
 #'
-#' \preformatted{  description$str(by_field = FALSE, normalize = TRUE,
+#' ```r
+#' description$str(by_field = FALSE, normalize = TRUE,
 #'     mode = c("file", "screen"))
-#'   description$normalize()
-#'   description$reformat_fields()
-#'   description$reorder_fields()
-#'   description$print()
-#' }
-#' \describe{
-#'   \item{by_field:}{Whether to return the normalized format
-#'     by field, or collapsed into a character scalar.}
-#'   \item{normalize:}{Whether to reorder and reformat the fields.}
-#'   \item{mode:}{\sQuote{file} mode formats the fields as they are
-#'     written to a file with the \code{write} method. \sQuote{screen}
+#' description$normalize()
+#' description$reformat_fields()
+#' description$reorder_fields()
+#' description$print()
+#'```
+#'
+#' * `by_field`: whether to return the normalized format
+#'     by field, or collapsed into a character scalar.
+#' * `normalize`: whether to reorder and reformat the fields.
+#' * `mode`: `file` mode formats the fields as they are
+#'     written to a file with the `write` method. `screen`
 #'     mode adds extra markup to some fields, e.g. formats the
-#'     \code{Authors@R} field in a readable way.}
-#' }
+#'     `Authors@R` field in a readable way.
 #'
 #' @section Writing it to file:
-#' The \code{$write} method writes the description to a file.
+#' The `$write` method writes the description to a file.
 #' By default it writes it to the file it was created from, if it was
 #' created from a file. Otherwise giving a file name is compulsory:
-#' \preformatted{  x$write(file = "DESCRIPTION")}
+#' ```r
+#' x$write(file = "DESCRIPTION")
+#' ```
 #'
 #' The API:
-#' \preformatted{  description$write(file = NULL)}
-#' \describe{
-#'   \item{file:}{Path to write the description to. If it was created
+#' ```r
+#' description$write(file = NULL)
+#' ```
+#'
+#' * `file`: path to write the description to. If it was created
 #'      from a file in the first place, then it is written to the same
-#'      file. Otherwise this argument must be specified.}
-#' }
+#'      file. Otherwise this argument must be specified.
 #'
 #' @section Version numbers:
 #'
-#' \preformatted{  description$get_version()
-#'   description$set_version(version)
-#'   description$bump_version(which = c("patch", "minor", "major", "dev"))
-#' }
+#' ```r
+#' description$get_version()
+#' description$set_version(version)
+#' description$bump_version(which = c("patch", "minor", "major", "dev"))
+#' ```
 #'
-#' \describe{
-#'   \item{version:}{A string or a \code{\link[base]{package_version}}
-#'     object.}
-#'   \item{which:}{Which component of the version number to increase.
-#'     See details just below.}
-#' }
+#' * `version`: a string or a [base::package_version] object.
+#' * `which`: which component of the version number to increase.
+#'     See details just below.
 #'
 #' These functions are simple helpers to make it easier to query, set and
 #' increase the version number of a package.
 #'
-#' \code{$get_version()} returns the version number as a
-#' \code{\link[base]{package_version}} object. It throws an error if the
-#' package does not have a \sQuote{Version} field.
+#' `$get_version()` returns the version number as a
+#' [base::package_version] object. It throws an error if the
+#' package does not have a `Version` field.
 #'
-#' \code{$set_version()} takes a string or a
-#' \code{\link[base]{package_version}} object and sets the \sQuote{Version}
-#' field to it.
+#' `$set_version()` takes a string or a [base::package_version] object and
+#' sets the `Version` field to it.
 #'
-#' \code{$bump_version()} increases the version number. The \code{which}
+#' `$bump_version()` increases the version number. The `which`
 #' parameter specifies which component to increase.
-#' It can be a string referring to a component: \sQuote{major},
-#' \sQuote{minor}, \sQuote{patch} or \sQuote{dev}, or an integer
+#' It can be a string referring to a component: `major`,
+#' `minor`, `patch` or `dev`, or an integer
 #' scalar, for the latter components are counted from one, and the
-#' beginning. I.e. component one is equivalent to \sQuote{major}.
+#' beginning. I.e. component one is equivalent to `major`.
 #'
 #' If a component is bumped, then the ones after it are zeroed out.
 #' Trailing zero components are omitted from the new version number,
 #' but if the old version number had at least two or three components, then
 #' the one will also have two or three.
 #'
-#' The bumping of the \sQuote{dev} version (the fourth component) is
+#' The bumping of the `dev` version (the fourth component) is
 #' special: if the original version number had less than four components,
-#' and the \sQuote{dev} version is bumped, then it is set to \code{9000}
-#' instead of \code{1}. This is a convention often used by R developers,
+#' and the `dev` version is bumped, then it is set to `9000`
+#' instead of `1`. This is a convention often used by R developers,
 #' it was originally invented by Winston Chang.
 #'
-#' Both \code{$set_version()} and \code{$bump_version()} use dots to
+#' Both `$set_version()` and `$bump_version()` use dots to
 #' separate the version number components.
 #'
 #' @section Dependencies:
 #' These functions handle the fields that define how the R package
-#' uses another R packages. See \code{\link{dep_types}} for the
+#' uses another R packages. See [dep_types] for the
 #' list of fields in this group.
 #'
-#' The \code{$get_deps} method returns all declared dependencies, in a
-#' data frame with columns: \code{type}, \code{package} and \code{version}.
-#' \code{type} is the name of the dependency field, \code{package} is the
-#' name of the R package, and \code{version} is the required version. If
-#' no specific versions are required, then this is a \code{"\*"}.
+#' The `$get_deps` method returns all declared dependencies, in a
+#' data frame with columns: `type`, `package` and `version`.
+#' `type` is the name of the dependency field, `package` is the
+#' name of the R package, and `version` is the required version. If
+#' no specific versions are required, then this is a `"*"`.
 #'
-#' The \code{$set_deps} method is the opposite of \code{$get_deps} and
+#' The `$set_deps` method is the opposite of `$get_deps` and
 #' it sets all dependencies. The input is a data frame, with the same
-#' structure as the return value of \code{$get_deps}.
+#' structure as the return value of `$get_deps`.
 #'
-#' The \code{$has_dep} method checks if a package is included in the
-#' dependencies. It returns a logical scalar. If \code{type} is not
-#' \sQuote{any}, then it has to match as well.
+#' The `$has_dep` method checks if a package is included in the
+#' dependencies. It returns a logical scalar. If `type` is not
+#' `any`, then it has to match as well.
 #'
-#' The \code{$del_deps} method removes all declared dependencies.
+#' The `$del_deps` method removes all declared dependencies.
 #'
-#' The \code{$set_dep} method adds or updates a single dependency. By
-#' default it adds the package to the \code{Imports} field.
+#' The `$set_dep` method adds or updates a single dependency. By
+#' default it adds the package to the `Imports` field.
 #'
 #' The API:
-#' \preformatted{  description$set_dep(package, type = dep_types, version = "\*")
-#'   description$set_deps(deps)
-#'   description$get_deps()
-#'   description$has_dep(package, type = c("any", dep_types))
-#'   description$del_dep(package, type = c("all", dep_types))
-#'   description$del_deps()
-#' }
-#' \describe{
-#'   \item{package:}{Name of the package to add to or remove from the
-#'     dependencies.}
-#'   \item{type:}{Dependency type, see \code{\link{dep_types}}. For
-#'     \code{$del_dep} it may also be \code{"all"}, and then the package
-#'     will be deleted from all dependency types.}
-#'   \item{version:}{Required version. Defaults to \code{"\*"}, which means
-#'     no explicit version requirements.}
-#'   \item{deps:}{A data frame with columns \code{type}, \code{package} and
-#'     \code{version}. \code{$get_deps} returns the same format.}
-#' }
+#' ```r
+#' description$set_dep(package, type = dep_types, version = "*")
+#' description$set_deps(deps)
+#' description$get_deps()
+#' description$has_dep(package, type = c("any", dep_types))
+#' description$del_dep(package, type = c("all", dep_types))
+#' description$del_deps()
+#' ```
+#'
+#' * `package`: name of the package to add to or remove from the
+#'     dependencies.
+#' * `type`: dependency type, see [dep_types]. For
+#'     `$del_dep` it may also be `"all"`, and then the package
+#'     will be deleted from all dependency types.
+#' * `version`: required version. Defaults to `"*"`, which means
+#'     no explicit version requirements.
+#' * `deps`: a data frame with columns `type`, `package` and
+#'     `version`. `$get_deps` returns the same format.
 #'
 #' @section Collate fields:
 #' Collate fields contain lists of file names with R source code,
 #' and the package has a separate API for them. In brief, you can
-#' use \code{$add_to_collate} to add one or more files to the main or
-#' other collate field. You can use \code{$del_from_collate} to remove
+#' use `$add_to_collate` to add one or more files to the main or
+#' other collate field. You can use `$del_from_collate` to remove
 #' it from there.
 #'
 #' The API:
-#' \preformatted{  description$set_collate(files, which = c("main", "windows", "unix"))
-#'   description$get_collate(which = c("main", "windows", "unix"))
-#'   description$del_collate(which = c("all", "main", "windows", "unix"))
-#'   description$add_to_collate(files, which = c("default", "all", "main",
-#'     "windows", "unix"))
-#'   description$del_from_collate(files, which = c("all", "main",
-#'     "windows", "unix"))
-#' }
-#' \describe{
-#'   \item{files:}{The files to add or remove, in a character vector.}
-#'   \item{which:}{Which collate field to manipulate. \code{"default"} for
-#'   \code{$add_to_collate} means all existing collate fields, or the
-#'   main one if none exist.}
-#' }
+#' ```r
+#' description$set_collate(files, which = c("main", "windows", "unix"))
+#' description$get_collate(which = c("main", "windows", "unix"))
+#' description$del_collate(which = c("all", "main", "windows", "unix"))
+#' description$add_to_collate(files, which = c("default", "all", "main",
+#'   "windows", "unix"))
+#' description$del_from_collate(files, which = c("all", "main",
+#'   "windows", "unix"))
+#' ```
+#'
+#' * `iles`: the files to add or remove, in a character vector.
+#' * `which: which collate field to manipulate. `"default"` for
+#'   `$add_to_collate` means all existing collate fields, or the
+#'   main one if none exist.
 #'
 #' @section Authors:
-#' There is a specialized API for the \code{Authors@R} field,
+#' There is a specialized API for the `Authors@R` field,
 #' to add and remove authors, update their roles, change the maintainer,
 #' etc.
 #'
 #' The API:
-#' \preformatted{  description$get_authors()
-#'   description$set_authors(authors)
-#'   description$get_author(role)
-#'   description$get_maintainer()
-#'   description$coerce_authors_at_r()
-#' }
-#' \describe{
-#'    \item{authors:}{A \code{person} object, a list of authors.}
-#'    \item{role:}{The role to query. See \code{person} for details.}
-#' }
-#' \code{$get_authors} returns a \code{person} object, the parsed
-#' authors. See \code{\link[utils]{person}} for details.
+#' ```r
+#' description$get_authors()
+#' description$set_authors(authors)
+#' description$get_author(role)
+#' description$get_maintainer()
+#' description$coerce_authors_at_r()
+#' ```
 #'
-#' \code{$get_author} returns a \code{person} object, all authors with
+#' * `authors`: a `person` object, a list of authors.
+#' * `role`: The role to query. See `person` for details.
+#'
+#' `$get_authors` returns a `person` object, the parsed
+#' authors. See [utils::person()] for details.
+#'
+#' `$get_author` returns a `person` object, all authors with
 #' the specified role.
 #'
-#' \code{$get_maintainer} returns the maintainer of the package. It works
-#' with \code{Authors@R} fields and with traditional \code{Maintainer}
+#' `$get_maintainer` returns the maintainer of the package. It works
+#' with `Authors@R` fields and with traditional `Maintainer`
 #' fields as well.
 #'
-#' \code{$coerce_authors_at_r} converts an \code{Author} field to one with
-#' a \code{person} object. This coercion may be necessary for other
-#' functions such as \code{$get_authors}.
+#' `$coerce_authors_at_r` converts an `Author` field to one with
+#' a `person` object. This coercion may be necessary for other
+#' functions such as `$get_authors`.
 #'
-#' \preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
+#' ```r
+#' description$add_author(given = NULL, family = NULL, email = NULL,
 #'     role = NULL, comment = NULL, orcid = NULL)
-#'   description$add_me(role = "ctb", comment = NULL, orcid = NULL)
-#'   description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
-#' }
+#' description$add_me(role = "ctb", comment = NULL, orcid = NULL)
+#' description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
+#' ```
+#'
 #' Add a new author. The arguments correspond to the arguments of the
-#' \code{\link[utils]{person}} function. \code{add_me} is a convenience
+#' [utils::person()] function. `add_me` is a convenience
 #' function, it adds the current user as an author, and it needs the
-#' \code{whoami} package to be installed. It'll add your ORCID ID
-#' if you provide it as argument or save it as \code{ORCID_ID} environment
+#' `whoami` package to be installed. It'll add your ORCID ID
+#' if you provide it as argument or save it as `ORCID_ID` environment
 #' variable in .Renviron.
-#' The full name is parsed by \code{add_me} and \code{add_author_gh} using
-#' \code{as.person} and collapsing the given name and the family name
+#' The full name is parsed by `add_me` and `add_author_gh` using
+#' `as.person` and collapsing the given name and the family name
 #' in order to e.g. have the first and middle names together as given
 #' name. This approach might be limited to some full name structures.
 #'
-#' \preformatted{  description$del_author(given = NULL, family = NULL, email = NULL,
+#' ```r
+#' description$del_author(given = NULL, family = NULL, email = NULL,
 #'     role = NULL, comment = NULL, orcid = NULL)
-#' }
+#' ```
+#'
 #' Remove an author, or multiple authors. The author(s) to be removed
 #' can be specified via any field(s). All authors matching all
-#' specifications will be removed. E.g. if only \code{given = "Joe"}
-#' is supplied, then all authors whole given name matches \code{Joe} will
+#' specifications will be removed. E.g. if only `given = "Joe"`
+#' is supplied, then all authors whole given name matches `Joe` will
 #' be removed. The specifications can be (PCRE) regular expressions.
 #'
-#' \preformatted{  description$add_role(role, given = NULL, family = NULL, email = NULL,
+#' ```r
+#' description$add_role(role, given = NULL, family = NULL, email = NULL,
 #'     comment = NULL, orcid = NULL)
-#'     description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
+#' description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
 #'     comment = NULL, role = NULL)
-#'   description$del_role(role, given = NULL, family = NULL, email = NULL,
-#'      comment = NULL, orcid = NULL)
-#'   description$change_maintainer(given = NULL, family = NULL,
+#' description$del_role(role, given = NULL, family = NULL, email = NULL,
+#'     comment = NULL, orcid = NULL)
+#' description$change_maintainer(given = NULL, family = NULL,
 #'     email = NULL, comment = NULL, orcid = NULL)
-#' }
-#' \code{role} is the role to add or delete. The other arguments
+#' ```
+#'
+#' `role` is the role to add or delete. The other arguments
 #' are used to select a subset of the authors, on which the operation
-#' is performed, similarly to \code{$del_author}.
+#' is performed, similarly to `$del_author`.
 #'
 #' @section URLs:
 #'
-#' We provide helper functions for manipulating URLs in the \code{URL}
+#' We provide helper functions for manipulating URLs in the `URL`
 #' field:
 #'
-#' \preformatted{  description$get_urls()
-#'   description$set_urls(urls)
-#'   description$add_urls(urls)
-#'   description$del_urls(pattern)
-#'   description$clear_urls()
-#' }
-#' \describe{
-#'   \item{urls:}{Character vector of URLs to set or add.}
-#'   \item{pattern:}{Perl compatible regular expression to specify the
-#'     URLs to be removed.}
-#' }
-#' \code{$get_urls()} returns all urls in a character vector. If no URL
+#' ```r
+#' description$get_urls()
+#' description$set_urls(urls)
+#' description$add_urls(urls)
+#' description$del_urls(pattern)
+#' description$clear_urls()
+#' ```
+#'
+#' * `urls`: character vector of URLs to set or add.
+#' * `pattern`: Perl compatible regular expression to specify the
+#'     URLs to be removed.
+#'
+#' `$get_urls()` returns all urls in a character vector. If no URL
 #' fields are present, a zero length vector is returned.
 #'
-#' \code{$set_urls()} sets the URL field to the URLs specified in the
+#' `$set_urls()` sets the URL field to the URLs specified in the
 #' character vector argument.
 #'
-#' \code{$add_urls()} appends the specified URLs to the URL field. It
+#' `$add_urls()` appends the specified URLs to the URL field. It
 #' creates the field if it does not exists. Duplicate URLs are removed.
 #'
-#' \code{$del_urls()} deletes the URLs that match the specified pattern.
+#' `$del_urls()` deletes the URLs that match the specified pattern.
 #'
-#' \code{$clear_urls()} deletes all URLs.
+#' `$clear_urls()` deletes all URLs.
 #'
 #' @section Remotes:
 #'
-#' \code{devtools}, \code{remotes} and some other packages support the
-#' non-standard \code{Remotes} field in \code{DESCRIPTION}. This field
+#' `devtools`, `remotes` and some other packages support the
+#' non-standard `Remotes` field in `DESCRIPTION`. This field
 #' can be used to specify locations of dependent packages: GitHub or
 #' BitBucket repositories, generic git repositories, etc. Please see the
-#' \sQuote{Package remotes} vignette in the \code{devtools} package.
+#' `Package remotes` vignette in the `devtools` package.
 #'
-#' \code{desc} has helper functions for manipulating the \code{Remotes}
+#' `desc` has helper functions for manipulating the `Remotes`
 #' field:
 #'
-#' \preformatted{  description$get_remotes()
-#'   description$get_remotes()
-#'   description$set_remotes(remotes)
-#'   description$add_remotes(remotes)
-#'   description$del_remotes(pattern)
-#'   description$clear_remotes()
-#' }
-#' \describe{
-#'   \item{remotes:}{Character vector of remote dependency locations to
-#'     set or add.}
-#'   \item{pattern:}{Perl compatible regular expression to specify the
-#'     remote dependency locations to remove.}
-#' }
-#' \code{$get_remotes()} returns all remotes in a character vector.
+#' ```r
+#' description$get_remotes()
+#' description$get_remotes()
+#' description$set_remotes(remotes)
+#' description$add_remotes(remotes)
+#' description$del_remotes(pattern)
+#' description$clear_remotes()
+#' ```
+#'
+#' * `remotes`: character vector of remote dependency locations to
+#'     set or add.
+#' * `pattern`: Perl compatible regular expression to specify the
+#'     remote dependency locations to remove.
+#'
+#' `$get_remotes()` returns all remotes in a character vector.
 #' If no URL fields are present, a zero length vector is returned.
 #'
-#' \code{$set_remotes()} sets the URL field to the Remotes specified in the
+#' `$set_remotes()` sets the URL field to the Remotes specified in the
 #' character vector argument.
 #'
-#' \code{$add_remotes()} appends the specified remotes to the
-#' \code{Remotes} field. It creates the field if it does not exists.
+#' `$add_remotes()` appends the specified remotes to the
+#' `Remotes` field. It creates the field if it does not exists.
 #' Duplicate remotes are removed.
 #'
-#' \code{$del_remotes()} deletes the remotes that match the specified
+#' `$del_remotes()` deletes the remotes that match the specified
 #' pattern.
 #'
-#' \code{$clear_remotes()} deletes all remotes.
+#' `$clear_remotes()` deletes all remotes.
 #'
 #' @section Built:
 #'
-#' The \sQuote{Built} field is used in binary packages to store information
+#' The `Built` field is used in binary packages to store information
 #' about when and how a binary package was built.
 #'
-#' \code{$get_built()} returns the built information as a list with fields
-#' \sQuote{R}, \sQuote{Platform}, \sQuote{Date}, \sQuote{OStype}. It throws an
-#' error if the package does not have a \sQuote{Built} field.
+#' `$get_built()` returns the built information as a list with fields
+#' `R`, `Platform`, `Date`, `OStype`. It throws an
+#' error if the package does not have a `Built` field.
 #'
 #' @section Encodings:
 #' When creating a `description` object, `desc` observes the `Encoding`
@@ -776,8 +800,6 @@ idesc_create_package <- function(self, private, package) {
   }
   idesc_create_file(self, private, path)
 }
-
-#' @importFrom crayon strip_style
 
 idesc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path

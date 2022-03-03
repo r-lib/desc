@@ -88,7 +88,7 @@ desc_has_fields <- generate_api("has_fields", self = FALSE)
 #' @param keys Character vector of fields to get.
 #' @inheritParams desc_set
 #' @return Character vector, values of the specified keys.
-#'   Non-existing keys return \code{NA}.
+#'   Non-existing keys return `NA`.
 #'
 #' @family simple queries
 #' @export
@@ -97,20 +97,20 @@ desc_get <- generate_api("get", self = FALSE)
 
 #' Get a single field from a DESCRIPTION file, fail if not found
 #'
-#' \code{desc_get_list()} parses a comma separated list into a character
+#' `desc_get_list()` parses a comma separated list into a character
 #' vector.
 #'
 #' @inheritParams desc_get
 #' @param key The field to query.
-#' @param default Value to return if \code{key} is not found.
+#' @param default Value to return if `key` is not found.
 #'   By default it throws an error.
 #' @param trim_ws Whether to trim leading and trailing whitespace
-#'   from the value. Defaults to \code{TRUE}.
+#'   from the value. Defaults to `TRUE`.
 #' @param squish_ws Whether to reduce repeated whitespace in the value.
-#'   Defaults to \code{trim_ws}.
-#' @param sep Separator string for \code{desc_get_list()}.
-#' @return Character string, the value of \code{key}, or \code{default}
-#'   if \code{key} is not found and \code{default} is specified.
+#'   Defaults to `trim_ws`.
+#' @param sep Separator string for [desc_get_list()].
+#' @return Character string, the value of `key`, or `default`
+#'   if `key` is not found and `default` is specified.
 #'
 #' @family simple queries
 #' @export
@@ -130,13 +130,13 @@ desc_get_list <- generate_api("get_list", self = FALSE)
 #' Set one or more fields in a DESCRIPTION file
 #'
 #' @details
-#' \code{desc_set} supports two forms, the first is two unnamed
+#' `desc_set()` supports two forms, the first is two unnamed
 #' arguments: the key and its value to set.
 #'
 #' The second form requires named arguments: names are used as keys
 #' and values as values to set.
 #'
-#' \code{desc_set_list()} collapses a character vector into string,
+#' `desc_set_list()` collapses a character vector into string,
 #' separating the elements by commas.
 #'
 #' @param ... Values to set, see details below.
@@ -144,11 +144,11 @@ desc_get_list <- generate_api("get_list", self = FALSE)
 #'    file of the current package (i.e. the package the working directory
 #'    is part of) is used.
 #' @param normalize Whether to normalize the write when writing back
-#'   the result. See \code{\link{desc_normalize}}.
-#' @param key Key to set in \code{desc_set_list()}.
+#'   the result. See [desc_normalize()].
+#' @param key Key to set in `desc_set_list()`.
 #' @param list_value Character vector, to collapse in
-#'   \code{desc_set_list()}.
-#' @param sep Separator string for \code{desc_set_list()} list fields.
+#'   `desc_set_list()`.
+#' @param sep Separator string for `desc_set_list()` list fields.
 #'
 #' @family simple queries
 #' @export
@@ -234,9 +234,9 @@ desc_validate <- generate_api("validate", self = FALSE)
 #' List all package dependencies from a DESCRIPTION file
 #'
 #' @inheritParams desc_set
-#' @return Data frame with columns: \code{type} (dependency type),
-#'   \code{package}, and \code{version}. For non-versioned dependencies
-#'   \code{version} is \code{*}.
+#' @return Data frame with columns: `type` (dependency type),
+#'   `package`, and `version`. For non-versioned dependencies
+#'   `version` is `*`.
 #'
 #' @family dependencies
 #' @export
@@ -258,7 +258,7 @@ desc_set_dep <- generate_api("set_dep")
 #' Set all package dependencies in DESCRIPTION
 #'
 #' @param deps Package dependency data frame, in the same format
-#'    returned by \code{\link{desc_get_deps}}.
+#'    returned by [desc_get_deps()].
 #' @inheritParams desc_set
 #'
 #' @family dependencies
@@ -270,8 +270,8 @@ desc_set_deps <- generate_api("set_deps")
 #'
 #' @param package Package dependency to remove.
 #' @param type Dependency type to remove. Sometimes a package is depended
-#'   on via multiple dependency types, e.g. \code{LinkingTo} and
-#'   \code{Imports}. Defaults to all types.
+#'   on via multiple dependency types, e.g. `LinkingTo` and
+#'   `Imports`. Defaults to all types.
 #' @inheritParams desc_set
 #'
 #' @family dependencies
@@ -292,7 +292,7 @@ desc_del_deps <- generate_api("del_deps")
 #'
 #' @inheritParams desc_set
 #' @param package The package name.
-#' @param type A dependency type or \sQuote{any}.
+#' @param type A dependency type or ``any`.
 #' @return A logical scalar.
 #'
 #' @family dependencies
@@ -358,7 +358,7 @@ desc_del_from_collate <- generate_api("del_from_collate")
 #' Query all authors in Authors@R, in DESCRIPTION
 #'
 #' @inheritParams desc_set
-#' @return A \code{\link[utils]{person}} object.
+#' @return A person object, see [utils::person()].
 #'
 #' @family Authors@R
 #' @export
@@ -369,7 +369,7 @@ desc_get_authors <- generate_api("get_authors", self = FALSE)
 #'
 #' @param role Role to query. Defaults to the package maintainer.
 #' @inheritParams desc_set
-#' @return A \code{\link[utils]{person}} object.
+#' @return A person object, see [utils::person()].
 #'
 #' @family Authors@R
 #' @export
@@ -378,7 +378,7 @@ desc_get_author <- generate_api("get_author", self = FALSE)
 
 #' Set authors in Authors@R, in DESCRIPTION
 #'
-#' @param authors Authors, to set, a \code{\link[utils]{person}} object.
+#' @param authors Authors, to set, a person object, see [utils::person()].
 #' @inheritParams desc_set
 #'
 #' @family Authors@R
@@ -403,8 +403,8 @@ desc_add_author <- generate_api("add_author")
 
 #' @title Add a role to one or more authors in Authors@R, in DESCRIPTION
 #'
-#' @description The author(s) can be specified by a combination of the \code{given},
-#' \code{family}, \code{email}, \code{comment} and \code{orcid} fields.
+#' @description The author(s) can be specified by a combination of the `given`,
+#' `family`, `email`, `comment` and `orcid` fields.
 #' If multiple filters are specified, then all must match
 #' to identify the author(s).
 #'
@@ -423,8 +423,8 @@ desc_add_role <- generate_api("add_role")
 
 #' @title Add an ORCID to one or more authors in Authors@R, in DESCRIPTION
 #'
-#' @description The author(s) can be specified by a combination of the \code{given},
-#' \code{family}, \code{email}, \code{comment} and \code{role} fields.
+#' @description The author(s) can be specified by a combination of the `given`,
+#' `family`, `email`, `comment` and `role` fields.
 #' If multiple filters are specified, then all must match
 #' to identify the author(s).
 #'
@@ -445,8 +445,8 @@ desc_add_orcid <- generate_api("add_orcid")
 #'
 #' It uses the Authors@R field. The author(s) to be removed
 #' can be specified via any field(s). All authors matching all
-#' specifications will be removed. E.g. if only \code{given = "Joe"}
-#' is supplied, then all authors whole given name matches \code{Joe} will
+#' specifications will be removed. E.g. if only `given = "Joe"`
+#' is supplied, then all authors whole given name matches `Joe` will
 #' be removed. The specifications can be (PCRE) regular expressions.
 #'
 #' @param role Role to filter on. Regular expression.
@@ -492,13 +492,13 @@ desc_change_maintainer <- generate_api("change_maintainer")
 #' @inheritParams desc_set
 #'
 #' @details
-#' \code{desc_add_me} is a convenience function, it adds the
+#' `desc_add_me` is a convenience function, it adds the
 #'  current user as an author, and it needs the
-#' \code{whoami} package to be installed. It'll add your ORCID ID
-#' if you provide it as argument or save it as \code{ORCID_ID} environment
+#' `whoami` package to be installed. It'll add your ORCID ID
+#' if you provide it as argument or save it as `ORCID_ID` environment
 #' variable in .Renviron.
 #' The full name is parsed using
-#' \code{as.person} and collapsing the given name and the family name
+#' `as.person` and collapsing the given name and the family name
 #' in order to e.g. have the first and middle names together as given
 #' name. This approach might be limited to some full name structures.
 #'
@@ -518,11 +518,11 @@ desc_add_me <- generate_api("add_me")
 #' @inheritParams desc_set
 #'
 #' @details
-#' \code{desc_add_author_gh} is a convenience function, it adds the
+#' `desc_add_author_gh` is a convenience function, it adds the
 #'  GitHub user as an author, and it needs the
-#' \code{gh} package to be installed.
+#' `gh` package to be installed.
 #' The full name is parsed using
-#' \code{as.person} and collapsing the given name and the family name
+#' `as.person` and collapsing the given name and the family name
 #' in order to e.g. have the first and middle names together as given
 #' name. This approach might be limited to some full name structures.
 #'
@@ -533,7 +533,7 @@ desc_add_author_gh <- generate_api("add_author_gh")
 
 #' Query the package maintainer in DESCRIPTION
 #'
-#' Either from the \sQuote{Maintainer} or the \sQuote{Authors@R} field.
+#' Either from the `Maintainer` or the `Authors@R` field.
 #' @inheritParams desc_set
 #' @return A character scalar.
 #'
@@ -544,18 +544,18 @@ desc_get_maintainer <- generate_api("get_maintainer", self = FALSE)
 
 #' Coerce Author and Maintainer Fields to Authors@R
 #'
-#' Convert the \sQuote{Author} and \sQuote{Maintainer} fields to
-#' \sQuote{Authors@R}, which is necessary for other functions such as
-#' \code{desc_get_authors()}.
+#' Convert the `Author` and `Maintainer` fields to
+#' `Authors@R`, which is necessary for other functions such as
+#' `desc_get_authors()`.
 #'
 #' @inheritParams desc_set
 #'
 #' @details
-#' If the \sQuote{Authors@R} field does not exist,
-#' \code{desc_coerce_authors_at_r} tries to parse the \sQuote{Author} and
-#' \sQuote{Maintainer} fields with \code{\link[utils]{as.person}} and writes
-#' them to the \sQuote{Authors@R} field.
-#' Note that \sQuote{Author} and \sQuote{Maintainer} are free-form fields, so
+#' If the `Authors@R` field does not exist,
+#' `desc_coerce_authors_at_r` tries to parse the `Author` and
+#' `Maintainer` fields with [utils::as.person()] and writes
+#' them to the `Authors@R` field.
+#' Note that `Author` and `Maintainer` are free-form fields, so
 #' parsing them may fail.
 #'
 #' @export
@@ -645,7 +645,7 @@ desc_set_remotes <- generate_api("set_remotes")
 #'
 #' @param remotes Character vector of remote locations to add.
 #'   Duplicate locations are eliminated. Note that existing locations
-#'   are not updated, so if you want to \emph{change} a remote location
+#'   are not updated, so if you want to _change_ a remote location
 #'   of a package, you need to delete the old location first and then add
 #'   the new one.
 #' @inheritParams desc_set
@@ -680,11 +680,11 @@ desc_clear_remotes <- generate_api("clear_remotes")
 
 #' Query the package version in DESCRIPTION
 #'
-#' If the file has no \code{Version} field, or it is an invalid
+#' If the file has no `Version` field, or it is an invalid
 #' version string, then it throws an error.
 #'
 #' @inheritParams desc_set
-#' @return A \code{\link[base]{package_version}} object.
+#' @return A [base::package_version] object.
 #'
 #' @export
 #' @family version numbers
@@ -693,11 +693,10 @@ desc_get_version <- generate_api("get_version", self = FALSE)
 
 #' Set the package version in DESCRIPTION
 #'
-#' Both \code{$set_version()} and \code{$bump_version()} use dots to
+#' Both `$set_version()` and `$bump_version()` use dots to
 #' separate the version number components.
 #'
-#' @param version A string or a \code{\link[base]{package_version}}
-#'     object.
+#' @param version A string or a [base::package_version] object.
 #' @inheritParams desc_set
 #'
 #' @export
@@ -707,24 +706,24 @@ desc_set_version <- generate_api("set_version")
 
 #' Increase the version number in DESCRIPTION
 #'
-#' The \code{which} parameter specifies which component to increase.
-#' It can be a string referring to a component: \sQuote{major},
-#' \sQuote{minor}, \sQuote{patch} or \sQuote{dev}, or an integer
+#' The `which` parameter specifies which component to increase.
+#' It can be a string referring to a component: `major`,
+#' `minor`, `patch` or `dev`, or an integer
 #' scalar, for the latter components are counted from one, and the
-#' beginning. I.e. component one is equivalent to \sQuote{major}.
+#' beginning. I.e. component one is equivalent to `major`.
 #'
 #' If a component is bumped, then the ones after it are zeroed out.
 #' Trailing zero components are omitted from the new version number,
 #' but if the old version number had at least two or three components, then
 #' the one will also have two or three.
 #'
-#' The bumping of the \sQuote{dev} version (the fourth component) is
+#' The bumping of the `dev` version (the fourth component) is
 #' special: if the original version number had less than four components,
-#' and the \sQuote{dev} version is bumped, then it is set to \code{9000}
-#' instead of \code{1}. This is a convention often used by R developers,
+#' and the `dev` version is bumped, then it is set to `9000`
+#' instead of `1`. This is a convention often used by R developers,
 #' it was originally invented by Winston Chang.
 #'
-#' Both \code{$set_version()} and \code{$bump_version()} use dots to
+#' Both `$set_version()` and `$bump_version()` use dots to
 #' separate the version number components.
 #'
 #' @param which Which component to increase. See details below.
@@ -739,11 +738,11 @@ desc_bump_version <- generate_api("bump_version")
 
 #' Query the built field in DESCRIPTION
 #'
-#' If the file has no \code{Built} field then it throws an error.
+#' If the file has no `Built` field then it throws an error.
 #'
 #' @inheritParams desc_set
-#' @return A list with fields \sQuote{R}, \sQuote{Platform}, \sQuote{Date},
-#' \sQuote{OStype}.
+#' @return A list with fields `R`, `Platform`, `Date`,
+#' `OStype`.
 #'
 #' @export
 #' @family built

@@ -17,7 +17,7 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to normalize the write when writing back
-the result. See \code{\link{desc_normalize}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 
 \item{key}{Key to set in \code{desc_set_list()}.}
 
@@ -30,7 +30,7 @@ the result. See \code{\link{desc_normalize}}.}
 Set one or more fields in a DESCRIPTION file
 }
 \details{
-\code{desc_set} supports two forms, the first is two unnamed
+\code{desc_set()} supports two forms, the first is two unnamed
 arguments: the key and its value to set.
 
 The second form requires named arguments: names are used as keys
