@@ -44,6 +44,7 @@ Collate:
     'collate.R'
     'constants.R'
     'deps.R'
+    'desc-package.R'
     'description.R'
     'encoding.R'
     'latex.R'
