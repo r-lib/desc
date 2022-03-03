@@ -5,7 +5,7 @@ test_that("str orders fields", {
   desc$del("Package")
   desc$set("Package", "foobar")
 
-  expect_match(crayon::strip_style(desc$str()), "^Package:")
+  expect_match(cli::ansi_strip(desc$str()), "^Package:")
 })
 
 test_that("str formats some fields specially", {
@@ -13,13 +13,13 @@ test_that("str formats some fields specially", {
 
   desc$set("Imports", "pkg1, pkg2, \n pkg3, pkg4")
   expect_match(
-    crayon::strip_style(desc$str()),
+    cli::ansi_strip(desc$str()),
     "Imports:\n    pkg1,\n    pkg2,\n    pkg3,\n    pkg4"
   )
 
   desc$set("Collate", "file1.R 'file2.R' 'file with spaces.R' file4.R")
   expect_match(
-    crayon::strip_style(desc$str()),
+    cli::ansi_strip(desc$str()),
     "Collate:\n    'file1.R'\n    'file2.R'\n    'file with spaces.R'\n    'file4.R'"
   )
 })
@@ -29,7 +29,7 @@ test_that("str formats authors properly", {
   desc <- description$new(test_path("D2"))
 
   expect_snapshot(
-    cat(crayon::strip_style(desc$str(by_field = TRUE)[["Authors@R"]]))
+    cat(cli::ansi_strip(desc$str(by_field = TRUE)[["Authors@R"]]))
   )
 })
 
