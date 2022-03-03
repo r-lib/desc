@@ -15,16 +15,16 @@ Read, write, update, validate DESCRIPTION files
 
 There are two ways of creating a description object. The first
 is reading an already existing \code{DESCRIPTION} file; simply give
-the name of the file as an argument. The default is \code{DESCRIPTION}:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  x <- description$new()
-  x2 <- description$new("path/to/DESCRIPTION")
+the name of the file as an argument. The default is \code{DESCRIPTION}:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x <- description$new()
+x2 <- description$new("path/to/DESCRIPTION")
 }\if{html}{\out{</div>}}
 
 The second way is creating a description object from scratch,
-supply \code{"!new"} as an argument to do this.\if{html}{\out{<div class="sourceCode r">}}\preformatted{  x3 <- description$new("!new")
+supply \code{"!new"} as an argument to do this.\if{html}{\out{<div class="sourceCode r">}}\preformatted{x3 <- description$new("!new")
 }\if{html}{\out{</div>}}
 
-The complete API reference:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$new(cmd = NULL, file = NULL, text = NULL,
-      package = NULL)
+The complete API reference:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$new(cmd = NULL, file = NULL, text = NULL,
+    package = NULL)
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{cmd}: a command to create a description from scratch.
@@ -50,11 +50,11 @@ and the DESCRIPTION file of this package will be loaded.
 
 \section{Setting and Querying fields}{
 
-Set a field with \verb{$set} and query it with \verb{$get}:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  x <- description$new("!new")
-  x$get("Package)
-  x$set("Package", "foobar")
-  x$set(Title = "Example Package for 'description'")
-  x$get("Package")
+Set a field with \verb{$set} and query it with \verb{$get}:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x <- description$new("!new")
+x$get("Package")
+x$set("Package", "foobar")
+x$set(Title = "Example Package for 'description'")
+x$get("Package")
 }\if{html}{\out{</div>}}
 
 Note that \verb{$set} has two forms. You can either give the field name
@@ -62,16 +62,16 @@ and new value as two arguments; or you can use a single named argument,
 the argument name is the field name, the argument value is the field
 value.
 
-The \verb{$fields} method simply lists the fields in the object:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  x$fields()
+The \verb{$fields} method simply lists the fields in the object:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x$fields()
 }\if{html}{\out{</div>}}
 
 The \verb{$has_fields} method checks if one or multiple fields are
-present in a description object:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  x$has_fields("Package")
-  x$has_fields(c("Title", "foobar"))
+present in a description object:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x$has_fields("Package")
+x$has_fields(c("Title", "foobar"))
 }\if{html}{\out{</div>}}
 
-The \verb{$del} method removes the specified fields:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  x$set(foo = "bar")
-  x$del("foo")
+The \verb{$del} method removes the specified fields:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x$set(foo = "bar")
+x$del("foo")
 }\if{html}{\out{</div>}}
 
 \verb{$get_field} is similar to \verb{$get}, but it queries a single
@@ -79,12 +79,12 @@ field, it returns an unnamed vector if found, and returns the
 specified \code{default} value if not. By default it throws an error
 if the field is not found.
 
-The complete API reference:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$get(keys)
-  description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
-  description$set(...)
-  description$fields()
-  description$has_fields(keys)
-  description$del(keys)
+The complete API reference:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get(keys)
+description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
+description$set(...)
+description$fields()
+description$has_fields(keys)
+description$del(keys)
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{key}: a character string (length one), the key to query.
@@ -113,12 +113,12 @@ via \verb{\{$reformat_fields()} and also reordering them via
 opinionated and you might like it or not. Note that \code{desc} only
 re-formats fields that it updates, and only on demand, so if your
 formatting preferences differ, you can still manually edit
-\code{DESCRIPTION} and \code{desc} will respect your edits.\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$str(by_field = FALSE, normalize = TRUE,
-      mode = c("file", "screen"))
-  description$normalize()
-  description$reformat_fields()
-  description$reorder_fields()
-  description$print()
+\code{DESCRIPTION} and \code{desc} will respect your edits.\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$str(by_field = FALSE, normalize = TRUE,
+    mode = c("file", "screen"))
+description$normalize()
+description$reformat_fields()
+description$reorder_fields()
+description$print()
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{by_field}: whether to return the normalized format
@@ -135,10 +135,10 @@ mode adds extra markup to some fields, e.g. formats the
 
 The \verb{$write} method writes the description to a file.
 By default it writes it to the file it was created from, if it was
-created from a file. Otherwise giving a file name is compulsory:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  x$write(file = "DESCRIPTION")
+created from a file. Otherwise giving a file name is compulsory:\if{html}{\out{<div class="sourceCode r">}}\preformatted{x$write(file = "DESCRIPTION")
 }\if{html}{\out{</div>}}
 
-The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$write(file = NULL)
+The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$write(file = NULL)
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{file}: path to write the description to. If it was created
@@ -148,9 +148,9 @@ file. Otherwise this argument must be specified.
 }
 
 \section{Version numbers}{
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$get_version()
-  description$set_version(version)
-  description$bump_version(which = c("patch", "minor", "major", "dev"))
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_version()
+description$set_version(version)
+description$bump_version(which = c("patch", "minor", "major", "dev"))
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{version}: a string or a \link[base:numeric_version]{base::package_version} object.
@@ -215,12 +215,12 @@ The \verb{$del_deps} method removes all declared dependencies.
 The \verb{$set_dep} method adds or updates a single dependency. By
 default it adds the package to the \code{Imports} field.
 
-The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$set_dep(package, type = dep_types, version = "*")
-  description$set_deps(deps)
-  description$get_deps()
-  description$has_dep(package, type = c("any", dep_types))
-  description$del_dep(package, type = c("all", dep_types))
-  description$del_deps()
+The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$set_dep(package, type = dep_types, version = "*")
+description$set_deps(deps)
+description$get_deps()
+description$has_dep(package, type = c("any", dep_types))
+description$del_dep(package, type = c("all", dep_types))
+description$del_deps()
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{package}: name of the package to add to or remove from the
@@ -243,13 +243,13 @@ use \verb{$add_to_collate} to add one or more files to the main or
 other collate field. You can use \verb{$del_from_collate} to remove
 it from there.
 
-The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$set_collate(files, which = c("main", "windows", "unix"))
-  description$get_collate(which = c("main", "windows", "unix"))
-  description$del_collate(which = c("all", "main", "windows", "unix"))
-  description$add_to_collate(files, which = c("default", "all", "main",
-    "windows", "unix"))
-  description$del_from_collate(files, which = c("all", "main",
-    "windows", "unix"))
+The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$set_collate(files, which = c("main", "windows", "unix"))
+description$get_collate(which = c("main", "windows", "unix"))
+description$del_collate(which = c("all", "main", "windows", "unix"))
+description$add_to_collate(files, which = c("default", "all", "main",
+  "windows", "unix"))
+description$del_from_collate(files, which = c("all", "main",
+  "windows", "unix"))
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{iles}: the files to add or remove, in a character vector.
@@ -264,11 +264,11 @@ There is a specialized API for the \code{Authors@R} field,
 to add and remove authors, update their roles, change the maintainer,
 etc.
 
-The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$get_authors()
-  description$set_authors(authors)
-  description$get_author(role)
-  description$get_maintainer()
-  description$coerce_authors_at_r()
+The API:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_authors()
+description$set_authors(authors)
+description$get_author(role)
+description$get_maintainer()
+description$coerce_authors_at_r()
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{authors}: a \code{person} object, a list of authors.
@@ -287,10 +287,10 @@ fields as well.
 
 \verb{$coerce_authors_at_r} converts an \code{Author} field to one with
 a \code{person} object. This coercion may be necessary for other
-functions such as \verb{$get_authors}.\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$add_author(given = NULL, family = NULL, email = NULL,
-      role = NULL, comment = NULL, orcid = NULL)
-  description$add_me(role = "ctb", comment = NULL, orcid = NULL)
-  description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
+functions such as \verb{$get_authors}.\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$add_author(given = NULL, family = NULL, email = NULL,
+    role = NULL, comment = NULL, orcid = NULL)
+description$add_me(role = "ctb", comment = NULL, orcid = NULL)
+description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
 }\if{html}{\out{</div>}}
 
 Add a new author. The arguments correspond to the arguments of the
@@ -302,7 +302,7 @@ variable in .Renviron.
 The full name is parsed by \code{add_me} and \code{add_author_gh} using
 \code{as.person} and collapsing the given name and the family name
 in order to e.g. have the first and middle names together as given
-name. This approach might be limited to some full name structures.\if{html}{\out{<div class="sourceCode r">}}\preformatted{ description$del_author(given = NULL, family = NULL, email = NULL,
+name. This approach might be limited to some full name structures.\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$del_author(given = NULL, family = NULL, email = NULL,
     role = NULL, comment = NULL, orcid = NULL)
 }\if{html}{\out{</div>}}
 
@@ -310,14 +310,14 @@ Remove an author, or multiple authors. The author(s) to be removed
 can be specified via any field(s). All authors matching all
 specifications will be removed. E.g. if only \code{given = "Joe"}
 is supplied, then all authors whole given name matches \code{Joe} will
-be removed. The specifications can be (PCRE) regular expressions.\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$add_role(role, given = NULL, family = NULL, email = NULL,
-      comment = NULL, orcid = NULL)
-  description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
-      comment = NULL, role = NULL)
-  description$del_role(role, given = NULL, family = NULL, email = NULL,
-      comment = NULL, orcid = NULL)
-  description$change_maintainer(given = NULL, family = NULL,
-      email = NULL, comment = NULL, orcid = NULL)
+be removed. The specifications can be (PCRE) regular expressions.\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$add_role(role, given = NULL, family = NULL, email = NULL,
+    comment = NULL, orcid = NULL)
+description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
+    comment = NULL, role = NULL)
+description$del_role(role, given = NULL, family = NULL, email = NULL,
+    comment = NULL, orcid = NULL)
+description$change_maintainer(given = NULL, family = NULL,
+    email = NULL, comment = NULL, orcid = NULL)
 }\if{html}{\out{</div>}}
 
 \code{role} is the role to add or delete. The other arguments
@@ -329,15 +329,15 @@ is performed, similarly to \verb{$del_author}.
 
 
 We provide helper functions for manipulating URLs in the \code{URL}
-field:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$get_urls()
-  description$set_urls(urls)
-  description$add_urls(urls)
-  description$del_urls(pattern)
-  description$clear_urls()
+field:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_urls()
+description$set_urls(urls)
+description$add_urls(urls)
+description$del_urls(pattern)
+description$clear_urls()
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{urls}: character vector of URLs to set or add.
-\item \code{pattern}: perl compatible regular expression to specify the
+\item \code{pattern}: Perl compatible regular expression to specify the
 URLs to be removed.
 }
 
@@ -365,17 +365,17 @@ BitBucket repositories, generic git repositories, etc. Please see the
 \verb{Package remotes} vignette in the \code{devtools} package.
 
 \code{desc} has helper functions for manipulating the \code{Remotes}
-field:\if{html}{\out{<div class="sourceCode r">}}\preformatted{  description$get_remotes()
-  description$get_remotes()
-  description$set_remotes(remotes)
-  description$add_remotes(remotes)
-  description$del_remotes(pattern)
-  description$clear_remotes()
+field:\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_remotes()
+description$get_remotes()
+description$set_remotes(remotes)
+description$add_remotes(remotes)
+description$del_remotes(pattern)
+description$clear_remotes()
 }\if{html}{\out{</div>}}
 \itemize{
 \item \code{remotes}: character vector of remote dependency locations to
 set or add.
-\item \code{pattern}: perl compatible regular expression to specify the
+\item \code{pattern}: Perl compatible regular expression to specify the
 remote dependency locations to remove.
 }
 

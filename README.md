@@ -3,6 +3,7 @@
 
 > Parse DESCRIPTION files
 
+<!-- badges: start -->
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build
@@ -12,6 +13,7 @@ status](https://github.com/r-lib/desc/workflows/R-CMD-check/badge.svg)](https://
 downloads](https://cranlogs.r-pkg.org/badges/desc)](https://www.r-pkg.org/pkg/desc)
 [![Codecov test
 coverage](https://codecov.io/gh/r-lib/pak/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/pak?branch=master)
+<!-- badges: end -->
 
 Parse, manipulate and reformat DESCRIPTION files. The package provides
 two APIs, one is object oriented, the other one is procedural and

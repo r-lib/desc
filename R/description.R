@@ -41,20 +41,20 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' is reading an already existing `DESCRIPTION` file; simply give
 #' the name of the file as an argument. The default is `DESCRIPTION`:
 #' ```r
-#'   x <- description$new()
-#'   x2 <- description$new("path/to/DESCRIPTION")
+#' x <- description$new()
+#' x2 <- description$new("path/to/DESCRIPTION")
 #' ```
 #'
 #' The second way is creating a description object from scratch,
 #' supply `"!new"` as an argument to do this.
 #' ```r
-#'   x3 <- description$new("!new")
+#' x3 <- description$new("!new")
 #' ```
 #'
 #' The complete API reference:
 #' ```r
-#'   description$new(cmd = NULL, file = NULL, text = NULL,
-#'       package = NULL)
+#' description$new(cmd = NULL, file = NULL, text = NULL,
+#'     package = NULL)
 #' ```
 #'
 #' * `cmd`: a command to create a description from scratch.
@@ -79,11 +79,11 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' @section Setting and Querying fields:
 #' Set a field with `$set` and query it with `$get`:
 #' ```r
-#'   x <- description$new("!new")
-#'   x$get("Package)
-#'   x$set("Package", "foobar")
-#'   x$set(Title = "Example Package for 'description'")
-#'   x$get("Package")
+#' x <- description$new("!new")
+#' x$get("Package")
+#' x$set("Package", "foobar")
+#' x$set(Title = "Example Package for 'description'")
+#' x$get("Package")
 #' ```
 #'
 #' Note that `$set` has two forms. You can either give the field name
@@ -93,20 +93,20 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' The `$fields` method simply lists the fields in the object:
 #' ```r
-#'   x$fields()
+#' x$fields()
 #' ```
 #'
 #' The `$has_fields` method checks if one or multiple fields are
 #' present in a description object:
 #' ```r
-#'   x$has_fields("Package")
-#'   x$has_fields(c("Title", "foobar"))
+#' x$has_fields("Package")
+#' x$has_fields(c("Title", "foobar"))
 #' ```
 #'
 #' The `$del` method removes the specified fields:
 #' ```r
-#'   x$set(foo = "bar")
-#'   x$del("foo")
+#' x$set(foo = "bar")
+#' x$del("foo")
 #' ```
 #'
 #' `$get_field` is similar to `$get`, but it queries a single
@@ -116,12 +116,12 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' The complete API reference:
 #' ```r
-#'   description$get(keys)
-#'   description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
-#'   description$set(...)
-#'   description$fields()
-#'   description$has_fields(keys)
-#'   description$del(keys)
+#' description$get(keys)
+#' description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
+#' description$set(...)
+#' description$fields()
+#' description$has_fields(keys)
+#' description$del(keys)
 #' ```
 #'
 #'  * `key`: a character string (length one), the key to query.
@@ -150,12 +150,12 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' `DESCRIPTION` and `desc` will respect your edits.
 #'
 #' ```r
-#'   description$str(by_field = FALSE, normalize = TRUE,
-#'       mode = c("file", "screen"))
-#'   description$normalize()
-#'   description$reformat_fields()
-#'   description$reorder_fields()
-#'   description$print()
+#' description$str(by_field = FALSE, normalize = TRUE,
+#'     mode = c("file", "screen"))
+#' description$normalize()
+#' description$reformat_fields()
+#' description$reorder_fields()
+#' description$print()
 #'```
 #'
 #' * `by_field`: whether to return the normalized format
@@ -171,12 +171,12 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' By default it writes it to the file it was created from, if it was
 #' created from a file. Otherwise giving a file name is compulsory:
 #' ```r
-#'   x$write(file = "DESCRIPTION")
+#' x$write(file = "DESCRIPTION")
 #' ```
 #'
 #' The API:
 #' ```r
-#'   description$write(file = NULL)
+#' description$write(file = NULL)
 #' ```
 #'
 #' * `file`: path to write the description to. If it was created
@@ -186,9 +186,9 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' @section Version numbers:
 #'
 #' ```r
-#'   description$get_version()
-#'   description$set_version(version)
-#'   description$bump_version(which = c("patch", "minor", "major", "dev"))
+#' description$get_version()
+#' description$set_version(version)
+#' description$bump_version(which = c("patch", "minor", "major", "dev"))
 #' ```
 #'
 #' * `version`: a string or a [base::package_version] object.
@@ -252,12 +252,12 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' The API:
 #' ```r
-#'   description$set_dep(package, type = dep_types, version = "*")
-#'   description$set_deps(deps)
-#'   description$get_deps()
-#'   description$has_dep(package, type = c("any", dep_types))
-#'   description$del_dep(package, type = c("all", dep_types))
-#'   description$del_deps()
+#' description$set_dep(package, type = dep_types, version = "*")
+#' description$set_deps(deps)
+#' description$get_deps()
+#' description$has_dep(package, type = c("any", dep_types))
+#' description$del_dep(package, type = c("all", dep_types))
+#' description$del_deps()
 #' ```
 #'
 #' * `package`: name of the package to add to or remove from the
@@ -279,13 +279,13 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' The API:
 #' ```r
-#'   description$set_collate(files, which = c("main", "windows", "unix"))
-#'   description$get_collate(which = c("main", "windows", "unix"))
-#'   description$del_collate(which = c("all", "main", "windows", "unix"))
-#'   description$add_to_collate(files, which = c("default", "all", "main",
-#'     "windows", "unix"))
-#'   description$del_from_collate(files, which = c("all", "main",
-#'     "windows", "unix"))
+#' description$set_collate(files, which = c("main", "windows", "unix"))
+#' description$get_collate(which = c("main", "windows", "unix"))
+#' description$del_collate(which = c("all", "main", "windows", "unix"))
+#' description$add_to_collate(files, which = c("default", "all", "main",
+#'   "windows", "unix"))
+#' description$del_from_collate(files, which = c("all", "main",
+#'   "windows", "unix"))
 #' ```
 #'
 #' * `iles`: the files to add or remove, in a character vector.
@@ -300,11 +300,11 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' The API:
 #' ```r
-#'   description$get_authors()
-#'   description$set_authors(authors)
-#'   description$get_author(role)
-#'   description$get_maintainer()
-#'   description$coerce_authors_at_r()
+#' description$get_authors()
+#' description$set_authors(authors)
+#' description$get_author(role)
+#' description$get_maintainer()
+#' description$coerce_authors_at_r()
 #' ```
 #'
 #' * `authors`: a `person` object, a list of authors.
@@ -325,10 +325,10 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' functions such as `$get_authors`.
 #'
 #' ```r
-#'   description$add_author(given = NULL, family = NULL, email = NULL,
-#'       role = NULL, comment = NULL, orcid = NULL)
-#'   description$add_me(role = "ctb", comment = NULL, orcid = NULL)
-#'   description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
+#' description$add_author(given = NULL, family = NULL, email = NULL,
+#'     role = NULL, comment = NULL, orcid = NULL)
+#' description$add_me(role = "ctb", comment = NULL, orcid = NULL)
+#' description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
 #' ```
 #'
 #' Add a new author. The arguments correspond to the arguments of the
@@ -343,7 +343,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' name. This approach might be limited to some full name structures.
 #'
 #' ```r
-#'  description$del_author(given = NULL, family = NULL, email = NULL,
+#' description$del_author(given = NULL, family = NULL, email = NULL,
 #'     role = NULL, comment = NULL, orcid = NULL)
 #' ```
 #'
@@ -354,14 +354,14 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' be removed. The specifications can be (PCRE) regular expressions.
 #'
 #' ```r
-#'   description$add_role(role, given = NULL, family = NULL, email = NULL,
-#'       comment = NULL, orcid = NULL)
-#'   description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
-#'       comment = NULL, role = NULL)
-#'   description$del_role(role, given = NULL, family = NULL, email = NULL,
-#'       comment = NULL, orcid = NULL)
-#'   description$change_maintainer(given = NULL, family = NULL,
-#'       email = NULL, comment = NULL, orcid = NULL)
+#' description$add_role(role, given = NULL, family = NULL, email = NULL,
+#'     comment = NULL, orcid = NULL)
+#' description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
+#'     comment = NULL, role = NULL)
+#' description$del_role(role, given = NULL, family = NULL, email = NULL,
+#'     comment = NULL, orcid = NULL)
+#' description$change_maintainer(given = NULL, family = NULL,
+#'     email = NULL, comment = NULL, orcid = NULL)
 #' ```
 #'
 #' `role` is the role to add or delete. The other arguments
@@ -374,11 +374,11 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' field:
 #'
 #' ```r
-#'   description$get_urls()
-#'   description$set_urls(urls)
-#'   description$add_urls(urls)
-#'   description$del_urls(pattern)
-#'   description$clear_urls()
+#' description$get_urls()
+#' description$set_urls(urls)
+#' description$add_urls(urls)
+#' description$del_urls(pattern)
+#' description$clear_urls()
 #' ```
 #'
 #' * `urls`: character vector of URLs to set or add.
@@ -410,12 +410,12 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' field:
 #'
 #' ```r
-#'   description$get_remotes()
-#'   description$get_remotes()
-#'   description$set_remotes(remotes)
-#'   description$add_remotes(remotes)
-#'   description$del_remotes(pattern)
-#'   description$clear_remotes()
+#' description$get_remotes()
+#' description$get_remotes()
+#' description$set_remotes(remotes)
+#' description$add_remotes(remotes)
+#' description$del_remotes(pattern)
+#' description$clear_remotes()
 #' ```
 #'
 #' * `remotes`: character vector of remote dependency locations to
