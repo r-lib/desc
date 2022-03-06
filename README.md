@@ -371,7 +371,7 @@ desc_get_deps()
 ## Code of Conduct
 
 Please note that the desc project is released with a [Contributor Code
-of Conduct](http://r-lib.github.io/desc/CODE_OF_CONDUCT.html). By
+of Conduct](http://r-lib.github.io/desc/dev/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.
 
 ## License
