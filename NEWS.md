@@ -1,5 +1,5 @@
 
-# development version
+# desc 1.4.1
 
 * The `$coerce_authors_at_r()` method now does a much better job at setting
   the authors' roles (#114, @dpprdan).
