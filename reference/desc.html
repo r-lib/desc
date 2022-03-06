@@ -16,7 +16,7 @@ directory to desc()."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/
     
     <a class="navbar-brand me-2" href="../index.html">desc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.4.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,14 +68,14 @@ directory to <code>desc()</code>.</p>
     <dl><dt>cmd</dt>
 <dd><p>A command to create a description from scratch.
 Currently only <code>"!new"</code> is implemented. If it does not start
-with an exclamation mark, it will be interpreted as the ‘file’
+with an exclamation mark, it will be interpreted as the <code>file</code>
 argument.</p></dd>
 <dt>file</dt>
 <dd><p>Name of the <code>DESCRIPTION</code> file to load. If all of
-‘cmd’, ‘file’ and ‘text’ are <code>NULL</code> (the
-default), then the <code>DESCRIPTION</code> file in the current working
-directory is used. The file can also be an R package (source, or
-binary), in which case the DESCRIPTION file is extracted from it, but
+<code>cmd</code>, <code>file</code> and <code>text</code> are <code>NULL</code> (the default), then the
+<code>DESCRIPTION</code> file in the current working  directory is used.
+The file can also be an R package (source, or
+binary), in which case the <code>DESCRIPTION</code> file is extracted from it, but
 note that in this case <code>$write()</code> cannot write the file back in
 the package archive.</p></dd>
 <dt>text</dt>
@@ -92,44 +92,49 @@ and the DESCRIPTION file of this package will be loaded.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">desc</span><span class="op">(</span>package <span class="op">=</span> <span class="st">"desc"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Package</span>: desc</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Title</span>: Manipulate DESCRIPTION Files</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Version</span>: 1.4.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Version</span>: 1.4.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Authors@R</span> (parsed):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     * Gábor Csárdi &lt;csardi.gabor@gmail.com&gt; [aut, cre]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     * Kirill Müller [aut]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     * Jim Hester &lt;james.f.hester@gmail.com&gt; [aut]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     * Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     * RStudio [cph, fnd]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Author</span>: Gábor Csárdi [aut, cre], Kirill Müller [aut], Jim Hester</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     [aut], Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     [aut], Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;),</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     RStudio [cph, fnd]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Maintainer</span>: Gábor Csárdi &lt;csardi.gabor@gmail.com&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Description</span>: Tools to read, write, create, and manipulate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     DESCRIPTION files.  It is intended for packages that create or</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     manipulate other packages.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">License</span>: MIT + file LICENSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">URL</span>: https://github.com/r-lib/desc#readme</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">URL</span>: https://github.com/r-lib/desc#readme,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     http://r-lib.github.io/desc/</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">BugReports</span>: https://github.com/r-lib/desc/issues</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Depends</span>:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     R (&gt;= 3.1.0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     R (&gt;= 3.4)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Imports</span>:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     R6,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     crayon,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     cli,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     rprojroot,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     utils</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Suggests</span>:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     callr,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     covr,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     gh,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     spelling,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     testthat,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     whoami,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     withr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Built</span>: R 4.1.2; ; 2022-03-05 21:58:57 UTC; unix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Built</span>: R 4.1.2; ; 2022-03-06 14:00:56 UTC; unix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/Needs/website</span>: tidyverse/tidytemplate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/testthat/edition</span>: 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Encoding</span>: UTF-8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Language</span>: en-US</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">NeedsCompilation</span>: no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Packaged</span>: 2022-03-05 21:58:57 UTC; runner</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Packaged</span>: 2022-03-06 14:00:55 UTC; runner</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RemotePkgRef</span>: local::.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RemoteType</span>: local</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Roxygen</span>: list(r6 = FALSE, load = "installed")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Roxygen</span>: list(r6 = FALSE, load = "installed", markdown = TRUE)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RoxygenNote</span>: 7.1.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Collate</span>:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'assertions.R'</span>
@@ -139,6 +144,7 @@ and the DESCRIPTION file of this package will be loaded.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'collate.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'constants.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'deps.R'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     'desc-package.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'description.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'encoding.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'latex.R'</span>
@@ -156,44 +162,49 @@ and the DESCRIPTION file of this package will be loaded.</p></dd>
 <span class="r-in"><span class="fu">desc</span><span class="op">(</span><span class="va">DESCRIPTION</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Package</span>: desc</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Title</span>: Manipulate DESCRIPTION Files</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Version</span>: 1.4.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Version</span>: 1.4.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Authors@R</span> (parsed):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     * Gábor Csárdi &lt;csardi.gabor@gmail.com&gt; [aut, cre]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     * Kirill Müller [aut]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     * Jim Hester &lt;james.f.hester@gmail.com&gt; [aut]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     * Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     * RStudio [cph, fnd]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Author</span>: Gábor Csárdi [aut, cre], Kirill Müller [aut], Jim Hester</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     [aut], Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     [aut], Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;),</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     RStudio [cph, fnd]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Maintainer</span>: Gábor Csárdi &lt;csardi.gabor@gmail.com&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Description</span>: Tools to read, write, create, and manipulate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     DESCRIPTION files.  It is intended for packages that create or</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     manipulate other packages.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">License</span>: MIT + file LICENSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">URL</span>: https://github.com/r-lib/desc#readme</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">URL</span>: https://github.com/r-lib/desc#readme,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     http://r-lib.github.io/desc/</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">BugReports</span>: https://github.com/r-lib/desc/issues</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Depends</span>:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     R (&gt;= 3.1.0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     R (&gt;= 3.4)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Imports</span>:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     R6,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     crayon,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     cli,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     rprojroot,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     utils</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Suggests</span>:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     callr,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     covr,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     gh,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     spelling,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     testthat,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     whoami,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     withr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Built</span>: R 4.1.2; ; 2022-03-05 21:58:57 UTC; unix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Built</span>: R 4.1.2; ; 2022-03-06 14:00:56 UTC; unix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/Needs/website</span>: tidyverse/tidytemplate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/testthat/edition</span>: 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Encoding</span>: UTF-8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Language</span>: en-US</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">NeedsCompilation</span>: no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Packaged</span>: 2022-03-05 21:58:57 UTC; runner</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Packaged</span>: 2022-03-06 14:00:55 UTC; runner</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RemotePkgRef</span>: local::.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RemoteType</span>: local</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Roxygen</span>: list(r6 = FALSE, load = "installed")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Roxygen</span>: list(r6 = FALSE, load = "installed", markdown = TRUE)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RoxygenNote</span>: 7.1.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Collate</span>:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'assertions.R'</span>
@@ -203,6 +214,7 @@ and the DESCRIPTION file of this package will be loaded.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'collate.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'constants.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'deps.R'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     'desc-package.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'description.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'encoding.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'latex.R'</span>
@@ -225,7 +237,7 @@ and the DESCRIPTION file of this package will be loaded.</p></dd>
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p></p><p>Developed by <a href="https://github.com/gaborcsardi" class="external-link">Gábor Csárdi</a>, <a href="https://krlmlr.info" class="external-link">Kirill Müller</a>, <a href="https://www.jimhester.com/" class="external-link">Jim Hester</a>.</p>
+  <p></p><p>Developed by <a href="https://github.com/gaborcsardi" class="external-link">Gábor Csárdi</a>, <a href="https://krlmlr.info" class="external-link">Kirill Müller</a>, <a href="https://www.jimhester.com/" class="external-link">Jim Hester</a>, <a href="https://www.rstudio.com" class="external-link"><img src="https://www.tidyverse.org/rstudio-logo.svg" alt="RStudio" width="72"></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

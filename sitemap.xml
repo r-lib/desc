@@ -4,6 +4,9 @@
     <loc>http://r-lib.github.io/desc/404.html</loc>
   </url>
   <url>
+    <loc>http://r-lib.github.io/desc/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
     <loc>http://r-lib.github.io/desc/LICENSE-text.html</loc>
   </url>
   <url>
@@ -29,6 +32,9 @@
   </url>
   <url>
     <loc>http://r-lib.github.io/desc/reference/dep_types.html</loc>
+  </url>
+  <url>
+    <loc>http://r-lib.github.io/desc/reference/desc-package.html</loc>
   </url>
   <url>
     <loc>http://r-lib.github.io/desc/reference/desc.html</loc>
