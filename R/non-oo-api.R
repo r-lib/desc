@@ -143,7 +143,7 @@ desc_get_list <- generate_api("get_list", self = FALSE)
 #' @param file DESCRIPTION file to use. By default the DESCRIPTION
 #'    file of the current package (i.e. the package the working directory
 #'    is part of) is used.
-#' @param normalize Whether to normalize the write when writing back
+#' @param normalize Whether to "normalize" (reorder and reformat) the fields when writing back
 #'   the result. See [desc_normalize()].
 #' @param key Key to set in `desc_set_list()`.
 #' @param list_value Character vector, to collapse in
