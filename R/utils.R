@@ -191,3 +191,11 @@ desc_message <- function(...) {
   message(msg)
 
 }
+
+write_dcf <- function(...) {
+  if (getRversion() >= "3.5.0") {
+    write.dcf(..., useBytes = TRUE)
+  } else {
+    write.dcf(...)
+  }
+}

@@ -815,7 +815,11 @@ idesc_write <- function(self, private, file) {
   ## encodings. So we write the file in UTF-8 and then re-encode it later.
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
-  write.dcf(mat, file = tmp, keep.white = names(private$data))
+  ## Need to tell older R not to mess with the encoding
+  ## Cannot do this for newer R, but for newer R we use useBytes = TRUE
+  ## in write_dcf()
+  if (getRversion() < "4.2.0") Encoding(mat) <- "unknown"
+  write_dcf(mat, file = tmp, keep.white = names(private$data))
 
   removed <- ! names(private$notws) %in% colnames(mat)
   if (any(removed)) private$notws <- private$notws[! removed]
