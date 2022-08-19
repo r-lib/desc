@@ -809,14 +809,10 @@ idesc_write <- function(self, private, file) {
   }
 
   mat <- idesc_as_matrix(private$data)
-  if ("Encoding" %in% colnames(mat)) {
-    encoding <- mat[, "Encoding"]
-    mat[] <- iconv(mat[], from = "UTF-8", to = encoding)
-  }
-  # This is to avoid re-encoding
-  Encoding(mat) <- "unknown"
 
-  ## Need to write to a temp file first, to preserve absense of trailing ws
+  ## Need to write to a temp file first, to preserve absense of trailing ws,
+  ## and also because recently write.dcf cannot write out files in unknown
+  ## encodings. So we write the file in UTF-8 and then re-encode it later.
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
   write.dcf(mat, file = tmp, keep.white = names(private$data))
@@ -829,7 +825,13 @@ idesc_write <- function(self, private, file) {
 
   ofile <- file(file, raw = TRUE, open = "wb+")
   on.exit(close(ofile), add = TRUE)
-  writeLines(readLines(tmp), ofile)
+
+  lines <- readLines(tmp)
+  if ("Encoding" %in% colnames(mat)) {
+    encoding <- mat[, "Encoding"]
+    lines <- iconv(lines, from = "UTF-8", to = encoding)
+  }
+  writeLines(lines, ofile, useBytes = TRUE)
 
   invisible(self)
 }
