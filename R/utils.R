@@ -2,7 +2,7 @@
 `%||%` <- function(l, r) if (is.null(l)) r else l
 
 str_trim <- function(x) {
-  sub("^\\s+", "", sub("\\s+$", "", x))
+  sub("^\\s+", "", sub("\\s+$", "", x, useBytes = TRUE), useBytes = TRUE)
 }
 
 str_squish <- function(x) {
