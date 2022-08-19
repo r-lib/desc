@@ -36,7 +36,7 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Collate: 
     'assertions.R'
     'authors-at-r.R'

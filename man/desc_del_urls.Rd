@@ -14,7 +14,7 @@ matching this expression will be deleted.}
 file of the current package (i.e. the package the working directory
 is part of) is used.}
 
-\item{normalize}{Whether to normalize the write when writing back
+\item{normalize}{Whether to "normalize" (reorder and reformat) the fields when writing back
 the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 }
 \description{
