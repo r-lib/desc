@@ -10,9 +10,9 @@
     packages.">
 <title>Manipulate DESCRIPTION Files • desc</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="deps/_Source%20Sans%20Pro-0.4.0/font.css" rel="stylesheet">
-<link href="deps/_Source%20Code%20Pro-0.4.0/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.2/font.css" rel="stylesheet">
+<link href="deps/Source_Code_Pro-0.4.2/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Manipulate DESCRIPTION Files">
@@ -32,7 +32,7 @@
     
     <a class="navbar-brand me-2" href="index.html">desc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,18 +69,14 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="desc">desc<a class="anchor" aria-label="anchor" href="#desc"></a>
 </h1></div>
-<blockquote>
-<p>Parse DESCRIPTION files</p>
-</blockquote>
+<blockquote><p>Parse DESCRIPTION files</p></blockquote>
 <!-- badges: start -->
-
 <p>Parse, manipulate and reformat DESCRIPTION files. The package provides two APIs, one is object oriented, the other one is procedural and manipulates the files <em>in place</em>.</p>
 <hr>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li>
-<a href="#the-oo-api">The object oriented API</a>
-<ul>
+<a href="#the-oo-api">The object oriented API</a><ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#loading-or-creating-new-description-files">Loading or creating new <code>DESCRIPTION</code> files</a></li>
 <li><a href="#normalizing-description-files">Normalizing <code>DESCRIPTION</code> files</a></li>
@@ -97,13 +93,13 @@
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"desc"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"desc"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="the-object-oriented-api">The object oriented API<a class="anchor" aria-label="anchor" href="#the-object-oriented-api"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/desc#readme" class="external-link">desc</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/desc#readme" class="external-link">desc</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
@@ -114,9 +110,9 @@
 </h3>
 <p>A new <code>description</code> object can be created by reading a <code>DESCRIPTION</code> file form the disk. By default the <code>DESCRIPTION</code> file in the current directory is read:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package: desc</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Title: Manipulate DESCRIPTION Files</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version: 1.0.0</span></span>
@@ -139,8 +135,8 @@
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 5.0.0</span></span></code></pre></div>
 <p>A new object can also be created from scratch:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc2</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"!new"</span><span class="op">)</span>
-<span class="va">desc2</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc2</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"!new"</span><span class="op">)</span></span>
+<span><span class="va">desc2</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package: {{ Package }}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Title: {{ Title }}</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version: 1.0.0</span></span>
@@ -163,14 +159,14 @@
 </h3>
 <p><code><a href="https://rdrr.io/r/base/get.html" class="external-link">get()</a></code> and <code>set()</code> queries or updates a field:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"Package"</span>, <span class="st">"foo"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"Package"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"Package"</span>, <span class="st">"foo"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"Package"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   "foo"</span></span></code></pre></div>
 <p>They work with multiple fields as well:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>Package <span class="op">=</span> <span class="st">"bar"</span>, Title <span class="op">=</span> <span class="st">"Bar Package"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Package"</span>, <span class="st">"Title"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>Package <span class="op">=</span> <span class="st">"bar"</span>, Title <span class="op">=</span> <span class="st">"Bar Package"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Package"</span>, <span class="st">"Title"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Package         Title </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         "bar" "Bar Package"</span></span></code></pre></div>
 </div>
@@ -179,16 +175,16 @@
 </h3>
 <p>Package dependencies can be set and updated via an easier API:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span><span class="op">$</span><span class="fu">get_deps</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">get_deps</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       type    package version</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Suggests   testthat       *</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Suggests     whoami       *</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Suggests newpackage       *</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  Imports         R6       *</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span><span class="op">$</span><span class="fu">set_dep</span><span class="op">(</span><span class="st">"mvtnorm"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">set_dep</span><span class="op">(</span><span class="st">"Rcpp"</span>, <span class="st">"LinkingTo"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">get_deps</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">set_dep</span><span class="op">(</span><span class="st">"mvtnorm"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">set_dep</span><span class="op">(</span><span class="st">"Rcpp"</span>, <span class="st">"LinkingTo"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">get_deps</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        type    package version</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  Suggests   testthat       *</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  Suggests     whoami       *</span></span>
@@ -197,7 +193,7 @@
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   Imports         R6       *</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 LinkingTo       Rcpp       *</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span></span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package: bar</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Title: Bar Package</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version: 1.0.0</span></span>
@@ -227,11 +223,11 @@
 </h3>
 <p>Collate fields can be queried and set using simple character vectors of file names:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span><span class="op">$</span><span class="fu">set_collate</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"../R"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">set_collate</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"../R"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in idesc_set_collate(self, private, files, match.arg(which)): No files</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; in 'Collate' field</span></span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span><span class="op">$</span><span class="fu">get_collate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">get_collate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -239,37 +235,37 @@
 </h3>
 <p>Authors information, when specified via the <code>Authors@R</code> field, also has a simplified API:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"tools/pkg2"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"tools/pkg2"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hadley Wickham &lt;h.wickham@gmail.com&gt; [aut, cre, cph]"</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] "Peter Danenberg &lt;pcd@roxygen.org&gt; [aut, cph]"        </span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "Manuel Eugster [aut, cph]"                           </span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "RStudio [cph]"</span></span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span><span class="op">$</span><span class="fu">add_author</span><span class="op">(</span><span class="st">"Bugs"</span>, <span class="st">"Bunny"</span>, email <span class="op">=</span> <span class="st">"bb@acme.com"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">add_me</span><span class="op">(</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">add_author_gh</span><span class="op">(</span><span class="st">"jeroen"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">add_author</span><span class="op">(</span><span class="st">"Bugs"</span>, <span class="st">"Bunny"</span>, email <span class="op">=</span> <span class="st">"bb@acme.com"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">add_me</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">add_author_gh</span><span class="op">(</span><span class="st">"jeroen"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hadley Wickham &lt;h.wickham@gmail.com&gt; [aut, cre, cph]"</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] "Peter Danenberg &lt;pcd@roxygen.org&gt; [aut, cph]"        </span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "Manuel Eugster [aut, cph]"                           </span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "RStudio [cph]"                                       </span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] "Bugs Bunny &lt;bb@acme.com&gt;"                            </span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "Gabor Csardi &lt;csardi.gabor@gmail.com&gt; [ctb]"         </span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "First Last &lt;first.last@dom.com&gt; [ctb]"               </span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [7] "Jeroen Ooms &lt;jeroen@berkeley.edu&gt; [ctb]"</span></span></code></pre></div>
 <p>If the <code>Author</code> field is specified, it can be changed to a <code>Authors@R</code> field using <code>coerce_authors_at_r()</code>, incorporating the <code>Maintainer</code> information if necessary:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"!new"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">del</span><span class="op">(</span><span class="st">"Authors@R"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">del</span><span class="op">(</span><span class="st">"Maintainer"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>Author <span class="op">=</span> <span class="st">"Gábor Csárdi &lt;csardi.gabor@gmail.com&gt;"</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"!new"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">del</span><span class="op">(</span><span class="st">"Authors@R"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">del</span><span class="op">(</span><span class="st">"Maintainer"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>Author <span class="op">=</span> <span class="st">"Gábor Csárdi &lt;csardi.gabor@gmail.com&gt;"</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb27"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in ensure_authors_at_r(self): No 'Authors@R' field!</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; You can create one with $add_author.</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; You can also use $coerce_authors_at_r() to change Author fields</span></span></code></pre></div>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">desc</span><span class="op">$</span><span class="fu">coerce_authors_at_r</span><span class="op">(</span><span class="op">)</span>
-<span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">coerce_authors_at_r</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb29"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Gábor Csárdi &lt;csardi.gabor@gmail.com&gt; [aut]"</span></span></code></pre></div>
 </div>
 </div>
@@ -279,22 +275,22 @@
 <p>The procedural API is simpler to use for one-off <code>DESCRIPTION</code> manipulation, since it does not require dealing with <code>description</code> objects. Each object oriented method has a procedural counterpart that works on a file, and potentially writes its result back to the same file.</p>
 <p>For example, adding a new dependency to <code>DESCRIPTION</code> in the current working directory can be done with</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/desc_set_dep.html">desc_set_dep</a></span><span class="op">(</span><span class="st">"newpackage"</span>, <span class="st">"Suggests"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/desc_set_dep.html">desc_set_dep</a></span><span class="op">(</span><span class="st">"newpackage"</span>, <span class="st">"Suggests"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package: desc</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Title: Manipulate DESCRIPTION Files</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version: 1.4.0.9000</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version: 1.4.1.9000</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Authors@R (parsed):</span></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * Gábor Csárdi &lt;csardi.gabor@gmail.com&gt; [aut, cre]</span></span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * Kirill Müller [aut]</span></span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * Jim Hester &lt;james.f.hester@gmail.com&gt; [aut]</span></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;)</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * RStudio fnd [cph]</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * RStudio [cph, fnd]</span></span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Maintainer: Gábor Csárdi &lt;csardi.gabor@gmail.com&gt;</span></span>
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Description: Tools to read, write, create, and manipulate DESCRIPTION</span></span>
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     files.  It is intended for packages that create or manipulate other</span></span>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     packages.</span></span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; License: MIT + file LICENSE</span></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; URL: https://github.com/r-lib/desc#readme, http://r-lib.github.io/desc/</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; URL: https://github.com/r-lib/desc#readme, https://r-lib.github.io/desc/</span></span>
 <span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BugReports: https://github.com/r-lib/desc/issues</span></span>
 <span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Depends:</span></span>
 <span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     R (&gt;= 3.4)</span></span>
@@ -317,7 +313,7 @@
 <span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Encoding: UTF-8</span></span>
 <span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Language: en-US</span></span>
 <span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)</span></span>
-<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 7.1.2</span></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 7.2.1.9000</span></span>
 <span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Collate:</span></span>
 <span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'assertions.R'</span></span>
 <span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'authors-at-r.R'</span></span>
@@ -342,12 +338,12 @@
 <span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'version.R'</span></span></code></pre></div>
 <p>This added <code>newpackage</code> to the <code>Suggests</code> field:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/desc_get.html">desc_get</a></span><span class="op">(</span><span class="st">"Suggests"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/desc_get.html">desc_get</a></span><span class="op">(</span><span class="st">"Suggests"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                                                  Suggests </span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; "\n    callr,\n    covr,\n    gh,\n    newpackage,\n    spelling,\n    testthat,\n    whoami,\n    withr"</span></span></code></pre></div>
 <p>So the full list of dependencies are now</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/desc_get_deps.html">desc_get_deps</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/desc_get_deps.html">desc_get_deps</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb35"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        type    package version</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   Depends          R  &gt;= 3.4</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   Imports        cli       *</span></span>
@@ -366,7 +362,7 @@
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
-<p>Please note that the desc project is released with a <a href="http://r-lib.github.io/desc/dev/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>Please note that the desc project is released with a <a href="https://r-lib.github.io/desc/dev/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -421,16 +417,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://github.com/r-lib/desc/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/r-lib/desc/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://app.codecov.io/gh/r-lib/desc?branch=main" class="external-link"><img src="https://codecov.io/gh/r-lib/desc/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://www.r-pkg.org/pkg/desc" class="external-link"><img src="https://www.r-pkg.org/badges/version/desc"></a></li>
-<li><a href="https://www.r-pkg.org/pkg/desc" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/desc" alt="CRAN RStudio mirror downloads"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>
@@ -445,7 +432,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
   </div></footer>
