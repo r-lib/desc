@@ -12,7 +12,7 @@ Tools to read, write, create, and manipulate DESCRIPTION files. It is intended f
 Useful links:
 \itemize{
   \item \url{https://github.com/r-lib/desc#readme}
-  \item \url{http://r-lib.github.io/desc/}
+  \item \url{https://r-lib.github.io/desc/}
   \item Report bugs at \url{https://github.com/r-lib/desc/issues}
 }
 
