@@ -252,7 +252,7 @@
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "Manuel Eugster [aut, cph]"                           </span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "RStudio [cph]"                                       </span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] "Bugs Bunny &lt;bb@acme.com&gt;"                            </span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "Gabor Csardi &lt;csardi.gabor@gmail.com&gt; [ctb]"         </span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "First Last &lt;first.last@dom.com&gt; [ctb]"               </span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [7] "Jeroen Ooms &lt;jeroen@berkeley.edu&gt; [ctb]"</span></span></code></pre></div>
 <p>If the <code>Author</code> field is specified, it can be changed to a <code>Authors@R</code> field using <code>coerce_authors_at_r()</code>, incorporating the <code>Maintainer</code> information if necessary:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
@@ -279,19 +279,19 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/desc_set_dep.html">desc_set_dep</a></span><span class="op">(</span><span class="st">"newpackage"</span>, <span class="st">"Suggests"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package: desc</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Title: Manipulate DESCRIPTION Files</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version: 1.4.0.9000</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version: 1.4.1.9000</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Authors@R (parsed):</span></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * Gábor Csárdi &lt;csardi.gabor@gmail.com&gt; [aut, cre]</span></span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * Kirill Müller [aut]</span></span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * Jim Hester &lt;james.f.hester@gmail.com&gt; [aut]</span></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;)</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * RStudio fnd [cph]</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     * RStudio [cph, fnd]</span></span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Maintainer: Gábor Csárdi &lt;csardi.gabor@gmail.com&gt;</span></span>
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Description: Tools to read, write, create, and manipulate DESCRIPTION</span></span>
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     files.  It is intended for packages that create or manipulate other</span></span>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     packages.</span></span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; License: MIT + file LICENSE</span></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; URL: https://github.com/r-lib/desc#readme, http://r-lib.github.io/desc/</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; URL: https://github.com/r-lib/desc#readme, https://r-lib.github.io/desc/</span></span>
 <span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BugReports: https://github.com/r-lib/desc/issues</span></span>
 <span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Depends:</span></span>
 <span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     R (&gt;= 3.4)</span></span>
@@ -314,7 +314,7 @@
 <span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Encoding: UTF-8</span></span>
 <span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Language: en-US</span></span>
 <span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)</span></span>
-<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 7.1.2</span></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 7.2.1.9000</span></span>
 <span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Collate:</span></span>
 <span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'assertions.R'</span></span>
 <span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'authors-at-r.R'</span></span>
