@@ -236,7 +236,7 @@ desc$get_authors()
     #> [3] "Manuel Eugster [aut, cph]"                           
     #> [4] "RStudio [cph]"                                       
     #> [5] "Bugs Bunny <bb@acme.com>"                            
-    #> [6] "Gabor Csardi <csardi.gabor@gmail.com> [ctb]"         
+    #> [6] "First Last <first.last@dom.com> [ctb]"               
     #> [7] "Jeroen Ooms <jeroen@berkeley.edu> [ctb]"
 
 If the `Author` field is specified, it can be changed to a `Authors@R`
@@ -279,19 +279,19 @@ desc_set_dep("newpackage", "Suggests")
 
     #> Package: desc
     #> Title: Manipulate DESCRIPTION Files
-    #> Version: 1.4.0.9000
+    #> Version: 1.4.1.9000
     #> Authors@R (parsed):
     #>     * Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]
     #>     * Kirill Müller [aut]
     #>     * Jim Hester <james.f.hester@gmail.com> [aut]
     #>     * Maëlle Salmon [ctb] (<https://orcid.org/0000-0002-2815-0399>)
-    #>     * RStudio fnd [cph]
+    #>     * RStudio [cph, fnd]
     #> Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
     #> Description: Tools to read, write, create, and manipulate DESCRIPTION
     #>     files.  It is intended for packages that create or manipulate other
     #>     packages.
     #> License: MIT + file LICENSE
-    #> URL: https://github.com/r-lib/desc#readme, http://r-lib.github.io/desc/
+    #> URL: https://github.com/r-lib/desc#readme, https://r-lib.github.io/desc/
     #> BugReports: https://github.com/r-lib/desc/issues
     #> Depends:
     #>     R (>= 3.4)
@@ -314,7 +314,7 @@ desc_set_dep("newpackage", "Suggests")
     #> Encoding: UTF-8
     #> Language: en-US
     #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
-    #> RoxygenNote: 7.1.2
+    #> RoxygenNote: 7.2.1.9000
     #> Collate:
     #>     'assertions.R'
     #>     'authors-at-r.R'
