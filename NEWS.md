@@ -1,5 +1,7 @@
 # desc (development version)
 
+* The `description$write()` method, and thus all `desc_*()` functions work
+  correctly now on R 4.3.x for packages that declare a non-UTF-8 encoding.
 
 # desc 1.4.1
 
