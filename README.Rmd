@@ -42,8 +42,13 @@ procedural and manipulates the files *in place*.
 
 ## Installation
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
+# Install the released version from CRAN
 install.packages("desc")
+
+# Or the development version from GitHub:
+# install.packages("pak")
+pak::pak("r-lib/desc")
 ```
 
 ## The object oriented API
