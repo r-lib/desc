@@ -240,7 +240,7 @@ desc$get_authors()
     #> [3] "Manuel Eugster [aut, cph]"                           
     #> [4] "RStudio [cph]"                                       
     #> [5] "Bugs Bunny <bb@acme.com>"                            
-    #> [6] "Andy Teucher <andy.teucher@gmail.com> [ctb]"         
+    #> [6] "First Last <first.last@dom.com> [ctb]"               
     #> [7] "Jeroen Ooms <jeroen@berkeley.edu> [ctb]"
 
 If the `Author` field is specified, it can be changed to a `Authors@R`

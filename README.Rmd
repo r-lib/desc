@@ -137,6 +137,12 @@ desc$get_collate()
 Authors information, when specified via the `Authors@R` field,
 also has a simplified API:
 
+```{r, include=FALSE}
+withr::local_envvar(
+  c("FULLNAME" = "First Last", "EMAIL" = "first.last@dom.com")
+)
+```
+
 ```{r}
 desc <- description$new("tools/pkg2")
 desc$get_authors()
