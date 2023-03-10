@@ -21,25 +21,29 @@ manipulates the files *in place*.
 
 ------------------------------------------------------------------------
 
--   [Installation](#installation)
--   [The object oriented API](#the-oo-api)
-    -   [Introduction](#introduction)
-    -   [Loading or creating new `DESCRIPTION`
-        files](#loading-or-creating-new-description-files)
-    -   [Normalizing `DESCRIPTION`
-        files](#normalizing-description-files)
-    -   [Querying, changing and removing
-        fields](#querying-changing-and-removing-fields)
-    -   [Dependencies](#dependencies)
-    -   [Collate fields](#collate-fields)
-    -   [Authors](#authors)
--   [The procedural API](#the-procedural-api)
--   [License](#license)
+- [Installation](#installation)
+- [The object oriented API](#the-oo-api)
+  - [Introduction](#introduction)
+  - [Loading or creating new `DESCRIPTION`
+    files](#loading-or-creating-new-description-files)
+  - [Normalizing `DESCRIPTION` files](#normalizing-description-files)
+  - [Querying, changing and removing
+    fields](#querying-changing-and-removing-fields)
+  - [Dependencies](#dependencies)
+  - [Collate fields](#collate-fields)
+  - [Authors](#authors)
+- [The procedural API](#the-procedural-api)
+- [License](#license)
 
 ## Installation
 
 ``` r
+# Install the released version from CRAN
 install.packages("desc")
+
+# Or the development version from GitHub:
+# install.packages("pak")
+pak::pak("r-lib/desc")
 ```
 
 ## The object oriented API
@@ -279,19 +283,19 @@ desc_set_dep("newpackage", "Suggests")
 
     #> Package: desc
     #> Title: Manipulate DESCRIPTION Files
-    #> Version: 1.4.1.9000
+    #> Version: 1.4.2.9000
     #> Authors@R (parsed):
     #>     * Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]
     #>     * Kirill Müller [aut]
     #>     * Jim Hester <james.f.hester@gmail.com> [aut]
     #>     * Maëlle Salmon [ctb] (<https://orcid.org/0000-0002-2815-0399>)
-    #>     * RStudio [cph, fnd]
+    #>     * Posit Software, PBC [cph, fnd]
     #> Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
     #> Description: Tools to read, write, create, and manipulate DESCRIPTION
     #>     files.  It is intended for packages that create or manipulate other
     #>     packages.
     #> License: MIT + file LICENSE
-    #> URL: https://github.com/r-lib/desc#readme, https://r-lib.github.io/desc/
+    #> URL: https://github.com/r-lib/desc#readme, https://desc.r-lib.org/
     #> BugReports: https://github.com/r-lib/desc/issues
     #> Depends:
     #>     R (>= 3.4)
@@ -314,7 +318,7 @@ desc_set_dep("newpackage", "Suggests")
     #> Encoding: UTF-8
     #> Language: en-US
     #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
-    #> RoxygenNote: 7.2.1.9000
+    #> RoxygenNote: 7.2.3
     #> Collate:
     #>     'assertions.R'
     #>     'authors-at-r.R'
@@ -373,8 +377,3 @@ desc_get_deps()
 Please note that the desc project is released with a [Contributor Code
 of Conduct](https://r-lib.github.io/desc/dev/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.
-
-## License
-
-MIT © [Gábor Csárdi](https://github.com/gaborcsardi), [RStudio
-Inc](https://github.com/rstudio)

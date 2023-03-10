@@ -42,8 +42,13 @@ procedural and manipulates the files *in place*.
 
 ## Installation
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
+# Install the released version from CRAN
 install.packages("desc")
+
+# Or the development version from GitHub:
+# install.packages("pak")
+pak::pak("r-lib/desc")
 ```
 
 ## The object oriented API
@@ -132,6 +137,12 @@ desc$get_collate()
 Authors information, when specified via the `Authors@R` field,
 also has a simplified API:
 
+```{r, include=FALSE}
+withr::local_envvar(
+  c("FULLNAME" = "First Last", "EMAIL" = "first.last@dom.com")
+)
+```
+
 ```{r}
 desc <- description$new("tools/pkg2")
 desc$get_authors()
@@ -190,8 +201,3 @@ desc_del_dep("newpackage")
 Please note that the desc project is released with a
 [Contributor Code of Conduct](https://r-lib.github.io/desc/dev/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
-
-## License
-
-MIT © [Gábor Csárdi](https://github.com/gaborcsardi),
-      [RStudio Inc](https://github.com/rstudio)
