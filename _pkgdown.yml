@@ -1,4 +1,4 @@
-url: http://desc.r-lib.org/
+url: https://desc.r-lib.org/
 template:
   bootstrap: 5
   package: tidytemplate
