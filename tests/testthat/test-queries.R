@@ -119,6 +119,17 @@ test_that("get_list, set_list", {
     desc$get_list("foo", trim_ws = FALSE, squish_ws = FALSE),
     c("  this", " is   a", " \n   list")
   )
+  expect_equal(
+    desc$get_list("notafield", default = ""),
+    ""
+  )
+  expect_equal(
+    desc$get_list("notafield", default = c("foo", "bar")),
+    c("foo", "bar")
+  )
+  expect_error(
+    desc$get_list("notafield")
+  )
 
   desc$set_list("key", c("this", "that"))
   expect_equal(desc$get_list("key"), c("this", "that"))
