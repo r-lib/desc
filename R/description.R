@@ -895,7 +895,12 @@ idesc_get_or_fail <- function(self, private, keys) {
 
 idesc_get_list <- function(self, private, key, default, sep, trim_ws, squish_ws) {
   stopifnot(is_string(key), is_flag(trim_ws), is_flag(squish_ws))
-  val <- private$data[[key]]$value %||% default
+
+  val <- private$data[[key]]$value
+  if (is.null(val)) {
+    return(default)
+  }
+
   val <- strsplit(val, sep, fixed = TRUE)[[1]]
   if (trim_ws) val <- str_trim(val)
   if (squish_ws) val <- str_squish(val)
