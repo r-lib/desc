@@ -128,7 +128,8 @@ test_that("get_list, set_list", {
     c("foo", "bar")
   )
   expect_error(
-    desc$get_list("notafield")
+    desc$get_list("notafield"),
+    "Field 'notafield' not found"
   )
 
   desc$set_list("key", c("this", "that"))
