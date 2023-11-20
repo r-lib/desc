@@ -126,7 +126,7 @@ desc$set("Package", "foo")
 desc$get("Package")
 ```
 
-    #> Package 
+    #> Package
     #>   "foo"
 
 They work with multiple fields as well:
@@ -136,7 +136,7 @@ desc$set(Package = "bar", Title = "Bar Package")
 desc$get(c("Package", "Title"))
 ```
 
-    #>       Package         Title 
+    #>       Package         Title
     #>         "bar" "Bar Package"
 
 ### Dependencies
@@ -224,8 +224,8 @@ desc$get_authors()
 ```
 
     #> [1] "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph]"
-    #> [2] "Peter Danenberg <pcd@roxygen.org> [aut, cph]"        
-    #> [3] "Manuel Eugster [aut, cph]"                           
+    #> [2] "Peter Danenberg <pcd@roxygen.org> [aut, cph]"
+    #> [3] "Manuel Eugster [aut, cph]"
     #> [4] "RStudio [cph]"
 
 ``` r
@@ -236,11 +236,11 @@ desc$get_authors()
 ```
 
     #> [1] "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph]"
-    #> [2] "Peter Danenberg <pcd@roxygen.org> [aut, cph]"        
-    #> [3] "Manuel Eugster [aut, cph]"                           
-    #> [4] "RStudio [cph]"                                       
-    #> [5] "Bugs Bunny <bb@acme.com>"                            
-    #> [6] "First Last <first.last@dom.com> [ctb]"               
+    #> [2] "Peter Danenberg <pcd@roxygen.org> [aut, cph]"
+    #> [3] "Manuel Eugster [aut, cph]"
+    #> [4] "RStudio [cph]"
+    #> [5] "Bugs Bunny <bb@acme.com>"
+    #> [6] "First Last <first.last@dom.com> [ctb]"
     #> [7] "Jeroen Ooms <jeroen@berkeley.edu> [ctb]"
 
 If the `Author` field is specified, it can be changed to a `Authors@R`
@@ -302,7 +302,6 @@ desc_set_dep("newpackage", "Suggests")
     #> Imports:
     #>     cli,
     #>     R6,
-    #>     rprojroot,
     #>     utils
     #> Suggests:
     #>     callr,
@@ -348,7 +347,7 @@ This added `newpackage` to the `Suggests` field:
 desc_get("Suggests")
 ```
 
-    #>                                                                                                  Suggests 
+    #>                                                                                                  Suggests
     #> "\n    callr,\n    covr,\n    gh,\n    newpackage,\n    spelling,\n    testthat,\n    whoami,\n    withr"
 
 So the full list of dependencies are now
@@ -361,16 +360,15 @@ desc_get_deps()
     #> 1   Depends          R  >= 3.4
     #> 2   Imports        cli       *
     #> 3   Imports         R6       *
-    #> 4   Imports  rprojroot       *
-    #> 5   Imports      utils       *
-    #> 6  Suggests      callr       *
-    #> 7  Suggests       covr       *
-    #> 8  Suggests         gh       *
-    #> 9  Suggests newpackage       *
-    #> 10 Suggests   spelling       *
-    #> 11 Suggests   testthat       *
-    #> 12 Suggests     whoami       *
-    #> 13 Suggests      withr       *
+    #> 4   Imports      utils       *
+    #> 5  Suggests      callr       *
+    #> 6  Suggests       covr       *
+    #> 7  Suggests         gh       *
+    #> 8  Suggests newpackage       *
+    #> 9 Suggests   spelling       *
+    #> 10 Suggests   testthat       *
+    #> 11 Suggests     whoami       *
+    #> 12 Suggests      withr       *
 
 ## Code of Conduct
 

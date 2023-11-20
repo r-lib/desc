@@ -21,7 +21,6 @@ Depends:
 Imports:
     cli,
     R6,
-    rprojroot,
     utils
 Suggests:
     callr,
@@ -37,7 +36,7 @@ Encoding: UTF-8
 Language: en-US
 Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
 RoxygenNote: 7.2.3
-Collate: 
+Collate:
     'assertions.R'
     'authors-at-r.R'
     'built.R'
@@ -48,6 +47,7 @@ Collate:
     'desc-package.R'
     'description.R'
     'encoding.R'
+    'find-package-root.R'
     'latex.R'
     'non-oo-api.R'
     'package-archives.R'
