@@ -171,13 +171,13 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"Package"</span>, <span class="st">"foo"</span><span class="op">)</span></span>
 <span><span class="va">desc</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"Package"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package </span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Package</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   "foo"</span></span></code></pre></div>
 <p>They work with multiple fields as well:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>Package <span class="op">=</span> <span class="st">"bar"</span>, Title <span class="op">=</span> <span class="st">"Bar Package"</span><span class="op">)</span></span>
 <span><span class="va">desc</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Package"</span>, <span class="st">"Title"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Package         Title </span></span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Package         Title</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         "bar" "Bar Package"</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -248,8 +248,8 @@
 <code class="sourceCode R"><span><span class="va">desc</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/description.html">description</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"tools/pkg2"</span><span class="op">)</span></span>
 <span><span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hadley Wickham &lt;h.wickham@gmail.com&gt; [aut, cre, cph]"</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] "Peter Danenberg &lt;pcd@roxygen.org&gt; [aut, cph]"        </span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "Manuel Eugster [aut, cph]"                           </span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] "Peter Danenberg &lt;pcd@roxygen.org&gt; [aut, cph]"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "Manuel Eugster [aut, cph]"</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "RStudio [cph]"</span></span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">desc</span><span class="op">$</span><span class="fu">add_author</span><span class="op">(</span><span class="st">"Bugs"</span>, <span class="st">"Bunny"</span>, email <span class="op">=</span> <span class="st">"bb@acme.com"</span><span class="op">)</span></span>
@@ -257,11 +257,11 @@
 <span><span class="va">desc</span><span class="op">$</span><span class="fu">add_author_gh</span><span class="op">(</span><span class="st">"jeroen"</span><span class="op">)</span></span>
 <span><span class="va">desc</span><span class="op">$</span><span class="fu">get_authors</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hadley Wickham &lt;h.wickham@gmail.com&gt; [aut, cre, cph]"</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] "Peter Danenberg &lt;pcd@roxygen.org&gt; [aut, cph]"        </span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "Manuel Eugster [aut, cph]"                           </span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "RStudio [cph]"                                       </span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] "Bugs Bunny &lt;bb@acme.com&gt;"                            </span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "First Last &lt;first.last@dom.com&gt; [ctb]"               </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] "Peter Danenberg &lt;pcd@roxygen.org&gt; [aut, cph]"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "Manuel Eugster [aut, cph]"</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "RStudio [cph]"</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] "Bugs Bunny &lt;bb@acme.com&gt;"</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "First Last &lt;first.last@dom.com&gt; [ctb]"</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [7] "Jeroen Ooms &lt;jeroen@berkeley.edu&gt; [ctb]"</span></span></code></pre></div>
 <p>If the <code>Author</code> field is specified, it can be changed to a <code>Authors@R</code> field using <code>coerce_authors_at_r()</code>, incorporating the <code>Maintainer</code> information if necessary:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
@@ -307,49 +307,48 @@
 <span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Imports:</span></span>
 <span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     cli,</span></span>
 <span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     R6,</span></span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     rprojroot,</span></span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     utils</span></span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Suggests:</span></span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     callr,</span></span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     covr,</span></span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     gh,</span></span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     newpackage,</span></span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     spelling,</span></span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     testthat,</span></span>
-<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     whoami,</span></span>
-<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     withr</span></span>
-<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Config/Needs/website: tidyverse/tidytemplate</span></span>
-<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Config/testthat/edition: 3</span></span>
-<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Encoding: UTF-8</span></span>
-<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Language: en-US</span></span>
-<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)</span></span>
-<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 7.2.3</span></span>
-<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Collate:</span></span>
-<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'assertions.R'</span></span>
-<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'authors-at-r.R'</span></span>
-<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'built.R'</span></span>
-<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'classes.R'</span></span>
-<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'collate.R'</span></span>
-<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'constants.R'</span></span>
-<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'deps.R'</span></span>
-<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'desc-package.R'</span></span>
-<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'description.R'</span></span>
-<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'encoding.R'</span></span>
-<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'latex.R'</span></span>
-<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'non-oo-api.R'</span></span>
-<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'package-archives.R'</span></span>
-<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'read.R'</span></span>
-<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'remotes.R'</span></span>
-<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'str.R'</span></span>
-<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'syntax_checks.R'</span></span>
-<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'urls.R'</span></span>
-<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'utils.R'</span></span>
-<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'validate.R'</span></span>
-<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'version.R'</span></span></code></pre></div>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     utils</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Suggests:</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     callr,</span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     covr,</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     gh,</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     newpackage,</span></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     spelling,</span></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     testthat,</span></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     whoami,</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     withr</span></span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Config/Needs/website: tidyverse/tidytemplate</span></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Config/testthat/edition: 3</span></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Encoding: UTF-8</span></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Language: en-US</span></span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)</span></span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 7.2.3</span></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Collate:</span></span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'assertions.R'</span></span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'authors-at-r.R'</span></span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'built.R'</span></span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'classes.R'</span></span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'collate.R'</span></span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'constants.R'</span></span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'deps.R'</span></span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'desc-package.R'</span></span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'description.R'</span></span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'encoding.R'</span></span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'latex.R'</span></span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'non-oo-api.R'</span></span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'package-archives.R'</span></span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'read.R'</span></span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'remotes.R'</span></span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'str.R'</span></span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'syntax_checks.R'</span></span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'urls.R'</span></span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'utils.R'</span></span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'validate.R'</span></span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     'version.R'</span></span></code></pre></div>
 <p>This added <code>newpackage</code> to the <code>Suggests</code> field:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/desc_get.html">desc_get</a></span><span class="op">(</span><span class="st">"Suggests"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                                                  Suggests </span></span>
+<div class="sourceCode" id="cb33"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                                                  Suggests</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; "\n    callr,\n    covr,\n    gh,\n    newpackage,\n    spelling,\n    testthat,\n    whoami,\n    withr"</span></span></code></pre></div>
 <p>So the full list of dependencies are now</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
@@ -358,16 +357,15 @@
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   Depends          R  &gt;= 3.4</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   Imports        cli       *</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   Imports         R6       *</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   Imports  rprojroot       *</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   Imports      utils       *</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  Suggests      callr       *</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7  Suggests       covr       *</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8  Suggests         gh       *</span></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9  Suggests newpackage       *</span></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Suggests   spelling       *</span></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 Suggests   testthat       *</span></span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 Suggests     whoami       *</span></span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 Suggests      withr       *</span></span></code></pre></div>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   Imports      utils       *</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  Suggests      callr       *</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  Suggests       covr       *</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7  Suggests         gh       *</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8  Suggests newpackage       *</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9 Suggests   spelling       *</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Suggests   testthat       *</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 Suggests     whoami       *</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 Suggests      withr       *</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
