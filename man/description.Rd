@@ -97,7 +97,7 @@ The complete API reference:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get(keys)
 description$get_field(key, default, trim_ws = TRUE, squish_ws = trim_ws)
-description$set(...)
+description$set(..., check = TRUE)
 description$fields()
 description$has_fields(keys)
 description$del(keys)
@@ -114,6 +114,8 @@ returned value.
 \item \code{...}: this must be either two unnamed arguments, the key and
 and the value to set; or an arbitrary number of named arguments,
 names are used as keys, values as values to set.
+\item \code{check}: A logical scalar. Whether to check the validity of the
+new values.
 }
 }
 

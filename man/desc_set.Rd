@@ -5,12 +5,14 @@
 \alias{desc_set_list}
 \title{Set one or more fields in a DESCRIPTION file}
 \usage{
-desc_set(..., file = ".", normalize = FALSE)
+desc_set(..., check = TRUE, file = ".", normalize = FALSE)
 
 desc_set_list(key, list_value, sep = ", ", file = ".", normalize = FALSE)
 }
 \arguments{
 \item{...}{Values to set, see details below.}
+
+\item{check}{Whether to check the validity of the new fields.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
