@@ -14,7 +14,7 @@ Description: Tools to read, write, create, and manipulate DESCRIPTION
     files.  It is intended for packages that create or manipulate other
     packages.
 License: MIT + file LICENSE
-URL: https://github.com/r-lib/desc#readme, https://desc.r-lib.org/
+URL: https://desc.r-lib.org/, https://github.com/r-lib/desc
 BugReports: https://github.com/r-lib/desc/issues
 Depends:
     R (>= 3.4)
