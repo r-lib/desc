@@ -126,7 +126,7 @@ desc$set("Package", "foo")
 desc$get("Package")
 ```
 
-    #> Package
+    #> Package 
     #>   "foo"
 
 They work with multiple fields as well:
@@ -136,7 +136,7 @@ desc$set(Package = "bar", Title = "Bar Package")
 desc$get(c("Package", "Title"))
 ```
 
-    #>       Package         Title
+    #>       Package         Title 
     #>         "bar" "Bar Package"
 
 ### Dependencies
@@ -224,8 +224,8 @@ desc$get_authors()
 ```
 
     #> [1] "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph]"
-    #> [2] "Peter Danenberg <pcd@roxygen.org> [aut, cph]"
-    #> [3] "Manuel Eugster [aut, cph]"
+    #> [2] "Peter Danenberg <pcd@roxygen.org> [aut, cph]"        
+    #> [3] "Manuel Eugster [aut, cph]"                           
     #> [4] "RStudio [cph]"
 
 ``` r
@@ -236,11 +236,11 @@ desc$get_authors()
 ```
 
     #> [1] "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph]"
-    #> [2] "Peter Danenberg <pcd@roxygen.org> [aut, cph]"
-    #> [3] "Manuel Eugster [aut, cph]"
-    #> [4] "RStudio [cph]"
-    #> [5] "Bugs Bunny <bb@acme.com>"
-    #> [6] "First Last <first.last@dom.com> [ctb]"
+    #> [2] "Peter Danenberg <pcd@roxygen.org> [aut, cph]"        
+    #> [3] "Manuel Eugster [aut, cph]"                           
+    #> [4] "RStudio [cph]"                                       
+    #> [5] "Bugs Bunny <bb@acme.com>"                            
+    #> [6] "First Last <first.last@dom.com> [ctb]"               
     #> [7] "Jeroen Ooms <jeroen@berkeley.edu> [ctb]"
 
 If the `Author` field is specified, it can be changed to a `Authors@R`
@@ -295,7 +295,7 @@ desc_set_dep("newpackage", "Suggests")
     #>     files.  It is intended for packages that create or manipulate other
     #>     packages.
     #> License: MIT + file LICENSE
-    #> URL: https://github.com/r-lib/desc#readme, https://desc.r-lib.org/
+    #> URL: https://desc.r-lib.org/, https://github.com/r-lib/desc
     #> BugReports: https://github.com/r-lib/desc/issues
     #> Depends:
     #>     R (>= 3.4)
@@ -329,6 +329,7 @@ desc_set_dep("newpackage", "Suggests")
     #>     'desc-package.R'
     #>     'description.R'
     #>     'encoding.R'
+    #>     'find-package-root.R'
     #>     'latex.R'
     #>     'non-oo-api.R'
     #>     'package-archives.R'
@@ -347,7 +348,7 @@ This added `newpackage` to the `Suggests` field:
 desc_get("Suggests")
 ```
 
-    #>                                                                                                  Suggests
+    #>                                                                                                  Suggests 
     #> "\n    callr,\n    covr,\n    gh,\n    newpackage,\n    spelling,\n    testthat,\n    whoami,\n    withr"
 
 So the full list of dependencies are now
@@ -365,7 +366,7 @@ desc_get_deps()
     #> 6  Suggests       covr       *
     #> 7  Suggests         gh       *
     #> 8  Suggests newpackage       *
-    #> 9 Suggests   spelling       *
+    #> 9  Suggests   spelling       *
     #> 10 Suggests   testthat       *
     #> 11 Suggests     whoami       *
     #> 12 Suggests      withr       *
@@ -373,5 +374,5 @@ desc_get_deps()
 ## Code of Conduct
 
 Please note that the desc project is released with a [Contributor Code
-of Conduct](https://r-lib.github.io/desc/dev/CODE_OF_CONDUCT.html). By
+of Conduct](https://desc.r-lib.org/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.

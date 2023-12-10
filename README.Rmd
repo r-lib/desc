@@ -153,7 +153,7 @@ desc$get_authors()
 ```
 
 If the `Author` field is specified, it can be changed to a `Authors@R` field
-using `coerce_authors_at_r()`, incorporating the `Maintainer` information if necessary: 
+using `coerce_authors_at_r()`, incorporating the `Maintainer` information if necessary:
 
 ```{r, error = TRUE}
 desc <- description$new("!new")
@@ -199,5 +199,5 @@ desc_del_dep("newpackage")
 ## Code of Conduct
 
 Please note that the desc project is released with a
-[Contributor Code of Conduct](https://r-lib.github.io/desc/dev/CODE_OF_CONDUCT.html).
+[Contributor Code of Conduct](https://desc.r-lib.org/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
