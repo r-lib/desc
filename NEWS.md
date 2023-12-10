@@ -1,4 +1,4 @@
-# desc (development version)
+# desc 1.4.3
 
 * `$set()` and `desc_set()` now can omit checks if `check = FALSE`
   is set.
