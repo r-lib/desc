@@ -96,6 +96,7 @@ parse_deps <- function(type, deps) {
   deps <- str_trim(strsplit(deps, ",")[[1]])
   deps <- lapply(strsplit(deps, "\\("), str_trim)
   deps <- lapply(deps, sub, pattern = "\\)$", replacement = "")
+  deps <- deps[vapply(deps, function(x) length(x) != 0, FUN.VALUE = logical(1))]
   res <- data.frame(
     stringsAsFactors = FALSE,
     type = if (length(deps)) type else character(),
@@ -103,7 +104,7 @@ parse_deps <- function(type, deps) {
     version = vapply(deps, "[", "", 2)
   )
   res$version <- gsub("\\s+", " ", res$version)
-  res$version [ is.na(res$version) ] <- "*"
+  res$version[is.na(res$version)] <- "*"
   res
 }
 

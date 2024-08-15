@@ -234,3 +234,18 @@ test_that("extra whitespace is removed from deps, but kept in raw data", {
     fixed = TRUE
   )
 })
+
+test_that("empty fields are accepted during normalization", {
+
+  x <- desc("!new")
+  x$set("Depends", "")
+  x$normalize()
+  expect_equal(x$get("Depends"), c(Depends = ""))
+
+  file <- tempfile("desc-")
+  x$write(file)
+  d <- desc(file)
+
+  expect_equal(d$get("Depends"), c(Depends = ""))
+
+})
