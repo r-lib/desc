@@ -1,5 +1,8 @@
 # desc (development version)
 
+* `desc_get_built()` no longer fails if Built spans multiple lines 
+  (#145, @seankross).
+
 # desc 1.4.3
 
 * `$set()` and `desc_set()` now can omit checks if `check = FALSE`
