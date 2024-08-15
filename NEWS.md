@@ -1,5 +1,8 @@
 # desc (development version)
 
+* An empty `Depends` field is now properly normalized and formatted.
+  (#148, @kevinushey)
+
 # desc 1.4.3
 
 * `$set()` and `desc_set()` now can omit checks if `check = FALSE`
