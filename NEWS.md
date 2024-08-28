@@ -3,6 +3,9 @@
 * `desc_get_built()` no longer fails if Built spans multiple lines 
   (#145, @seankross).
 
+* An empty `Depends` field is now properly normalized and formatted.
+  (#148, @kevinushey)
+
 # desc 1.4.3
 
 * `$set()` and `desc_set()` now can omit checks if `check = FALSE`
