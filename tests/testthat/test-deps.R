@@ -243,6 +243,7 @@ test_that("empty fields are accepted during normalization", {
   expect_equal(x$get("Depends"), c(Depends = ""))
 
   file <- tempfile("desc-")
+  on.exit(unlink(file), add = TRUE)
   x$write(file)
   d <- desc(file)
 
