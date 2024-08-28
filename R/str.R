@@ -61,8 +61,8 @@ format.DescriptionField <- function(x, ..., width = 75) {
 
 format.DescriptionDependencyList <- function(x, ...) {
   paste0(
-    cli::col_blue(x$key), ":\n",
-    paste0(
+    cli::col_blue(x$key), if (nzchar(x$value)) ":\n" else ":",
+    if (nzchar(x$value)) paste0(
       "    ",
       sort(str_trim(strsplit(color_bad(x), ",", fixed = TRUE)[[1]])),
       collapse = ",\n"
