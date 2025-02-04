@@ -19,8 +19,8 @@ Query all authors in Authors@R, in DESCRIPTION
 }
 \seealso{
 Other Authors@R: 
-\code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_author}()},
+\code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},
 \code{\link{desc_add_orcid}()},
 \code{\link{desc_add_role}()},

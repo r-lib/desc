@@ -34,6 +34,8 @@ is part of) is used.}
 
 \item{normalize}{Whether to "normalize" (reorder and reformat) the fields when writing back
 the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
+
+\item{ror}{ROR ID.}
 }
 \description{
 Add an author to Authors@R in DESCRIPTION
@@ -48,8 +50,8 @@ Other Authors@R:
 \code{\link{desc_coerce_authors_at_r}()},
 \code{\link{desc_del_author}()},
 \code{\link{desc_del_role}()},
-\code{\link{desc_get_authors}()},
 \code{\link{desc_get_author}()},
+\code{\link{desc_get_authors}()},
 \code{\link{desc_get_maintainer}()},
 \code{\link{desc_set_authors}()}
 }

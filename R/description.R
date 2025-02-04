@@ -328,7 +328,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' ```r
 #' description$add_author(given = NULL, family = NULL, email = NULL,
-#'     role = NULL, comment = NULL, orcid = NULL)
+#'     role = NULL, comment = NULL, orcid = NULL, ror = NULL)
 #' description$add_me(role = "ctb", comment = NULL, orcid = NULL)
 #' description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
 #' ```
@@ -346,7 +346,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' ```r
 #' description$del_author(given = NULL, family = NULL, email = NULL,
-#'     role = NULL, comment = NULL, orcid = NULL)
+#'     role = NULL, comment = NULL, orcid = NULL, ror = NULL)
 #' ```
 #'
 #' Remove an author, or multiple authors. The author(s) to be removed
@@ -357,13 +357,15 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' ```r
 #' description$add_role(role, given = NULL, family = NULL, email = NULL,
-#'     comment = NULL, orcid = NULL)
+#'     comment = NULL, orcid = NULL, ror = NULL)
 #' description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
 #'     comment = NULL, role = NULL)
+#' description$add_ror(ror, given = NULL, family = NULL, email = NULL,
+#'     comment = NULL, role = NULL)
 #' description$del_role(role, given = NULL, family = NULL, email = NULL,
-#'     comment = NULL, orcid = NULL)
+#'     comment = NULL, orcid = NULL, ror = NULL)
 #' description$change_maintainer(given = NULL, family = NULL,
-#'     email = NULL, comment = NULL, orcid = NULL)
+#'     email = NULL, comment = NULL, orcid = NULL, ror = NULL)
 #' ```
 #'
 #' `role` is the role to add or delete. The other arguments
@@ -611,14 +613,15 @@ description <- R6Class("description",
       idesc_set_authors(self, private, authors),
 
     add_author = function(given = NULL, family = NULL, email = NULL,
-                          role = NULL, comment = NULL, orcid = NULL)
+                          role = NULL, comment = NULL, orcid = NULL,
+                          ror = NULL)
       idesc_add_author(self, private, given, family, email, role, comment,
-                       orcid),
+                       orcid, ror),
 
     add_role = function(role, given = NULL, family = NULL, email = NULL,
-                        comment = NULL, orcid = NULL)
+                        comment = NULL, orcid = NULL, ror = NULL)
       idesc_add_role(self, private, role, given, family, email, comment,
-                     orcid),
+                     orcid, ror),
 
     add_orcid = function(orcid, given = NULL, family = NULL, email = NULL,
                         comment = NULL, role = NULL)
@@ -626,15 +629,21 @@ description <- R6Class("description",
                      email = email, comment = comment,
                      orcid = orcid),
 
+    add_ror = function(ror, given = NULL, family = NULL, email = NULL,
+                        comment = NULL, role = NULL)
+      idesc_add_ror(self, private, role = role, given = given, family = family,
+                     email = email, comment = comment,
+                     ror = ror),
+
     del_author = function(given = NULL, family = NULL, email = NULL,
-                          role = NULL, comment = NULL, orcid = NULL)
+                          role = NULL, comment = NULL, orcid = NULL, ror = NULL)
       idesc_del_author(self, private, given, family, email, role, comment,
-                       orcid),
+                       orcid, ror),
 
     del_role = function(role, given = NULL, family = NULL, email = NULL,
-                        comment = NULL, orcid = NULL)
+                        comment = NULL, orcid = NULL, ror = NULL)
       idesc_del_role(self, private, role, given, family, email, comment,
-                     orcid),
+                     orcid, ror),
 
     change_maintainer = function(given = NULL, family = NULL, email = NULL,
                                  comment = NULL, orcid = NULL)

@@ -3,7 +3,6 @@
 \docType{package}
 \name{desc-package}
 \alias{desc-package}
-\alias{_PACKAGE}
 \title{desc: Manipulate DESCRIPTION Files}
 \description{
 Tools to read, write, create, and manipulate DESCRIPTION files. It is intended for packages that create or manipulate other packages.

@@ -161,13 +161,13 @@ test_that("we can replace the ORCID of an author", {
 
   desc <- description$new(test_path("D9"))
 
-  desc$add_orcid(given = "Hadley", orcid = "0000-0003-4757-117X")
+  desc$add_orcid(given = "Hadley", orcid = "1000-0003-4757-117X")
 
   expect_identical(
     format(desc$get_authors()[1]),
     paste0(
       "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph] ",
-      "(<https://orcid.org/0000-0003-4757-117X>)"
+      "(<https://orcid.org/1000-0003-4757-117X>)"
     )
   )
 })
@@ -179,6 +179,59 @@ test_that("we cannot add the same ORCID to more than one author", {
   expect_error(desc$add_orcid(given = "Peter",
                               orcid = "orcidid"),
                "More than one author correspond")
+
+  expect_error(desc$add_orcid(given = "Manuel",
+                              orcid = "0000-0003-4757-117X"),
+               "Already")
+
+})
+
+test_that("we can add an ROR to an author", {
+  desc <- description$new(test_path("D2"))
+
+  desc$add_author("Posit Software, PBC",
+                  role = c("cph", "fnd"), comment = "Really?")
+  desc$add_ror(given = "Posit", ror = "03wc8by49")
+
+  expect_match(
+    format(desc$get_authors()[5]),
+    "03wc8by49"
+  )
+})
+
+test_that("we can replace the ROR of an author", {
+  R_version <- paste(R.version$major,
+                     R.version$minor,
+                     sep = ".")
+
+  skip_if_not(R_version >= "3.5.0")
+
+  desc <- description$new(test_path("D9"))
+
+  expect_match(
+    format(desc$get_authors()[4]),
+    "bla"
+  )
+
+  desc$add_ror(given = "RStudio", ror = "03wc8by49")
+
+  expect_match(
+    format(desc$get_authors()[4]),
+    "03wc8by49"
+  )
+})
+
+test_that("we cannot add the same ROR to more than one author", {
+
+  desc <- description$new(test_path("D10"))
+
+  expect_error(desc$add_ror(given = "Peter",
+                              ror = "bla"),
+               "More than one author correspond")
+
+  expect_error(desc$add_ror(given = "Manuel",
+                              ror = "bla"),
+               "Already")
 
 })
 

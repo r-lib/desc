@@ -40,16 +40,16 @@ The current maintainer is kept if they have at least another role.
 }
 \seealso{
 Other Authors@R: 
-\code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_author}()},
+\code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},
 \code{\link{desc_add_orcid}()},
 \code{\link{desc_add_role}()},
 \code{\link{desc_coerce_authors_at_r}()},
 \code{\link{desc_del_author}()},
 \code{\link{desc_del_role}()},
-\code{\link{desc_get_authors}()},
 \code{\link{desc_get_author}()},
+\code{\link{desc_get_authors}()},
 \code{\link{desc_get_maintainer}()},
 \code{\link{desc_set_authors}()}
 }

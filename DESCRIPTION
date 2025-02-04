@@ -7,7 +7,8 @@ Authors@R: c(
     person("Jim", "Hester", , "james.f.hester@gmail.com", role = "aut"),
     person("Maëlle", "Salmon", role = "ctb",
            comment = c(ORCID = "0000-0002-2815-0399")),
-    person("Posit Software, PBC", role = c("cph", "fnd"))
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49"))
   )
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Tools to read, write, create, and manipulate DESCRIPTION
@@ -35,7 +36,7 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.2.9000
 Collate:
     'assertions.R'
     'authors-at-r.R'

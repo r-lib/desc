@@ -397,6 +397,7 @@ desc_set_authors <- generate_api("set_authors")
 #' @param role Role.
 #' @param comment Comment.
 #' @param orcid ORCID.
+#' @param ror ROR ID.
 #' @inheritParams desc_set
 #'
 #' @family Authors@R
@@ -407,9 +408,11 @@ desc_add_author <- generate_api("add_author")
 #' @title Add a role to one or more authors in Authors@R, in DESCRIPTION
 #'
 #' @description The author(s) can be specified by a combination of the `given`,
-#' `family`, `email`, `comment` and `orcid` fields.
+#' `family`, `email`, `comment`, `orcid` and `ror` fields.
 #' If multiple filters are specified, then all must match
 #' to identify the author(s).
+#' You cannot both specify `orcid` and `ror`
+#' since ORCID is for individuals, ROR for organizations.
 #'
 #' @param role Role to add.
 #' @param given Given name to filter on. Regular expression.
@@ -417,6 +420,7 @@ desc_add_author <- generate_api("add_author")
 #' @param email Email address to filter on. Regular expression.
 #' @param comment Comment field to filter on. Regular expression.
 #' @param orcid ORCID field to filter on.
+#' @param ror ROR field to filter on.
 #' @inheritParams desc_set
 #'
 #' @family Authors@R
@@ -444,6 +448,7 @@ desc_add_role <- generate_api("add_role")
 
 desc_add_orcid <- generate_api("add_orcid")
 
+
 #' Remove one or more authors from DESCRIPTION.
 #'
 #' It uses the Authors@R field. The author(s) to be removed
@@ -459,6 +464,26 @@ desc_add_orcid <- generate_api("add_orcid")
 #' @export
 
 desc_del_author <- generate_api("del_author")
+
+#' @title Add an ROR to one or more authors in Authors@R, in DESCRIPTION
+#'
+#' @description The author(s) can be specified by a combination of the `given`,
+#' `family`, `email`, `comment` and `role` fields.
+#' If multiple filters are specified, then all must match
+#' to identify the author(s).
+#'
+#' @param ror ror to add.
+#' @param given Given name to filter on. Regular expression.
+#' @param family Family name to filter on. Regular expression.
+#' @param email Email address to filter on. Regular expression.
+#' @param comment Comment field to filter on. Regular expression.
+#' @param role Role field to filter on.
+#' @inheritParams desc_set
+#'
+#' @family Authors@R
+#' @export
+
+desc_add_ror <- generate_api("add_ror")
 
 #' @title Delete a role of an author, in DESCRIPTION
 #'

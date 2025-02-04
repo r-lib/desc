@@ -37,22 +37,24 @@ the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 }
 \description{
 The author(s) can be specified by a combination of the \code{given},
-\code{family}, \code{email}, \code{comment} and \code{orcid} fields.
+\code{family}, \code{email}, \code{comment}, \code{orcid} and \code{ror} fields.
 If multiple filters are specified, then all must match
 to identify the author(s).
+You cannot both specify \code{orcid} and \code{ror}
+since ORCID is for individuals, ROR for organizations.
 }
 \seealso{
 Other Authors@R: 
-\code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_author}()},
+\code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},
 \code{\link{desc_add_orcid}()},
 \code{\link{desc_add_role}()},
 \code{\link{desc_change_maintainer}()},
 \code{\link{desc_coerce_authors_at_r}()},
 \code{\link{desc_del_author}()},
-\code{\link{desc_get_authors}()},
 \code{\link{desc_get_author}()},
+\code{\link{desc_get_authors}()},
 \code{\link{desc_get_maintainer}()},
 \code{\link{desc_set_authors}()}
 }
