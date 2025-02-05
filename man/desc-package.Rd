@@ -3,7 +3,6 @@
 \docType{package}
 \name{desc-package}
 \alias{desc-package}
-\alias{_PACKAGE}
 \title{desc: Manipulate DESCRIPTION Files}
 \description{
 Tools to read, write, create, and manipulate DESCRIPTION files. It is intended for packages that create or manipulate other packages.
@@ -29,7 +28,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Maëlle Salmon (\href{https://orcid.org/0000-0002-2815-0399}{ORCID}) [contributor]
-  \item Posit Software, PBC [copyright holder, funder]
+  \item Posit Software, PBC (\href{https://ror.org/03wc8by49}{ROR}) [copyright holder, funder]
 }
 
 }

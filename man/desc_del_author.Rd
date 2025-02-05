@@ -11,6 +11,7 @@ desc_del_author(
   role = NULL,
   comment = NULL,
   orcid = NULL,
+  ror = NULL,
   file = ".",
   normalize = FALSE
 )
@@ -28,6 +29,8 @@ desc_del_author(
 
 \item{orcid}{ORCID field to filter on.}
 
+\item{ror}{ROR field to filter on.}
+
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
 is part of) is used.}
@@ -44,16 +47,17 @@ be removed. The specifications can be (PCRE) regular expressions.
 }
 \seealso{
 Other Authors@R: 
-\code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_author}()},
+\code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},
 \code{\link{desc_add_orcid}()},
 \code{\link{desc_add_role}()},
+\code{\link{desc_add_ror}()},
 \code{\link{desc_change_maintainer}()},
 \code{\link{desc_coerce_authors_at_r}()},
 \code{\link{desc_del_role}()},
-\code{\link{desc_get_authors}()},
 \code{\link{desc_get_author}()},
+\code{\link{desc_get_authors}()},
 \code{\link{desc_get_maintainer}()},
 \code{\link{desc_set_authors}()}
 }

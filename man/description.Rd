@@ -322,7 +322,7 @@ a \code{person} object. This coercion may be necessary for other
 functions such as \verb{$get_authors}.
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{description$add_author(given = NULL, family = NULL, email = NULL,
-    role = NULL, comment = NULL, orcid = NULL)
+    role = NULL, comment = NULL, orcid = NULL, ror = NULL)
 description$add_me(role = "ctb", comment = NULL, orcid = NULL)
 description$add_author_gh(username, role = "ctb", comment = NULL, orcid = NULL)
 }\if{html}{\out{</div>}}
@@ -339,7 +339,7 @@ in order to e.g. have the first and middle names together as given
 name. This approach might be limited to some full name structures.
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{description$del_author(given = NULL, family = NULL, email = NULL,
-    role = NULL, comment = NULL, orcid = NULL)
+    role = NULL, comment = NULL, orcid = NULL, ror = NULL)
 }\if{html}{\out{</div>}}
 
 Remove an author, or multiple authors. The author(s) to be removed
@@ -349,13 +349,15 @@ is supplied, then all authors whole given name matches \code{Joe} will
 be removed. The specifications can be (PCRE) regular expressions.
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{description$add_role(role, given = NULL, family = NULL, email = NULL,
-    comment = NULL, orcid = NULL)
+    comment = NULL, orcid = NULL, ror = NULL)
 description$add_orcid(orcid, given = NULL, family = NULL, email = NULL,
     comment = NULL, role = NULL)
+description$add_ror(ror, given = NULL, family = NULL, email = NULL,
+    comment = NULL, role = NULL)
 description$del_role(role, given = NULL, family = NULL, email = NULL,
-    comment = NULL, orcid = NULL)
+    comment = NULL, orcid = NULL, ror = NULL)
 description$change_maintainer(given = NULL, family = NULL,
-    email = NULL, comment = NULL, orcid = NULL)
+    email = NULL, comment = NULL, orcid = NULL, ror = NULL)
 }\if{html}{\out{</div>}}
 
 \code{role} is the role to add or delete. The other arguments

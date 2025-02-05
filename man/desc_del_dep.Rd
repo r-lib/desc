@@ -33,7 +33,7 @@ Other dependencies:
 \code{\link{desc_del_deps}()},
 \code{\link{desc_get_deps}()},
 \code{\link{desc_has_dep}()},
-\code{\link{desc_set_deps}()},
-\code{\link{desc_set_dep}()}
+\code{\link{desc_set_dep}()},
+\code{\link{desc_set_deps}()}
 }
 \concept{dependencies}

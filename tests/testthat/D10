@@ -10,7 +10,7 @@ Authors@R: c(
     person("Peter", "Danenberg",, "pcd@roxygen.org", c("aut", "cph")),
     person("Peter", "Doe",, "pcd@roxygen.org", c("aut", "cph")),
     person("Manuel", "Eugster", role = c("aut", "cph")),
-    person("RStudio", role = "cph")
+    person("RStudio", role = "cph", comment = c(ROR = "bla"))
     )
 Depends:
     R (>= 3.0.2)
