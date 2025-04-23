@@ -8,8 +8,8 @@
 <title>Manipulate DESCRIPTION Files • desc</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.9/font.css" rel="stylesheet">
-<link href="deps/Source_Code_Pro-0.4.9/font.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Manipulate DESCRIPTION Files">
@@ -271,13 +271,13 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/desc_set_dep.html">desc_set_dep</a></span><span class="op">(</span><span class="st">"newpackage"</span>, <span class="st">"Suggests"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co">#&gt; Package: desc</span></span>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="co">#&gt; Title: Manipulate DESCRIPTION Files</span></span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="co">#&gt; Version: 1.4.2.9000</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="co">#&gt; Version: 1.4.3.9000</span></span>
 <span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="co">#&gt; Authors@R (parsed):</span></span>
 <span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a><span class="co">#&gt;     * Gábor Csárdi &lt;csardi.gabor@gmail.com&gt; [aut, cre]</span></span>
 <span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a><span class="co">#&gt;     * Kirill Müller [aut]</span></span>
 <span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="co">#&gt;     * Jim Hester &lt;james.f.hester@gmail.com&gt; [aut]</span></span>
-<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="co">#&gt;     * Maëlle Salmon [ctb] (&lt;https://orcid.org/0000-0002-2815-0399&gt;)</span></span>
-<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="co">#&gt;     * Posit Software, PBC [cph, fnd]</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="co">#&gt;     * Maëlle Salmon [ctb] (ORCID: &lt;https://orcid.org/0000-0002-2815-0399&gt;)</span></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="co">#&gt;     * Posit Software, PBC [cph, fnd] (ROR: &lt;https://ror.org/03wc8by49&gt;)</span></span>
 <span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="co">#&gt; Maintainer: Gábor Csárdi &lt;csardi.gabor@gmail.com&gt;</span></span>
 <span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a><span class="co">#&gt; Description: Tools to read, write, create, and manipulate DESCRIPTION</span></span>
 <span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a><span class="co">#&gt;     files.  It is intended for packages that create or manipulate other</span></span>
@@ -302,33 +302,34 @@
 <span id="cb31-31"><a href="#cb31-31" tabindex="-1"></a><span class="co">#&gt;     withr</span></span>
 <span id="cb31-32"><a href="#cb31-32" tabindex="-1"></a><span class="co">#&gt; Config/Needs/website: tidyverse/tidytemplate</span></span>
 <span id="cb31-33"><a href="#cb31-33" tabindex="-1"></a><span class="co">#&gt; Config/testthat/edition: 3</span></span>
-<span id="cb31-34"><a href="#cb31-34" tabindex="-1"></a><span class="co">#&gt; Encoding: UTF-8</span></span>
-<span id="cb31-35"><a href="#cb31-35" tabindex="-1"></a><span class="co">#&gt; Language: en-US</span></span>
-<span id="cb31-36"><a href="#cb31-36" tabindex="-1"></a><span class="co">#&gt; Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)</span></span>
-<span id="cb31-37"><a href="#cb31-37" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 7.2.3</span></span>
-<span id="cb31-38"><a href="#cb31-38" tabindex="-1"></a><span class="co">#&gt; Collate:</span></span>
-<span id="cb31-39"><a href="#cb31-39" tabindex="-1"></a><span class="co">#&gt;     'assertions.R'</span></span>
-<span id="cb31-40"><a href="#cb31-40" tabindex="-1"></a><span class="co">#&gt;     'authors-at-r.R'</span></span>
-<span id="cb31-41"><a href="#cb31-41" tabindex="-1"></a><span class="co">#&gt;     'built.R'</span></span>
-<span id="cb31-42"><a href="#cb31-42" tabindex="-1"></a><span class="co">#&gt;     'classes.R'</span></span>
-<span id="cb31-43"><a href="#cb31-43" tabindex="-1"></a><span class="co">#&gt;     'collate.R'</span></span>
-<span id="cb31-44"><a href="#cb31-44" tabindex="-1"></a><span class="co">#&gt;     'constants.R'</span></span>
-<span id="cb31-45"><a href="#cb31-45" tabindex="-1"></a><span class="co">#&gt;     'deps.R'</span></span>
-<span id="cb31-46"><a href="#cb31-46" tabindex="-1"></a><span class="co">#&gt;     'desc-package.R'</span></span>
-<span id="cb31-47"><a href="#cb31-47" tabindex="-1"></a><span class="co">#&gt;     'description.R'</span></span>
-<span id="cb31-48"><a href="#cb31-48" tabindex="-1"></a><span class="co">#&gt;     'encoding.R'</span></span>
-<span id="cb31-49"><a href="#cb31-49" tabindex="-1"></a><span class="co">#&gt;     'find-package-root.R'</span></span>
-<span id="cb31-50"><a href="#cb31-50" tabindex="-1"></a><span class="co">#&gt;     'latex.R'</span></span>
-<span id="cb31-51"><a href="#cb31-51" tabindex="-1"></a><span class="co">#&gt;     'non-oo-api.R'</span></span>
-<span id="cb31-52"><a href="#cb31-52" tabindex="-1"></a><span class="co">#&gt;     'package-archives.R'</span></span>
-<span id="cb31-53"><a href="#cb31-53" tabindex="-1"></a><span class="co">#&gt;     'read.R'</span></span>
-<span id="cb31-54"><a href="#cb31-54" tabindex="-1"></a><span class="co">#&gt;     'remotes.R'</span></span>
-<span id="cb31-55"><a href="#cb31-55" tabindex="-1"></a><span class="co">#&gt;     'str.R'</span></span>
-<span id="cb31-56"><a href="#cb31-56" tabindex="-1"></a><span class="co">#&gt;     'syntax_checks.R'</span></span>
-<span id="cb31-57"><a href="#cb31-57" tabindex="-1"></a><span class="co">#&gt;     'urls.R'</span></span>
-<span id="cb31-58"><a href="#cb31-58" tabindex="-1"></a><span class="co">#&gt;     'utils.R'</span></span>
-<span id="cb31-59"><a href="#cb31-59" tabindex="-1"></a><span class="co">#&gt;     'validate.R'</span></span>
-<span id="cb31-60"><a href="#cb31-60" tabindex="-1"></a><span class="co">#&gt;     'version.R'</span></span></code></pre></div>
+<span id="cb31-34"><a href="#cb31-34" tabindex="-1"></a><span class="co">#&gt; Config/usethis/last-upkeep: 2025-04-23</span></span>
+<span id="cb31-35"><a href="#cb31-35" tabindex="-1"></a><span class="co">#&gt; Encoding: UTF-8</span></span>
+<span id="cb31-36"><a href="#cb31-36" tabindex="-1"></a><span class="co">#&gt; Language: en-US</span></span>
+<span id="cb31-37"><a href="#cb31-37" tabindex="-1"></a><span class="co">#&gt; Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)</span></span>
+<span id="cb31-38"><a href="#cb31-38" tabindex="-1"></a><span class="co">#&gt; RoxygenNote: 7.3.2.9000</span></span>
+<span id="cb31-39"><a href="#cb31-39" tabindex="-1"></a><span class="co">#&gt; Collate:</span></span>
+<span id="cb31-40"><a href="#cb31-40" tabindex="-1"></a><span class="co">#&gt;     'assertions.R'</span></span>
+<span id="cb31-41"><a href="#cb31-41" tabindex="-1"></a><span class="co">#&gt;     'authors-at-r.R'</span></span>
+<span id="cb31-42"><a href="#cb31-42" tabindex="-1"></a><span class="co">#&gt;     'built.R'</span></span>
+<span id="cb31-43"><a href="#cb31-43" tabindex="-1"></a><span class="co">#&gt;     'classes.R'</span></span>
+<span id="cb31-44"><a href="#cb31-44" tabindex="-1"></a><span class="co">#&gt;     'collate.R'</span></span>
+<span id="cb31-45"><a href="#cb31-45" tabindex="-1"></a><span class="co">#&gt;     'constants.R'</span></span>
+<span id="cb31-46"><a href="#cb31-46" tabindex="-1"></a><span class="co">#&gt;     'deps.R'</span></span>
+<span id="cb31-47"><a href="#cb31-47" tabindex="-1"></a><span class="co">#&gt;     'desc-package.R'</span></span>
+<span id="cb31-48"><a href="#cb31-48" tabindex="-1"></a><span class="co">#&gt;     'description.R'</span></span>
+<span id="cb31-49"><a href="#cb31-49" tabindex="-1"></a><span class="co">#&gt;     'encoding.R'</span></span>
+<span id="cb31-50"><a href="#cb31-50" tabindex="-1"></a><span class="co">#&gt;     'find-package-root.R'</span></span>
+<span id="cb31-51"><a href="#cb31-51" tabindex="-1"></a><span class="co">#&gt;     'latex.R'</span></span>
+<span id="cb31-52"><a href="#cb31-52" tabindex="-1"></a><span class="co">#&gt;     'non-oo-api.R'</span></span>
+<span id="cb31-53"><a href="#cb31-53" tabindex="-1"></a><span class="co">#&gt;     'package-archives.R'</span></span>
+<span id="cb31-54"><a href="#cb31-54" tabindex="-1"></a><span class="co">#&gt;     'read.R'</span></span>
+<span id="cb31-55"><a href="#cb31-55" tabindex="-1"></a><span class="co">#&gt;     'remotes.R'</span></span>
+<span id="cb31-56"><a href="#cb31-56" tabindex="-1"></a><span class="co">#&gt;     'str.R'</span></span>
+<span id="cb31-57"><a href="#cb31-57" tabindex="-1"></a><span class="co">#&gt;     'syntax_checks.R'</span></span>
+<span id="cb31-58"><a href="#cb31-58" tabindex="-1"></a><span class="co">#&gt;     'urls.R'</span></span>
+<span id="cb31-59"><a href="#cb31-59" tabindex="-1"></a><span class="co">#&gt;     'utils.R'</span></span>
+<span id="cb31-60"><a href="#cb31-60" tabindex="-1"></a><span class="co">#&gt;     'validate.R'</span></span>
+<span id="cb31-61"><a href="#cb31-61" tabindex="-1"></a><span class="co">#&gt;     'version.R'</span></span></code></pre></div>
 <p>This added <code>newpackage</code> to the <code>Suggests</code> field:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/desc_get.html">desc_get</a></span><span class="op">(</span><span class="st">"Suggests"</span><span class="op">)</span></span></code></pre></div>
@@ -408,9 +409,9 @@
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://github.com/r-lib/desc/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/r-lib/desc/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://app.codecov.io/gh/r-lib/desc?branch=main" class="external-link"><img src="https://codecov.io/gh/r-lib/desc/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://www.r-pkg.org/pkg/desc" class="external-link"><img src="https://www.r-pkg.org/badges/version/desc"></a></li>
 <li><a href="https://www.r-pkg.org/pkg/desc" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/desc" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://app.codecov.io/gh/r-lib/desc" class="external-link"><img src="https://codecov.io/gh/r-lib/desc/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 
