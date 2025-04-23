@@ -470,13 +470,25 @@ idesc_coerce_authors_at_r <- function(self, private) {
       auth <- man
       auth$role <- "aut"
     } else {
-    auth <- as.person(auth)
-    auth <- set_role_if_null(auth, "aut")
+      auth <- as.person(auth)
+      auth <- set_role_if_null(auth, "aut")
+    }
+
+    fullname <- function(given, family) {
+      paste(c(given, family), collapse = " ")
     }
 
     # Determine which author is the maintainer and split auth accordingly
-    auth_in_man <- paste(auth$given, auth$family) %in% paste(man$given, man$family)
-    mauth <- if(any(auth_in_man)) auth[auth_in_man] else man
+    # A single person behaves differently :(
+    fullman <- fullname(man$given, man$family)
+    auth_in_man <- if (length(auth) == 1) {
+      fullname(auth$given, auth$family) %in% fullman
+    } else {
+      mapply(auth$given, auth$family, FUN = function(g, f) {
+        fullname(g, f) %in% fullman
+      })
+    }
+    mauth <- if (any(auth_in_man)) auth[auth_in_man] else man
     other_auth <- auth[!auth_in_man] # this is an empty list if single author
 
     # combine info from mauth and man

@@ -1,7 +1,9 @@
 Package: SAPP
 Title: Statistical Analysis of Point Processes
 Version: 1.0.8
-Author: The Institute of Statistical Mathematics
+Author:
+    The Institute of Statistical Mathematics,
+    another person <person@here.co>
 Maintainer: Masami Saga <msaga@mtb.biglobe.ne.jp>
 Description: Functions for statistical analysis of point
     processes.

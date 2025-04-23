@@ -1,14 +1,17 @@
 # desc (development version)
 
-* New `add_ror()` method and `desc_add_ror()` functions make it possible to add ROR IDs to authors directly instead of via the `comment` argument. (@maelle, #158) 
+* New `add_ror()` method and `desc_add_ror()` functions make it possible to add ROR IDs to authors directly instead of via the `comment` argument. (@maelle, #158)
 
-* All functions and methods managing possibly non individual authors (`add_author()`, `del_author()`, `add_role()`, `del_role()`, `search_for_author()`, etc.) gain a `ror` argument. (@maelle, #158) 
-     
-* `desc_get_built()` no longer fails if Built spans multiple lines 
+* All functions and methods managing possibly non individual authors (`add_author()`, `del_author()`, `add_role()`, `del_role()`, `search_for_author()`, etc.) gain a `ror` argument. (@maelle, #158)
+
+* `desc_get_built()` no longer fails if Built spans multiple lines
   (#145, @seankross).
 
 * An empty `Depends` field is now properly normalized and formatted.
   (#148, @kevinushey)
+
+* `desc_coerce_authors_at_r()` now works correctly for authors with
+  multiple given names.
 
 # desc 1.4.3
 

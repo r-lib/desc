@@ -50,12 +50,8 @@ test_that("we can add an author with ORCID via comment", {
                   role = "ctb",
                   comment = c(ORCID = "0000-0001-7098-9676", what="he did it"))
 
-  expect_identical(
-    format(desc$get_authors()[2]),
-    paste0(
-      "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [ctb] ",
-      "(<https://orcid.org/0000-0001-7098-9676>, he did it)"
-    )
+  expect_snapshot(
+    format(desc$get_authors()[2])
   )
 })
 
@@ -74,12 +70,8 @@ test_that("we can add an author with ORCID", {
                   comment = c(what="he did it"),
                   orcid = "0000-0001-7098-9676")
 
-  expect_identical(
-    format(desc$get_authors()[2]),
-    paste0(
-      "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [ctb] ",
-      "(he did it, <https://orcid.org/0000-0001-7098-9676>)"
-    )
+  expect_snapshot(
+    format(desc$get_authors()[2])
   )
 })
 
@@ -143,12 +135,8 @@ test_that("we can add an ORCID to an author", {
                   role = "ctb", comment = "Really?")
   desc$add_orcid(given = "G\u00e1bor", orcid = "0000-0001-7098-9676")
 
-  expect_identical(
-    format(desc$get_authors()[5]),
-    paste0(
-      "G\u00e1bor Cs\u00e1rdi <csardi.gabor@gmail.com> [ctb] ",
-      "(Really?, <https://orcid.org/0000-0001-7098-9676>)"
-    )
+  expect_snapshot(
+    format(desc$get_authors()[5])
   )
 })
 
@@ -163,12 +151,8 @@ test_that("we can replace the ORCID of an author", {
 
   desc$add_orcid(given = "Hadley", orcid = "1000-0003-4757-117X")
 
-  expect_identical(
-    format(desc$get_authors()[1]),
-    paste0(
-      "Hadley Wickham <h.wickham@gmail.com> [aut, cre, cph] ",
-      "(<https://orcid.org/1000-0003-4757-117X>)"
-    )
+  expect_snapshot(
+    format(desc$get_authors()[1])
   )
 })
 
@@ -210,14 +194,14 @@ test_that("we can replace the ROR of an author", {
 
   expect_match(
     format(desc$get_authors()[4]),
-    "bla"
+    "03wc8by49"
   )
 
-  desc$add_ror(given = "RStudio", ror = "03wc8by49")
+  desc$add_ror(given = "Posit Software, PBC", ror = "012345678")
 
   expect_match(
     format(desc$get_authors()[4]),
-    "03wc8by49"
+    "012345678"
   )
 })
 
@@ -230,7 +214,7 @@ test_that("we cannot add the same ROR to more than one author", {
                "More than one author correspond")
 
   expect_error(desc$add_ror(given = "Manuel",
-                              ror = "bla"),
+                              ror = "012345678"),
                "Already")
 
 })
@@ -314,12 +298,8 @@ test_that("add_me can use ORCID_ID", {
   desc <- description$new(test_path("D2"))
   desc$add_me()
 
-  expect_identical(
-    format(desc$get_authors()[5]),
-    paste0(
-      "Bugs Bunny <bugs.bunny@acme.com> [ctb] ",
-      "(<https://orcid.org/0000-0002-0775-162X>)"
-    )
+  expect_snapshot(
+    format(desc$get_authors()[5])
   )
 })
 
@@ -466,16 +446,21 @@ test_that("coerce_authors_at_r ignores reference to AUTHOR files, #114", {
 })
 
 test_that("coerce_authors_at_r handles maintainer not being author", {
-  D15 <- description$new("D15")
+  D15 <- description$new(test_path("D15"))
   expect_silent(D15$coerce_authors_at_r())
-  expect_equal(
-    D15$get_author("cre"),
-    as.person("Masami Saga <msaga@mtb.biglobe.ne.jp> [cre]")
-  )
-  expect_equal(
-    D15$get_author("aut"),
-    as.person("The Institute of Statistical Mathematics [aut]")
-  )
+  expect_snapshot({
+    D15$get_author("cre")
+    D15$get_author("aut")
+  })
+})
+
+test_that("coerce_authors_at_r handles maintainer not being author", {
+  D17 <- description$new(test_path("D17"))
+  expect_silent(D17$coerce_authors_at_r())
+  expect_snapshot({
+    D17$get_author("cre")
+    D17$get_author("aut")
+  })
 })
 
 test_that("add_author if there is no Authors@R field", {
@@ -519,13 +504,13 @@ test_that("normalization keeps authors in UTF-8", {
 test_that("long comments are deparsed properly", {
   authors <- c(
     person(
-      given = "First",
-      family = "Last",
+      given = "Josiah",
+      family = "Carberry",
       role = c("aut", "cre"),
       email = "flast@email.org",
       comment = c(
-        ORCID = "0000-0000-0000-0000",
-        affiliation = "University One"
+        ORCID = "0000-0002-1825-0097",
+        affiliation = "Brown University"
       )
     ),
     person(
@@ -534,7 +519,7 @@ test_that("long comments are deparsed properly", {
       role = "aut",
       email = "slast@email.org",
       comment = c(
-        ORCID = "0000-0000-0000-0000",
+        ORCID = "0000-0002-1825-0097",
         affiliation = c("University One", "University Two")
       )
     )
