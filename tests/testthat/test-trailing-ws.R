@@ -1,4 +1,3 @@
-
 test_that("No WS is kept if field is not modified", {
   d <- description$new(test_path("D3"))
   tmp <- tempfile()

@@ -1,4 +1,3 @@
-
 is_package_archive <- function(file) {
   (is_zip_file(file) || is_tar_gz_file(file)) &&
     is_valid_package_file_name(file)
@@ -41,7 +40,7 @@ is_valid_package_file_name <- function(filename) {
 #' @importFrom utils untar unzip
 
 con_unzip <- function(archive, pkgname) {
-  filename <-  paste0(pkgname, "/", "DESCRIPTION")
+  filename <- paste0(pkgname, "/", "DESCRIPTION")
   con <- unz(archive, filename)
   on.exit(close(con), add = TRUE)
   tmp <- tempfile()

@@ -1,4 +1,3 @@
-
 test_that("DCF reader works", {
   desc <- description$new(test_path("D1"))
 
@@ -12,27 +11,29 @@ test_that("DCF reader keeps whitespace", {
   desc <- description$new(test_path("D1"))
 
   expect_equal(desc$get("Suggests"), c(Suggests = "\n    testthat"))
-  expect_equal(desc$get("Description"), c(
-    Description = paste0(
-      "Tools to read, write, create, and manipulate DESCRIPTION\n",
-      "    files. It is intented for packages that create or manipulate other\n",
-      "    packages."
+  expect_equal(
+    desc$get("Description"),
+    c(
+      Description = paste0(
+        "Tools to read, write, create, and manipulate DESCRIPTION\n",
+        "    files. It is intented for packages that create or manipulate other\n",
+        "    packages."
+      )
     )
-  ))
-
+  )
 })
 
 test_that("duplicate fields, #43", {
-  expect_error(
-    description$new(test_path("D5")),
-    "Duplicate DESCRIPTION fields.*Remotes"
+  expect_snapshot(
+    error = TRUE,
+    description$new(test_path("D5"))
   )
 })
 
 test_that("empty lines error", {
-  expect_error(
-    description$new(test_path("D12")),
-    "Empty lines found in DESCRIPTION file"
+  expect_snapshot(
+    error = TRUE,
+    description$new(test_path("D12"))
   )
 })
 

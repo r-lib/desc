@@ -1,4 +1,3 @@
-
 #' Check encoding of new or existing fields
 #'
 #' If `new_fields` is `NULL`, then the existing

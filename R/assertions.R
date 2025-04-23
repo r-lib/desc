@@ -1,4 +1,3 @@
-
 as_string <- function(x) {
   x <- as.character(x)
   if (length(x) != 1) stop("Value must be a scalar")
@@ -6,24 +5,23 @@ as_string <- function(x) {
 }
 
 is_string <- function(x) {
-  is.character(x) && length(x) == 1 && ! is.na(x)
+  is.character(x) && length(x) == 1 && !is.na(x)
 }
 
 # Comment can be either a single string
 # or a named vector of strings
 is_character <- function(x) {
-  is.character(x) && all(! is.na(x))
+  is.character(x) && all(!is.na(x))
 }
 
-is_character_or_null <- function(x){
+is_character_or_null <- function(x) {
   is.null(x) || is_character(x)
 }
 
-is_named_character_or_null <- function(x){
+is_named_character_or_null <- function(x) {
   is.null(x) ||
     is.character(x) && length(x) == 1 && !is.na(x) ||
     is.character(x) && length(names(x)) == length(x) && all(!is.na(x))
-
 }
 
 is_constructor_cmd <- function(x) {

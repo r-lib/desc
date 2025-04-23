@@ -1,8 +1,8 @@
-
 test_that("get, set, etc. urls", {
   desc <- description$new(test_path("D2"))
   expect_identical(
-    desc$get_urls(), "https://github.com/klutometis/roxygen"
+    desc$get_urls(),
+    "https://github.com/klutometis/roxygen"
   )
 
   desc$set_urls(c("https://foo.bar", "http://x.y"))
@@ -32,7 +32,9 @@ test_that("leading newlines and embedded descriptors are ignored", {
   desc <- description$new(test_path("D8"))
   expect_identical(
     desc$get_urls(),
-    c("https://github.com/ropensci/hunspell#readme",
-      "https://hunspell.github.io")
+    c(
+      "https://github.com/ropensci/hunspell#readme",
+      "https://hunspell.github.io"
+    )
   )
 })

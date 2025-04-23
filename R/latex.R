@@ -4,7 +4,8 @@ idesc_to_latex <- function(self, private) {
     cols,
     FUN = function(col) {
       toLatex(private$data[[col]])
-    }))
+    }
+  ))
 
   structure(
     c(
@@ -25,8 +26,13 @@ NULL
 toLatex.character <- function(object, ...) {
   object <- gsub("'([^ ']*)'", "`\\1'", object, useBytes = TRUE)
   object <- gsub("\"([^\"]*)\"", "``\\1''", object, useBytes = TRUE)
-  object <- gsub("\\", "\\textbackslash ", object, fixed = TRUE,
-               useBytes = TRUE)
+  object <- gsub(
+    "\\",
+    "\\textbackslash ",
+    object,
+    fixed = TRUE,
+    useBytes = TRUE
+  )
   object <- gsub("([{}$#_^%])", "\\\\\\1", object, useBytes = TRUE)
   object
 }

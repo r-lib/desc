@@ -10,7 +10,7 @@ Authors@R: c(
     person("Peter", "Danenberg",, "pcd@roxygen.org", c("aut", "cph")),
     person("Peter", "Doe",, "pcd@roxygen.org", c("aut", "cph")),
     person("Manuel", "Eugster", role = c("aut", "cph")),
-    person("RStudio", role = "cph", comment = c(ROR = "bla"))
+    person("RStudio", role = "cph", comment = c(ROR = "012345678"))
     )
 Depends:
     R (>= 3.0.2)
@@ -64,4 +64,3 @@ RoxygenNote: 4.1.1.9000
 Encoding: UTF-8
 Remotes: foo/digest, svn::https://github.com/hadley/stringr,
     local::/pkgs/testthat
-

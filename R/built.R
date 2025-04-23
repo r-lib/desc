@@ -1,4 +1,3 @@
-
 idesc_get_built <- function(self, private) {
   built <- gsub("\\n", " ", unname(self$get("Built")))
   if (is.na(built)) stop("No ", sQuote('Built'), " field found")

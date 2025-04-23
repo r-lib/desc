@@ -1,4 +1,3 @@
-
 idesc_get_version <- function(self, private) {
   ver <- unname(self$get("Version"))
   if (is.na(ver)) stop("No ", sQuote('Version'), " field found")
@@ -29,7 +28,7 @@ idesc_bump_version <- function(self, private, which) {
   ver[which] <- ver[which] + inc
 
   ## Zero out everything after
-  if (which < length(ver)) ver[(which+1):length(ver)] <- 0
+  if (which < length(ver)) ver[(which + 1):length(ver)] <- 0
 
   ## Keep at most three components if they are zero
   if (length(ver) > 3 && all(ver[4:length(ver)] == 0)) {
@@ -42,7 +41,10 @@ idesc_bump_version <- function(self, private, which) {
 
   ## Give a message
   desc_message(
-    "Package version bumped from ", sQuote(ver_str), " to ", sQuote(new_ver)
+    "Package version bumped from ",
+    sQuote(ver_str),
+    " to ",
+    sQuote(new_ver)
   )
 
   invisible(self)

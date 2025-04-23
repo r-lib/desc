@@ -1,8 +1,6 @@
-
 #' @importFrom utils as.person
 
 parse_authors_at_r <- function(x) {
-
   if (is.null(x) || is.na(x)) return(NULL)
 
   # Need a connection on R 3.6 and before, because the encoding will
@@ -21,9 +19,11 @@ parse_authors_at_r <- function(x) {
 
 deparse_authors_at_r <- function(x, package = NULL) {
   # this is to fix a revdep failure in attachment
-  if (identical(Sys.getenv("_R_CHECK_PACKAGE_NAME_"), "attachment") &&
+  if (
+    identical(Sys.getenv("_R_CHECK_PACKAGE_NAME_"), "attachment") &&
       identical(Sys.getenv("TESTTHAT"), "true") &&
-      is.na(Sys.getenv("ATTACHMENT_FIXED", NA_character_))) {
+      is.na(Sys.getenv("ATTACHMENT_FIXED", NA_character_))
+  ) {
     return(old_deparse_authors_at_r(x))
   }
   fmt <- lapply(unclass(x), deparse_author_at_r)
@@ -40,7 +40,7 @@ deparse_authors_at_r <- function(x, package = NULL) {
 }
 
 deparse_author_at_r <- function(x1) {
-  x1 <- x1[! vapply(x1, is.null, TRUE)]
+  x1 <- x1[!vapply(x1, is.null, TRUE)]
   d <- function(n) {
     if (n %in% names(x1)) fixed_deparse1(x1[[n]]) else ""
   }
@@ -65,7 +65,9 @@ deparse_author_at_r <- function(x1) {
       paste0(hdr, ","),
       paste0(
         rep("       ", length(x1)),
-        names(x1), " = ", vapply(x1, fixed_deparse1, ""),
+        names(x1),
+        " = ",
+        vapply(x1, fixed_deparse1, ""),
         c(rep(",", length(x1) - 1), ")")
       )
     )
@@ -89,10 +91,12 @@ old_deparse_authors_at_r <- function(x) {
 }
 
 old_deparse_author_at_r <- function(x1) {
-  x1 <- x1[! vapply(x1, is.null, TRUE)]
+  x1 <- x1[!vapply(x1, is.null, TRUE)]
   paste0(
     c("person(", rep("       ", length(x1) - 1)),
-    names(x1), " = ", vapply(x1, fixed_deparse1, ""),
+    names(x1),
+    " = ",
+    vapply(x1, fixed_deparse1, ""),
     c(rep(",", length(x1) - 1), ")")
   )
 }
@@ -106,20 +110,28 @@ set_author_field <- function(authors, which, field, value) {
 
 
 ensure_authors_at_r <- function(obj) {
-  if (! obj$has_fields("Authors@R")) {
-    stop("No 'Authors@R' field!\n",
-         "You can create one with $add_author.\n",
-         "You can also use $coerce_authors_at_r() to change Author fields")
+  if (!obj$has_fields("Authors@R")) {
+    stop(
+      "No 'Authors@R' field!\n",
+      "You can create one with $add_author.\n",
+      "You can also use $coerce_authors_at_r() to change Author fields"
+    )
   }
 }
 
 ## Find an author in the Authors@R field, based on a particular
 ## specification. E.g. it is enough to give the first name.
 
-search_for_author <- function(authors, given = NULL, family = NULL,
-                              email = NULL, role = NULL, comment = NULL,
-                              orcid = NULL, ror = NULL) {
-
+search_for_author <- function(
+  authors,
+  given = NULL,
+  family = NULL,
+  email = NULL,
+  role = NULL,
+  comment = NULL,
+  orcid = NULL,
+  ror = NULL
+) {
   matching <-
     ngrepl(given, authors$given) &
     ngrepl(family, authors$family) &
@@ -159,10 +171,15 @@ idesc_set_authors <- function(self, private, authors) {
   self$set("Authors@R", deparse_authors_at_r(authors))
 }
 
-check_author_args <- function(given = NULL, family = NULL, email = NULL,
-                              role = NULL, comment = NULL,
-                              orcid = NULL, ror = NULL) {
-
+check_author_args <- function(
+  given = NULL,
+  family = NULL,
+  email = NULL,
+  role = NULL,
+  comment = NULL,
+  orcid = NULL,
+  ror = NULL
+) {
   # orcid is for individuals, ror for organizations
   # so cannot have both
   stopifnot(
@@ -182,8 +199,17 @@ check_author_args <- function(given = NULL, family = NULL, email = NULL,
 
 #' @importFrom utils person
 
-idesc_add_author <- function(self, private, given, family, email, role,
-                             comment, orcid = NULL, ror = NULL) {
+idesc_add_author <- function(
+  self,
+  private,
+  given,
+  family,
+  email,
+  role,
+  comment,
+  orcid = NULL,
+  ror = NULL
+) {
   check_author_args(given, family, email, role, comment, orcid, ror)
   orig <- idesc_get_authors(self, private, ensure = FALSE)
 
@@ -195,23 +221,46 @@ idesc_add_author <- function(self, private, given, family, email, role,
     comment["ROR"] <- ror
   }
 
-  newp <- person(given = given, family = family, email = email,
-                 role = role, comment = comment)
+  newp <- person(
+    given = given,
+    family = family,
+    email = email,
+    role = role,
+    comment = comment
+  )
   new_authors <- if (is.null(orig)) newp else c(orig, newp)
   self$set_authors(new_authors)
 }
 
 
-idesc_add_role <- function(self, private, role, given, family, email,
-                           comment, orcid = NULL, ror = NULL) {
-
+idesc_add_role <- function(
+  self,
+  private,
+  role,
+  given,
+  family,
+  email,
+  comment,
+  orcid = NULL,
+  ror = NULL
+) {
   stopifnot(is.character(role))
-  check_author_args(given, family, email, comment = comment,
-                    orcid = orcid, ror = ror)
+  check_author_args(
+    given,
+    family,
+    email,
+    comment = comment,
+    orcid = orcid,
+    ror = ror
+  )
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
-    orig, given = given, family = family, email = email, comment = comment,
+    orig,
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
     orcid = orcid,
     ror = ror,
     role = NULL
@@ -229,90 +278,138 @@ idesc_add_role <- function(self, private, role, given, family, email,
   self$set_authors(orig)
 }
 
-idesc_add_orcid <- function(self, private, orcid, given, family, email,
-                            comment, role) {
-
-  check_author_args(given = given, family = family,
-                    email = email,
-                    comment = comment,
-                    orcid = orcid, role = role)
+idesc_add_orcid <- function(
+  self,
+  private,
+  orcid,
+  given,
+  family,
+  email,
+  comment,
+  role
+) {
+  check_author_args(
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
+    orcid = orcid,
+    role = role
+  )
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
-    orig, given = given, family = family, email = email, comment = comment,
+    orig,
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
     orcid = NULL,
     role = role
   )
 
   if (length(wh$index) > 1) {
-    stop("More than one author correspond to the provided arguments.
+    stop(
+      "More than one author correspond to the provided arguments.
          ORCID IDs have to be distinct.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   other_orcid <- search_for_author(orig, orcid = orcid)
   if (length(other_orcid$index) > 0) {
-    stop("Already an author with this ORCID ID.
+    stop(
+      "Already an author with this ORCID ID.
          ORCID IDs have to be distinct.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   orig <- set_author_field(
-      orig,
-      wh$index,
-      "comment",
-      add_orcid_to_comment(orig[wh$index]$comment,
-                           orcid)
-    )
+    orig,
+    wh$index,
+    "comment",
+    add_orcid_to_comment(orig[wh$index]$comment, orcid)
+  )
 
   self$set_authors(orig)
 }
 
-idesc_add_ror <- function(self, private, ror, given, family, email,
-                          comment, role) {
-  check_author_args(given = given, family = family,
-                    email = email,
-                    comment = comment,
-                    ror = ror, role = role)
+idesc_add_ror <- function(
+  self,
+  private,
+  ror,
+  given,
+  family,
+  email,
+  comment,
+  role
+) {
+  check_author_args(
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
+    ror = ror,
+    role = role
+  )
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
-    orig, given = given, family = family, email = email, comment = comment,
+    orig,
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
     ror = NULL,
     role = role
   )
   if (length(wh$index) > 1) {
-    stop("More than one author correspond to the provided arguments.
+    stop(
+      "More than one author correspond to the provided arguments.
          ROR IDs have to be distinct.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   other_ror <- search_for_author(orig, ror = ror)
   if (length(other_ror$index) > 0) {
-    stop("Already an author with this ROR ID.
+    stop(
+      "Already an author with this ROR ID.
          ROR IDs have to be distinct.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
   orig <- set_author_field(
-      orig,
-      wh$index,
-      "comment",
-      add_ror_to_comment(orig[wh$index]$comment,
-                           ror)
-    )
+    orig,
+    wh$index,
+    "comment",
+    add_ror_to_comment(orig[wh$index]$comment, ror)
+  )
   self$set_authors(orig)
 }
 
 
-
-idesc_del_author <- function(self, private, given, family, email, role,
-                            comment, orcid = NULL, ror = NULL) {
-
+idesc_del_author <- function(
+  self,
+  private,
+  given,
+  family,
+  email,
+  role,
+  comment,
+  orcid = NULL,
+  ror = NULL
+) {
   check_author_args(given, family, email, role, comment, orcid, ror)
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
-    orig, given = given, family = family, email = email,
-    comment = comment, orcid = orcid,
+    orig,
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
+    orcid = orcid,
     ror = ror
   )
 
@@ -321,7 +418,8 @@ idesc_del_author <- function(self, private, given, family, email, role,
   } else {
     au <- if (length(wh$index) == 1) "Author" else "Authors"
     desc_message(
-      au, " removed: ",
+      au,
+      " removed: ",
       paste(wh$authors$given, wh$authors$family, collapse = ", "),
       "."
     )
@@ -332,16 +430,29 @@ idesc_del_author <- function(self, private, given, family, email, role,
 }
 
 
-idesc_del_role <- function(self, private, role, given, family, email,
-                          comment, orcid = NULL, ror = NULL) {
-
+idesc_del_role <- function(
+  self,
+  private,
+  role,
+  given,
+  family,
+  email,
+  comment,
+  orcid = NULL,
+  ror = NULL
+) {
   stopifnot(is.character(role))
   check_author_args(given, family, email, role = NULL, comment, orcid, ror)
 
   orig <- idesc_get_authors(self, private, ensure = FALSE)
   wh <- search_for_author(
-    orig, given = given, family = family, email = email, comment = comment,
-    orcid = orcid, role = NULL,
+    orig,
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
+    orcid = orcid,
+    role = NULL,
     ror = ror
   )
 
@@ -358,13 +469,26 @@ idesc_del_role <- function(self, private, role, given, family, email,
 }
 
 # no ROR as argument since an organization cannot be a maintainer
-idesc_change_maintainer <- function(self, private, given, family, email,
-                                   comment, orcid = NULL) {
+idesc_change_maintainer <- function(
+  self,
+  private,
+  given,
+  family,
+  email,
+  comment,
+  orcid = NULL
+) {
   check_author_args(given, family, email, role = NULL, comment, orcid)
   ensure_authors_at_r(self)
   self$del_role(role = "cre")
-  self$add_role(role = "cre", given = given, family = family,
-                email = email, comment = comment, orcid = orcid)
+  self$add_role(
+    role = "cre",
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
+    orcid = orcid
+  )
 }
 
 
@@ -378,7 +502,7 @@ idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
   )
   check_for_package("whoami", "$add_me needs the 'whoami' package")
 
- # guess ORCID
+  # guess ORCID
   if (is.null(orcid)) {
     orcid <- Sys.getenv("ORCID_ID")
     if (orcid == "") {
@@ -390,11 +514,24 @@ idesc_add_me <- function(self, private, role, comment, orcid = NULL) {
   family <- fn$family
   given <- fn$given
   email <- whoami::email_address()
-  self$add_author(given = given, family = family, email = email,
-                  comment = comment, role = role, orcid = orcid)
+  self$add_author(
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
+    role = role,
+    orcid = orcid
+  )
 }
 
-idesc_add_author_gh <- function(self, private, username, role, comment, orcid = NULL) {
+idesc_add_author_gh <- function(
+  self,
+  private,
+  username,
+  role,
+  comment,
+  orcid = NULL
+) {
   stopifnot(
     is_character_or_null(role),
     is.character(username),
@@ -408,8 +545,14 @@ idesc_add_author_gh <- function(self, private, username, role, comment, orcid = 
   family <- fn$family
   given <- fn$given
   email <- gh_info$email
-  self$add_author(given = given, family = family, email = email,
-                  comment = comment, role = role, orcid = orcid)
+  self$add_author(
+    given = given,
+    family = family,
+    email = email,
+    comment = comment,
+    role = role,
+    orcid = orcid
+  )
 }
 
 author_gh <- function(username) {
@@ -433,16 +576,14 @@ idesc_get_maintainer <- function(self, private) {
 }
 
 idesc_coerce_authors_at_r <- function(self, private) {
-
   if (self$has_fields("Authors@R")) return(invisible(NULL)) # exit early
 
   if (!self$has_fields("Author")) {
-
-    stop("No 'Authors@R' or 'Author' field!\n",
-         "You can create one with $add_author")
-
+    stop(
+      "No 'Authors@R' or 'Author' field!\n",
+      "You can create one with $add_author"
+    )
   } else {
-
     # helper function to set role if role is NULL
     set_role_if_null <- function(person, role) {
       if (length(person) == 1) {
@@ -470,13 +611,25 @@ idesc_coerce_authors_at_r <- function(self, private) {
       auth <- man
       auth$role <- "aut"
     } else {
-    auth <- as.person(auth)
-    auth <- set_role_if_null(auth, "aut")
+      auth <- as.person(auth)
+      auth <- set_role_if_null(auth, "aut")
+    }
+
+    fullname <- function(given, family) {
+      paste(c(given, family), collapse = " ")
     }
 
     # Determine which author is the maintainer and split auth accordingly
-    auth_in_man <- paste(auth$given, auth$family) %in% paste(man$given, man$family)
-    mauth <- if(any(auth_in_man)) auth[auth_in_man] else man
+    # A single person behaves differently :(
+    fullman <- fullname(man$given, man$family)
+    auth_in_man <- if (length(auth) == 1) {
+      fullname(auth$given, auth$family) %in% fullman
+    } else {
+      mapply(auth$given, auth$family, FUN = function(g, f) {
+        fullname(g, f) %in% fullman
+      })
+    }
+    mauth <- if (any(auth_in_man)) auth[auth_in_man] else man
     other_auth <- auth[!auth_in_man] # this is an empty list if single author
 
     # combine info from mauth and man
@@ -491,15 +644,13 @@ idesc_coerce_authors_at_r <- function(self, private) {
 }
 
 # helper to add or replace ORCID in comment
-add_orcid_to_comment <- function(comment, orcid){
-
+add_orcid_to_comment <- function(comment, orcid) {
   comment["ORCID"] <- orcid
   comment
 }
 
 # helper to add or replace ROR in comment
-add_ror_to_comment <- function(comment, ror){
-
+add_ror_to_comment <- function(comment, ror) {
   comment["ROR"] <- ror
   comment
 }

@@ -1,4 +1,3 @@
-
 test_that("str orders fields", {
   desc <- description$new("!new")
 
@@ -25,7 +24,6 @@ test_that("str formats some fields specially", {
 })
 
 test_that("str formats authors properly", {
-
   desc <- description$new(test_path("D2"))
 
   expect_snapshot(
@@ -34,7 +32,6 @@ test_that("str formats authors properly", {
 })
 
 test_that("authors are printed to the screen properly", {
-
   desc <- description$new(test_path("D2"))
 
   expect_output(
@@ -46,7 +43,6 @@ test_that("authors are printed to the screen properly", {
     * RStudio [cph]",
     fixed = TRUE
   )
-
 })
 
 test_that("continuation lines", {

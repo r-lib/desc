@@ -1,4 +1,3 @@
-
 #' DESCRIPTION fields that denote package dependencies
 #'
 #' Currently it has the following ones: Imports, Depends,

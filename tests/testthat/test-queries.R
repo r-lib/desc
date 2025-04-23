@@ -1,4 +1,3 @@
-
 test_that("get works", {
   desc <- description$new(test_path("D1"))
 
@@ -23,13 +22,19 @@ test_that("get_field works", {
   expect_identical(desc$get_field("Imports"), "R6")
   expect_identical(desc$get_field("Imports", trim_ws = FALSE), "\n    R6")
   expect_match(desc$get_field("Description", trim_ws = FALSE), "\\s+")
-  expect_match(desc$get_field("Description", trim_ws = TRUE, squish_ws = FALSE), "\\s+")
+  expect_match(
+    desc$get_field("Description", trim_ws = TRUE, squish_ws = FALSE),
+    "\\s+"
+  )
   expect_false(grepl("\n", desc$get_field("Description", trim_ws = TRUE)))
-  expect_false(grepl("\n", desc$get_field("Description", trim_ws = FALSE, squish_ws = TRUE)))
+  expect_false(grepl(
+    "\n",
+    desc$get_field("Description", trim_ws = FALSE, squish_ws = TRUE)
+  ))
 
-  expect_error(
-    desc$get_field("package"),
-    "Field 'package' not found"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_field("package")
   )
 })
 
@@ -46,17 +51,17 @@ test_that("get_or_fail works", {
     c(Package = "desc", Version = "1.0.0")
   )
 
-  expect_error(
-    desc$get_or_fail("package"),
-    "Could not find DESCRIPTION field.*package"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_or_fail("package")
   )
-  expect_error(
-    desc$get_or_fail(c("Package", "versionx")),
-    "Could not find DESCRIPTION field.*versionx"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_or_fail(c("Package", "versionx"))
   )
-  expect_error(
-    desc$get_or_fail(c("Package", "versionx", "foobar")),
-    "Could not find DESCRIPTION fields.*versionx.*foobar"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_or_fail(c("Package", "versionx", "foobar"))
   )
 })
 
@@ -75,8 +80,10 @@ test_that("set works", {
   expect_equal(desc$get("Author"), c(Author = "Bugs Bunny"))
 
   desc$set("Description", "Foo\n  foobar\n  foobar2.")
-  expect_equal(desc$get("Description"),
-               c(Description = "Foo\n  foobar\n  foobar2."))
+  expect_equal(
+    desc$get("Description"),
+    c(Description = "Foo\n  foobar\n  foobar2.")
+  )
 })
 
 test_that("get with non-exixting fields", {
@@ -92,11 +99,10 @@ test_that("del works", {
 })
 
 test_that("set errors on invalid input", {
-
   desc <- description$new(test_path("D1"))
-  expect_error(
-    desc$set("foobar"),
-    "needs two unnamed args"
+  expect_snapshot(
+    error = TRUE,
+    desc$set("foobar")
   )
 })
 
