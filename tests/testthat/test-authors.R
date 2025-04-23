@@ -63,7 +63,8 @@ test_that("we can add an author with ORCID via comment", {
   )
 
   expect_snapshot(
-    format(desc$get_authors()[2])
+    format(desc$get_authors()[2]),
+    variant = if (getRversion() >= "4.5.0") "R45" else "R44"
   )
 })
 
@@ -84,7 +85,8 @@ test_that("we can add an author with ORCID", {
   )
 
   expect_snapshot(
-    format(desc$get_authors()[2])
+    format(desc$get_authors()[2]),
+    variant = if (getRversion() >= "4.5.0") "R45" else "R44"
   )
 })
 
@@ -158,7 +160,8 @@ test_that("we can add an ORCID to an author", {
   desc$add_orcid(given = "G\u00e1bor", orcid = "0000-0001-7098-9676")
 
   expect_snapshot(
-    format(desc$get_authors()[5])
+    format(desc$get_authors()[5]),
+    variant = if (getRversion() >= "4.5.0") "R45" else "R44"
   )
 })
 
@@ -172,7 +175,8 @@ test_that("we can replace the ORCID of an author", {
   desc$add_orcid(given = "Hadley", orcid = "1000-0003-4757-117X")
 
   expect_snapshot(
-    format(desc$get_authors()[1])
+    format(desc$get_authors()[1]),
+    variant = if (getRversion() >= "4.5.0") "R45" else "R44"
   )
 })
 
@@ -330,7 +334,8 @@ test_that("add_me can use ORCID_ID", {
   desc$add_me()
 
   expect_snapshot(
-    format(desc$get_authors()[5])
+    format(desc$get_authors()[5]),
+    variant = if (getRversion() >= "4.5.0") "R45" else "R44"
   )
 })
 
