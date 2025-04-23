@@ -33,6 +33,7 @@ Suggests:
     withr
 Config/Needs/website: tidyverse/tidytemplate
 Config/testthat/edition: 3
+Config/usethis/last-upkeep: 2025-04-23
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
@@ -60,4 +61,3 @@ Collate:
     'utils.R'
     'validate.R'
     'version.R'
-Config/usethis/last-upkeep: 2025-04-23
