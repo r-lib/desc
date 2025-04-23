@@ -8,11 +8,11 @@
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R-CMD-check](https://github.com/r-lib/desc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/desc/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/r-lib/desc/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/desc?branch=main)
 [![](https://www.r-pkg.org/badges/version/desc)](https://www.r-pkg.org/pkg/desc)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/desc)](https://www.r-pkg.org/pkg/desc)
+[![Codecov test
+coverage](https://codecov.io/gh/r-lib/desc/graph/badge.svg)](https://app.codecov.io/gh/r-lib/desc)
 <!-- badges: end -->
 
 Parse, manipulate and reformat DESCRIPTION files. The package provides
@@ -21,19 +21,20 @@ manipulates the files *in place*.
 
 ------------------------------------------------------------------------
 
-- [Installation](#installation)
-- [The object oriented API](#the-oo-api)
-  - [Introduction](#introduction)
-  - [Loading or creating new `DESCRIPTION`
-    files](#loading-or-creating-new-description-files)
-  - [Normalizing `DESCRIPTION` files](#normalizing-description-files)
-  - [Querying, changing and removing
-    fields](#querying-changing-and-removing-fields)
-  - [Dependencies](#dependencies)
-  - [Collate fields](#collate-fields)
-  - [Authors](#authors)
-- [The procedural API](#the-procedural-api)
-- [License](#license)
+-   [Installation](#installation)
+-   [The object oriented API](#the-oo-api)
+    -   [Introduction](#introduction)
+    -   [Loading or creating new `DESCRIPTION`
+        files](#loading-or-creating-new-description-files)
+    -   [Normalizing `DESCRIPTION`
+        files](#normalizing-description-files)
+    -   [Querying, changing and removing
+        fields](#querying-changing-and-removing-fields)
+    -   [Dependencies](#dependencies)
+    -   [Collate fields](#collate-fields)
+    -   [Authors](#authors)
+-   [The procedural API](#the-procedural-api)
+-   [License](#license)
 
 ## Installation
 
@@ -283,13 +284,13 @@ desc_set_dep("newpackage", "Suggests")
 
     #> Package: desc
     #> Title: Manipulate DESCRIPTION Files
-    #> Version: 1.4.2.9000
+    #> Version: 1.4.3.9000
     #> Authors@R (parsed):
     #>     * Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]
     #>     * Kirill Müller [aut]
     #>     * Jim Hester <james.f.hester@gmail.com> [aut]
-    #>     * Maëlle Salmon [ctb] (<https://orcid.org/0000-0002-2815-0399>)
-    #>     * Posit Software, PBC [cph, fnd]
+    #>     * Maëlle Salmon [ctb] (ORCID: <https://orcid.org/0000-0002-2815-0399>)
+    #>     * Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)
     #> Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
     #> Description: Tools to read, write, create, and manipulate DESCRIPTION
     #>     files.  It is intended for packages that create or manipulate other
@@ -314,10 +315,11 @@ desc_set_dep("newpackage", "Suggests")
     #>     withr
     #> Config/Needs/website: tidyverse/tidytemplate
     #> Config/testthat/edition: 3
+    #> Config/usethis/last-upkeep: 2025-04-23
     #> Encoding: UTF-8
     #> Language: en-US
     #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
-    #> RoxygenNote: 7.2.3
+    #> RoxygenNote: 7.3.2.9000
     #> Collate:
     #>     'assertions.R'
     #>     'authors-at-r.R'
