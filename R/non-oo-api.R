@@ -1,4 +1,3 @@
-
 # No coverage calculating here, since this code
 # runs during install time only.
 # nocov start
@@ -6,10 +5,9 @@
 #' @include description.R
 #' @importFrom utils packageName
 
-generate_api <- function(member, self = TRUE, norm = TRUE,
-                         invisible = FALSE) {
-
-  res <- function() { }
+generate_api <- function(member, self = TRUE, norm = TRUE, invisible = FALSE) {
+  res <- function() {
+  }
 
   func <- description$public_methods[[member]]
 
@@ -48,7 +46,12 @@ generate_api <- function(member, self = TRUE, norm = TRUE,
   ## Put together
 
   body(res) <- substitute(
-    { `_read`; `_trans`; `_write`; `_return` },
+    {
+      `_read`
+      `_trans`
+      `_write`
+      `_return`
+    },
     list(
       `_read` = quote(desc <- description$new(file = file)),
       `_trans` = desc_call,
@@ -210,7 +213,11 @@ desc_normalize <- generate_api("normalize", self = TRUE, norm = FALSE)
 #' @family repair functions
 #' @export
 
-desc_reformat_fields <- generate_api("reformat_fields", self = TRUE, norm = FALSE)
+desc_reformat_fields <- generate_api(
+  "reformat_fields",
+  self = TRUE,
+  norm = FALSE
+)
 
 #' Reorder fields in a DESCRIPTION file
 #'

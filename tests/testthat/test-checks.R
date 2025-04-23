@@ -1,6 +1,4 @@
-
 test_that("checking other fields is always ok", {
-
   desc <- description$new(test_path("D1"))
   desc$set("Note", "Blah-blah")
 
@@ -9,7 +7,6 @@ test_that("checking other fields is always ok", {
 
 
 test_that("we catch syntax errors", {
-
   desc <- description$new(test_path("D1"))
 
   expect_warning(
@@ -61,8 +58,11 @@ test_chk("Maintainer", "foobar", "must contain an email address")
 
 test_chk("RepoList", "", warn = FALSE)
 test_chk("RepoList", "http://cran.rstudio.com", warn = FALSE)
-test_chk("RepoList", "http://cran.rstudio.com, https://cran.r-project.org",
-         warn = FALSE)
+test_chk(
+  "RepoList",
+  "http://cran.rstudio.com, https://cran.r-project.org",
+  warn = FALSE
+)
 test_chk("RepoList", "foobar", "must be a comma .* repository URLs")
 test_chk("RepoList", "http://foo.bar http://fobar", "must be a comma")
 
@@ -71,8 +71,11 @@ test_chk("URL", "not this one", "must be a http, https or ftp URL")
 
 test_chk("URLList", "", warn = FALSE)
 test_chk("URLList", "http://cran.rstudio.com", warn = FALSE)
-test_chk("URLList", "http://cran.rstudio.com, https://cran.r-project.org",
-         warn = FALSE)
+test_chk(
+  "URLList",
+  "http://cran.rstudio.com, https://cran.r-project.org",
+  warn = FALSE
+)
 test_chk("URLList", "foobar", "must be a comma .* URLs")
 test_chk("URLList", "http://foo.bar http://fobar", "must be a comma")
 
@@ -82,10 +85,18 @@ test_chk("Priority", "foobar", "must be one of")
 test_chk("LazyLoad", "yes", warn = FALSE, class = "Logical")
 test_chk("LazyLoad", "foobar", "must be one of", class = "Logical")
 
-test_chk("VignetteBuilder", "devtools, knitr", warn = FALSE,
-         class = "PackageList")
-test_chk("VignetteBuilder", "this is not", "must be a comma",
-         class = "PackageList")
+test_chk(
+  "VignetteBuilder",
+  "devtools, knitr",
+  warn = FALSE,
+  class = "PackageList"
+)
+test_chk(
+  "VignetteBuilder",
+  "this is not",
+  "must be a comma",
+  class = "PackageList"
+)
 
 test_chk("Encoding", "UTF-8", warn = FALSE)
 test_chk("Encoding", "foobar", "must be one of")

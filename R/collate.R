@@ -1,4 +1,3 @@
-
 which_collate <- function(x) {
   collate_fields[x]
 }
@@ -31,7 +30,6 @@ idesc_del_collate <- function(self, private, which) {
 
   if (which == "all") {
     self$del(collate_fields)
-
   } else {
     self$del(collate_fields[which])
   }
@@ -50,16 +48,13 @@ idesc_add_to_collate <- function(self, private, files, which) {
     } else {
       for (ex in ex_coll) real_add_to_collate(self, private, ex, files)
     }
-
   } else if (which == "all") {
     for (coll in collate_fields) {
       real_add_to_collate(self, private, coll, files)
     }
-
   } else {
     real_add_to_collate(self, private, which_collate(which), files)
   }
-  
 }
 
 ## TODO: better order, and support dependencies
@@ -83,7 +78,6 @@ idesc_del_from_collate <- function(self, private, files, which) {
     for (coll in collate_fields) {
       real_del_from_collate(self, private, coll, files)
     }
-
   } else {
     real_del_from_collate(self, private, which_collate(which), files)
   }

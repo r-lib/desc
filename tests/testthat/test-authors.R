@@ -1,12 +1,19 @@
-
 test_that("we can get the authors", {
   desc <- description$new(test_path("D2"))
 
   ans <- c(
-    person("Hadley", "Wickham", email = "h.wickham@gmail.com",
-           role = c("aut", "cre", "cph")),
-    person("Peter", "Danenberg", email = "pcd@roxygen.org",
-           role = c("aut", "cph")),
+    person(
+      "Hadley",
+      "Wickham",
+      email = "h.wickham@gmail.com",
+      role = c("aut", "cre", "cph")
+    ),
+    person(
+      "Peter",
+      "Danenberg",
+      email = "pcd@roxygen.org",
+      role = c("aut", "cph")
+    ),
     person("Manuel", "Eugster", role = c("aut", "cph")),
     person("RStudio", role = "cph")
   )
@@ -15,7 +22,6 @@ test_that("we can get the authors", {
 })
 
 test_that("we can set the authors", {
-
   desc1 <- description$new(test_path("D1"))
   desc2 <- description$new(test_path("D2"))
 
@@ -27,8 +33,13 @@ test_that("we can set the authors", {
 test_that("we can add an author", {
   desc <- description$new(test_path(test_path("D2")))
 
-  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
-                  role = "ctb", comment = "Really?")
+  desc$add_author(
+    "G\u00e1bor",
+    "Cs\u00e1rdi",
+    email = "csardi.gabor@gmail.com",
+    role = "ctb",
+    comment = "Really?"
+  )
 
   expect_identical(
     format(desc$get_authors()[5]),
@@ -37,18 +48,19 @@ test_that("we can add an author", {
 })
 
 test_that("we can add an author with ORCID via comment", {
-
-  R_version <- paste(R.version$major,
-                   R.version$minor,
-                   sep = ".")
+  R_version <- paste(R.version$major, R.version$minor, sep = ".")
 
   skip_if_not(R_version >= "3.5.0")
 
   desc <- description$new(cmd = "!new")
 
-  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
-                  role = "ctb",
-                  comment = c(ORCID = "0000-0001-7098-9676", what="he did it"))
+  desc$add_author(
+    "G\u00e1bor",
+    "Cs\u00e1rdi",
+    email = "csardi.gabor@gmail.com",
+    role = "ctb",
+    comment = c(ORCID = "0000-0001-7098-9676", what = "he did it")
+  )
 
   expect_snapshot(
     format(desc$get_authors()[2])
@@ -56,19 +68,20 @@ test_that("we can add an author with ORCID via comment", {
 })
 
 test_that("we can add an author with ORCID", {
-
-  R_version <- paste(R.version$major,
-                     R.version$minor,
-                     sep = ".")
+  R_version <- paste(R.version$major, R.version$minor, sep = ".")
 
   skip_if_not(R_version >= "3.5.0")
 
   desc <- description$new(cmd = "!new")
 
-  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
-                  role = "ctb",
-                  comment = c(what="he did it"),
-                  orcid = "0000-0001-7098-9676")
+  desc$add_author(
+    "G\u00e1bor",
+    "Cs\u00e1rdi",
+    email = "csardi.gabor@gmail.com",
+    role = "ctb",
+    comment = c(what = "he did it"),
+    orcid = "0000-0001-7098-9676"
+  )
 
   expect_snapshot(
     format(desc$get_authors()[2])
@@ -76,15 +89,18 @@ test_that("we can add an author with ORCID", {
 })
 
 test_that("we cannot add an author with malformatted comment", {
-
   desc <- description$new(cmd = "!new")
 
-  expect_error(desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
-                  role = "ctb",
-                  comment = c(ORCID = "orcid_number", what=NA)),
-               "is_named_character_or_null")
-
-
+  expect_error(
+    desc$add_author(
+      "G\u00e1bor",
+      "Cs\u00e1rdi",
+      email = "csardi.gabor@gmail.com",
+      role = "ctb",
+      comment = c(ORCID = "orcid_number", what = NA)
+    ),
+    "is_named_character_or_null"
+  )
 })
 
 test_that("we can search for authors", {
@@ -101,19 +117,22 @@ test_that("we can search for authors", {
     1L
   )
 
-
   expect_equal(
     search_for_author(authors, orcid = "117X")$index,
     1L
   )
-
 })
 
 test_that("we can add a role to an author", {
   desc <- description$new(test_path("D2"))
 
-  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
-                  role = "ctb", comment = "Really?")
+  desc$add_author(
+    "G\u00e1bor",
+    "Cs\u00e1rdi",
+    email = "csardi.gabor@gmail.com",
+    role = "ctb",
+    comment = "Really?"
+  )
   desc$add_role(given = "G\u00e1bor", role = "cph")
 
   expect_identical(
@@ -123,16 +142,19 @@ test_that("we can add a role to an author", {
 })
 
 test_that("we can add an ORCID to an author", {
-  R_version <- paste(R.version$major,
-                     R.version$minor,
-                     sep = ".")
+  R_version <- paste(R.version$major, R.version$minor, sep = ".")
 
   skip_if_not(R_version >= "3.5.0")
 
   desc <- description$new(test_path("D2"))
 
-  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
-                  role = "ctb", comment = "Really?")
+  desc$add_author(
+    "G\u00e1bor",
+    "Cs\u00e1rdi",
+    email = "csardi.gabor@gmail.com",
+    role = "ctb",
+    comment = "Really?"
+  )
   desc$add_orcid(given = "G\u00e1bor", orcid = "0000-0001-7098-9676")
 
   expect_snapshot(
@@ -141,9 +163,7 @@ test_that("we can add an ORCID to an author", {
 })
 
 test_that("we can replace the ORCID of an author", {
-  R_version <- paste(R.version$major,
-                     R.version$minor,
-                     sep = ".")
+  R_version <- paste(R.version$major, R.version$minor, sep = ".")
 
   skip_if_not(R_version >= "3.5.0")
 
@@ -157,24 +177,27 @@ test_that("we can replace the ORCID of an author", {
 })
 
 test_that("we cannot add the same ORCID to more than one author", {
-
   desc <- description$new(test_path("D10"))
 
-  expect_error(desc$add_orcid(given = "Peter",
-                              orcid = "orcidid"),
-               "More than one author correspond")
+  expect_error(
+    desc$add_orcid(given = "Peter", orcid = "orcidid"),
+    "More than one author correspond"
+  )
 
-  expect_error(desc$add_orcid(given = "Manuel",
-                              orcid = "0000-0003-4757-117X"),
-               "Already")
-
+  expect_error(
+    desc$add_orcid(given = "Manuel", orcid = "0000-0003-4757-117X"),
+    "Already"
+  )
 })
 
 test_that("we can add an ROR to an author", {
   desc <- description$new(test_path("D2"))
 
-  desc$add_author("Posit Software, PBC",
-                  role = c("cph", "fnd"), comment = "Really?")
+  desc$add_author(
+    "Posit Software, PBC",
+    role = c("cph", "fnd"),
+    comment = "Really?"
+  )
   desc$add_ror(given = "Posit", ror = "03wc8by49")
 
   expect_match(
@@ -184,9 +207,7 @@ test_that("we can add an ROR to an author", {
 })
 
 test_that("we can replace the ROR of an author", {
-  R_version <- paste(R.version$major,
-                     R.version$minor,
-                     sep = ".")
+  R_version <- paste(R.version$major, R.version$minor, sep = ".")
 
   skip_if_not(R_version >= "3.5.0")
 
@@ -206,17 +227,14 @@ test_that("we can replace the ROR of an author", {
 })
 
 test_that("we cannot add the same ROR to more than one author", {
-
   desc <- description$new(test_path("D10"))
 
-  expect_error(desc$add_ror(given = "Peter",
-                              ror = "bla"),
-               "More than one author correspond")
+  expect_error(
+    desc$add_ror(given = "Peter", ror = "bla"),
+    "More than one author correspond"
+  )
 
-  expect_error(desc$add_ror(given = "Manuel",
-                              ror = "012345678"),
-               "Already")
-
+  expect_error(desc$add_ror(given = "Manuel", ror = "012345678"), "Already")
 })
 
 
@@ -237,8 +255,13 @@ test_that("we can delete an author", {
 test_that("we can delete a role", {
   desc <- description$new(test_path("D2"))
 
-  desc$add_author("G\u00e1bor", "Cs\u00e1rdi", email = "csardi.gabor@gmail.com",
-                  role = "ctb", comment = "Really?")
+  desc$add_author(
+    "G\u00e1bor",
+    "Cs\u00e1rdi",
+    email = "csardi.gabor@gmail.com",
+    role = "ctb",
+    comment = "Really?"
+  )
   desc$add_role(given = "G\u00e1bor", role = "cph")
   desc$del_role(family = "Cs\u00e1rdi", role = "ctb")
 
@@ -254,16 +277,23 @@ test_that("we can change the maintainer", {
   desc$change_maintainer(given = "Peter")
 
   ans <- c(
-    person("Hadley", "Wickham", email = "h.wickham@gmail.com",
-           role = c("aut", "cph")),
-    person("Peter", "Danenberg", email = "pcd@roxygen.org",
-           role = c("aut", "cph", "cre")),
+    person(
+      "Hadley",
+      "Wickham",
+      email = "h.wickham@gmail.com",
+      role = c("aut", "cph")
+    ),
+    person(
+      "Peter",
+      "Danenberg",
+      email = "pcd@roxygen.org",
+      role = c("aut", "cph", "cre")
+    ),
     person("Manuel", "Eugster", role = c("aut", "cph")),
     person("RStudio", role = "cph")
   )
 
   expect_identical(desc$get_authors(), ans)
-
 })
 
 test_that("add_me works", {
@@ -283,9 +313,7 @@ test_that("add_me works", {
 })
 
 test_that("add_me can use ORCID_ID", {
-  R_version <- paste(R.version$major,
-                     R.version$minor,
-                     sep = ".")
+  R_version <- paste(R.version$major, R.version$minor, sep = ".")
 
   skip_if_not(R_version >= "3.5.0")
 
@@ -318,7 +346,6 @@ test_that("add_author_gh works", {
 })
 
 test_that("error if not Authors@R field", {
-
   desc <- description$new(test_path("D1"))
   expect_error(
     desc$get_authors(),
@@ -327,7 +354,6 @@ test_that("error if not Authors@R field", {
 })
 
 test_that("message if not author to delete does not exist", {
-
   desc <- description$new(test_path("D2"))
   expect_message(
     desc$del_author(given = "G\u00e1bor"),
@@ -336,7 +362,6 @@ test_that("message if not author to delete does not exist", {
 })
 
 test_that("get_author is OK", {
-
   D2 <- description$new(test_path("D2"))
 
   expect_equal(
@@ -360,7 +385,6 @@ test_that("get_author is OK", {
 })
 
 test_that("get_maintainer is OK, too", {
-
   D1 <- description$new(test_path("D1"))
   expect_equal(
     D1$get_maintainer(),
@@ -412,7 +436,10 @@ test_that("coerce_authors_at_r with multiple authors in Author: field", {
     as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]")
   )
   a <- D6$get_author("aut")
-  expect_equal(a[1], as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]"))
+  expect_equal(
+    a[1],
+    as.person("Gábor Csárdi <csardi.gabor@gmail.com> [aut, cre]")
+  )
   expect_equal(a[2], as.person("John Muschelli [aut]"))
 })
 
@@ -543,12 +570,22 @@ test_that("deparse_authors_at_r", {
   if (getRversion() < "3.5") skip("Needs newer R")
 
   ppl <- c(
-    person("Hadley", "Wickham", , "hadley@rstudio.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0003-4757-117X")
-           ),
-    person("Jennifer", "Bryan", , "jenny@rstudio.com", role = "aut",
-           comment = c(ORCID = "0000-0002-6983-2759")
-           ),
+    person(
+      "Hadley",
+      "Wickham",
+      ,
+      "hadley@rstudio.com",
+      role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0003-4757-117X")
+    ),
+    person(
+      "Jennifer",
+      "Bryan",
+      ,
+      "jenny@rstudio.com",
+      role = "aut",
+      comment = c(ORCID = "0000-0002-6983-2759")
+    ),
     person("RStudio", role = c("cph", "fnd"))
   )
 

@@ -1,12 +1,12 @@
-
 test_that("get, set, etc. remotes", {
   desc <- description$new(test_path("D2"))
   expect_identical(
     desc$get_remotes(),
-    c("foo/digest",
+    c(
+      "foo/digest",
       "svn::https://github.com/hadley/stringr",
       "local::/pkgs/testthat"
-      )
+    )
   )
 
   desc$set_remotes(c("bar/knitr", "local::/pkgs/Rcpp"))

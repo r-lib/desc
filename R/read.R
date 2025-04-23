@@ -1,4 +1,3 @@
-
 read_dcf <- function(file) {
   lines <- readLines(file)
 
@@ -26,8 +25,10 @@ read_dcf <- function(file) {
   close(con)
 
   if (any(mismatch <- res != res2)) {
-    stop("Duplicate DESCRIPTION fields: ",
-         paste(sQuote(colnames(res)[mismatch]), collapse = ", "))
+    stop(
+      "Duplicate DESCRIPTION fields: ",
+      paste(sQuote(colnames(res)[mismatch]), collapse = ", ")
+    )
   }
 
   if ("Encoding" %in% colnames(res)) {

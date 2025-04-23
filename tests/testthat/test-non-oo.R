@@ -1,4 +1,3 @@
-
 test_that("desc_add_author", {
   d <- temp_desc()
   on.exit(unlink(d))
@@ -26,8 +25,7 @@ test_that("desc_add_author_gh", {
   )
   d <- temp_desc()
   on.exit(unlink(d))
-  desc_add_author_gh(file = d,
-                     username = "jeroen")
+  desc_add_author_gh(file = d, username = "jeroen")
 
   expect_match(desc_get(file = d, "Authors@R"), "Jeroen")
   expect_match(desc_get(file = d, "Authors@R"), "notanemail")
@@ -132,8 +130,10 @@ test_that("desc_fields", {
   d <- temp_desc()
   on.exit(unlink(d))
   expect_true(
-    all(c("Package", "Title", "Version", "URL", "Collate") %in%
-        desc_fields(file = d))
+    all(
+      c("Package", "Title", "Version", "URL", "Collate") %in%
+        desc_fields(file = d)
+    )
   )
 })
 
@@ -186,9 +186,24 @@ test_that("desc_reorder_fields", {
   desc_reorder_fields(file = d)
   expect_equal(
     desc_fields(file = d),
-    c("Package", "Title", "Version", "Authors@R", "Description",
-      "License", "URL", "Depends", "Imports", "Suggests", "LinkingTo",
-      "VignetteBuilder", "Remotes", "Encoding", "RoxygenNote", "Collate")
+    c(
+      "Package",
+      "Title",
+      "Version",
+      "Authors@R",
+      "Description",
+      "License",
+      "URL",
+      "Depends",
+      "Imports",
+      "Suggests",
+      "LinkingTo",
+      "VignetteBuilder",
+      "Remotes",
+      "Encoding",
+      "RoxygenNote",
+      "Collate"
+    )
   )
 })
 

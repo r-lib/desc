@@ -1,4 +1,3 @@
-
 test_that("is_existing_file", {
   miss <- basename(tempfile())
   withr::with_dir(
@@ -17,16 +16,12 @@ test_that("is_named_character_or_null", {
   x <- c("comment1", "comment")
   expect_false(is_named_character_or_null(x))
 
-  x <- c(comment1 = "comment1",
-         comment2 = "comment")
+  x <- c(comment1 = "comment1", comment2 = "comment")
   expect_true(is_named_character_or_null(x))
 
-  x <- c(comment1 = "comment1",
-         comment2 = NA)
+  x <- c(comment1 = "comment1", comment2 = NA)
   expect_false(is_named_character_or_null(x))
-
 
   x <- NULL
   expect_true(is_named_character_or_null(x))
 })
-

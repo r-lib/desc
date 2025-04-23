@@ -1,6 +1,4 @@
-
 test_that("Encoding field is observed", {
-
   expect_silent(
     desc <- description$new(
       text = paste0(
@@ -19,7 +17,6 @@ test_that("Encoding field is observed", {
 })
 
 test_that("Unset Encoding results warning", {
-
   expect_warning(
     desc <- description$new(
       text = paste0(
@@ -35,11 +32,9 @@ test_that("Unset Encoding results warning", {
   )
 
   expect_warning(desc$set(Author = "G\u00e1bor Cs\u00e1rdi"), "Encoding")
-
 })
 
 test_that("different encoding is converted to UTF-8 when reading", {
-
   expect_silent(
     desc <- description$new(
       text = paste0(
@@ -59,7 +54,6 @@ test_that("different encoding is converted to UTF-8 when reading", {
 })
 
 test_that("handles case when text is marked with a non-default locale", {
-
   expect_silent(
     desc <- description$new(
       text = enc2utf8(paste0(
@@ -79,7 +73,6 @@ test_that("handles case when text is marked with a non-default locale", {
 })
 
 test_that("encoding is converted to specified when writing", {
-
   desc <- description$new(
     text = paste0(
       "Package: foo\n",
@@ -105,7 +98,6 @@ test_that("encoding is converted to specified when writing", {
 })
 
 test_that("no encoding roundtrip when writing", {
-
   desc <- description$new(
     text = paste0(
       "Package: foo\n",

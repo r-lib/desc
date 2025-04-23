@@ -1,15 +1,16 @@
-
 idesc_set_dep <- function(self, private, package, type, version) {
   stopifnot(is_string(package), is_string(version))
   deps <- self$get_deps()
   has <- which(deps$package == package & deps$type == type)
 
   if (length(has)) {
-    deps[ has, "version" ] <- version
+    deps[has, "version"] <- version
   } else {
     row <- data.frame(
       stringsAsFactors = FALSE,
-      type = type, package = package, version = version
+      type = type,
+      package = package,
+      version = version
     )
     others <- deps$package[deps$type == type]
     sorted <- !is.unsorted(tolower(others)) && length(others) > 0
@@ -38,7 +39,7 @@ idesc_set_deps <- function(self, private, deps) {
   stopifnot(is_deps_df(deps))
   depdeps <- deparse_deps(deps)
   for (d in names(depdeps)) {
-    if (! same_deps(depdeps[[d]], private$data[[d]]$value)) {
+    if (!same_deps(depdeps[[d]], private$data[[d]]$value)) {
       self$set(d, depdeps[[d]])
     }
   }
@@ -56,8 +57,8 @@ same_deps <- function(d1, d2) {
   d1 <- parse_deps("foo", d1)
   d2 <- parse_deps("foo", d2)
 
-  d1 <- d1[ order(d1$type, d1$package, d1$version), ]
-  d2 <- d2[ order(d2$type, d2$package, d2$version), ]
+  d1 <- d1[order(d1$type, d1$package, d1$version), ]
+  d2 <- d2[order(d2$type, d2$package, d2$version), ]
   nrow(d1) == nrow(d2) &&
     all(d1$type == d2$type) &&
     all(d1$package == d2$package) &&
@@ -80,8 +81,10 @@ same_deps <- function(d1, d2) {
 
 idesc_get_deps <- function(self, private) {
   types <- intersect(names(private$data), dep_types)
-  res <- lapply(types, function(type)
-    parse_deps(type, private$data[[type]]$value))
+  res <- lapply(
+    types,
+    function(type) parse_deps(type, private$data[[type]]$value)
+  )
   empty <- data.frame(
     stringsAsFactors = FALSE,
     type = character(),
@@ -139,7 +142,6 @@ idesc_del_dep <- function(self, private, package, type) {
   if (length(has)) {
     deps <- deps[-has, ]
     idesc_set_deps(self, private, deps)
-
   } else {
     invisible(self)
   }
@@ -157,7 +159,6 @@ idesc_has_dep <- function(self, private, package, type) {
   deps <- self$get_deps()
   if (type == "any") {
     package %in% deps$package
-
   } else {
     any(deps$package == package & deps$type == type)
   }
@@ -173,4 +174,3 @@ insert_row <- function(x, y, where = 1L) {
     rbind(x[top, , drop = FALSE], y, x[-top, , drop = FALSE])
   }
 }
-

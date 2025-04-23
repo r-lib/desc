@@ -1,4 +1,3 @@
-
 `%||%` <- function(l, r) if (is.null(l)) r else l
 
 str_trim <- function(x) {
@@ -24,7 +23,6 @@ is_ascii <- function(x) {
 ##
 ## nocov start
 RFC_2822_email_regexp <- (function() {
-
   ## Local part consists of ASCII letters and digits, the characters
   ##   ! # $ % * / ? | ^ { } ` ~ & ' + = _ -
   ## and . provided it is not leading or trailing or repeated, or must
@@ -43,7 +41,6 @@ RFC_2822_email_regexp <- (function() {
   sprintf("(\\\".+\\\"|(%s+\\.)*%s+)@(%s+\\.)*%s+", l, l, d, d)
 })()
 ## nocov end
-
 
 is_url <- function(x) {
   grepl("^(https?|ftp)://\\S+$", str_trim(x))
@@ -84,9 +81,10 @@ ngrepl <- function(pattern, x, ...) {
   grepl(pattern, x, ...)
 }
 
-check_for_package <- function(pkg, msg = paste0("Package '", pkg,
-                                     "' is needed.")) {
-
+check_for_package <- function(
+  pkg,
+  msg = paste0("Package '", pkg, "' is needed.")
+) {
   has <- requireNamespace(pkg, quietly = TRUE)
   if (!has) stop(msg, call. = FALSE)
   has
@@ -116,13 +114,10 @@ mark_continuation_lines <- function(x) {
 }
 
 parse_full_name <- function(x) {
-  given <- paste(as.person(x)$given,
-                  collapse = " ")
-  family <- paste(as.person(x)$family,
-                   collapse = " ")
+  given <- paste(as.person(x)$given, collapse = " ")
+  family <- paste(as.person(x)$family, collapse = " ")
 
-  return(list(given = given,
-              family = family))
+  return(list(given = given, family = family))
 }
 
 # It is currently not possible to deparse UTF-8 objects to UTF-8 strings
@@ -183,7 +178,6 @@ desc_message <- function(...) {
   msg <- simpleMessage(paste0(..., "\n"), sys.call())
   class(msg) <- c("descMessage", class(msg))
   message(msg)
-
 }
 
 write_dcf <- function(...) {
@@ -195,6 +189,12 @@ write_dcf <- function(...) {
 }
 
 mkdirp <- function(dir) {
-  s <- vapply(dir, dir.create, logical(1), recursive = TRUE, showWarnings = FALSE)
+  s <- vapply(
+    dir,
+    dir.create,
+    logical(1),
+    recursive = TRUE,
+    showWarnings = FALSE
+  )
   invisible(s)
 }

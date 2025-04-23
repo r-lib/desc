@@ -1,4 +1,3 @@
-
 collate_fields <- c(
   main = "Collate",
   windows = "Collate.windows",
@@ -6,7 +5,6 @@ collate_fields <- c(
 )
 
 field_classes <- list(
-
   Package = "Package",
   Version = "Version",
   License = "License",
@@ -15,8 +13,7 @@ field_classes <- list(
   Maintainer = "Maintainer",
   AuthorsAtR = "Authors@R",
 
-  DependencyList = c("Imports", "Suggests", "Depends", "Enhances",
-    "LinkingTo"),
+  DependencyList = c("Imports", "Suggests", "Depends", "Enhances", "LinkingTo"),
   PackageList = c("VignetteBuilder", "RdMacros"),
   Remotes = "Remotes",
   RepoList = "Additional_repositories",
@@ -24,25 +21,55 @@ field_classes <- list(
   URLList = "URL",
   Priority = "Priority",
   Collate = unname(collate_fields),
-  Logical = c("LazyData", "KeepSource", "ByteCompile", "ZipData", "Biarch",
-    "BuildVignettes", "NeedsCompilation", "License_is_FOSS",
-    "License_restricts_use", "BuildKeepEmpty", "BuildManual",
-    "BuildResaveData", "LazyLoad"),
+  Logical = c(
+    "LazyData",
+    "KeepSource",
+    "ByteCompile",
+    "ZipData",
+    "Biarch",
+    "BuildVignettes",
+    "NeedsCompilation",
+    "License_is_FOSS",
+    "License_restricts_use",
+    "BuildKeepEmpty",
+    "BuildManual",
+    "BuildResaveData",
+    "LazyLoad"
+  ),
   Encoding = "Encoding",
   OSType = "OS_type",
   Type = "Type",
-  Classification = c("Classification/ACM", "Classification/ACM-2012",
-    "Classification/JEL", "Classification/MSC", "Classification/MSC-2010"),
+  Classification = c(
+    "Classification/ACM",
+    "Classification/ACM-2012",
+    "Classification/JEL",
+    "Classification/MSC",
+    "Classification/MSC-2010"
+  ),
   Language = "Language",
   Date = "Date",
   Compression = c("LazyDataCompression", "SysDataCompression"),
   Repository = "Repository",
 
-  FreeForm = c("Author", "SystemRequirements",
-    "Archs", "Contact", "Copyright", "MailingList", "Note", "Path",
-    "LastChangedDate", "LastChangedRevision", "Revision", "RcmdrModels",
-    "RcppModules", "Roxygen", "Acknowledgements", "Acknowledgments",
-    "biocViews"),
+  FreeForm = c(
+    "Author",
+    "SystemRequirements",
+    "Archs",
+    "Contact",
+    "Copyright",
+    "MailingList",
+    "Note",
+    "Path",
+    "LastChangedDate",
+    "LastChangedRevision",
+    "Revision",
+    "RcmdrModels",
+    "RcppModules",
+    "Roxygen",
+    "Acknowledgements",
+    "Acknowledgments",
+    "biocViews"
+  ),
 
   AddedByRCMD = c("Built", "Packaged", "MD5sum", "Date/Publication")
 )

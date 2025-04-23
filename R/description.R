@@ -1,4 +1,3 @@
-
 #' Read a DESCRIPTION file
 #'
 #' This is a convenience wrapper for `description$new()`.
@@ -486,35 +485,37 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' desc2$get("VignetteBuilder")
 #' desc2
 
-description <- R6Class("description",
+description <- R6Class(
+  "description",
   public = list(
-
     ## Either from a file, or from a character vector
     initialize = function(cmd = NULL, file = NULL, text = NULL, package = NULL)
       idesc_create(self, private, cmd, file, text, package),
 
-    write = function(file = NULL)
-      idesc_write(self, private, file),
+    write = function(file = NULL) idesc_write(self, private, file),
 
-    fields = function()
-      idesc_fields(self, private),
+    fields = function() idesc_fields(self, private),
 
-    has_fields = function(keys)
-      idesc_has_fields(self, private, keys),
+    has_fields = function(keys) idesc_has_fields(self, private, keys),
 
-    get = function(keys)
-      idesc_get(self, private, keys),
+    get = function(keys) idesc_get(self, private, keys),
 
-    get_field = function(key, default = stop("Field '", key, "' not found"),
-                         trim_ws = TRUE, squish_ws = trim_ws)
-      idesc_get_field(self, private, key, default, trim_ws, squish_ws),
+    get_field = function(
+      key,
+      default = stop("Field '", key, "' not found"),
+      trim_ws = TRUE,
+      squish_ws = trim_ws
+    ) idesc_get_field(self, private, key, default, trim_ws, squish_ws),
 
-    get_or_fail = function(keys)
-      idesc_get_or_fail(self, private, keys),
+    get_or_fail = function(keys) idesc_get_or_fail(self, private, keys),
 
-    get_list = function(key, default = stop("Field '", key, "' not found"),
-                        sep = ",", trim_ws = TRUE, squish_ws = trim_ws)
-      idesc_get_list(self, private, key, default, sep, trim_ws, squish_ws),
+    get_list = function(
+      key,
+      default = stop("Field '", key, "' not found"),
+      sep = ",",
+      trim_ws = TRUE,
+      squish_ws = trim_ws
+    ) idesc_get_list(self, private, key, default, sep, trim_ws, squish_ws),
 
     set = function(..., check = TRUE)
       idesc_set(self, private, ..., check = check),
@@ -522,42 +523,34 @@ description <- R6Class("description",
     set_list = function(key, list_value, sep = ", ")
       idesc_set_list(self, private, key, list_value, sep),
 
-    del = function(keys)
-      idesc_del(self, private, keys),
+    del = function(keys) idesc_del(self, private, keys),
 
-    validate = function()
-      idesc_validate(self, private),
+    validate = function() idesc_validate(self, private),
 
-    print = function()
-      idesc_print(self, private),
+    print = function() idesc_print(self, private),
 
-    str = function(by_field = FALSE, normalize = TRUE,
-      mode = c("file", "screen"))
-      idesc_str(self, private, by_field, normalize, mode),
+    str = function(
+      by_field = FALSE,
+      normalize = TRUE,
+      mode = c("file", "screen")
+    ) idesc_str(self, private, by_field, normalize, mode),
 
-    to_latex = function()
-      idesc_to_latex(self, private),
+    to_latex = function() idesc_to_latex(self, private),
 
-    normalize = function()
-      idesc_normalize(self, private),
+    normalize = function() idesc_normalize(self, private),
 
-    reformat_fields = function()
-      idesc_reformat_fields(self, private),
+    reformat_fields = function() idesc_reformat_fields(self, private),
 
-    reorder_fields = function()
-      idesc_reorder_fields(self, private),
+    reorder_fields = function() idesc_reorder_fields(self, private),
 
     ## -----------------------------------------------------------------
     ## Version numbers
 
-    get_version = function()
-      idesc_get_version(self, private),
+    get_version = function() idesc_get_version(self, private),
 
-    set_version = function(version)
-      idesc_set_version(self, private, version),
+    set_version = function(version) idesc_set_version(self, private, version),
 
-    bump_version = function(which)
-      idesc_bump_version(self, private, which),
+    bump_version = function(which) idesc_bump_version(self, private, which),
 
     ## -----------------------------------------------------------------
     ## Package dependencies
@@ -565,17 +558,14 @@ description <- R6Class("description",
     set_dep = function(package, type = desc::dep_types, version = "*")
       idesc_set_dep(self, private, package, match.arg(type), version),
 
-    set_deps = function(deps)
-      idesc_set_deps(self, private, deps),
+    set_deps = function(deps) idesc_set_deps(self, private, deps),
 
-    get_deps = function()
-      idesc_get_deps(self, private),
+    get_deps = function() idesc_get_deps(self, private),
 
     del_dep = function(package, type = c("all", desc::dep_types))
       idesc_del_dep(self, private, package, match.arg(type)),
 
-    del_deps = function()
-      idesc_del_deps(self, private),
+    del_deps = function() idesc_del_deps(self, private),
 
     has_dep = function(package, type = c("any", desc::dep_types))
       idesc_has_dep(self, private, package, match.arg(type)),
@@ -592,130 +582,226 @@ description <- R6Class("description",
     del_collate = function(which = c("all", "main", "windows", "unix"))
       idesc_del_collate(self, private, match.arg(which)),
 
-    add_to_collate = function(files,
-      which = c("default", "all", "main", "windows", "unix"))
-      idesc_add_to_collate(self, private, files, match.arg(which)),
+    add_to_collate = function(
+      files,
+      which = c("default", "all", "main", "windows", "unix")
+    ) idesc_add_to_collate(self, private, files, match.arg(which)),
 
-    del_from_collate = function(files,
-      which = c("all", "main", "windows", "unix"))
-      idesc_del_from_collate(self, private, files, match.arg(which)),
+    del_from_collate = function(
+      files,
+      which = c("all", "main", "windows", "unix")
+    ) idesc_del_from_collate(self, private, files, match.arg(which)),
 
     ## -----------------------------------------------------------------
     ## Authors@R
 
-    get_authors = function()
-      idesc_get_authors(self, private),
+    get_authors = function() idesc_get_authors(self, private),
 
-    get_author = function(role = "cre")
-      idesc_get_author(self, private, role),
+    get_author = function(role = "cre") idesc_get_author(self, private, role),
 
-    set_authors = function(authors)
-      idesc_set_authors(self, private, authors),
+    set_authors = function(authors) idesc_set_authors(self, private, authors),
 
-    add_author = function(given = NULL, family = NULL, email = NULL,
-                          role = NULL, comment = NULL, orcid = NULL,
-                          ror = NULL)
-      idesc_add_author(self, private, given, family, email, role, comment,
-                       orcid, ror),
+    add_author = function(
+      given = NULL,
+      family = NULL,
+      email = NULL,
+      role = NULL,
+      comment = NULL,
+      orcid = NULL,
+      ror = NULL
+    )
+      idesc_add_author(
+        self,
+        private,
+        given,
+        family,
+        email,
+        role,
+        comment,
+        orcid,
+        ror
+      ),
 
-    add_role = function(role, given = NULL, family = NULL, email = NULL,
-                        comment = NULL, orcid = NULL, ror = NULL)
-      idesc_add_role(self, private, role, given, family, email, comment,
-                     orcid, ror),
+    add_role = function(
+      role,
+      given = NULL,
+      family = NULL,
+      email = NULL,
+      comment = NULL,
+      orcid = NULL,
+      ror = NULL
+    )
+      idesc_add_role(
+        self,
+        private,
+        role,
+        given,
+        family,
+        email,
+        comment,
+        orcid,
+        ror
+      ),
 
-    add_orcid = function(orcid, given = NULL, family = NULL, email = NULL,
-                        comment = NULL, role = NULL)
-      idesc_add_orcid(self, private, role = role, given = given, family = family,
-                     email = email, comment = comment,
-                     orcid = orcid),
+    add_orcid = function(
+      orcid,
+      given = NULL,
+      family = NULL,
+      email = NULL,
+      comment = NULL,
+      role = NULL
+    )
+      idesc_add_orcid(
+        self,
+        private,
+        role = role,
+        given = given,
+        family = family,
+        email = email,
+        comment = comment,
+        orcid = orcid
+      ),
 
-    add_ror = function(ror, given = NULL, family = NULL, email = NULL,
-                        comment = NULL, role = NULL)
-      idesc_add_ror(self, private, role = role, given = given, family = family,
-                     email = email, comment = comment,
-                     ror = ror),
+    add_ror = function(
+      ror,
+      given = NULL,
+      family = NULL,
+      email = NULL,
+      comment = NULL,
+      role = NULL
+    )
+      idesc_add_ror(
+        self,
+        private,
+        role = role,
+        given = given,
+        family = family,
+        email = email,
+        comment = comment,
+        ror = ror
+      ),
 
-    del_author = function(given = NULL, family = NULL, email = NULL,
-                          role = NULL, comment = NULL, orcid = NULL, ror = NULL)
-      idesc_del_author(self, private, given, family, email, role, comment,
-                       orcid, ror),
+    del_author = function(
+      given = NULL,
+      family = NULL,
+      email = NULL,
+      role = NULL,
+      comment = NULL,
+      orcid = NULL,
+      ror = NULL
+    )
+      idesc_del_author(
+        self,
+        private,
+        given,
+        family,
+        email,
+        role,
+        comment,
+        orcid,
+        ror
+      ),
 
-    del_role = function(role, given = NULL, family = NULL, email = NULL,
-                        comment = NULL, orcid = NULL, ror = NULL)
-      idesc_del_role(self, private, role, given, family, email, comment,
-                     orcid, ror),
+    del_role = function(
+      role,
+      given = NULL,
+      family = NULL,
+      email = NULL,
+      comment = NULL,
+      orcid = NULL,
+      ror = NULL
+    )
+      idesc_del_role(
+        self,
+        private,
+        role,
+        given,
+        family,
+        email,
+        comment,
+        orcid,
+        ror
+      ),
 
-    change_maintainer = function(given = NULL, family = NULL, email = NULL,
-                                 comment = NULL, orcid = NULL)
-      idesc_change_maintainer(self, private, given, family, email, comment,
-                              orcid),
+    change_maintainer = function(
+      given = NULL,
+      family = NULL,
+      email = NULL,
+      comment = NULL,
+      orcid = NULL
+    )
+      idesc_change_maintainer(
+        self,
+        private,
+        given,
+        family,
+        email,
+        comment,
+        orcid
+      ),
 
     add_me = function(role = "ctb", comment = NULL, orcid = NULL)
       idesc_add_me(self, private, role, comment, orcid),
 
-    add_author_gh = function(username, role = "ctb", comment = NULL, orcid = NULL)
-      idesc_add_author_gh(self, private, role = role,
-                   username = username,
-                   comment = comment, orcid = orcid),
+    add_author_gh = function(
+      username,
+      role = "ctb",
+      comment = NULL,
+      orcid = NULL
+    )
+      idesc_add_author_gh(
+        self,
+        private,
+        role = role,
+        username = username,
+        comment = comment,
+        orcid = orcid
+      ),
 
-    get_maintainer = function()
-      idesc_get_maintainer(self, private),
+    get_maintainer = function() idesc_get_maintainer(self, private),
 
-    coerce_authors_at_r = function()
-      idesc_coerce_authors_at_r(self, private),
+    coerce_authors_at_r = function() idesc_coerce_authors_at_r(self, private),
 
     ## -----------------------------------------------------------------
     ## URL
 
-    get_urls = function()
-      idesc_get_urls(self, private),
+    get_urls = function() idesc_get_urls(self, private),
 
-    set_urls = function(urls)
-      idesc_set_urls(self, private, urls),
+    set_urls = function(urls) idesc_set_urls(self, private, urls),
 
-    add_urls = function(urls)
-      idesc_add_urls(self, private, urls),
+    add_urls = function(urls) idesc_add_urls(self, private, urls),
 
-    del_urls = function(pattern)
-      idesc_del_urls(self, private, pattern),
+    del_urls = function(pattern) idesc_del_urls(self, private, pattern),
 
-    clear_urls = function()
-      idesc_clear_urls(self, private),
+    clear_urls = function() idesc_clear_urls(self, private),
 
     ## -----------------------------------------------------------------
     ## Remotes
 
-    get_remotes = function()
-      idesc_get_remotes(self, private),
+    get_remotes = function() idesc_get_remotes(self, private),
 
-    set_remotes = function(remotes)
-      idesc_set_remotes(self, private, remotes),
+    set_remotes = function(remotes) idesc_set_remotes(self, private, remotes),
 
-    add_remotes = function(remotes)
-      idesc_add_remotes(self, private, remotes),
+    add_remotes = function(remotes) idesc_add_remotes(self, private, remotes),
 
-    del_remotes = function(pattern)
-      idesc_del_remotes(self, private, pattern),
+    del_remotes = function(pattern) idesc_del_remotes(self, private, pattern),
 
-    clear_remotes = function()
-      idesc_clear_remotes(self, private),
+    clear_remotes = function() idesc_clear_remotes(self, private),
 
     ## -----------------------------------------------------------------
     ## Built
 
-    get_built = function()
-      idesc_get_built(self, private)
+    get_built = function() idesc_get_built(self, private)
   ),
 
   private = list(
     data = NULL,
     path = NULL,
-    notws = character()                   # entries without trailing ws
+    notws = character() # entries without trailing ws
   )
 )
 
 idesc_create <- function(self, private, cmd, file, text, package) {
-
   if (!is.null(cmd) && substring(cmd, 1, 1) != "!") {
     file <- cmd
     cmd <- NULL
@@ -726,20 +812,17 @@ idesc_create <- function(self, private, cmd, file, text, package) {
     if (!is.null(text)) warning("text argument ignored")
     if (!is.null(package)) warning("package argument ignored")
     idesc_create_cmd(self, private, cmd)
-
-  } else if (is.null(cmd) && is.null(file) && is.null(text) &&
-             is.null(package)) {
+  } else if (
+    is.null(cmd) && is.null(file) && is.null(text) && is.null(package)
+  ) {
     idesc_create_file(self, private, ".")
-
   } else if (!is.null(file)) {
     if (!is.null(text)) warning("text argument ignored")
     if (!is.null(package)) warning("package argument ignored")
     idesc_create_file(self, private, file)
-
   } else if (!is.null(text)) {
     if (!is.null(package)) warning("package argument ignored")
     idesc_create_text(self, private, text)
-
   } else {
     idesc_create_package(self, private, package)
   }
@@ -752,7 +835,7 @@ idesc_create_cmd <- function(self, private, cmd = c("new")) {
 
   if (cmd == "!new") {
     txt <-
-'Package: {{ Package }}
+      'Package: {{ Package }}
 Title: {{ Title }}
 Version: 1.0.0
 Authors@R:
@@ -780,7 +863,6 @@ idesc_create_file <- function(self, private, file) {
 
   if (is_package_archive(file)) {
     file <- get_description_from_package(file)
-
   } else {
     private$path <- normalizePath(file)
   }
@@ -815,8 +897,10 @@ idesc_create_package <- function(self, private, package) {
 idesc_write <- function(self, private, file) {
   if (is.null(file)) file <- private$path
   if (is.null(file)) {
-    stop("Cannot write back DESCRIPTION. Note that it is not possible
-          to update DESCRIPTION files within package archives")
+    stop(
+      "Cannot write back DESCRIPTION. Note that it is not possible
+          to update DESCRIPTION files within package archives"
+    )
   }
 
   mat <- idesc_as_matrix(private$data)
@@ -832,8 +916,8 @@ idesc_write <- function(self, private, file) {
   if (getRversion() < "4.2.0") Encoding(mat) <- "unknown"
   write_dcf(mat, file = tmp, keep.white = names(private$data))
 
-  removed <- ! names(private$notws) %in% colnames(mat)
-  if (any(removed)) private$notws <- private$notws[! removed]
+  removed <- !names(private$notws) %in% colnames(mat)
+  if (any(removed)) private$notws <- private$notws[!removed]
 
   postprocess_trailing_ws(tmp, names(private$notws))
   if (file.exists(file) && is_dir(file)) file <- find_description(file)
@@ -904,7 +988,15 @@ idesc_get_or_fail <- function(self, private, keys) {
   res
 }
 
-idesc_get_list <- function(self, private, key, default, sep, trim_ws, squish_ws) {
+idesc_get_list <- function(
+  self,
+  private,
+  key,
+  default,
+  sep,
+  trim_ws,
+  squish_ws
+) {
   stopifnot(is_string(key), is_flag(trim_ws), is_flag(squish_ws))
   val <- private$data[[key]]$value %||% default
   val <- strsplit(val, sep, fixed = TRUE)[[1]]
@@ -924,11 +1016,9 @@ idesc_set <- function(self, private, ..., check = TRUE) {
   if (is.null(names(args)) && length(args) == 2) {
     keys <- as_string(args[[1]])
     values <- as_string(args[[2]])
-
   } else if (!is.null(names(args)) && all(names(args) != "")) {
     keys <- names(args)
     values <- unlist(args)
-
   } else {
     stop("$set needs two unnamed args, or all named args, see docs")
   }

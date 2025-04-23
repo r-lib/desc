@@ -1,16 +1,18 @@
-
 test_package_root <- function() {
   x <- tryCatch(
     find_package_root(),
-    error = function(e) NULL)
+    error = function(e) NULL
+  )
 
   if (!is.null(x)) return(x)
 
   pkg <- testthat::testing_package()
   x <- tryCatch(
     find_package_root(
-      path = file.path("..", "..", "00_pkg_src", pkg)),
-    error = function(e) NULL)
+      path = file.path("..", "..", "00_pkg_src", pkg)
+    ),
+    error = function(e) NULL
+  )
 
   if (!is.null(x)) return(x)
 

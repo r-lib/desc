@@ -1,17 +1,13 @@
-
 test_that("check_for_package works", {
-
   expect_true(check_for_package("utils"))
 
   expect_error(
     check_for_package("foobarfoobarfoobar"),
     "Package 'foobarfoobarfoobar' is needed"
   )
-
 })
 
 test_that("is_ascii", {
-
   expect_true(is_ascii(""))
   expect_true(is_ascii("a"))
   expect_true(is_ascii(rawToChar(as.raw(127))))
@@ -30,7 +26,6 @@ test_that("is_ascii", {
 })
 
 test_that("is_url", {
-
   expect_true(is_url("http://acme.com"))
   expect_true(is_url("https://acme.com"))
   expect_true(is_url("ftp://this.is.it"))
@@ -54,7 +49,6 @@ test_that("is_url", {
 })
 
 test_that("is_url_list", {
-
   expect_true(is_url_list(""))
   expect_true(is_url_list("http://foo.bar"))
 
@@ -69,7 +63,6 @@ test_that("parse_full_name works", {
   expect_equal(parsed_name$given, "Chanie")
   expect_equal(parsed_name$family, "Reynolds")
 
-
   name <- "Cathryn Schuster-Cruickshank"
   parsed_name <- parse_full_name(name)
   expect_equal(parsed_name$given, "Cathryn")
@@ -79,8 +72,6 @@ test_that("parse_full_name works", {
   parsed_name <- parse_full_name(name)
   expect_equal(parsed_name$given, "Petra J.")
   expect_equal(parsed_name$family, "Heaney")
-
-
 })
 
 test_that("deparse", {
@@ -91,10 +82,13 @@ test_that("deparse", {
   expect_equal(Encoding(dx), "UTF-8")
 
   # Test in non-UTF-8 locale as well
-  dx2 <- callr::r(function(x) {
-    Sys.setlocale("LC_ALL", "C")
-    asNamespace("desc")$fixed_deparse1(x)
-  }, list(x = x))
+  dx2 <- callr::r(
+    function(x) {
+      Sys.setlocale("LC_ALL", "C")
+      asNamespace("desc")$fixed_deparse1(x)
+    },
+    list(x = x)
+  )
   expect_equal(dx2, paste0("\"", x, "\""))
   expect_equal(Encoding(dx2), "UTF-8")
 })

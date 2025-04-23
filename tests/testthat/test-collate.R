@@ -1,4 +1,3 @@
-
 test_that("set_collate and get_collate work", {
   desc <- description$new(test_path("D1"))
 
@@ -22,7 +21,6 @@ test_that("set_collate and get_collate work", {
   expect_equal(desc$get_collate(which = "unix"), files3)
   expect_equal(desc$get_collate(which = "windows"), files2)
   expect_equal(desc$get_collate(which = "main"), files)
-
 })
 
 test_that("del_collate works", {
@@ -47,7 +45,6 @@ test_that("del_collate works", {
   expect_equal(desc$get_collate(which = "windows"), character())
   expect_equal(desc$get_collate(which = "main"), character())
   expect_equal(desc$get_collate(which = "unix"), character())
-
 })
 
 test_that("add_to_collate works", {
@@ -65,9 +62,7 @@ test_that("add_to_collate works", {
 
   desc$add_to_collate("foobar2.R")
   expect_equal(desc$get_collate(), c("bar.R", "foo.R", "foobar2.R"))
-  expect_equal(desc$get_collate(which = "windows"),
-               c("foobar.R", "foobar2.R"))
-
+  expect_equal(desc$get_collate(which = "windows"), c("foobar.R", "foobar2.R"))
 })
 
 test_that("del_from_collate works", {
@@ -84,23 +79,26 @@ test_that("del_from_collate works", {
   desc$del_from_collate("foo.R")
 
   expect_equal(desc$get_collate(which = "main"), c("bar.R", "foobar.R"))
-  expect_equal(desc$get_collate(which = "windows"),
-               c("bar.R", "foobar.R", "foo-win.R"))
-  expect_equal(desc$get_collate(which = "unix"),
-               c("bar.R", "foobar.R", "foo-unix.R"))
+  expect_equal(
+    desc$get_collate(which = "windows"),
+    c("bar.R", "foobar.R", "foo-win.R")
+  )
+  expect_equal(
+    desc$get_collate(which = "unix"),
+    c("bar.R", "foobar.R", "foo-unix.R")
+  )
 
   desc$del_from_collate("bar.R", which = "windows")
 
   expect_equal(desc$get_collate(which = "main"), c("bar.R", "foobar.R"))
-  expect_equal(desc$get_collate(which = "windows"),
-               c("foobar.R", "foo-win.R"))
-  expect_equal(desc$get_collate(which = "unix"),
-               c("bar.R", "foobar.R", "foo-unix.R"))
-
+  expect_equal(desc$get_collate(which = "windows"), c("foobar.R", "foo-win.R"))
+  expect_equal(
+    desc$get_collate(which = "unix"),
+    c("bar.R", "foobar.R", "foo-unix.R")
+  )
 })
 
 test_that("add to all collate fields", {
-
   desc <- description$new(test_path("D1"))
   desc$set_collate(c("f1.R", "f2.R"), which = "main")
   desc$set_collate(c("f3.R", "f4.R"), which = "win")
@@ -117,7 +115,6 @@ test_that("add to all collate fields", {
 })
 
 test_that("deleting from non-existing collate does nothing", {
-
   desc <- description$new(test_path("D1"))
   expect_silent(desc$del_from_collate('foo.R'))
 })

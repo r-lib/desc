@@ -1,4 +1,3 @@
-
 test_that("can create new object", {
   desc <- description$new("!new")
 
@@ -26,7 +25,6 @@ test_that("can read object from file", {
   expect_true(!is.na(desc$get("License")))
   expect_true(!is.na(desc$get("URL")))
   expect_true(!is.na(desc$get("BugReports")))
-
 })
 
 test_that("can read object from character vector", {
@@ -42,11 +40,9 @@ test_that("can read object from character vector", {
   expect_true(!is.na(desc$get("License")))
   expect_true(!is.na(desc$get("URL")))
   expect_true(!is.na(desc$get("BugReports")))
-
 })
 
 test_that("DESCRPTION is read by default", {
-
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
   setwd("files")
@@ -58,7 +54,6 @@ test_that("DESCRPTION is read by default", {
 })
 
 test_that("From installed package", {
-
   desc <- description$new(package = "utils")
   expect_match(desc$get("Author"), "Core Team")
 
@@ -69,7 +64,6 @@ test_that("From installed package", {
 })
 
 test_that("Package root is found", {
-
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
   setwd("files")

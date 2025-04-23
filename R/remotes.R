@@ -1,4 +1,3 @@
-
 parse_remotes <- function(remotes) {
   str_trim(strsplit(remotes, "\\s*,\\s*", perl = TRUE)[[1]])
 }

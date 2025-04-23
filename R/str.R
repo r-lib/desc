@@ -1,36 +1,54 @@
-
 ## TODO: continuation lines
 
-idesc_str <- function(self, private, by_field, normalize = TRUE,
-                      mode = c("file", "screen")) {
-
+idesc_str <- function(
+  self,
+  private,
+  by_field,
+  normalize = TRUE,
+  mode = c("file", "screen")
+) {
   stopifnot(is_flag(by_field))
   mode <- match.arg(mode)
   cols <- names(private$data)
   if (normalize) cols <- field_order(cols)
   col_str <- vapply(
-    cols, FUN.VALUE = "",
+    cols,
+    FUN.VALUE = "",
     FUN = function(col) {
       if (normalize) {
         format(private$data[[col]], mode = mode)
       } else {
         paste0(
-          private$data[[col]]$key, ": ",
+          private$data[[col]]$key,
+          ": ",
           mark_continuation_lines(private$data[[col]]$value)
         )
       }
-    })
+    }
+  )
 
   if (by_field) col_str else paste(col_str, collapse = "\n")
 }
 
 field_order <- function(fields) {
   first <- c(
-    "Type", "Package", "Title", "Version", "Date",
-    "Authors@R", "Author", "Maintainer",
-    "Description", "License", "URL", "BugReports",
-    "Depends", setdiff(dep_types, "Depends"), "VignetteBuilder",
-    "RdMacros", "Remotes"
+    "Type",
+    "Package",
+    "Title",
+    "Version",
+    "Date",
+    "Authors@R",
+    "Author",
+    "Maintainer",
+    "Description",
+    "License",
+    "URL",
+    "BugReports",
+    "Depends",
+    setdiff(dep_types, "Depends"),
+    "VignetteBuilder",
+    "RdMacros",
+    "Remotes"
   )
 
   last <- collate_fields
@@ -51,7 +69,11 @@ color_bad <- function(x) {
 
 format.DescriptionField <- function(x, ..., width = 75) {
   mark_continuation_lines(paste(
-    strwrap(paste0(cli::col_blue(x$key), ": ", color_bad(x)), exdent = 4, width = width),
+    strwrap(
+      paste0(cli::col_blue(x$key), ": ", color_bad(x)),
+      exdent = 4,
+      width = width
+    ),
     collapse = "\n"
   ))
 }
@@ -61,12 +83,14 @@ format.DescriptionField <- function(x, ..., width = 75) {
 
 format.DescriptionDependencyList <- function(x, ...) {
   paste0(
-    cli::col_blue(x$key), if (nzchar(x$value)) ":\n" else ":",
-    if (nzchar(x$value)) paste0(
-      "    ",
-      sort(str_trim(strsplit(color_bad(x), ",", fixed = TRUE)[[1]])),
-      collapse = ",\n"
-    )
+    cli::col_blue(x$key),
+    if (nzchar(x$value)) ":\n" else ":",
+    if (nzchar(x$value))
+      paste0(
+        "    ",
+        sort(str_trim(strsplit(color_bad(x), ",", fixed = TRUE)[[1]])),
+        collapse = ",\n"
+      )
   )
 }
 
@@ -85,7 +109,8 @@ format.DescriptionRemotes <- format.DescriptionDependencyList
 
 format.DescriptionCollate <- function(x, ...) {
   paste0(
-    cli::col_blue(x$key), ":",
+    cli::col_blue(x$key),
+    ":",
     deparse_collate(parse_collate(color_bad(x)))
   )
 }
@@ -93,21 +118,21 @@ format.DescriptionCollate <- function(x, ...) {
 #' @export
 #' @method format DescriptionAuthorsAtR
 
-format.DescriptionAuthorsAtR <- function(x, mode = c("file", "screen"),
-                                         ...) {
+format.DescriptionAuthorsAtR <- function(x, mode = c("file", "screen"), ...) {
   xx <- parse_authors_at_r(x$value)
 
   if (mode == "screen") {
     good <- check_field(x)
     xxx <- if (good) xx else cli::col_red(xx)
     paste0(
-      cli::col_blue(x$key), " (parsed):\n",
+      cli::col_blue(x$key),
+      " (parsed):\n",
       paste0("    * ", format(xxx), collapse = "\n")
     )
-
   } else {
     paste0(
-      x$key, ":",
+      x$key,
+      ":",
       sub("\n$", "", deparse_authors_at_r(xx))
     )
   }
