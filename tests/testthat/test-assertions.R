@@ -2,7 +2,10 @@ test_that("is_existing_file", {
   miss <- basename(tempfile())
   withr::with_dir(
     tempdir(),
-    expect_error(desc::desc(miss), "is_existing_file")
+    expect_snapshot(
+      error = TRUE,
+      desc::desc(miss)
+    )
   )
 })
 

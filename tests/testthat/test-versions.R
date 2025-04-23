@@ -5,7 +5,10 @@ test_that("get_version", {
   expect_equal(as.character(v), "1.0.0")
 
   desc$del("Version")
-  expect_error(desc$get_version())
+  expect_snapshot(
+    error = TRUE,
+    desc$get_version()
+  )
 })
 
 test_that("set_version", {
@@ -17,8 +20,14 @@ test_that("set_version", {
   desc$set_version(package_version("1.9.10.100"))
   expect_equal(desc$get_version(), package_version("1.9.10.100"))
 
-  expect_error(desc$set_version("1"))
-  expect_error(desc$set_version("1.0.0-dev"))
+  expect_snapshot(
+    error = TRUE,
+    desc$set_version("1")
+  )
+  expect_snapshot(
+    error = TRUE,
+    desc$set_version("1.0.0-dev")
+  )
 })
 
 test_that("bump_version", {

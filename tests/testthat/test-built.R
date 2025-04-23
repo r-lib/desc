@@ -14,7 +14,10 @@ test_that("get built", {
 test_that("corrupted Build field", {
   desc <- description$new("!new")
   desc$set(Built = "foobar")
-  expect_error(desc$get_built(), "corrupted")
+  expect_snapshot(
+    error = TRUE,
+    desc$get_built()
+  )
 })
 
 test_that("get built works with multiples lines", {

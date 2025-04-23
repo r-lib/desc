@@ -24,16 +24,16 @@ test_that("DCF reader keeps whitespace", {
 })
 
 test_that("duplicate fields, #43", {
-  expect_error(
-    description$new(test_path("D5")),
-    "Duplicate DESCRIPTION fields.*Remotes"
+  expect_snapshot(
+    error = TRUE,
+    description$new(test_path("D5"))
   )
 })
 
 test_that("empty lines error", {
-  expect_error(
-    description$new(test_path("D12")),
-    "Empty lines found in DESCRIPTION file"
+  expect_snapshot(
+    error = TRUE,
+    description$new(test_path("D12"))
   )
 })
 

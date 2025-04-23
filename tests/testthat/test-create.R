@@ -57,9 +57,9 @@ test_that("From installed package", {
   desc <- description$new(package = "utils")
   expect_match(desc$get("Author"), "Core Team")
 
-  expect_error(
-    description$new(package = "fgsdgsdhldsknfglkedsfgsdf"),
-    "Cannot find DESCRIPTION for installed package"
+  expect_snapshot(
+    error = TRUE,
+    description$new(package = "fgsdgsdhldsknfglkedsfgsdf")
   )
 })
 

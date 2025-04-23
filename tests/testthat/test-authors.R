@@ -91,15 +91,15 @@ test_that("we can add an author with ORCID", {
 test_that("we cannot add an author with malformatted comment", {
   desc <- description$new(cmd = "!new")
 
-  expect_error(
+  expect_snapshot(
+    error = TRUE,
     desc$add_author(
       "G\u00e1bor",
       "Cs\u00e1rdi",
       email = "csardi.gabor@gmail.com",
       role = "ctb",
       comment = c(ORCID = "orcid_number", what = NA)
-    ),
-    "is_named_character_or_null"
+    )
   )
 })
 
@@ -179,14 +179,14 @@ test_that("we can replace the ORCID of an author", {
 test_that("we cannot add the same ORCID to more than one author", {
   desc <- description$new(test_path("D10"))
 
-  expect_error(
-    desc$add_orcid(given = "Peter", orcid = "orcidid"),
-    "More than one author correspond"
+  expect_snapshot(
+    error = TRUE,
+    desc$add_orcid(given = "Peter", orcid = "orcidid")
   )
 
-  expect_error(
-    desc$add_orcid(given = "Manuel", orcid = "0000-0003-4757-117X"),
-    "Already"
+  expect_snapshot(
+    error = TRUE,
+    desc$add_orcid(given = "Manuel", orcid = "0000-0003-4757-117X")
   )
 })
 
@@ -229,12 +229,15 @@ test_that("we can replace the ROR of an author", {
 test_that("we cannot add the same ROR to more than one author", {
   desc <- description$new(test_path("D10"))
 
-  expect_error(
-    desc$add_ror(given = "Peter", ror = "bla"),
-    "More than one author correspond"
+  expect_snapshot(
+    error = TRUE,
+    desc$add_ror(given = "Peter", ror = "bla")
   )
 
-  expect_error(desc$add_ror(given = "Manuel", ror = "012345678"), "Already")
+  expect_snapshot(
+    error = TRUE,
+    desc$add_ror(given = "Manuel", ror = "012345678")
+  )
 })
 
 
@@ -347,9 +350,9 @@ test_that("add_author_gh works", {
 
 test_that("error if not Authors@R field", {
   desc <- description$new(test_path("D1"))
-  expect_error(
-    desc$get_authors(),
-    "No 'Authors@R' field"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_authors()
   )
 })
 
@@ -406,7 +409,7 @@ test_that("get_maintainer is OK, too", {
 
 test_that("coerce_authors_at_r if there is no Authors@R field", {
   D1 <- description$new(test_path("D1"))
-  expect_error(D1$get_authors())
+  expect_snapshot(error = TRUE, D1$get_authors())
   expect_silent(D1$coerce_authors_at_r())
   expect_silent(auth <- D1$get_authors())
   expect_equal(
@@ -425,7 +428,10 @@ test_that("coerce_authors_at_r does nothing if there IS an Authors@R field", {
 test_that("coerce_authors_at_r errors if no authors fields at all", {
   D1 <- description$new(test_path("D1"))
   D1$del("Author")
-  expect_error(D1$coerce_authors_at_r(), "No 'Authors@R' or 'Author' field!")
+  expect_snapshot(
+    error = TRUE,
+    D1$coerce_authors_at_r()
+  )
 })
 
 test_that("coerce_authors_at_r with multiple authors in Author: field", {

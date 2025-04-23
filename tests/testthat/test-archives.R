@@ -72,13 +72,16 @@ test_that("get_description_from_package", {
   expect_equal(d3$get("Package"), c(Package = "pkg"))
   expect_equal(d4$get("Package"), c(Package = "pkg"))
 
-  expect_error(
-    d4 <- description$new(file.path("fixtures", "notpkg_1.0.tar.gz")),
-    "Cannot extract DESCRIPTION"
+  expect_snapshot(
+    error = TRUE,
+    description$new(file.path("fixtures", "notpkg_1.0.tar.gz"))
   )
 })
 
 test_that("write errors if from archive", {
   d <- description$new(file.path("fixtures", "pkg_1.0.0.tar.gz"))
-  expect_error(d$write(), "Cannot write back DESCRIPTION")
+  expect_snapshot(
+    error = TRUE,
+    d$write()
+  )
 })

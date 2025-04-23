@@ -32,9 +32,9 @@ test_that("get_field works", {
     desc$get_field("Description", trim_ws = FALSE, squish_ws = TRUE)
   ))
 
-  expect_error(
-    desc$get_field("package"),
-    "Field 'package' not found"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_field("package")
   )
 })
 
@@ -51,17 +51,17 @@ test_that("get_or_fail works", {
     c(Package = "desc", Version = "1.0.0")
   )
 
-  expect_error(
-    desc$get_or_fail("package"),
-    "Could not find DESCRIPTION field.*package"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_or_fail("package")
   )
-  expect_error(
-    desc$get_or_fail(c("Package", "versionx")),
-    "Could not find DESCRIPTION field.*versionx"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_or_fail(c("Package", "versionx"))
   )
-  expect_error(
-    desc$get_or_fail(c("Package", "versionx", "foobar")),
-    "Could not find DESCRIPTION fields.*versionx.*foobar"
+  expect_snapshot(
+    error = TRUE,
+    desc$get_or_fail(c("Package", "versionx", "foobar"))
   )
 })
 
@@ -100,9 +100,9 @@ test_that("del works", {
 
 test_that("set errors on invalid input", {
   desc <- description$new(test_path("D1"))
-  expect_error(
-    desc$set("foobar"),
-    "needs two unnamed args"
+  expect_snapshot(
+    error = TRUE,
+    desc$set("foobar")
   )
 })
 

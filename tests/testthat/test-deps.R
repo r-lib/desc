@@ -157,8 +157,8 @@ test_that("has_dep", {
 
   expect_false(desc$has_dep("testthat", "Imports"))
 
-  expect_error(desc$has_dep(123))
-  expect_error(desc$has_dep("testthat", "xxx"))
+  expect_snapshot(error = TRUE, desc$has_dep(123))
+  expect_snapshot(error = TRUE, desc$has_dep("testthat", "xxx"))
 })
 
 test_that("has_dep works when package listed twice", {
