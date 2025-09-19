@@ -16,9 +16,10 @@
 #'   binary), in which case the `DESCRIPTION` file is extracted from it, but
 #'   note that in this case `$write()` cannot write the file back in
 #'   the package archive.
-#' @param text A character scalar containing the full DESCRIPTION.
-#'   Character vectors are collapsed into a character scalar, with
-#'   newline as the separator.
+#' @param text A character scalar containing the full DESCRIPTION, or
+#'   A named character vector with names as DESCRIPTION field names
+#'   and values as field values. Unnamed character vectors are
+#'   collapsed into a character scalar, with newline as the separator.
 #' @param package If not NULL, then the name of an installed package
 #'     and the DESCRIPTION file of this package will be loaded.
 #'
@@ -69,9 +70,10 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'   also be an R package (source, or binary), in which case the
 #'   `DESCRIPTION` file is extracted from it, but note that in this case
 #'   `$write()` cannot write the file back in the package archive.
-#' * `text`: a character scalar containing the full DESCRIPTION.
-#'   Character vectors are collapsed into a character scalar, with
-#'   newline as the separator.
+#' * `text`: a character scalar containing the full DESCRIPTION, or
+#'   a named character vector with names as DESCRIPTION field names
+#'   and values as field values. Unnamed character vectors are
+#'   collapsed into a character scalar, with newline as the separator.
 #' * `package`: if not NULL, then the name of an installed package
 #'   and the DESCRIPTION file of this package will be loaded.
 #'
@@ -877,6 +879,19 @@ idesc_create_file <- function(self, private, file) {
 
 idesc_create_text <- function(self, private, text) {
   stopifnot(is.character(text))
+
+  if (!is.null(names(text))) {
+    if (!all(nzchar(names(text)))) {
+      stop("text arg cannot have a mix of named and unnamed elements")
+    }
+
+    # If text is a named vector, use names for field names and values
+    # for field values
+    text <- paste0(
+      names(text), ": ", text, collapse = "\n"
+    )
+  }
+
   con <- textConnection(text, local = TRUE, encoding = "bytes")
   on.exit(close(con), add = TRUE)
   dcf <- read_dcf(con)
