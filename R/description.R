@@ -489,8 +489,14 @@ description <- R6Class(
   "description",
   public = list(
     ## Either from a file, or from a character vector
-    initialize = function(cmd = NULL, file = NULL, text = NULL, package = NULL)
-      idesc_create(self, private, cmd, file, text, package),
+    initialize = function(
+      cmd = NULL,
+      file = NULL,
+      text = NULL,
+      package = NULL
+    ) {
+      idesc_create(self, private, cmd, file, text, package)
+    },
 
     write = function(file = NULL) idesc_write(self, private, file),
 
@@ -505,7 +511,9 @@ description <- R6Class(
       default = stop("Field '", key, "' not found"),
       trim_ws = TRUE,
       squish_ws = trim_ws
-    ) idesc_get_field(self, private, key, default, trim_ws, squish_ws),
+    ) {
+      idesc_get_field(self, private, key, default, trim_ws, squish_ws)
+    },
 
     get_or_fail = function(keys) idesc_get_or_fail(self, private, keys),
 
@@ -515,13 +523,17 @@ description <- R6Class(
       sep = ",",
       trim_ws = TRUE,
       squish_ws = trim_ws
-    ) idesc_get_list(self, private, key, default, sep, trim_ws, squish_ws),
+    ) {
+      idesc_get_list(self, private, key, default, sep, trim_ws, squish_ws)
+    },
 
-    set = function(..., check = TRUE)
-      idesc_set(self, private, ..., check = check),
+    set = function(..., check = TRUE) {
+      idesc_set(self, private, ..., check = check)
+    },
 
-    set_list = function(key, list_value, sep = ", ")
-      idesc_set_list(self, private, key, list_value, sep),
+    set_list = function(key, list_value, sep = ", ") {
+      idesc_set_list(self, private, key, list_value, sep)
+    },
 
     del = function(keys) idesc_del(self, private, keys),
 
@@ -533,7 +545,9 @@ description <- R6Class(
       by_field = FALSE,
       normalize = TRUE,
       mode = c("file", "screen")
-    ) idesc_str(self, private, by_field, normalize, mode),
+    ) {
+      idesc_str(self, private, by_field, normalize, mode)
+    },
 
     to_latex = function() idesc_to_latex(self, private),
 
@@ -555,42 +569,52 @@ description <- R6Class(
     ## -----------------------------------------------------------------
     ## Package dependencies
 
-    set_dep = function(package, type = desc::dep_types, version = "*")
-      idesc_set_dep(self, private, package, match.arg(type), version),
+    set_dep = function(package, type = desc::dep_types, version = "*") {
+      idesc_set_dep(self, private, package, match.arg(type), version)
+    },
 
     set_deps = function(deps) idesc_set_deps(self, private, deps),
 
     get_deps = function() idesc_get_deps(self, private),
 
-    del_dep = function(package, type = c("all", desc::dep_types))
-      idesc_del_dep(self, private, package, match.arg(type)),
+    del_dep = function(package, type = c("all", desc::dep_types)) {
+      idesc_del_dep(self, private, package, match.arg(type))
+    },
 
     del_deps = function() idesc_del_deps(self, private),
 
-    has_dep = function(package, type = c("any", desc::dep_types))
-      idesc_has_dep(self, private, package, match.arg(type)),
+    has_dep = function(package, type = c("any", desc::dep_types)) {
+      idesc_has_dep(self, private, package, match.arg(type))
+    },
 
     ## -----------------------------------------------------------------
     ## Collate fields
 
-    set_collate = function(files, which = c("main", "windows", "unix"))
-      idesc_set_collate(self, private, files, match.arg(which)),
+    set_collate = function(files, which = c("main", "windows", "unix")) {
+      idesc_set_collate(self, private, files, match.arg(which))
+    },
 
-    get_collate = function(which = c("main", "windows", "unix"))
-      idesc_get_collate(self, private, match.arg(which)),
+    get_collate = function(which = c("main", "windows", "unix")) {
+      idesc_get_collate(self, private, match.arg(which))
+    },
 
-    del_collate = function(which = c("all", "main", "windows", "unix"))
-      idesc_del_collate(self, private, match.arg(which)),
+    del_collate = function(which = c("all", "main", "windows", "unix")) {
+      idesc_del_collate(self, private, match.arg(which))
+    },
 
     add_to_collate = function(
       files,
       which = c("default", "all", "main", "windows", "unix")
-    ) idesc_add_to_collate(self, private, files, match.arg(which)),
+    ) {
+      idesc_add_to_collate(self, private, files, match.arg(which))
+    },
 
     del_from_collate = function(
       files,
       which = c("all", "main", "windows", "unix")
-    ) idesc_del_from_collate(self, private, files, match.arg(which)),
+    ) {
+      idesc_del_from_collate(self, private, files, match.arg(which))
+    },
 
     ## -----------------------------------------------------------------
     ## Authors@R
@@ -609,7 +633,7 @@ description <- R6Class(
       comment = NULL,
       orcid = NULL,
       ror = NULL
-    )
+    ) {
       idesc_add_author(
         self,
         private,
@@ -620,7 +644,8 @@ description <- R6Class(
         comment,
         orcid,
         ror
-      ),
+      )
+    },
 
     add_role = function(
       role,
@@ -630,7 +655,7 @@ description <- R6Class(
       comment = NULL,
       orcid = NULL,
       ror = NULL
-    )
+    ) {
       idesc_add_role(
         self,
         private,
@@ -641,7 +666,8 @@ description <- R6Class(
         comment,
         orcid,
         ror
-      ),
+      )
+    },
 
     add_orcid = function(
       orcid,
@@ -650,7 +676,7 @@ description <- R6Class(
       email = NULL,
       comment = NULL,
       role = NULL
-    )
+    ) {
       idesc_add_orcid(
         self,
         private,
@@ -660,7 +686,8 @@ description <- R6Class(
         email = email,
         comment = comment,
         orcid = orcid
-      ),
+      )
+    },
 
     add_ror = function(
       ror,
@@ -669,7 +696,7 @@ description <- R6Class(
       email = NULL,
       comment = NULL,
       role = NULL
-    )
+    ) {
       idesc_add_ror(
         self,
         private,
@@ -679,7 +706,8 @@ description <- R6Class(
         email = email,
         comment = comment,
         ror = ror
-      ),
+      )
+    },
 
     del_author = function(
       given = NULL,
@@ -689,7 +717,7 @@ description <- R6Class(
       comment = NULL,
       orcid = NULL,
       ror = NULL
-    )
+    ) {
       idesc_del_author(
         self,
         private,
@@ -700,7 +728,8 @@ description <- R6Class(
         comment,
         orcid,
         ror
-      ),
+      )
+    },
 
     del_role = function(
       role,
@@ -710,7 +739,7 @@ description <- R6Class(
       comment = NULL,
       orcid = NULL,
       ror = NULL
-    )
+    ) {
       idesc_del_role(
         self,
         private,
@@ -721,7 +750,8 @@ description <- R6Class(
         comment,
         orcid,
         ror
-      ),
+      )
+    },
 
     change_maintainer = function(
       given = NULL,
@@ -729,7 +759,7 @@ description <- R6Class(
       email = NULL,
       comment = NULL,
       orcid = NULL
-    )
+    ) {
       idesc_change_maintainer(
         self,
         private,
@@ -738,17 +768,19 @@ description <- R6Class(
         email,
         comment,
         orcid
-      ),
+      )
+    },
 
-    add_me = function(role = "ctb", comment = NULL, orcid = NULL)
-      idesc_add_me(self, private, role, comment, orcid),
+    add_me = function(role = "ctb", comment = NULL, orcid = NULL) {
+      idesc_add_me(self, private, role, comment, orcid)
+    },
 
     add_author_gh = function(
       username,
       role = "ctb",
       comment = NULL,
       orcid = NULL
-    )
+    ) {
       idesc_add_author_gh(
         self,
         private,
@@ -756,7 +788,8 @@ description <- R6Class(
         username = username,
         comment = comment,
         orcid = orcid
-      ),
+      )
+    },
 
     get_maintainer = function() idesc_get_maintainer(self, private),
 
@@ -808,20 +841,32 @@ idesc_create <- function(self, private, cmd, file, text, package) {
   }
 
   if (!is.null(cmd)) {
-    if (!is.null(file)) warning("file argument ignored")
-    if (!is.null(text)) warning("text argument ignored")
-    if (!is.null(package)) warning("package argument ignored")
+    if (!is.null(file)) {
+      warning("file argument ignored")
+    }
+    if (!is.null(text)) {
+      warning("text argument ignored")
+    }
+    if (!is.null(package)) {
+      warning("package argument ignored")
+    }
     idesc_create_cmd(self, private, cmd)
   } else if (
     is.null(cmd) && is.null(file) && is.null(text) && is.null(package)
   ) {
     idesc_create_file(self, private, ".")
   } else if (!is.null(file)) {
-    if (!is.null(text)) warning("text argument ignored")
-    if (!is.null(package)) warning("package argument ignored")
+    if (!is.null(text)) {
+      warning("text argument ignored")
+    }
+    if (!is.null(package)) {
+      warning("package argument ignored")
+    }
     idesc_create_file(self, private, file)
   } else if (!is.null(text)) {
-    if (!is.null(package)) warning("package argument ignored")
+    if (!is.null(package)) {
+      warning("package argument ignored")
+    }
     idesc_create_text(self, private, text)
   } else {
     idesc_create_package(self, private, package)
@@ -858,7 +903,9 @@ Encoding: UTF-8
 idesc_create_file <- function(self, private, file) {
   stopifnot(is_path(file))
 
-  if (file.exists(file) && is_dir(file)) file <- find_description(file)
+  if (file.exists(file) && is_dir(file)) {
+    file <- find_description(file)
+  }
   stopifnot(is_existing_file(file))
 
   if (is_package_archive(file)) {
@@ -895,12 +942,19 @@ idesc_create_package <- function(self, private, package) {
 }
 
 idesc_write <- function(self, private, file) {
-  if (is.null(file)) file <- private$path
+  if (is.null(file)) {
+    file <- private$path
+  }
   if (is.null(file)) {
     stop(
       "Cannot write back DESCRIPTION. Note that it is not possible
           to update DESCRIPTION files within package archives"
     )
+  }
+
+  ## check if auto-tidy is enabled and normalize if so
+  if (get_config_value(self, "Config/desc/tidy")) {
+    self$normalize()
   }
 
   mat <- idesc_as_matrix(private$data)
@@ -913,14 +967,20 @@ idesc_write <- function(self, private, file) {
   ## Need to tell older R not to mess with the encoding
   ## Cannot do this for newer R, but for newer R we use useBytes = TRUE
   ## in write_dcf()
-  if (getRversion() < "4.2.0") Encoding(mat) <- "unknown"
+  if (getRversion() < "4.2.0") {
+    Encoding(mat) <- "unknown"
+  }
   write_dcf(mat, file = tmp, keep.white = names(private$data))
 
   removed <- !names(private$notws) %in% colnames(mat)
-  if (any(removed)) private$notws <- private$notws[!removed]
+  if (any(removed)) {
+    private$notws <- private$notws[!removed]
+  }
 
   postprocess_trailing_ws(tmp, names(private$notws))
-  if (file.exists(file) && is_dir(file)) file <- find_description(file)
+  if (file.exists(file) && is_dir(file)) {
+    file <- find_description(file)
+  }
 
   ofile <- file(file, raw = TRUE, open = "wb+")
   on.exit(close(ofile), add = TRUE)
@@ -966,7 +1026,9 @@ idesc_get_field <- function(self, private, key, default, trim_ws, squish_ws) {
   stopifnot(is_flag(trim_ws))
   val <- private$data[[key]]$value
   if (!is.null(val)) {
-    if (trim_ws) val <- str_trim(val)
+    if (trim_ws) {
+      val <- str_trim(val)
+    }
     if (squish_ws) val <- str_squish(val)
   }
   val %||% default
@@ -1000,8 +1062,12 @@ idesc_get_list <- function(
   stopifnot(is_string(key), is_flag(trim_ws), is_flag(squish_ws))
   val <- private$data[[key]]$value %||% default
   val <- strsplit(val, sep, fixed = TRUE)[[1]]
-  if (trim_ws) val <- str_trim(val)
-  if (squish_ws) val <- str_squish(val)
+  if (trim_ws) {
+    val <- str_trim(val)
+  }
+  if (squish_ws) {
+    val <- str_squish(val)
+  }
   val
 }
 
