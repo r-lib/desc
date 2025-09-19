@@ -17,7 +17,7 @@
 #'   note that in this case `$write()` cannot write the file back in
 #'   the package archive.
 #' @param text A character scalar containing the full DESCRIPTION, or
-#'   A named character vector with names as DESCRIPTION field names
+#'   a named character vector with names as DESCRIPTION field names
 #'   and values as field values. Unnamed character vectors are
 #'   collapsed into a character scalar, with newline as the separator.
 #' @param package If not NULL, then the name of an installed package
