@@ -822,6 +822,11 @@ description <- R6Class(
     clear_remotes = function() idesc_clear_remotes(self, private),
 
     ## -----------------------------------------------------------------
+    ## Config
+
+    get_config = function(key) idesc_get_config(self, private, key),
+
+    ## -----------------------------------------------------------------
     ## Built
 
     get_built = function() idesc_get_built(self, private)
