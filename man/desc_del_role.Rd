@@ -11,7 +11,6 @@ desc_del_role(
   email = NULL,
   comment = NULL,
   orcid = NULL,
-  ror = NULL,
   file = ".",
   normalize = FALSE
 )
@@ -29,14 +28,13 @@ desc_del_role(
 
 \item{orcid}{ORCID field to filter on.}
 
-\item{ror}{ROR field to filter on.}
-
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to "normalize" (reorder and reformat) the fields when writing back
-the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}. Note: if \code{Config/desc/tidy} is set to a truthy
+value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter.}
 }
 \description{
 The author(s) can be specified by a combination of the \code{given},
@@ -53,7 +51,6 @@ Other Authors@R:
 \code{\link{desc_add_me}()},
 \code{\link{desc_add_orcid}()},
 \code{\link{desc_add_role}()},
-\code{\link{desc_add_ror}()},
 \code{\link{desc_change_maintainer}()},
 \code{\link{desc_coerce_authors_at_r}()},
 \code{\link{desc_del_author}()},

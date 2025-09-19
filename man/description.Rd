@@ -169,6 +169,11 @@ The API:
 from a file in the first place, then it is written to the same
 file. Otherwise this argument must be specified.
 }
+
+\strong{Auto-tidy}: If \code{Config/desc/tidy} is set to a truthy value
+(such as \code{"true"}, \code{"yes"}, or \code{"1"}), the description will be
+automatically normalized (tidied) before writing. This includes
+reordering and reformatting fields according to standard conventions.
 }
 
 \section{Version numbers}{
@@ -439,6 +444,29 @@ pattern.
 \verb{$clear_remotes()} deletes all remotes.
 }
 
+\section{Config}{
+
+
+Configuration fields (\verb{Config/*}) provide package-specific settings
+that control various behaviors. The \verb{$get_config()} method provides
+access to these configuration values with automatic boolean parsing.
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{description$get_config(key)
+}\if{html}{\out{</div>}}
+\itemize{
+\item \code{key}: the configuration field to retrieve (e.g., \code{"Config/desc/tidy"}).
+}
+
+\verb{$get_config()} returns \code{TRUE} for values like \code{"true"}, \code{"TRUE"},
+\code{"yes"}, or \code{"1"}, and \code{FALSE} for values like \code{"false"}, \code{"FALSE"},
+\code{"no"}, \code{"0"}, invalid values, or missing fields.
+
+\strong{Auto-tidy configuration}: Setting \code{Config/desc/tidy} to a truthy
+value enables automatic normalization when writing DESCRIPTION files.
+This ensures consistent formatting across all operations that modify
+and save the description.
+}
+
 \section{Built}{
 
 
@@ -481,4 +509,10 @@ desc2$del("LazyData")
 desc2$set(VignetteBuilder = "knitr")
 desc2$get("VignetteBuilder")
 desc2
+
+## Enable auto-tidy for consistent formatting
+desc3 <- description$new("!new")
+desc3$set("Config/desc/tidy", "true")
+desc3$set("Imports", "zzz, aaa, mmm")  # Will be auto-sorted when written
+desc3$get_config("Config/desc/tidy")   # Returns TRUE
 }

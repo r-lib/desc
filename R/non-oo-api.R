@@ -150,7 +150,8 @@ desc_get_list <- generate_api("get_list", self = FALSE)
 #'    file of the current package (i.e. the package the working directory
 #'    is part of) is used.
 #' @param normalize Whether to "normalize" (reorder and reformat) the fields when writing back
-#'   the result. See [desc_normalize()].
+#'   the result. See [desc_normalize()]. Note: if `Config/desc/tidy` is set to a truthy
+#'   value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter.
 #' @param key Key to set in `desc_set_list()`.
 #' @param list_value Character vector, to collapse in
 #'   `desc_set_list()`.
