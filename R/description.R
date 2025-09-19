@@ -184,7 +184,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'      from a file in the first place, then it is written to the same
 #'      file. Otherwise this argument must be specified.
 #'
-#' **Auto-tidy**: If `Config/desc/tidy` is set to a truthy value
+#' **Auto-tidy**: If `Config/desc/tidy` is set to a truth value
 #' (such as `"true"`, `"yes"`, or `"1"`), the description will be
 #' automatically normalized (tidied) before writing. This includes
 #' reordering and reformatting fields according to standard conventions.
@@ -462,7 +462,7 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' `"yes"`, or `"1"`, and `FALSE` for values like `"false"`, `"FALSE"`,
 #' `"no"`, `"0"`, invalid values, or missing fields.
 #'
-#' **Auto-tidy configuration**: Setting `Config/desc/tidy` to a truthy
+#' **Auto-tidy configuration**: Setting `Config/desc/tidy` to a truth
 #' value enables automatic normalization when writing DESCRIPTION files.
 #' This ensures consistent formatting across all operations that modify
 #' and save the description.

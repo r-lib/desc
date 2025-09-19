@@ -33,7 +33,7 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to "normalize" (reorder and reformat) the fields when writing back
-the result. See \code{\link[=desc_normalize]{desc_normalize()}}. Note: if \code{Config/desc/tidy} is set to a truthy
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}. Note: if \code{Config/desc/tidy} is set to a truth
 value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter.}
 
 \item{ror}{ROR ID.}
@@ -42,7 +42,7 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Add an author to Authors@R in DESCRIPTION
 }
 \seealso{
-Other Authors@R: 
+Other Authors@R:
 \code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},
 \code{\link{desc_add_orcid}()},

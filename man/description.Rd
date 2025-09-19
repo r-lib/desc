@@ -170,7 +170,7 @@ from a file in the first place, then it is written to the same
 file. Otherwise this argument must be specified.
 }
 
-\strong{Auto-tidy}: If \code{Config/desc/tidy} is set to a truthy value
+\strong{Auto-tidy}: If \code{Config/desc/tidy} is set to a truth value
 (such as \code{"true"}, \code{"yes"}, or \code{"1"}), the description will be
 automatically normalized (tidied) before writing. This includes
 reordering and reformatting fields according to standard conventions.
@@ -461,7 +461,7 @@ access to these configuration values with automatic boolean parsing.
 \code{"yes"}, or \code{"1"}, and \code{FALSE} for values like \code{"false"}, \code{"FALSE"},
 \code{"no"}, \code{"0"}, invalid values, or missing fields.
 
-\strong{Auto-tidy configuration}: Setting \code{Config/desc/tidy} to a truthy
+\strong{Auto-tidy configuration}: Setting \code{Config/desc/tidy} to a truth
 value enables automatic normalization when writing DESCRIPTION files.
 This ensures consistent formatting across all operations that modify
 and save the description.

@@ -23,14 +23,14 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to "normalize" (reorder and reformat) the fields when writing back
-the result. See \code{\link[=desc_normalize]{desc_normalize()}}. Note: if \code{Config/desc/tidy} is set to a truthy
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}. Note: if \code{Config/desc/tidy} is set to a truth
 value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter.}
 }
 \description{
 Remove a package dependency from DESCRIPTION
 }
 \seealso{
-Other dependencies: 
+Other dependencies:
 \code{\link{desc_del_deps}()},
 \code{\link{desc_get_deps}()},
 \code{\link{desc_has_dep}()},
