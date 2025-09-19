@@ -22,7 +22,7 @@ Both \verb{$set_version()} and \verb{$bump_version()} use dots to
 separate the version number components.
 }
 \seealso{
-Other version numbers:
+Other version numbers: 
 \code{\link{desc_bump_version}()},
 \code{\link{desc_get_version}()}
 }

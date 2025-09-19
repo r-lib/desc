@@ -21,7 +21,7 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Remove fields from a DESCRIPTION file
 }
 \seealso{
-Other simple queries:
+Other simple queries: 
 \code{\link{desc_fields}()},
 \code{\link{desc_get}()},
 \code{\link{desc_get_field}()},

@@ -11,6 +11,7 @@ desc_del_role(
   email = NULL,
   comment = NULL,
   orcid = NULL,
+  ror = NULL,
   file = ".",
   normalize = FALSE
 )
@@ -27,6 +28,8 @@ desc_del_role(
 \item{comment}{Comment field to filter on. Regular expression.}
 
 \item{orcid}{ORCID field to filter on.}
+
+\item{ror}{ROR field to filter on.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
@@ -45,7 +48,7 @@ You cannot both specify \code{orcid} and \code{ror}
 since ORCID is for individuals, ROR for organizations.
 }
 \seealso{
-Other Authors@R:
+Other Authors@R: 
 \code{\link{desc_add_author}()},
 \code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},

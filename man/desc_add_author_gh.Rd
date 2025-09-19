@@ -43,7 +43,7 @@ in order to e.g. have the first and middle names together as given
 name. This approach might be limited to some full name structures.
 }
 \seealso{
-Other Authors@R:
+Other Authors@R: 
 \code{\link{desc_add_author}()},
 \code{\link{desc_add_me}()},
 \code{\link{desc_add_orcid}()},

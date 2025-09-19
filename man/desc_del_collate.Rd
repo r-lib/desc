@@ -26,7 +26,7 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Delete the Collate field from DESCRIPTION
 }
 \seealso{
-Other Collate field:
+Other Collate field: 
 \code{\link{desc_add_to_collate}()},
 \code{\link{desc_del_from_collate}()},
 \code{\link{desc_get_collate}()},

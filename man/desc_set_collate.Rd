@@ -29,7 +29,7 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Set the Collate field in DESCRIPTION
 }
 \seealso{
-Other Collate field:
+Other Collate field: 
 \code{\link{desc_add_to_collate}()},
 \code{\link{desc_del_collate}()},
 \code{\link{desc_del_from_collate}()},

@@ -11,6 +11,7 @@ desc_add_author(
   role = NULL,
   comment = NULL,
   orcid = NULL,
+  ror = NULL,
   file = ".",
   normalize = FALSE
 )
@@ -42,7 +43,7 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Add an author to Authors@R in DESCRIPTION
 }
 \seealso{
-Other Authors@R:
+Other Authors@R: 
 \code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},
 \code{\link{desc_add_orcid}()},

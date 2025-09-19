@@ -43,7 +43,7 @@ and values as values to set.
 separating the elements by commas.
 }
 \seealso{
-Other simple queries:
+Other simple queries: 
 \code{\link{desc_del}()},
 \code{\link{desc_fields}()},
 \code{\link{desc_get}()},

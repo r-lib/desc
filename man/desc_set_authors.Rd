@@ -21,7 +21,7 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Set authors in Authors@R, in DESCRIPTION
 }
 \seealso{
-Other Authors@R:
+Other Authors@R: 
 \code{\link{desc_add_author}()},
 \code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},

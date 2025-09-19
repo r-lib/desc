@@ -40,7 +40,7 @@ Only works with the Authors@R field.
 The current maintainer is kept if they have at least another role.
 }
 \seealso{
-Other Authors@R:
+Other Authors@R: 
 \code{\link{desc_add_author}()},
 \code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},

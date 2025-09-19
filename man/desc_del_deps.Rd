@@ -19,7 +19,7 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Remove all dependencies from DESCRIPTION
 }
 \seealso{
-Other dependencies:
+Other dependencies: 
 \code{\link{desc_del_dep}()},
 \code{\link{desc_get_deps}()},
 \code{\link{desc_has_dep}()},

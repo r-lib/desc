@@ -11,6 +11,7 @@ desc_del_author(
   role = NULL,
   comment = NULL,
   orcid = NULL,
+  ror = NULL,
   file = ".",
   normalize = FALSE
 )
@@ -28,6 +29,8 @@ desc_del_author(
 
 \item{orcid}{ORCID field to filter on.}
 
+\item{ror}{ROR field to filter on.}
+
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
 is part of) is used.}
@@ -44,7 +47,7 @@ is supplied, then all authors whole given name matches \code{Joe} will
 be removed. The specifications can be (PCRE) regular expressions.
 }
 \seealso{
-Other Authors@R:
+Other Authors@R: 
 \code{\link{desc_add_author}()},
 \code{\link{desc_add_author_gh}()},
 \code{\link{desc_add_me}()},

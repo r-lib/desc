@@ -31,7 +31,7 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Add a package dependency to a DESCRIPTION file
 }
 \seealso{
-Other dependencies:
+Other dependencies: 
 \code{\link{desc_del_dep}()},
 \code{\link{desc_del_deps}()},
 \code{\link{desc_get_deps}()},
