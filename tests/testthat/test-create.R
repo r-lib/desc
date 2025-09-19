@@ -60,6 +60,13 @@ test_that("can read object from named character vector", {
   expect_equal(desc$get("BugReports"), new_desc$get("BugReports"))
 })
 
+test_that("partially named vectors passed to 'text' fail", {
+  expect_snapshot(
+    error = TRUE,
+    description$new(text = c(foo = "bar", "baz"))
+  )
+})
+
 test_that("DESCRPTION is read by default", {
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
