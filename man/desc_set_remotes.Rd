@@ -14,7 +14,8 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 
 \item{normalize}{Whether to "normalize" (reorder and reformat) the fields when writing back
-the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
+the result. See \code{\link[=desc_normalize]{desc_normalize()}}. Note: if \code{Config/desc/tidy} is set to a truth
+value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter.}
 }
 \description{
 The specified locations replace the current ones. The Remotes field is

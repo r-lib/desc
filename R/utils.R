@@ -76,7 +76,9 @@ flatten <- function(x) {
 }
 
 ngrepl <- function(pattern, x, ...) {
-  if (is.null(pattern)) pattern <- ""
+  if (is.null(pattern)) {
+    pattern <- ""
+  }
   x <- flatten(x)
   grepl(pattern, x, ...)
 }
@@ -86,7 +88,9 @@ check_for_package <- function(
   msg = paste0("Package '", pkg, "' is needed.")
 ) {
   has <- requireNamespace(pkg, quietly = TRUE)
-  if (!has) stop(msg, call. = FALSE)
+  if (!has) {
+    stop(msg, call. = FALSE)
+  }
   has
 }
 
@@ -197,4 +201,28 @@ mkdirp <- function(dir) {
     showWarnings = FALSE
   )
   invisible(s)
+}
+
+get_config_value <- function(desc_obj, key) {
+  stopifnot(is_string(key))
+
+  value <- desc_obj$get_field(key, default = NULL, trim_ws = TRUE)
+  if (is.null(value)) {
+    return(FALSE)
+  }
+
+  # parse boolean values, case-insensitive
+  value_lower <- tolower(str_trim(value))
+  if (value_lower %in% c("true", "yes", "1")) {
+    return(TRUE)
+  } else if (value_lower %in% c("false", "no", "0")) {
+    return(FALSE)
+  } else {
+    # invalid boolean, default to FALSE
+    return(FALSE)
+  }
+}
+
+idesc_get_config <- function(self, private, key) {
+  get_config_value(self, key)
 }

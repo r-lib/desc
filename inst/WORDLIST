@@ -1,15 +1,18 @@
 BitBucket
 CMD
 Codecov
+Config
 IETF
 Lifecycle
 LinkingTo
 ORCID
 PBC
+R6
 ROR
 ror
 RStudio
 Renviron
+V3
 behaviour
 dep
 desc's
@@ -17,3 +20,4 @@ env
 funder
 orcid
 subtag
+wc
