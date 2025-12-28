@@ -42,6 +42,31 @@ test_that("can read object from character vector", {
   expect_true(!is.na(desc$get("BugReports")))
 })
 
+test_that("can read object from named character vector", {
+  lines <- readLines(test_path("D1"))
+  desc <- description$new(text = lines)
+
+  named_fields <- desc$get(desc$fields())
+
+  new_desc <- description$new(text = named_fields)
+
+  expect_equal(desc$get("Package"), new_desc$get("Package"))
+  expect_equal(desc$get("Title"), new_desc$get("Title"))
+  expect_equal(desc$get("Author"), new_desc$get("Author"))
+  expect_equal(desc$get("Maintainer"), new_desc$get("Maintainer"))
+  expect_equal(desc$get("Description"), new_desc$get("Description"))
+  expect_equal(desc$get("License"), new_desc$get("License"))
+  expect_equal(desc$get("URL"), new_desc$get("URL"))
+  expect_equal(desc$get("BugReports"), new_desc$get("BugReports"))
+})
+
+test_that("partially named vectors passed to 'text' fail", {
+  expect_snapshot(
+    error = TRUE,
+    description$new(text = c(foo = "bar", "baz"))
+  )
+})
+
 test_that("DESCRPTION is read by default", {
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)

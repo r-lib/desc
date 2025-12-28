@@ -20,9 +20,10 @@ binary), in which case the \code{DESCRIPTION} file is extracted from it, but
 note that in this case \verb{$write()} cannot write the file back in
 the package archive.}
 
-\item{text}{A character scalar containing the full DESCRIPTION.
-Character vectors are collapsed into a character scalar, with
-newline as the separator.}
+\item{text}{A character scalar containing the full DESCRIPTION, or
+a named character vector with names as DESCRIPTION field names
+and values as field values. Unnamed character vectors are
+collapsed into a character scalar, with newline as the separator.}
 
 \item{package}{If not NULL, then the name of an installed package
 and the DESCRIPTION file of this package will be loaded.}

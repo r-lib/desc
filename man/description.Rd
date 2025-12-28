@@ -46,9 +46,10 @@ then the search is started from the working directory. The file can
 also be an R package (source, or binary), in which case the
 \code{DESCRIPTION} file is extracted from it, but note that in this case
 \verb{$write()} cannot write the file back in the package archive.
-\item \code{text}: a character scalar containing the full DESCRIPTION.
-Character vectors are collapsed into a character scalar, with
-newline as the separator.
+\item \code{text}: a character scalar containing the full DESCRIPTION, or
+a named character vector with names as DESCRIPTION field names
+and values as field values. Unnamed character vectors are
+collapsed into a character scalar, with newline as the separator.
 \item \code{package}: if not NULL, then the name of an installed package
 and the DESCRIPTION file of this package will be loaded.
 }
