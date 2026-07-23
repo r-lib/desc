@@ -41,3 +41,14 @@ test_that("Empty DESCRIPTION", {
   expect_error(description$new(text = ""), NA)
   expect_error(description$new(text = character()), NA)
 })
+
+test_that("comments are kept out of field values, #164", {
+  desc <- description$new(test_path("D18"))
+
+  expect_equal(
+    desc$get("Remotes"),
+    c(Remotes = "\n  user/pkg1,\n  user/pkg2")
+  )
+  expect_equal(desc$get_remotes(), c("user/pkg1", "user/pkg2"))
+  expect_equal(desc$get_version(), package_version("1.4.3.9000"))
+})
