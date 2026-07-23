@@ -43,6 +43,8 @@ test_that("Empty DESCRIPTION", {
 })
 
 test_that("comments are kept out of field values, #164", {
+  # Using comments in DESCRIPTION would error before R 4.6
+  skip_if(getRversion() < "4.6")
   desc <- description$new(test_path("D18"))
 
   expect_equal(
