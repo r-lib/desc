@@ -6,14 +6,15 @@
 #' @importFrom utils packageName
 
 generate_api <- function(member, self = TRUE, norm = TRUE, invisible = FALSE) {
-  res <- function() {
-  }
+  res <- function() {}
 
   func <- description$public_methods[[member]]
 
   ## Arguments
   xargs <- list(file = ".")
-  if (self && norm) xargs <- c(xargs, list(normalize = FALSE))
+  if (self && norm) {
+    xargs <- c(xargs, list(normalize = FALSE))
+  }
   formals(res) <- c(formals(func), xargs)
 
   ## Call to member function
@@ -36,7 +37,9 @@ generate_api <- function(member, self = TRUE, norm = TRUE, invisible = FALSE) {
   ## Call to write, or just return the result
   write_call <- if (self && norm) {
     quote({
-      if (normalize) desc$normalize()
+      if (normalize && !get_config_value(desc, "Config/desc/tidy")) {
+        desc$normalize()
+      }
       desc$write(file = file)
     })
   } else if (self) {
@@ -150,7 +153,8 @@ desc_get_list <- generate_api("get_list", self = FALSE)
 #'    file of the current package (i.e. the package the working directory
 #'    is part of) is used.
 #' @param normalize Whether to "normalize" (reorder and reformat) the fields when writing back
-#'   the result. See [desc_normalize()].
+#'   the result. See [desc_normalize()]. Note: if `Config/desc/tidy` is set to a truth
+#'   value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter.
 #' @param key Key to set in `desc_set_list()`.
 #' @param list_value Character vector, to collapse in
 #'   `desc_set_list()`.
