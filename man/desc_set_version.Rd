@@ -7,7 +7,7 @@
 desc_set_version(version, file = ".", normalize = FALSE)
 }
 \arguments{
-\item{version}{A string or a \link[base:numeric_version]{base::package_version} object.}
+\item{version}{A string or a \link[base:package_version]{base::package_version} object.}
 
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
@@ -22,8 +22,8 @@ Both \verb{$set_version()} and \verb{$bump_version()} use dots to
 separate the version number components.
 }
 \seealso{
-Other version numbers: 
-\code{\link{desc_bump_version}()},
-\code{\link{desc_get_version}()}
+Other version numbers:
+\code{\link[=desc_bump_version]{desc_bump_version()}},
+\code{\link[=desc_get_version]{desc_get_version()}}
 }
 \concept{version numbers}

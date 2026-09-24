@@ -42,18 +42,19 @@ in order to e.g. have the first and middle names together as given
 name. This approach might be limited to some full name structures.
 }
 \seealso{
-Other Authors@R: 
-\code{\link{desc_add_author}()},
-\code{\link{desc_add_author_gh}()},
-\code{\link{desc_add_orcid}()},
-\code{\link{desc_add_role}()},
-\code{\link{desc_change_maintainer}()},
-\code{\link{desc_coerce_authors_at_r}()},
-\code{\link{desc_del_author}()},
-\code{\link{desc_del_role}()},
-\code{\link{desc_get_author}()},
-\code{\link{desc_get_authors}()},
-\code{\link{desc_get_maintainer}()},
-\code{\link{desc_set_authors}()}
+Other Authors@R:
+\code{\link[=desc_add_author]{desc_add_author()}},
+\code{\link[=desc_add_author_gh]{desc_add_author_gh()}},
+\code{\link[=desc_add_orcid]{desc_add_orcid()}},
+\code{\link[=desc_add_role]{desc_add_role()}},
+\code{\link[=desc_add_ror]{desc_add_ror()}},
+\code{\link[=desc_change_maintainer]{desc_change_maintainer()}},
+\code{\link[=desc_coerce_authors_at_r]{desc_coerce_authors_at_r()}},
+\code{\link[=desc_del_author]{desc_del_author()}},
+\code{\link[=desc_del_role]{desc_del_role()}},
+\code{\link[=desc_get_author]{desc_get_author()}},
+\code{\link[=desc_get_authors]{desc_get_authors()}},
+\code{\link[=desc_get_maintainer]{desc_get_maintainer()}},
+\code{\link[=desc_set_authors]{desc_set_authors()}}
 }
 \concept{Authors@R}

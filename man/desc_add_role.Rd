@@ -29,6 +29,8 @@ desc_add_role(
 
 \item{orcid}{ORCID field to filter on.}
 
+\item{ror}{ROR field to filter on.}
+
 \item{file}{DESCRIPTION file to use. By default the DESCRIPTION
 file of the current package (i.e. the package the working directory
 is part of) is used.}
@@ -36,8 +38,6 @@ is part of) is used.}
 \item{normalize}{Whether to "normalize" (reorder and reformat) the fields when writing back
 the result. See \code{\link[=desc_normalize]{desc_normalize()}}. Note: if \code{Config/desc/tidy} is set to a truth
 value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter.}
-
-\item{ror}{ROR field to filter on.}
 }
 \description{
 The author(s) can be specified by a combination of the \code{given},
@@ -48,18 +48,19 @@ You cannot both specify \code{orcid} and \code{ror}
 since ORCID is for individuals, ROR for organizations.
 }
 \seealso{
-Other Authors@R: 
-\code{\link{desc_add_author}()},
-\code{\link{desc_add_author_gh}()},
-\code{\link{desc_add_me}()},
-\code{\link{desc_add_orcid}()},
-\code{\link{desc_change_maintainer}()},
-\code{\link{desc_coerce_authors_at_r}()},
-\code{\link{desc_del_author}()},
-\code{\link{desc_del_role}()},
-\code{\link{desc_get_author}()},
-\code{\link{desc_get_authors}()},
-\code{\link{desc_get_maintainer}()},
-\code{\link{desc_set_authors}()}
+Other Authors@R:
+\code{\link[=desc_add_author]{desc_add_author()}},
+\code{\link[=desc_add_author_gh]{desc_add_author_gh()}},
+\code{\link[=desc_add_me]{desc_add_me()}},
+\code{\link[=desc_add_orcid]{desc_add_orcid()}},
+\code{\link[=desc_add_ror]{desc_add_ror()}},
+\code{\link[=desc_change_maintainer]{desc_change_maintainer()}},
+\code{\link[=desc_coerce_authors_at_r]{desc_coerce_authors_at_r()}},
+\code{\link[=desc_del_author]{desc_del_author()}},
+\code{\link[=desc_del_role]{desc_del_role()}},
+\code{\link[=desc_get_author]{desc_get_author()}},
+\code{\link[=desc_get_authors]{desc_get_authors()}},
+\code{\link[=desc_get_maintainer]{desc_get_maintainer()}},
+\code{\link[=desc_set_authors]{desc_set_authors()}}
 }
 \concept{Authors@R}

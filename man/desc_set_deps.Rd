@@ -22,11 +22,11 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Set all package dependencies in DESCRIPTION
 }
 \seealso{
-Other dependencies: 
-\code{\link{desc_del_dep}()},
-\code{\link{desc_del_deps}()},
-\code{\link{desc_get_deps}()},
-\code{\link{desc_has_dep}()},
-\code{\link{desc_set_dep}()}
+Other dependencies:
+\code{\link[=desc_del_dep]{desc_del_dep()}},
+\code{\link[=desc_del_deps]{desc_del_deps()}},
+\code{\link[=desc_get_deps]{desc_get_deps()}},
+\code{\link[=desc_has_dep]{desc_has_dep()}},
+\code{\link[=desc_set_dep]{desc_set_dep()}}
 }
 \concept{dependencies}

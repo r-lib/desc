@@ -22,11 +22,11 @@ A logical scalar.
 Check for a dependency
 }
 \seealso{
-Other dependencies: 
-\code{\link{desc_del_dep}()},
-\code{\link{desc_del_deps}()},
-\code{\link{desc_get_deps}()},
-\code{\link{desc_set_dep}()},
-\code{\link{desc_set_deps}()}
+Other dependencies:
+\code{\link[=desc_del_dep]{desc_del_dep()}},
+\code{\link[=desc_del_deps]{desc_del_deps()}},
+\code{\link[=desc_get_deps]{desc_get_deps()}},
+\code{\link[=desc_set_dep]{desc_set_dep()}},
+\code{\link[=desc_set_deps]{desc_set_deps()}}
 }
 \concept{dependencies}

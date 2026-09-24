@@ -40,8 +40,8 @@ Both \verb{$set_version()} and \verb{$bump_version()} use dots to
 separate the version number components.
 }
 \seealso{
-Other version numbers: 
-\code{\link{desc_get_version}()},
-\code{\link{desc_set_version}()}
+Other version numbers:
+\code{\link[=desc_get_version]{desc_get_version()}},
+\code{\link[=desc_set_version]{desc_set_version()}}
 }
 \concept{version numbers}

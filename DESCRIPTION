@@ -37,7 +37,6 @@ Config/usethis/last-upkeep: 2025-04-23
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
-RoxygenNote: 7.3.2.9000
 Collate:
     'assertions.R'
     'authors-at-r.R'
@@ -61,3 +60,4 @@ Collate:
     'utils.R'
     'validate.R'
     'version.R'
+Config/roxygen2/version: 8.1.0

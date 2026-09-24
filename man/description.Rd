@@ -185,7 +185,7 @@ description$set_version(version)
 description$bump_version(which = c("patch", "minor", "major", "dev"))
 }\if{html}{\out{</div>}}
 \itemize{
-\item \code{version}: a string or a \link[base:numeric_version]{base::package_version} object.
+\item \code{version}: a string or a \link[base:package_version]{base::package_version} object.
 \item \code{which}: which component of the version number to increase.
 See details just below.
 }
@@ -194,10 +194,10 @@ These functions are simple helpers to make it easier to query, set and
 increase the version number of a package.
 
 \verb{$get_version()} returns the version number as a
-\link[base:numeric_version]{base::package_version} object. It throws an error if the
+\link[base:package_version]{base::package_version} object. It throws an error if the
 package does not have a \code{Version} field.
 
-\verb{$set_version()} takes a string or a \link[base:numeric_version]{base::package_version} object and
+\verb{$set_version()} takes a string or a \link[base:package_version]{base::package_version} object and
 sets the \code{Version} field to it.
 
 \verb{$bump_version()} increases the version number. The \code{which}

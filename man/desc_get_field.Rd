@@ -54,11 +54,11 @@ if \code{key} is not found and \code{default} is specified.
 vector.
 }
 \seealso{
-Other simple queries: 
-\code{\link{desc_del}()},
-\code{\link{desc_fields}()},
-\code{\link{desc_get}()},
-\code{\link{desc_has_fields}()},
-\code{\link{desc_set}()}
+Other simple queries:
+\code{\link[=desc_del]{desc_del()}},
+\code{\link[=desc_fields]{desc_fields()}},
+\code{\link[=desc_get]{desc_get()}},
+\code{\link[=desc_has_fields]{desc_has_fields()}},
+\code{\link[=desc_set]{desc_set()}}
 }
 \concept{simple queries}

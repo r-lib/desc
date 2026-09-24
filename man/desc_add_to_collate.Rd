@@ -29,10 +29,10 @@ value in the DESCRIPTION file, auto-tidy will occur regardless of this parameter
 Add one or more files to the Collate field, in DESCRIPTION
 }
 \seealso{
-Other Collate field: 
-\code{\link{desc_del_collate}()},
-\code{\link{desc_del_from_collate}()},
-\code{\link{desc_get_collate}()},
-\code{\link{desc_set_collate}()}
+Other Collate field:
+\code{\link[=desc_del_collate]{desc_del_collate()}},
+\code{\link[=desc_del_from_collate]{desc_del_from_collate()}},
+\code{\link[=desc_get_collate]{desc_get_collate()}},
+\code{\link[=desc_set_collate]{desc_set_collate()}}
 }
 \concept{Collate field}

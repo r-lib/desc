@@ -43,11 +43,11 @@ and values as values to set.
 separating the elements by commas.
 }
 \seealso{
-Other simple queries: 
-\code{\link{desc_del}()},
-\code{\link{desc_fields}()},
-\code{\link{desc_get}()},
-\code{\link{desc_get_field}()},
-\code{\link{desc_has_fields}()}
+Other simple queries:
+\code{\link[=desc_del]{desc_del()}},
+\code{\link[=desc_fields]{desc_fields()}},
+\code{\link[=desc_get]{desc_get()}},
+\code{\link[=desc_get_field]{desc_get_field()}},
+\code{\link[=desc_has_fields]{desc_has_fields()}}
 }
 \concept{simple queries}

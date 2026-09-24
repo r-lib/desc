@@ -21,6 +21,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Gábor Csárdi \email{csardi.gabor@gmail.com}
   \item Kirill Müller
   \item Jim Hester \email{james.f.hester@gmail.com}
 }
@@ -28,7 +29,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Maëlle Salmon (\href{https://orcid.org/0000-0002-2815-0399}{ORCID}) [contributor]
-  \item Posit Software, PBC (03wc8by49) [copyright holder, funder]
+  \item Posit Software, PBC (\href{https://ror.org/03wc8by49}{ROR}) [copyright holder, funder]
 }
 
 }

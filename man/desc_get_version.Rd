@@ -12,15 +12,15 @@ file of the current package (i.e. the package the working directory
 is part of) is used.}
 }
 \value{
-A \link[base:numeric_version]{base::package_version} object.
+A \link[base:package_version]{base::package_version} object.
 }
 \description{
 If the file has no \code{Version} field, or it is an invalid
 version string, then it throws an error.
 }
 \seealso{
-Other version numbers: 
-\code{\link{desc_bump_version}()},
-\code{\link{desc_set_version}()}
+Other version numbers:
+\code{\link[=desc_bump_version]{desc_bump_version()}},
+\code{\link[=desc_set_version]{desc_set_version()}}
 }
 \concept{version numbers}

@@ -18,11 +18,11 @@ Character vector of fields.
 List all fields in a DESCRIPTION file
 }
 \seealso{
-Other simple queries: 
-\code{\link{desc_del}()},
-\code{\link{desc_get}()},
-\code{\link{desc_get_field}()},
-\code{\link{desc_has_fields}()},
-\code{\link{desc_set}()}
+Other simple queries:
+\code{\link[=desc_del]{desc_del()}},
+\code{\link[=desc_get]{desc_get()}},
+\code{\link[=desc_get_field]{desc_get_field()}},
+\code{\link[=desc_has_fields]{desc_has_fields()}},
+\code{\link[=desc_set]{desc_set()}}
 }
 \concept{simple queries}

@@ -51,6 +51,7 @@ export(desc_add_me)
 export(desc_add_orcid)
 export(desc_add_remotes)
 export(desc_add_role)
+export(desc_add_ror)
 export(desc_add_to_collate)
 export(desc_add_urls)
 export(desc_bump_version)
@@ -100,10 +101,12 @@ export(desc_to_latex)
 export(desc_validate)
 export(description)
 importFrom(R6,R6Class)
-importFrom(utils,as.person)
-importFrom(utils,packageName)
-importFrom(utils,person)
-importFrom(utils,tail)
-importFrom(utils,toLatex)
-importFrom(utils,untar)
-importFrom(utils,unzip)
+importFrom(utils,
+  as.person,
+  packageName,
+  person,
+  tail,
+  toLatex,
+  untar,
+  unzip
+)

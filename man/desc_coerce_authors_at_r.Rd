@@ -23,24 +23,25 @@ Convert the \code{Author} and \code{Maintainer} fields to
 \details{
 If the \code{Authors@R} field does not exist,
 \code{desc_coerce_authors_at_r} tries to parse the \code{Author} and
-\code{Maintainer} fields with \code{\link[utils:person]{utils::as.person()}} and writes
+\code{Maintainer} fields with \code{\link[utils:as.person]{utils::as.person()}} and writes
 them to the \code{Authors@R} field.
 Note that \code{Author} and \code{Maintainer} are free-form fields, so
 parsing them may fail.
 }
 \seealso{
-Other Authors@R: 
-\code{\link{desc_add_author}()},
-\code{\link{desc_add_author_gh}()},
-\code{\link{desc_add_me}()},
-\code{\link{desc_add_orcid}()},
-\code{\link{desc_add_role}()},
-\code{\link{desc_change_maintainer}()},
-\code{\link{desc_del_author}()},
-\code{\link{desc_del_role}()},
-\code{\link{desc_get_author}()},
-\code{\link{desc_get_authors}()},
-\code{\link{desc_get_maintainer}()},
-\code{\link{desc_set_authors}()}
+Other Authors@R:
+\code{\link[=desc_add_author]{desc_add_author()}},
+\code{\link[=desc_add_author_gh]{desc_add_author_gh()}},
+\code{\link[=desc_add_me]{desc_add_me()}},
+\code{\link[=desc_add_orcid]{desc_add_orcid()}},
+\code{\link[=desc_add_role]{desc_add_role()}},
+\code{\link[=desc_add_ror]{desc_add_ror()}},
+\code{\link[=desc_change_maintainer]{desc_change_maintainer()}},
+\code{\link[=desc_del_author]{desc_del_author()}},
+\code{\link[=desc_del_role]{desc_del_role()}},
+\code{\link[=desc_get_author]{desc_get_author()}},
+\code{\link[=desc_get_authors]{desc_get_authors()}},
+\code{\link[=desc_get_maintainer]{desc_get_maintainer()}},
+\code{\link[=desc_set_authors]{desc_set_authors()}}
 }
 \concept{Authors@R}
