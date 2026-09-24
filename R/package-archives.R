@@ -21,7 +21,9 @@ is_gz_file <- function(file) {
 }
 
 is_tar_gz_file <- function(file) {
-  if (!is_gz_file(file)) return(FALSE)
+  if (!is_gz_file(file)) {
+    return(FALSE)
+  }
   con <- gzfile(file, open = "rb")
   on.exit(close(con))
   buf <- readBin(con, what = "raw", n = 262)

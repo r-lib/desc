@@ -4,7 +4,9 @@ test_package_root <- function() {
     error = function(e) NULL
   )
 
-  if (!is.null(x)) return(x)
+  if (!is.null(x)) {
+    return(x)
+  }
 
   pkg <- testthat::testing_package()
   x <- tryCatch(
@@ -14,7 +16,9 @@ test_package_root <- function() {
     error = function(e) NULL
   )
 
-  if (!is.null(x)) return(x)
+  if (!is.null(x)) {
+    return(x)
+  }
 
   stop("Cannot find package root")
 }

@@ -76,7 +76,9 @@ flatten <- function(x) {
 }
 
 ngrepl <- function(pattern, x, ...) {
-  if (is.null(pattern)) pattern <- ""
+  if (is.null(pattern)) {
+    pattern <- ""
+  }
   x <- flatten(x)
   grepl(pattern, x, ...)
 }
@@ -86,7 +88,9 @@ check_for_package <- function(
   msg = paste0("Package '", pkg, "' is needed.")
 ) {
   has <- requireNamespace(pkg, quietly = TRUE)
-  if (!has) stop(msg, call. = FALSE)
+  if (!has) {
+    stop(msg, call. = FALSE)
+  }
   has
 }
 

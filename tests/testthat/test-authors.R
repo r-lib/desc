@@ -578,7 +578,9 @@ test_that("long comments are deparsed properly", {
 
 test_that("deparse_authors_at_r", {
   # old R deparses named vectors differently
-  if (getRversion() < "3.5") skip("Needs newer R")
+  if (getRversion() < "3.5") {
+    skip("Needs newer R")
+  }
 
   ppl <- c(
     person(

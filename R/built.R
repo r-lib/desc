@@ -1,6 +1,8 @@
 idesc_get_built <- function(self, private) {
   built <- gsub("\\n", " ", unname(self$get("Built")))
-  if (is.na(built)) stop("No ", sQuote('Built'), " field found")
+  if (is.na(built)) {
+    stop("No ", sQuote('Built'), " field found")
+  }
   built <- as.list(trimws(strsplit(built, "; ")[[1L]]))
   if (length(built) != 4L) {
     stop(sQuote('Built'), " field is corrupted")

@@ -1,7 +1,9 @@
 #' @importFrom utils as.person
 
 parse_authors_at_r <- function(x) {
-  if (is.null(x) || is.na(x)) return(NULL)
+  if (is.null(x) || is.na(x)) {
+    return(NULL)
+  }
 
   # Need a connection on R 3.6 and before, because the encoding will
   # be messed up. Also need to set the input to `unknown`.
@@ -103,7 +105,9 @@ old_deparse_author_at_r <- function(x1) {
 
 set_author_field <- function(authors, which, field, value) {
   rval <- unclass(authors)
-  for (w in which) rval[[w]][[field]] <- value
+  for (w in which) {
+    rval[[w]][[field]] <- value
+  }
   class(rval) <- class(authors)
   rval
 }
@@ -147,7 +151,9 @@ search_for_author <- function(
 
 idesc_get_authors <- function(self, private, ensure = TRUE) {
   stopifnot(is_flag(ensure))
-  if (ensure) ensure_authors_at_r(self)
+  if (ensure) {
+    ensure_authors_at_r(self)
+  }
   parse_authors_at_r(self$get("Authors@R"))
 }
 
@@ -158,7 +164,9 @@ idesc_get_author <- function(self, private, role) {
     aut <- self$get_authors()
     roles <- aut$role
     ## Broken person() API, vector for 1 author, list otherwise...
-    if (!is.list(roles)) roles <- list(roles)
+    if (!is.list(roles)) {
+      roles <- list(roles)
+    }
     selected <- vapply(roles, function(r) all(role %in% r), TRUE)
     aut[selected]
   } else {
@@ -557,7 +565,9 @@ idesc_add_author_gh <- function(
 
 author_gh <- function(username) {
   opt <- getOption("desc.gh_user")
-  if (!is.null(opt)) return(opt)
+  if (!is.null(opt)) {
+    return(opt)
+  }
   check_for_package("gh", "$add_author_gh needs the 'gh' package")
   gh::gh("GET /users/:username", username = username)
 }
@@ -576,7 +586,9 @@ idesc_get_maintainer <- function(self, private) {
 }
 
 idesc_coerce_authors_at_r <- function(self, private) {
-  if (self$has_fields("Authors@R")) return(invisible(NULL)) # exit early
+  if (self$has_fields("Authors@R")) {
+    return(invisible(NULL))
+  } # exit early
 
   if (!self$has_fields("Author")) {
     stop(
@@ -638,7 +650,7 @@ idesc_coerce_authors_at_r <- function(self, private) {
     mauth$comment <- list(mauth$comment %||% man$comment)
 
     # combine all authors and set as authors@R
-    auths = c(mauth, other_auth)
+    auths <- c(mauth, other_auth)
     self$set_authors(auths)
   }
 }

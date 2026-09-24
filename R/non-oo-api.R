@@ -6,14 +6,15 @@
 #' @importFrom utils packageName
 
 generate_api <- function(member, self = TRUE, norm = TRUE, invisible = FALSE) {
-  res <- function() {
-  }
+  res <- function() {}
 
   func <- description$public_methods[[member]]
 
   ## Arguments
   xargs <- list(file = ".")
-  if (self && norm) xargs <- c(xargs, list(normalize = FALSE))
+  if (self && norm) {
+    xargs <- c(xargs, list(normalize = FALSE))
+  }
   formals(res) <- c(formals(func), xargs)
 
   ## Call to member function
@@ -36,7 +37,9 @@ generate_api <- function(member, self = TRUE, norm = TRUE, invisible = FALSE) {
   ## Call to write, or just return the result
   write_call <- if (self && norm) {
     quote({
-      if (normalize) desc$normalize()
+      if (normalize) {
+        desc$normalize()
+      }
       desc$write(file = file)
     })
   } else if (self) {
