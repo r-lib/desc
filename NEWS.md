@@ -1,8 +1,16 @@
 # desc (development version)
 
-* New `add_ror()` method and `desc_add_ror()` functions make it possible to add ROR IDs to authors directly instead of via the `comment` argument. (@maelle, #158)
+* If `Config/desc/tidy` is set to `TRUE` in `DESCRIPTION`, then
+  `description$write()` and the `desc_*()` functions now automatically
+  normalize (reorder and reformat) the fields before writing (#133).
 
-* All functions and methods managing possibly non individual authors (`add_author()`, `del_author()`, `add_role()`, `del_role()`, `search_for_author()`, etc.) gain a `ror` argument. (@maelle, #158)
+* New `add_ror()` method and `desc_add_ror()` functions make it possible to
+  add ROR IDs to authors directly instead of via the `comment` argument
+  (@maelle, #158).
+
+* All functions and methods managing possibly non individual authors
+  (`add_author()`, `del_author()`, `add_role()`, `del_role()`,
+  `search_for_author()`, etc.) gain a `ror` argument (@maelle, #158).
 
 * `desc_get_built()` no longer fails if Built spans multiple lines
   (#145, @seankross).

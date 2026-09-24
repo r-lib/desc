@@ -186,6 +186,11 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'      from a file in the first place, then it is written to the same
 #'      file. Otherwise this argument must be specified.
 #'
+#' **Auto-tidy**: If `Config/desc/tidy` is set to a truth value
+#' (such as `"true"`, `"yes"`, or `"1"`), the description will be
+#' automatically normalized (tidied) before writing. This includes
+#' reordering and reformatting fields according to standard conventions.
+#'
 #' @section Version numbers:
 #'
 #' ```r
@@ -443,6 +448,27 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #'
 #' `$clear_remotes()` deletes all remotes.
 #'
+#' @section Config:
+#'
+#' Configuration fields (`Config/*`) provide package-specific settings
+#' that control various behaviors. The `$get_config()` method provides
+#' access to these configuration values with automatic boolean parsing.
+#'
+#' ```r
+#' description$get_config(key)
+#' ```
+#'
+#' * `key`: the configuration field to retrieve (e.g., `"Config/desc/tidy"`).
+#'
+#' `$get_config()` returns `TRUE` for values like `"true"`, `"TRUE"`,
+#' `"yes"`, or `"1"`, and `FALSE` for values like `"false"`, `"FALSE"`,
+#' `"no"`, `"0"`, invalid values, or missing fields.
+#'
+#' **Auto-tidy configuration**: Setting `Config/desc/tidy` to a truth
+#' value enables automatic normalization when writing DESCRIPTION files.
+#' This ensures consistent formatting across all operations that modify
+#' and save the description.
+#'
 #' @section Built:
 #'
 #' The `Built` field is used in binary packages to store information
@@ -486,6 +512,12 @@ desc <- function(cmd = NULL, file = NULL, text = NULL, package = NULL) {
 #' desc2$set(VignetteBuilder = "knitr")
 #' desc2$get("VignetteBuilder")
 #' desc2
+#'
+#' ## Enable auto-tidy for consistent formatting
+#' desc3 <- description$new("!new")
+#' desc3$set("Config/desc/tidy", "true")
+#' desc3$set("Imports", "zzz, aaa, mmm")  # Will be auto-sorted when written
+#' desc3$get_config("Config/desc/tidy")   # Returns TRUE
 
 description <- R6Class(
   "description",
@@ -824,6 +856,11 @@ description <- R6Class(
     clear_remotes = function() idesc_clear_remotes(self, private),
 
     ## -----------------------------------------------------------------
+    ## Config
+
+    get_config = function(key) idesc_get_config(self, private, key),
+
+    ## -----------------------------------------------------------------
     ## Built
 
     get_built = function() idesc_get_built(self, private)
@@ -968,6 +1005,11 @@ idesc_write <- function(self, private, file) {
       "Cannot write back DESCRIPTION. Note that it is not possible
           to update DESCRIPTION files within package archives"
     )
+  }
+
+  ## check if auto-tidy is enabled and normalize if so
+  if (get_config_value(self, "Config/desc/tidy")) {
+    self$normalize()
   }
 
   mat <- idesc_as_matrix(private$data)
