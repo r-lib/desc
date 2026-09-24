@@ -29,11 +29,11 @@ the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 Remove a package dependency from DESCRIPTION
 }
 \seealso{
-Other dependencies: 
-\code{\link{desc_del_deps}()},
-\code{\link{desc_get_deps}()},
-\code{\link{desc_has_dep}()},
-\code{\link{desc_set_dep}()},
-\code{\link{desc_set_deps}()}
+Other dependencies:
+\code{\link[=desc_del_deps]{desc_del_deps()}},
+\code{\link[=desc_get_deps]{desc_get_deps()}},
+\code{\link[=desc_has_dep]{desc_has_dep()}},
+\code{\link[=desc_set_dep]{desc_set_dep()}},
+\code{\link[=desc_set_deps]{desc_set_deps()}}
 }
 \concept{dependencies}

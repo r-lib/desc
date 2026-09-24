@@ -25,10 +25,10 @@ the result. See \code{\link[=desc_normalize]{desc_normalize()}}.}
 Delete the Collate field from DESCRIPTION
 }
 \seealso{
-Other Collate field: 
-\code{\link{desc_add_to_collate}()},
-\code{\link{desc_del_from_collate}()},
-\code{\link{desc_get_collate}()},
-\code{\link{desc_set_collate}()}
+Other Collate field:
+\code{\link[=desc_add_to_collate]{desc_add_to_collate()}},
+\code{\link[=desc_del_from_collate]{desc_del_from_collate()}},
+\code{\link[=desc_get_collate]{desc_get_collate()}},
+\code{\link[=desc_set_collate]{desc_set_collate()}}
 }
 \concept{Collate field}

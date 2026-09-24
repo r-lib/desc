@@ -101,10 +101,12 @@ export(desc_to_latex)
 export(desc_validate)
 export(description)
 importFrom(R6,R6Class)
-importFrom(utils,as.person)
-importFrom(utils,packageName)
-importFrom(utils,person)
-importFrom(utils,tail)
-importFrom(utils,toLatex)
-importFrom(utils,untar)
-importFrom(utils,unzip)
+importFrom(utils,
+  as.person,
+  packageName,
+  person,
+  tail,
+  toLatex,
+  untar,
+  unzip
+)

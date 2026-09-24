@@ -20,11 +20,11 @@ Data frame with columns: \code{type} (dependency type),
 List all package dependencies from a DESCRIPTION file
 }
 \seealso{
-Other dependencies: 
-\code{\link{desc_del_dep}()},
-\code{\link{desc_del_deps}()},
-\code{\link{desc_has_dep}()},
-\code{\link{desc_set_dep}()},
-\code{\link{desc_set_deps}()}
+Other dependencies:
+\code{\link[=desc_del_dep]{desc_del_dep()}},
+\code{\link[=desc_del_deps]{desc_del_deps()}},
+\code{\link[=desc_has_dep]{desc_has_dep()}},
+\code{\link[=desc_set_dep]{desc_set_dep()}},
+\code{\link[=desc_set_deps]{desc_set_deps()}}
 }
 \concept{dependencies}
