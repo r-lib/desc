@@ -1,0 +1,8 @@
+Package: foo
+# foo
+Version: 1.4.3.9000
+Remotes:
+  # bar
+  user/pkg1,
+  # baz
+  user/pkg2

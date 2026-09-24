@@ -13,6 +13,8 @@
 * `desc_coerce_authors_at_r()` now works correctly for authors with
   multiple given names.
 
+* Ignore comment lines (starting with `#`) in DCF fields (#172, @etiennebacher).
+
 # desc 1.4.3
 
 * `$set()` and `desc_set()` now can omit checks if `check = FALSE`
