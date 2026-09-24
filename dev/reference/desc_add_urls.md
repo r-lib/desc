@@ -25,3 +25,5 @@ desc_add_urls(urls, file = ".", normalize = FALSE)
   Whether to "normalize" (reorder and reformat) the fields when writing
   back the result. See
   [`desc_normalize()`](https://desc.r-lib.org/dev/reference/desc_normalize.md).
+  Note: if `Config/desc/tidy` is set to a truth value in the DESCRIPTION
+  file, auto-tidy will occur regardless of this parameter.

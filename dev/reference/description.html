@@ -164,7 +164,11 @@ created from a file. Otherwise giving a file name is compulsory:</p>
 <p></p><div class="sourceCode r"><pre><code><span><span class="va">description</span><span class="op">$</span><span class="fu">write</span><span class="op">(</span>file <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre><p></p></div><ul><li><p><code>file</code>: path to write the description to. If it was created
 from a file in the first place, then it is written to the same
 file. Otherwise this argument must be specified.</p></li>
-</ul></div>
+</ul><p><strong>Auto-tidy</strong>: If <code>Config/desc/tidy</code> is set to a truth value
+(such as <code>"true"</code>, <code>"yes"</code>, or <code>"1"</code>), the description will be
+automatically normalized (tidied) before writing. This includes
+reordering and reformatting fields according to standard conventions.</p>
+    </div>
     <div class="section level2">
     <h2 id="version-numbers">Version numbers<a class="anchor" aria-label="anchor" href="#version-numbers"></a></h2>
 
@@ -372,6 +376,23 @@ pattern.</p>
 <p><code>$clear_remotes()</code> deletes all remotes.</p>
     </div>
     <div class="section level2">
+    <h2 id="config">Config<a class="anchor" aria-label="anchor" href="#config"></a></h2>
+
+
+
+<p>Configuration fields (<code>Config/*</code>) provide package-specific settings
+that control various behaviors. The <code>$get_config()</code> method provides
+access to these configuration values with automatic boolean parsing.</p>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">description</span><span class="op">$</span><span class="fu">get_config</span><span class="op">(</span><span class="va">key</span><span class="op">)</span></span></code></pre><p></p></div><ul><li><p><code>key</code>: the configuration field to retrieve (e.g., <code>"Config/desc/tidy"</code>).</p></li>
+</ul><p><code>$get_config()</code> returns <code>TRUE</code> for values like <code>"true"</code>, <code>"TRUE"</code>,
+<code>"yes"</code>, or <code>"1"</code>, and <code>FALSE</code> for values like <code>"false"</code>, <code>"FALSE"</code>,
+<code>"no"</code>, <code>"0"</code>, invalid values, or missing fields.</p>
+<p><strong>Auto-tidy configuration</strong>: Setting <code>Config/desc/tidy</code> to a truth
+value enables automatic normalization when writing DESCRIPTION files.
+This ensures consistent formatting across all operations that modify
+and save the description.</p>
+    </div>
+    <div class="section level2">
     <h2 id="built">Built<a class="anchor" aria-label="anchor" href="#built"></a></h2>
 
 
@@ -451,7 +472,7 @@ package, you use the UTF-8 encoding, for maximum portability.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     testthat,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     whoami,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     withr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Built</span>: R 4.6.1; ; 2026-09-24 12:53:43 UTC; unix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Built</span>: R 4.6.1; ; 2026-09-24 15:03:03 UTC; unix</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/Needs/website</span>: tidyverse/tidytemplate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/roxygen2/version</span>: 8.1.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/testthat/edition</span>: 3</span>
@@ -459,7 +480,7 @@ package, you use the UTF-8 encoding, for maximum portability.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Encoding</span>: UTF-8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Language</span>: en-US</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">NeedsCompilation</span>: no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Packaged</span>: 2026-09-24 12:53:43 UTC; runner</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Packaged</span>: 2026-09-24 15:03:01 UTC; runner</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RemotePkgRef</span>: local::.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RemoteType</span>: local</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Roxygen</span>: list(r6 = FALSE, load = "installed", markdown = TRUE)</span>
@@ -532,7 +553,7 @@ package, you use the UTF-8 encoding, for maximum portability.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     withr</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">VignetteBuilder</span>:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     knitr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Built</span>: R 4.6.1; ; 2026-09-24 12:53:43 UTC; unix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Built</span>: R 4.6.1; ; 2026-09-24 15:03:03 UTC; unix</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/Needs/website</span>: tidyverse/tidytemplate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/roxygen2/version</span>: 8.1.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Config/testthat/edition</span>: 3</span>
@@ -540,7 +561,7 @@ package, you use the UTF-8 encoding, for maximum portability.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Encoding</span>: UTF-8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Language</span>: en-US</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">NeedsCompilation</span>: no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Packaged</span>: 2026-09-24 12:53:43 UTC; runner</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Packaged</span>: 2026-09-24 15:03:01 UTC; runner</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RemotePkgRef</span>: local::.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">RemoteType</span>: local</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">Roxygen</span>: list(r6 = FALSE, load = "installed", markdown = TRUE)</span>
@@ -567,6 +588,13 @@ package, you use the UTF-8 encoding, for maximum portability.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'utils.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'validate.R'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     'version.R'</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Enable auto-tidy for consistent formatting</span></span></span>
+<span class="r-in"><span><span class="va">desc3</span> <span class="op">&lt;-</span> <span class="va">description</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"!new"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">desc3</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"Config/desc/tidy"</span>, <span class="st">"true"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">desc3</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">"Imports"</span>, <span class="st">"zzz, aaa, mmm"</span><span class="op">)</span>  <span class="co"># Will be auto-sorted when written</span></span></span>
+<span class="r-in"><span><span class="va">desc3</span><span class="op">$</span><span class="fu">get_config</span><span class="op">(</span><span class="st">"Config/desc/tidy"</span><span class="op">)</span>   <span class="co"># Returns TRUE</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

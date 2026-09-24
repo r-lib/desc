@@ -2,17 +2,22 @@
 
 ## desc (development version)
 
+- If `Config/desc/tidy` is set to `TRUE` in `DESCRIPTION`, then
+  `description$write()` and the `desc_*()` functions now automatically
+  normalize (reorder and reformat) the fields before writing
+  ([\#133](https://github.com/r-lib/desc/issues/133)).
+
 - New `add_ror()` method and
   [`desc_add_ror()`](https://desc.r-lib.org/dev/reference/desc_add_ror.md)
   functions make it possible to add ROR IDs to authors directly instead
-  of via the `comment` argument. ([@maelle](https://github.com/maelle),
-  [\#158](https://github.com/r-lib/desc/issues/158))
+  of via the `comment` argument ([@maelle](https://github.com/maelle),
+  [\#158](https://github.com/r-lib/desc/issues/158)).
 
 - All functions and methods managing possibly non individual authors
   (`add_author()`, `del_author()`, `add_role()`, `del_role()`,
-  `search_for_author()`, etc.) gain a `ror` argument.
+  `search_for_author()`, etc.) gain a `ror` argument
   ([@maelle](https://github.com/maelle),
-  [\#158](https://github.com/r-lib/desc/issues/158))
+  [\#158](https://github.com/r-lib/desc/issues/158)).
 
 - [`desc_get_built()`](https://desc.r-lib.org/dev/reference/desc_get_built.md)
   no longer fails if Built spans multiple lines

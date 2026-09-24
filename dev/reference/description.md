@@ -154,6 +154,11 @@ The API:
   file in the first place, then it is written to the same file.
   Otherwise this argument must be specified.
 
+**Auto-tidy**: If `Config/desc/tidy` is set to a truth value (such as
+`"true"`, `"yes"`, or `"1"`), the description will be automatically
+normalized (tidied) before writing. This includes reordering and
+reformatting fields according to standard conventions.
+
 ## Version numbers
 
     description$get_version()
@@ -405,6 +410,26 @@ removed.
 
 `$clear_remotes()` deletes all remotes.
 
+## Config
+
+Configuration fields (`Config/*`) provide package-specific settings that
+control various behaviors. The `$get_config()` method provides access to
+these configuration values with automatic boolean parsing.
+
+    description$get_config(key)
+
+- `key`: the configuration field to retrieve (e.g.,
+  `"Config/desc/tidy"`).
+
+`$get_config()` returns `TRUE` for values like `"true"`, `"TRUE"`,
+`"yes"`, or `"1"`, and `FALSE` for values like `"false"`, `"FALSE"`,
+`"no"`, `"0"`, invalid values, or missing fields.
+
+**Auto-tidy configuration**: Setting `Config/desc/tidy` to a truth value
+enables automatic normalization when writing DESCRIPTION files. This
+ensures consistent formatting across all operations that modify and save
+the description.
+
 ## Built
 
 The `Built` field is used in binary packages to store information about
@@ -483,7 +508,7 @@ desc2
 #>     testthat,
 #>     whoami,
 #>     withr
-#> Built: R 4.6.1; ; 2026-09-24 12:53:43 UTC; unix
+#> Built: R 4.6.1; ; 2026-09-24 15:03:03 UTC; unix
 #> Config/Needs/website: tidyverse/tidytemplate
 #> Config/roxygen2/version: 8.1.0
 #> Config/testthat/edition: 3
@@ -491,7 +516,7 @@ desc2
 #> Encoding: UTF-8
 #> Language: en-US
 #> NeedsCompilation: no
-#> Packaged: 2026-09-24 12:53:43 UTC; runner
+#> Packaged: 2026-09-24 15:03:01 UTC; runner
 #> RemotePkgRef: local::.
 #> RemoteType: local
 #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
@@ -564,7 +589,7 @@ desc2
 #>     withr
 #> VignetteBuilder:
 #>     knitr
-#> Built: R 4.6.1; ; 2026-09-24 12:53:43 UTC; unix
+#> Built: R 4.6.1; ; 2026-09-24 15:03:03 UTC; unix
 #> Config/Needs/website: tidyverse/tidytemplate
 #> Config/roxygen2/version: 8.1.0
 #> Config/testthat/edition: 3
@@ -572,7 +597,7 @@ desc2
 #> Encoding: UTF-8
 #> Language: en-US
 #> NeedsCompilation: no
-#> Packaged: 2026-09-24 12:53:43 UTC; runner
+#> Packaged: 2026-09-24 15:03:01 UTC; runner
 #> RemotePkgRef: local::.
 #> RemoteType: local
 #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
@@ -599,4 +624,11 @@ desc2
 #>     'utils.R'
 #>     'validate.R'
 #>     'version.R'
+
+## Enable auto-tidy for consistent formatting
+desc3 <- description$new("!new")
+desc3$set("Config/desc/tidy", "true")
+desc3$set("Imports", "zzz, aaa, mmm")  # Will be auto-sorted when written
+desc3$get_config("Config/desc/tidy")   # Returns TRUE
+#> [1] TRUE
 ```
