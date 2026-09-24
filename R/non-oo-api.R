@@ -37,7 +37,7 @@ generate_api <- function(member, self = TRUE, norm = TRUE, invisible = FALSE) {
   ## Call to write, or just return the result
   write_call <- if (self && norm) {
     quote({
-      if (normalize && !get_config_value(desc, "Config/desc/tidy")) {
+      if (normalize) {
         desc$normalize()
       }
       desc$write(file = file)
