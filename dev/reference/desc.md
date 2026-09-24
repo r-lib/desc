@@ -77,7 +77,7 @@ desc(package = "desc")
 #>     testthat,
 #>     whoami,
 #>     withr
-#> Built: R 4.6.1; ; 2026-09-24 15:03:03 UTC; unix
+#> Built: R 4.6.1; ; 2026-09-24 15:49:51 UTC; unix
 #> Config/Needs/website: tidyverse/tidytemplate
 #> Config/roxygen2/version: 8.1.0
 #> Config/testthat/edition: 3
@@ -85,7 +85,7 @@ desc(package = "desc")
 #> Encoding: UTF-8
 #> Language: en-US
 #> NeedsCompilation: no
-#> Packaged: 2026-09-24 15:03:01 UTC; runner
+#> Packaged: 2026-09-24 15:49:49 UTC; runner
 #> RemotePkgRef: local::.
 #> RemoteType: local
 #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
@@ -148,7 +148,7 @@ desc(DESCRIPTION)
 #>     testthat,
 #>     whoami,
 #>     withr
-#> Built: R 4.6.1; ; 2026-09-24 15:03:03 UTC; unix
+#> Built: R 4.6.1; ; 2026-09-24 15:49:51 UTC; unix
 #> Config/Needs/website: tidyverse/tidytemplate
 #> Config/roxygen2/version: 8.1.0
 #> Config/testthat/edition: 3
@@ -156,7 +156,7 @@ desc(DESCRIPTION)
 #> Encoding: UTF-8
 #> Language: en-US
 #> NeedsCompilation: no
-#> Packaged: 2026-09-24 15:03:01 UTC; runner
+#> Packaged: 2026-09-24 15:49:49 UTC; runner
 #> RemotePkgRef: local::.
 #> RemoteType: local
 #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
