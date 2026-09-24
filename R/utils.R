@@ -222,3 +222,7 @@ get_config_value <- function(desc_obj, key) {
     return(FALSE)
   }
 }
+
+idesc_get_config <- function(self, private, key) {
+  get_config_value(self, key)
+}
