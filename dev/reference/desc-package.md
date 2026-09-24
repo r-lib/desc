@@ -19,6 +19,8 @@ Useful links:
 
 Authors:
 
+- Gábor Csárdi <csardi.gabor@gmail.com>
+
 - Kirill Müller
 
 - Jim Hester <james.f.hester@gmail.com>

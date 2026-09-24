@@ -483,18 +483,18 @@ desc2
 #>     testthat,
 #>     whoami,
 #>     withr
-#> Built: R 4.6.1; ; 2026-09-17 18:09:41 UTC; unix
+#> Built: R 4.6.1; ; 2026-09-24 12:43:08 UTC; unix
 #> Config/Needs/website: tidyverse/tidytemplate
+#> Config/roxygen2/version: 8.1.0
 #> Config/testthat/edition: 3
 #> Config/usethis/last-upkeep: 2025-04-23
 #> Encoding: UTF-8
 #> Language: en-US
 #> NeedsCompilation: no
-#> Packaged: 2026-09-17 18:09:40 UTC; runner
+#> Packaged: 2026-09-24 12:43:02 UTC; runner
 #> RemotePkgRef: local::.
 #> RemoteType: local
 #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
-#> RoxygenNote: 7.3.2.9000
 #> Collate:
 #>     'assertions.R'
 #>     'authors-at-r.R'
@@ -564,18 +564,18 @@ desc2
 #>     withr
 #> VignetteBuilder:
 #>     knitr
-#> Built: R 4.6.1; ; 2026-09-17 18:09:41 UTC; unix
+#> Built: R 4.6.1; ; 2026-09-24 12:43:08 UTC; unix
 #> Config/Needs/website: tidyverse/tidytemplate
+#> Config/roxygen2/version: 8.1.0
 #> Config/testthat/edition: 3
 #> Config/usethis/last-upkeep: 2025-04-23
 #> Encoding: UTF-8
 #> Language: en-US
 #> NeedsCompilation: no
-#> Packaged: 2026-09-17 18:09:40 UTC; runner
+#> Packaged: 2026-09-24 12:43:02 UTC; runner
 #> RemotePkgRef: local::.
 #> RemoteType: local
 #> Roxygen: list(r6 = FALSE, load = "installed", markdown = TRUE)
-#> RoxygenNote: 7.3.2.9000
 #> Collate:
 #>     'assertions.R'
 #>     'authors-at-r.R'

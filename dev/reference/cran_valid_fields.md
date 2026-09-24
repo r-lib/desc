@@ -8,10 +8,6 @@ A list of DESCRIPTION fields that are valid according to the CRAN checks
 cran_valid_fields
 ```
 
-## Format
-
-An object of class `character` of length 125.
-
 ## See also
 
 Other field types:

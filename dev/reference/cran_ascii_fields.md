@@ -8,10 +8,6 @@ The DESCRIPTION fields that are supposed to be in plain ASCII encoding
 cran_ascii_fields
 ```
 
-## Format
-
-An object of class `character` of length 16.
-
 ## See also
 
 Other field types:
