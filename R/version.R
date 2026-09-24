@@ -1,6 +1,8 @@
 idesc_get_version <- function(self, private) {
   ver <- unname(self$get("Version"))
-  if (is.na(ver)) stop("No ", sQuote('Version'), " field found")
+  if (is.na(ver)) {
+    stop("No ", sQuote('Version'), " field found")
+  }
   package_version(ver)
 }
 
@@ -22,13 +24,17 @@ idesc_bump_version <- function(self, private, which) {
   inc <- if (which == 4 && length(ver) < 4) 9000 else 1
 
   ## Missing components are equivalent to zero
-  if (which > length(ver)) ver <- c(ver, rep(0, which - length(ver)))
+  if (which > length(ver)) {
+    ver <- c(ver, rep(0, which - length(ver)))
+  }
 
   ## Bump selected component
   ver[which] <- ver[which] + inc
 
   ## Zero out everything after
-  if (which < length(ver)) ver[(which + 1):length(ver)] <- 0
+  if (which < length(ver)) {
+    ver[(which + 1):length(ver)] <- 0
+  }
 
   ## Keep at most three components if they are zero
   if (length(ver) > 3 && all(ver[4:length(ver)] == 0)) {

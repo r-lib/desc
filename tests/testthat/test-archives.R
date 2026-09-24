@@ -39,8 +39,12 @@ test_that("is_valid_package_file_name", {
     "foo_1.0.zipfile" # invalid file extension
   )
 
-  for (x in pos) expect_true(is_valid_package_file_name(x), info = x)
-  for (x in neg) expect_false(is_valid_package_file_name(x), info = x)
+  for (x in pos) {
+    expect_true(is_valid_package_file_name(x), info = x)
+  }
+  for (x in neg) {
+    expect_false(is_valid_package_file_name(x), info = x)
+  }
 })
 
 test_that("is_package_archive", {
@@ -54,8 +58,12 @@ test_that("is_package_archive", {
   )
   neg <- file.path("fixtures", c("xxx.zip", "xxx.gz", "xxx.tar.gz"))
 
-  for (x in pos) expect_true(is_package_archive(x), info = x)
-  for (x in neg) expect_false(is_package_archive(x), info = x)
+  for (x in pos) {
+    expect_true(is_package_archive(x), info = x)
+  }
+  for (x in neg) {
+    expect_false(is_package_archive(x), info = x)
+  }
 })
 
 test_that("get_description_from_package", {

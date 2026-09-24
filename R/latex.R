@@ -77,8 +77,9 @@ toLatex.person <- function(object, ...) {
     " ",
     format(object, include = c("given", "family")),
     " ",
-    if (!is.null(object$email))
-      paste0("<\\href{mailto:", object$email, "}{", object$email, "}>"),
+    if (!is.null(object$email)) {
+      paste0("<\\href{mailto:", object$email, "}{", object$email, "}>")
+    },
     format(object, include = c("comment"))
   )
 }

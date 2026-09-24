@@ -31,7 +31,9 @@ idesc_add_remotes <- function(self, private, remotes) {
 idesc_del_remotes <- function(self, private, pattern) {
   stopifnot(is_string(pattern))
   remotes <- self$get_remotes()
-  if (length(remotes) == 0) return(invisible(self))
+  if (length(remotes) == 0) {
+    return(invisible(self))
+  }
 
   filt <- grep(pattern, remotes, invert = TRUE, value = TRUE, perl = TRUE)
   if (length(filt) > 0) {

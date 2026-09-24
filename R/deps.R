@@ -52,7 +52,9 @@ idesc_set_deps <- function(self, private, deps) {
 
 
 same_deps <- function(d1, d2) {
-  if (is.null(d1) + is.null(d2) == 1) return(FALSE)
+  if (is.null(d1) + is.null(d2) == 1) {
+    return(FALSE)
+  }
 
   d1 <- parse_deps("foo", d1)
   d2 <- parse_deps("foo", d2)

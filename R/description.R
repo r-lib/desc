@@ -972,7 +972,10 @@ idesc_create_text <- function(self, private, text) {
     # If text is a named vector, use names for field names and values
     # for field values
     text <- paste0(
-      names(text), ": ", text, collapse = "\n"
+      names(text),
+      ": ",
+      text,
+      collapse = "\n"
     )
   }
 

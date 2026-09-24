@@ -14,7 +14,9 @@
 #' @keywords internal
 
 check_encoding <- function(self, private, new_fields) {
-  if (!is.na(self$get('Encoding'))) return(invisible(self))
+  if (!is.na(self$get('Encoding'))) {
+    return(invisible(self))
+  }
 
   fields <- if (is.null(new_fields)) {
     as.list(self$get(self$fields()))

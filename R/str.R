@@ -10,7 +10,9 @@ idesc_str <- function(
   stopifnot(is_flag(by_field))
   mode <- match.arg(mode)
   cols <- names(private$data)
-  if (normalize) cols <- field_order(cols)
+  if (normalize) {
+    cols <- field_order(cols)
+  }
   col_str <- vapply(
     cols,
     FUN.VALUE = "",
@@ -85,12 +87,13 @@ format.DescriptionDependencyList <- function(x, ...) {
   paste0(
     cli::col_blue(x$key),
     if (nzchar(x$value)) ":\n" else ":",
-    if (nzchar(x$value))
+    if (nzchar(x$value)) {
       paste0(
         "    ",
         sort(str_trim(strsplit(color_bad(x), ",", fixed = TRUE)[[1]])),
         collapse = ",\n"
       )
+    }
   )
 }
 

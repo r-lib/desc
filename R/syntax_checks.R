@@ -47,7 +47,9 @@ check_field.DescriptionField <- function(x, warn = FALSE, ...) TRUE
 
 check_field.DescriptionPackage <- function(x, warn = FALSE, R = FALSE, ...) {
   ## In Depends, we can depend on certain 'R' versions
-  if (R && x$value == "R") return(TRUE)
+  if (R && x$value == "R") {
+    return(TRUE)
+  }
 
   chks(
     x = x,
@@ -180,18 +182,21 @@ check_field.DescriptionDependencyList <- function(x, warn = FALSE, ...) {
   is_package_list <- function(xx) {
     p <- lapply(
       xx,
-      function(pc)
+      function(pc) {
         check_field.DescriptionPackage(
           list(key = "Package", value = pc),
           R = x$key[1] == "Depends"
         )
+      }
     )
     all_true(p)
   }
 
   is_version_req <- function(x) {
     x <- str_trim(x)
-    if (x == "*") return(TRUE)
+    if (x == "*") {
+      return(TRUE)
+    }
 
     re <- paste0(
       "^(<=|>=|<|>|==|!=)\\s*",
@@ -241,8 +246,9 @@ check_field.DescriptionPackageList <- function(x, warn = FALSE, ...) {
     xx <- str_trim(strsplit(x, ",", fixed = TRUE)[[1]])
     p <- lapply(
       xx,
-      function(pc)
+      function(pc) {
         check_field.DescriptionPackage(list(key = "Package", value = pc))
+      }
     )
     all_true(p)
   }

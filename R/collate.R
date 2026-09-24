@@ -5,7 +5,9 @@ which_collate <- function(x) {
 
 idesc_set_collate <- function(self, private, files, which) {
   stopifnot(is.character(files), is_collate_field(which))
-  if (length(files) == 0) warning("No files in 'Collate' field")
+  if (length(files) == 0) {
+    warning("No files in 'Collate' field")
+  }
 
   idesc_really_set_collate(self, private, files, which_collate(which))
 }
@@ -46,7 +48,9 @@ idesc_add_to_collate <- function(self, private, files, which) {
     if (length(ex_coll) == 0) {
       real_add_to_collate(self, private, which_collate("main"), files)
     } else {
-      for (ex in ex_coll) real_add_to_collate(self, private, ex, files)
+      for (ex in ex_coll) {
+        real_add_to_collate(self, private, ex, files)
+      }
     }
   } else if (which == "all") {
     for (coll in collate_fields) {
