@@ -1,5 +1,6 @@
 read_dcf <- function(file) {
   lines <- readLines(file)
+  lines <- lines[!grepl("^\\s*#", lines, useBytes = TRUE)]
 
   encoding <- sub(
     "^Encoding:\\s*",
