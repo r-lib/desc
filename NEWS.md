@@ -21,6 +21,9 @@
 * `desc_coerce_authors_at_r()` now works correctly for authors with
   multiple given names.
 
+* `$get_maintainer()` and `desc_get_maintainer()` now return `NA` instead of
+  the string `"NULL"` if `Authors@R` cannot be parsed (#140).
+
 # desc 1.4.3
 
 * `$set()` and `desc_set()` now can omit checks if `check = FALSE`

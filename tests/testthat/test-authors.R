@@ -412,6 +412,16 @@ test_that("get_maintainer is OK, too", {
   )
 })
 
+test_that("get_maintainer is NA if Authors@R cannot be parsed", {
+  D <- description$new(text = paste0(
+    "Package: foo\n",
+    "Authors@R: c(person(\"A\", \"B\", role = c(\"aut\", \"cre\")),\n",
+    "    person(\"C\", \"D\", role = \"aut\")\n"
+  ))
+  expect_null(D$get_authors())
+  expect_identical(D$get_maintainer(), NA_character_)
+})
+
 test_that("coerce_authors_at_r if there is no Authors@R field", {
   D1 <- description$new(test_path("D1"))
   expect_snapshot(error = TRUE, D1$get_authors())

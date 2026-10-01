@@ -576,10 +576,11 @@ idesc_get_maintainer <- function(self, private) {
   if (self$has_fields("Maintainer")) {
     unname(self$get("Maintainer"))
   } else if (self$has_fields("Authors@R")) {
-    format(
-      self$get_author(role = "cre"),
-      include = c("given", "family", "email")
-    )
+    maintainer <- self$get_author(role = "cre")
+    if (is.null(maintainer)) {
+      return(NA_character_)
+    }
+    format(maintainer, include = c("given", "family", "email"))
   } else {
     NA_character_
   }
